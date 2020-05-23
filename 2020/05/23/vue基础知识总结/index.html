@@ -143,7 +143,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    362 字
+                    415 字
                   </span>
                 
 
@@ -185,11 +185,14 @@
               <h6 id="一、常用指令"><a href="#一、常用指令" class="headerlink" title="一、常用指令"></a>一、常用指令</h6><ul>
 <li>v-on 绑定一个事件 缩写 @ 在methods类方法里面操作绑定的方法</li>
 <li>v-bind 绑定一个属性 缩写 : 在data数据对象里面操作绑定的数据</li>
-<li>v-model 双向绑定通常用于获取input框输入的内容,无论那边更改都会同步值</li>
-<li>v-for=”(list,index) in lists” v-key=”index”<br>为什么使用v-for时必须添加唯一的key?<br>使用v-for更新已渲染的元素列表时,默认用就地复用策略;<br>列表数据修改的时候,他会根据key值去判断某个值是否修改,如果修改,则重新渲染这一项,否则复用之前的元素</li>
+<li>v-model 双向绑定通常用于获取input框输入的内容，无论那边更改都会同步值</li>
+<li>v-for 基于数组或对象来循环渲染一个列表，语法：<br>1.循环数组，index是数组的索引 <pre><code class="hljs javascript">v-<span class="hljs-keyword">for</span>=<span class="hljs-string">"(item,index) in items"</span> :key=<span class="hljs-string">"index"</span></code></pre>
+ 2.循环对象，name是对象的键值  <pre><code class="hljs javascript">v-<span class="hljs-keyword">for</span>=<span class="hljs-string">"(value, name, index) in items"</span> :key=<span class="hljs-string">"index"</span></code></pre>
+ 3.为什么使用v-for时必须添加唯一的key?<pre><code>使用v-for更新已渲染的元素列表时，默认用就地复用策略;
+列表数据修改的时候，他会根据key值去判断某个值是否修改，如果修改，则重新渲染这一项，否则复用之前的元素</code></pre></li>
 <li>v-if v-else v-else-if 动态添加或删除元素</li>
 <li>v-show 添加元素的display样式控制显示或隐藏</li>
-<li>v-html 输出HTML代码</li>
+<li>v-html 输出html代码</li>
 </ul>
 <h6 id="二、生命周期"><a href="#二、生命周期" class="headerlink" title="二、生命周期"></a>二、生命周期</h6><p>new Vue -&gt; beforecreated -&gt; created -&gt; beforemounted -&gt; mounted -&gt; beforedestroyed -&gt; destroyed</p>
 <p><img src="https://cn.vuejs.org/images/lifecycle.png" srcset="/img/loading.gif" alt="avatar"></p>
