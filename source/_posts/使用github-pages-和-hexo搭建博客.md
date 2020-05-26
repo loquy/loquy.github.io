@@ -1,3 +1,9 @@
+---
+title: 使用github pages 和 hexo搭建博客
+date: 2020-05-26 15:59:13
+tags: [github pages,hexo,博客搭建]
+categories: 博客搭建
+---
 # 项目简介
 当前项目是使用[github pages](https://pages.github.com/)和[hexo](https://hexo.io/zh-cn/docs/)搭建的静态博客
 
