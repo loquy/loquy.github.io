@@ -3,6 +3,7 @@ title: Vue 基础知识总结
 date: 2020-05-23 10:33:22
 tags: Vue
 categories: Vue
+index_img: /img/vue.png
 ---
 ###### 一、常用指令
 
