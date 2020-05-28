@@ -101,3 +101,9 @@ deploy:
   type: git
   repo: https://github.com/loquy/loquy.github.io.git
   branch: master
+
+# 自动生成sitemap
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
