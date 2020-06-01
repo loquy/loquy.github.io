@@ -6,6 +6,21 @@
       <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
         <span>Fluid</span></a>
     </div>
+    <script>
+      fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+          const hitokoto = document.getElementById('hitokoto')
+          hitokoto.innerText = data.hitokoto
+        })
+        .catch(console.error)
+    </script>
+    <%- partial('_partial/busuanzi.ejs') %>
+    <%- partial('_partial/beian.ejs') %>
+    <% if(theme.web_analytics.cnzz) { %>
+      <!-- cnzz Analytics Icon -->
+      <span id="cnzz_stat_icon_<%- theme.web_analytics.cnzz %>" style="display: none"></span>
+    <% } %>
     <div>
       <span id="timeDate">载入天数...</span>
       <span id="times">载入时分秒...</span>
@@ -32,29 +47,15 @@
           if (String(snum).length == 1) {
             snum = "0" + snum;
           }
-          document.getElementById("timeDate").innerHTML = "博客已建立：&nbsp" + dnum + "&nbsp天";
-          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+          document.getElementById("timeDate").innerHTML = "本站运行 " + dnum + " 天";
+          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
         }
         setInterval("createtime()", 250);
       </script>
     </div>
     <p id="hitokoto">:D 获取中...</p>
-    <script>
-      fetch('https://v1.hitokoto.cn')
-        .then(response => response.json())
-        .then(data => {
-          const hitokoto = document.getElementById('hitokoto')
-          hitokoto.innerText = data.hitokoto
-        })
-        .catch(console.error)
-    </script>
-    <%- partial('_partial/busuanzi.ejs') %>
-    <%- partial('_partial/beian.ejs') %>
-    <% if(theme.web_analytics.cnzz) { %>
-      <!-- cnzz Analytics Icon -->
-      <span id="cnzz_stat_icon_<%- theme.web_analytics.cnzz %>" style="display: none"></span>
-    <% } %>
   </div>
+  
 </footer>
 
 <!-- SCRIPTS -->
