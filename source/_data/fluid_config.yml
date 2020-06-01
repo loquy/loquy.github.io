@@ -133,8 +133,8 @@ banner_parallax: true  # 头图滚动视差
 footer:
   statistics:  # 统计网站 PV、UV，使用的是不蒜子，显示在页脚  *不蒜子近期连接不稳定，谨慎开启
     enable: true
-    pv_format: "PV {} 次"  # 显示的文本，{}是数字的占位符（必须包含)，下同
-    uv_format: "UV {} 人"
+    pv_format: "PV {}"  # 显示的文本，{}是数字的占位符（必须包含)，下同
+    uv_format: "UV {}"
 
   beian:  # The footer of China's website policy, other areas keep disable
     enable: false
