@@ -1,5 +1,5 @@
 ---
-title: 使用github pages 和 hexo搭建博客
+title: 使用github pages和hexo搭建博客
 tags:
   - github pages
   - hexo
