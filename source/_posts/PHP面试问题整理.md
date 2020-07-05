@@ -8,7 +8,7 @@ categories:
 - [面试]
 abbrlink: babcce42
 date: 2020-06-25 10:05:23
-index_img: /images/php_logo.jpg
+index_img: /images/php_logo.png
 ---
 # PHP的生命周期是什么？
 
@@ -81,14 +81,25 @@ Nginx+PHP的工程模式下，两位主角分工明确，Nginx负责承载HTTP�
    - 优点占用空间小，处理速度快。缺点是不支持事务的完整性和并发性。 
 -  **MEMORY**
    - 所有的数据存储在内存中，关闭机器数据消失。 
--  **ARCHIVE **
+-  **ARCHIVE**
    - 提供了压缩功能，拥有高效的插入速度，不支持索引，所查询性能较差 
 
 # PHP 网页跳转的方式？
 
-- 使用php的header('location',$url) 函数
-- 使用html的meta标签
-- 使用js的window.location.href 方法
+- header()函数;
+ ```php 
+header('location:http://www.baidu.com');
+ ```
+- meta标签
+ ```php 
+ echo '<meta http-equiv="refresh" content="1;url=http://www.baidu.com">';
+ ```
+
+- script标签;
+ ```php 
+ echo'<script>window.location.href="http://www.baidu.com"</script>';
+ ```
+
 
 # Redis有几种类型?
 
@@ -109,7 +120,7 @@ Nginx+PHP的工程模式下，两位主角分工明确，Nginx负责承载HTTP�
    - Set 是 String 类型的无序集合。集合成员是唯一的，这就意味着集合中不能出现重复的数据
    - 集合中最大的成员数为 2<sup>32</sup> - 1 (40多亿)
    - 常用命令：sadd、spop、smembers、sunion
--  **sorted set（有序集合)** 
+-  **Sorted Set（有序集合)** 
    - 有序集合和集合一样也是string类型元素的集合,且不允许重复的成员
    - 不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序
    - 有序集合的成员是唯一的,但分数(score)却可以重复  
@@ -120,12 +131,12 @@ Nginx+PHP的工程模式下，两位主角分工明确，Nginx负责承载HTTP�
 
  HashTable是zend的核心数据结构，在PHP里面几乎并用来实现所有常见功能，我们知道的PHP数组即是其典型应用，此外，在zend内部，如函数符号表、全局变量等也都是基于hash table来实现 
 
-- 散列表（ hashTable  ） 具有如下特点 
+- 散列表（hashTable） 具有如下特点 
   - 支持典型的key->value查询
   - 可以当做数组使用
-  - 添加、删除节点是O（1）复杂度
+  - 添加、删除节点是O(1)复杂度
   - key支持混合类型：同时存在关联数组合索引数组
-  - Value支持混合类型：array (“string”,2332)
+  - Value支持混合类型：array("string",2332)
   - 支持线性遍历：如foreach
 
 
