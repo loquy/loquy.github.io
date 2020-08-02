@@ -65,9 +65,9 @@ custom_html: ''  # 自定义底部 HTML 内容（位于 footer 上方），也�
 
 web_analytics:  # 网页访问统计
   enable: true
-  baidu: 479d7a95187084ae8d8f0e0f69a18385
+  baidu: 2a5c0150424f0cc3fa8b492f889fcfe3
   # 百度统计的Key，参见 https://tongji.baidu.com/sc-web/10000033910/home/site/getjs?siteId=13751376 代码获取中 hm.js? 后边的字符串
-  google:  UA-167862106-1
+  google:  8o0xcn1EbZV2dLWvgate6msEbOG3SBOMyt2JoqvMcOQ
   # google:  Google统计的Tracking ID，参见 https://analytics.google.com/analytics/web/
   tencent:  # 腾讯统计的H5 App id，参见 https://mta.qq.com/h5/manage/ctr_app_manage (开启高级功能才有cid)
     sid:
