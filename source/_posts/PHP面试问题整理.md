@@ -8,7 +8,7 @@ categories:
 - [面试]
 abbrlink: babcce42
 date: 2020-06-25 10:05:23
-index_img: /images/php_logo.png
+index_img: https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/php_logo.png
 ---
 # PHP的生命周期是什么？
 

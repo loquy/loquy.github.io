@@ -2,7 +2,7 @@
 title: Hello Hexo
 tags: Hexo
 categories: Hexo
-index_img: /img/hexo.jpg
+index_img: https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/img/hexo.jpg
 abbrlink: a1751c09
 date: 2020-05-23 10:33:21
 ---

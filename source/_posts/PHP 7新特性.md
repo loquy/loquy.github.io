@@ -3,7 +3,7 @@ title: PHP 7新特性
 tags:
   - PHP
 categories: PHP
-index_img: /images/php7.jpg
+index_img: https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/php7.jpg
 abbrlink: a8d34c6a
 date: 2020-07-13 22:51:37
 ---

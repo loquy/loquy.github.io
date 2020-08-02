@@ -4,7 +4,7 @@ tags:
   - PHP
   - cURL
 categories: PHP
-index_img: /img/curl.png
+index_img: https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/img/curl.png
 abbrlink: b4a5aa5
 date: 2020-06-10 17:15:08
 ---
@@ -115,7 +115,7 @@ date: 2020-06-10 17:15:08
 
 - 其次在站点域名那里配置我们测试的demo的域名
 
-![phpStudy](/images/1591845702.jpg)
+![phpStudy](https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/1591845702.jpg)
 - 以下为测试demo
   
   新建两个php文件：一个是提供数据的接口，创建一个数组然后转成json格式输出到浏览器；另个是使用curl获取数据的接口，使用上面封装好的curl_get和curl_post函数获取数据。
@@ -227,9 +227,9 @@ date: 2020-06-10 17:15:08
 
 - 在浏览器访问写好的demo
 
-![phpStudy](/images/1591846206.jpg)
+![phpStudy](https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/1591846206.jpg)
 
-![phpStudy](/images/1591846227.jpg)
+![phpStudy](https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/1591846227.jpg)
 
 **到此便使用curl成功获取到数据**
 
