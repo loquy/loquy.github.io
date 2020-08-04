@@ -76,9 +76,9 @@ web_analytics:  # 网页访问统计
   woyaola:  # 51.la站点统计ID，参见 https://www.51.la/user/site/index
   cnzz:  # 友盟/cnzz站点统计web_id，参见 https://web.umeng.com/main.php?c=site&a=show
   leancloud:
-    app_id: aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz
-    app_key: Hoi4ulpVAyY7bRNFpECENYQ4
-    server_url: loquy.github.io # REST API 服务器地址，国际版不填
+    app_id: # aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz
+    app_key: # Hoi4ulpVAyY7bRNFpECENYQ4
+    server_url: # loquy.github.io # REST API 服务器地址，国际版不填
 
 lazyload: # 对页面中的图片进行懒加载处理，可见范围外的图片不会加载
   enable: true
