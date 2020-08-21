@@ -4,23 +4,25 @@ tags:
   - PHP
   - Yii
 categories: PHP
-index_img: 'https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/img/Yii.jpg'
+index_img: 'https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/Yii.jpg'
 description: Yii中活动记录（Active Record）类的使用
 abbrlink: 6a73a53a
 date: 2020-08-21 11:33:12
 ---
  # Yii中活动记录（Active Record）类的使用
 
-- 查询数据
-    定义 Active Record 类后，你可以从相应的数据库表中查询数据。 查询过程大致如下三个步骤：
-1.通过 yii\db\ActiveRecord::find() 方法创建一个新的查询生成器对象；
-    2.使用查询生成器的构建方法来构建你的查询；
-    3.调用查询生成器的查询方法来取出数据到 Active Record 实例中。
-    正如你看到的，是不是跟查询生成器的步骤差不多。 唯一有区别的地方在于你用 yii\db\ActiveRecord::find() 去获得一个新的查询生成器对象，这个对象是 yii\db\ActiveQuery， 而不是使用 new 操作符创建一个查询生成器对象。
+###  查询数据
 
-    下面是一些例子，介绍如何使用 Active Query 查询数据：
 ```php
-// 返回 ID 为 123 的客户：
+/** 
+定义 Active Record 类后，你可以从相应的数据库表中查询数据。 查询过程大致如下三个步骤：
+1.通过 yii\db\ActiveRecord::find() 方法创建一个新的查询生成器对象；
+2.使用查询生成器的构建方法来构建你的查询；
+3.调用查询生成器的查询方法来取出数据到 Active Record 实例中。
+正如你看到的，是不是跟查询生成器的步骤差不多。 唯一有区别的地方在于你用 yii\db\ActiveRecord::find() 去获得一个新的查询生成器对象，这个对象是 yii\db\ActiveQuery， 而不是使用 new 操作符创建一个查询生成器对象。 
+下面是一些例子，介绍如何使用 Active Query 查询数据：
+**/
+
 // SELECT * FROM `customer` WHERE `id` = 123 
 $customer = Customer::find()->where(['id' => 123])->one();
 $customer = Customer::findOne(123);
@@ -77,7 +79,7 @@ $model = Post::findOne(['id' => Yii::$app->request->get('id')]);
 $model = Post::findOne(Yii::$app->request->get('id'));
 ```
 
-- 数据转换 
+###  数据转换 
 
 ```php
 class Customer extends ActiveRecord
@@ -98,19 +100,19 @@ class Customer extends ActiveRecord
 // 访问$customer->birthdayText
 ```
 
-- 以数组形式获取数据    
+###  以数组形式获取数据    
 
- ``` php
- // 返回所有客户
- // 每个客户返回一个关联数组
- $customers = Customer::find()
-     ->asArray()
-     ->all();
+``` php
+// 返回所有客户
+// 每个客户返回一个关联数组
+$customers = Customer::find()
+    ->asArray()
+    ->all();
 
 // 提示： 虽然这种方法可以节省内存并提高性能，但它更靠近较低的 DB 抽象层 你将失去大部分的 Active Record 提供的功能。 一个非常重要的区别在于列值的数据类型。 当您在 Active Record 实例中返回数据时，列值将根据实际列类型，自动类型转换； 然而，当您以数组返回数据时，列值将为 字符串（因为它们是没有处理过的 PDO 的结果），不管它们的实际列是什么类型。
- ```
+```
 
-- 批量获取数据
+###  批量获取数据
 
 ```php
 // 每次获取 10 条客户数据
@@ -129,7 +131,7 @@ foreach (Customer::find()->with('orders')->each() as $customer) {
 }
 ```
 
-- 保存数据
+###  保存数据
 ```php
 // 插入新记录
 $customer = new Customer();
@@ -145,7 +147,7 @@ $customer->save();
 // save() 方法可能插入或者更新表的记录，这取决于 Active Record 实例的状态。 如果实例通过 new 操作符实例化，调用 save() 方法将插入新记录； 如果实例是一个查询方法的结果，调用 save() 方法 将更新这个实例对应的表记录行。
 ```
 
-- 数据验证
+###  数据验证
 
 
     因为 yii\db\ActiveRecord 继承于 yii\base\Model，它共享相同的 输入验证 功能。 你可以通过重写 rules() 方法声明验证规则并执行， 通过调用 validate() 方法进行数据验证。
@@ -154,7 +156,7 @@ $customer->save();
     
     提示： 如果你确定你的数据不需要验证（比如说数据来自可信的场景）， 你可以调用 save(false) 来跳过验证过程。
 
-- 快赋值
+###  快赋值
 
 ```php
   // 和普通的 模型 一样，你亦可以享受 Active Record 实例的 块赋值 特性。 使用此功能，您可以在单个 PHP 语句中，给 Active Record 实例的多个属性批量赋值， 如下所示。 记住，只有 安全属性 才可以批量赋值。
@@ -172,7 +174,7 @@ $customer->save();
 
   
 
-- 更新计数
+###  更新计数
 ```php
 // 在数据库表中增加或减少一个字段的值是个常见的任务。我们将这些列称为“计数列”。 您可以使用 updateCounters() 更新一个或多个计数列。 例如，
     
@@ -186,13 +188,13 @@ $post->updateCounters(['view_count' => 1]);
 Customer::updateAllCounters(['age' => 1]);
 ```
 
-- 更新多个数据行
+###  更新多个数据行
 ```php
 // UPDATE `customer` SET `status` = 1 WHERE `email` LIKE `%@example.com%`
 Customer::updateAll(['status' => Customer::STATUS_ACTIVE], ['like', 'email', '@example.com']);
 ```
 
-- 删除数据
+###  删除数据
 ```php
 // 要删除单行数据，首先获取与该行对应的 Active Record 实例，然后调用 yii\db\ActiveRecord::delete() 方法。
 
@@ -204,7 +206,7 @@ $customer->delete();
 Customer::deleteAll(['status' => Customer::STATUS_INACTIVE]);
 ```
 
-- 事务操作
+###  事务操作
 ```php
 $customer = Customer::findOne(123);
 
@@ -233,7 +235,7 @@ try {
     // 提示： 在上面的代码中，我们有两个catch块用于兼容 PHP 5.x 和 PHP 7.x。 \Exception 继承于 \Throwable interface 由于 PHP 7.0 的改动，如果您的应用程序仅使用 PHP 7.0 及更高版本，您可以跳过 \Exception 部分。
 ```
 
-- 乐观锁
+###  乐观锁
 
 
     乐观锁是一种防止此冲突的方法：一行数据 同时被多个用户更新。例如，同一时间内，用户 A 和用户 B 都在编辑 相同的 wiki 文章。用户 A 保存他的编辑后，用户 B 也点击“保存”按钮来 保存他的编辑。实际上，用户 B 正在处理的是过时版本的文章， 因此最好是，想办法阻止他保存文章并向他提示一些信息。
@@ -290,7 +292,7 @@ public function behaviors()
 }
 ```
 
-- 使用关联数据
+###  使用关联数据
 ```php
 // 声明关联关系
 class Customer extends ActiveRecord
@@ -342,7 +344,7 @@ $customer->orders; // 获得 `Order` 对象的数组
 $customer->getOrders(); // 返回 ActiveQuery 类的实例
 ```
 
-- 动态关联查询
+###  动态关联查询
 
 ```php 
 $customer = Customer::findOne(123);
@@ -371,7 +373,7 @@ $orders = $customer->getBigOrders(200)->all();
 $orders = $customer->bigOrders;
 ```
 
-- 中间表关联
+###  中间表关联
 ```php
 // 在数据库建模中，当两个关联表之间的对应关系是多对多时， 通常会引入一个连接表。例如，order 表 和 item 表可以通过名为 order_item 的连接表相关联。一个 order 将关联多个 order items， 而一个 order item 也会关联到多个 orders。
 
@@ -413,7 +415,7 @@ $order = Order::findOne(100);
 $items = $order->items;
 ```
 
-- 通过多个表来连接关联声明
+###  通过多个表来连接关联声明
 ```php
 // 通过使用 via() 方法，它还可以通过多个表来定义关联声明。 再考虑考虑上面的例子，我们有 Customer，Order 和 Item 类。 我们可以添加一个关联关系到 Customer 类，这个关联可以列出了 Customer（客户） 的订单下放置的所有 Item（商品）， 这个关联命名为 getPurchasedItems()，关联声明如下代码示例所示：
 
@@ -443,7 +445,7 @@ class Customer extends ActiveRecord
 }
 ```
 
-- 延迟加载和即时加载
+###  延迟加载和即时加载
 ```php
 // 在 访问关联数据 中，我们解释说可以像问正常的对象属性那样 访问 Active Record 实例的关联属性。SQL 语句仅在 你第一次访问关联属性时执行。我们称这种关联数据访问方法为 延迟加载。 例如，
 
@@ -524,7 +526,7 @@ $orders = Order::find()->select(['id', 'amount'])->with('customer')->all();
 $orders = Order::find()->select(['id', 'amount', 'customer_id'])->with('cus
 ```
 
-- 关联关系的 JOIN 查询
+###  关联关系的 JOIN 查询
 ```php
 // 提示： 这小节的内容仅仅适用于关系数据库， 比如 MySQL，PostgreSQL 等等。
 
@@ -581,7 +583,7 @@ $customers = Customer::find()->joinWith([
 // 提示： 当通过 onCondition() 修改 yii\db\ActiveQuery 时， 如果查询涉及到 JOIN 查询，那么条件将被放在 ON 部分。如果查询不涉及 JOIN ，条件将自动附加到查询的 WHERE 部分。 因此，它可以只包含 包含了关联表的列 的条件。（译者注：意思是 onCondition() 中可以只写关联表的列，主表的列写不写都行）
 ```
 
-- 反向关联
+###  反向关联
 ```php
 // 两个 Active Record 类之间的关联声明往往是相互关联的。例如，Customer 是 通过 orders 关联到 Order ，而Order 通过 customer 又关联回到了 Customer。
 
@@ -641,7 +643,7 @@ echo $customer2 === $customer ? 'same' : 'not the same';
 // 注意： 反向关联不能用在有 连接表 关联声明中。 也就是说，如果一个关联关系通过 via() 或 viaTable() 声明， 你就不能再调用 inverseOf() 了。
 ```
 
-- 保存关联数据
+###  保存关联数据
 ```php
 // 在使用关联数据时，您经常需要建立不同数据之间的关联或销毁 现有关联。这需要为定义的关联的列设置正确的值。通过使用 Active Record， 你就可以编写如下代码：
 
@@ -680,7 +682,7 @@ $customer->unlink('orders', $customer->orders[0]);
 // 当关联关系中有连接表时，调用 unlink() 时， 如果 $delete 参数是 true 的话，将导致 连接表中的外键或相应的行被删除。
 ```
 
-- 跨数据库关联
+###  跨数据库关联
 ```php
 // Active Record 允许您在不同数据库驱动的 Active Record 类之间声明关联关系。 这些数据库可以是不同的类型（例如 MySQL 和 PostgreSQL ，或是 MS SQL 和 MongoDB），它们也可以运行在 不同的服务器上。你可以使用相同的语法来执行关联查询。例如，
 
@@ -720,7 +722,7 @@ $customers = Customer::find()->with('comments')->all();
 // 注意： joinWith() 这个功能限制于某些数据库是否支持跨数据库 JOIN 查询。  因此，你再上述的代码里就不能用此方法了，因为 MongoDB 不支持 JOIN 查询。
 ```
 
-- 自定义查询类
+###  自定义查询类
 ```php
 // 默认情况下，yii\db\ActiveQuery 支持所有 Active Record 查询。要在 Active Record 类中使用自定义的查询类， 您应该重写 yii\db\ActiveRecord::find() 方法并返回一个你自定义查询类的实例。 例如，
 
@@ -798,7 +800,7 @@ $customers = Customer::find()->joinWith([
 // 提示： 在 Yii 1.1 中，有个概念叫做 命名范围。命名范围在 Yii 2.0 中不再支持， 你依然可以使用自定义查询类、查询方法来达到一样的效果。
 ```
 
-- 选择额外的字段
+###  选择额外的字段
 ```php
 // 当 Active Record 实例从查询结果中填充时，从数据结果集中， 其属性的值将被相应的列填充。
 
@@ -917,7 +919,7 @@ class Customer extends \yii\db\ActiveRecord
 }
 // 使用此代码，如果 'select' 语句中存在 'ordersCount' - 它会从查询结果集获取数据填充 Customer::ordersCount 属性， 否则它会在被访问的时候，使用 Customer::orders 关联按需计算。
 
-// // 这种方法也适用于创建一些关联数据的快捷访问方式，特别是对于聚合。 例如：
+// 这种方法也适用于创建一些关联数据的快捷访问方式，特别是对于聚合。 例如：
 
 class Customer extends \yii\db\ActiveRecord
 {
