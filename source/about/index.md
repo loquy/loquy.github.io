@@ -13,7 +13,7 @@ layout: about
 以下均为我熟练使用的技能
 
 - Web开发：PHP/HTML/CSS/JavaScript/Json
-- PHP框架：ThinkPHP/ThinkCMF/FastAdmin/Laravel
+- PHP框架：ThinkPHP/ThinkCMF/FastAdmin/Laravel/Yii
 - 前端框架：Vue.js/uni-app/Bootstrap/jQuery/Node.js
 - 开发工具：Visual Studio Code/PhpStorm/HBuilder/heidisql/WinSCP/Typora
 - 数据库相关：MySQL/Redis
