@@ -207,6 +207,7 @@ Vim 的全局配置一般在`/etc/vim/vimrc或者/etc/vimrc`，对所有用户�
 3.使用和卸载：
 
 在命令行模式输入命令使用插件
+
 命令 | 描述
 :---|:---
 PlugInstall [name ...] [#threads] | 安装插件
