@@ -4,8 +4,8 @@ abbrlink: 3f5e4d56
 date: 2020-10-12 23:00:00
 tags:
     - Vim
-    - linux
-categories: linux
+    - Linux
+categories: Linux
 index_img: https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/Vim.png
 description: Vim
 ---
