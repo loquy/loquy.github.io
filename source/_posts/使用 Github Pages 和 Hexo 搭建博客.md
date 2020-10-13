@@ -12,7 +12,7 @@ date: 2020-05-26 15:59:13
 # 项目简介
 当前项目是使用 [Github Pages](https://pages.github.com/) 和 [Hexo](https://Hexo.io/zh-cn/docs/) 搭建的静态博客
 
-    Github Pages是 GitHub 提供的一个网页寄存服务，于2008年推出。
+    Github Pages 是 GitHub 提供的一个网页寄存服务，于 2008 年推出。
     可以用于存放静态网页，包括博客、项目文档甚至整本书。
     Jekyll 软件可以用于将文档转换成静态网页，该软件提供了将网页上传到 Github Pages 的功能。
     一般 Github Pages 的网站使用 github.io 的子域名，但是用户也可以使用第三方域名。
@@ -35,7 +35,7 @@ date: 2020-05-26 15:59:13
     git push -u origin master
 - 搭建完成，在浏览器打开 https://username.github.io 即可访问
 
-# Hexo安装
+# Hexo 安装
 
 ##### 安装前提
 安装 hexo 相当简单，只需要先安装下列应用程序即可：
@@ -103,7 +103,7 @@ date: 2020-05-26 15:59:13
 - public ，**hexo g** 部署之前预先生成的静态文件
 - .deploy_git， **hexo d** 部署提交到 git 主干的目录
 
-# Hexo发布文章
+# Hexo 发布文章
 - 创建文章 **hexo new "article title"**
 - 本地预览 **hexo server**
 - 部署网站 **hexo g -d** 或 **hexo d -g**
