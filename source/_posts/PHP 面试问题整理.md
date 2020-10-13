@@ -1,5 +1,5 @@
 ---
-title: PHP面试问题整理
+title: PHP 面试问题整理
 tags: 
 - PHP
 - 面试
@@ -10,24 +10,24 @@ abbrlink: babcce42
 date: 2020-06-25 10:05:23
 index_img: https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/php_logo.png
 ---
-# PHP的生命周期是什么？
+# PHP 的生命周期是什么？
 
-PHP生命周期有5个阶段：
+PHP 生命周期有5个阶段：
 
 - **模块初始化阶段** （module init） 
-  - Zend引擎的初始化操作。SAPI、FPM（master 进程 ）启动，加载扩展、模块初始化 
+  - Zend 引擎的初始化操作。SAPI、FPM（master 进程 ）启动，加载扩展、模块初始化 
 - **请求初始化阶段** （request init） 
-  - FPM里worker进程接收一个请求并读取请求数据，PHP初始化本次请求所需的环境变量
+  - FPM 里 worker 进程接收一个请求并读取请求数据，PHP初始化本次请求所需的环境变量
 - **PHP脚本执行阶段**
-  - Zend引擎接将PHP代码编译成opcodes并顺次执行
+  - Zend 引擎接将 PHP 代码编译成 opcodes 并顺次执行
 - **请求关闭阶段** （request shutdown） 
-  - 按顺序调用各个模块的RSHUTDOWN方法，对每个变量调用unset函数
+  - 按顺序调用各个模块的 RSHUTDOWN 方法，对每个变量调用 unset 函数
 - **模块关闭阶段** （module shutdown） 
-  - SAPI关闭，进行资源的清理，关闭各个模块，关闭FPM
+  - SAPI 关闭，进行资源的清理，关闭各个模块，关闭 FPM
 
 # 数据库事务的理解 ？
 
- [数据库](https://baike.baidu.com/item/数据库/103728)事务( transaction)是访问并可能操作各种[数据项](https://baike.baidu.com/item/数据项/3227309)的一个数据库操作序列，这些操作要么全部执行,要么全部不执行，是一个不可分割的工作单位。事务由事务开始与事务结束之间执行的全部数据库操作组成。 
+ [数据库](https://baike.baidu.com/item/数据库/103728)事务(transaction)是访问并可能操作各种[数据项](https://baike.baidu.com/item/数据项/3227309)的一个数据库操作序列，这些操作要么全部执行,要么全部不执行，是一个不可分割的工作单位。事务由事务开始与事务结束之间执行的全部数据库操作组成。 
 
  - 原子性（Atomic）	
    -  事务`要么全部完成，要么全部取消`。 如果事务崩溃，状态回到事务之前（事务回滚）。 
@@ -52,7 +52,7 @@ PHP生命周期有5个阶段：
 
 # PHP Swoole是什么？
 
-- php协程框架
+- PHP 协程框架
 
 
   ```
@@ -61,15 +61,15 @@ PHP生命周期有5个阶段：
 
 
 
-# PHP和Nginx怎么交互的？
+# PHP 和 Nginx 怎么交互的？
 
-Nginx+PHP的工程模式下，两位主角分工明确，Nginx负责承载HTTP请求的响应与返回，以及超时控制记录日志等HTTP相关的功能，而PHP则负责处理具体请求要做的业务逻辑，它们俩的这种合作模式也是常见的分层架构设计中的一种，在它们各有专注面的同时，FastCGI又很好的将两块衔接，保障上下游通信交互
+Nginx + PHP 的工程模式下，两位主角分工明确，Nginx 负责承载 HTTP 请求的响应与返回，以及超时控制记录日志等 HTTP 相关的功能，而PHP则负责处理具体请求要做的业务逻辑，它们俩的这种合作模式也是常见的分层架构设计中的一种，在它们各有专注面的同时，FastCGI 又很好的将两块衔接，保障上下游通信交互
 
-- 发送HTTP请求Nginx接收
-- Nginx解析到对应PHP文件
-- 加载Nginx的 FastCGI 模块启动对应端口
-- PHP-FPM监听对应端口，接收请求，启用worker进程处理
-- PHP-FPM处理完请求，返回给Nginx
+- 发送 HTTP 请求 Nginx 接收
+- Nginx 解析到对应 PHP 文件
+- 加载 Nginx 的 FastCGI 模块启动对应端口
+- PHP-FPM 监听对应端口，接收请求，启用 worker 进程处理
+- PHP-FPM 处理完请求，返回给 Nginx
 
 #  **MySQL** 存储引擎有什么？
 
@@ -101,43 +101,43 @@ header('location:http://www.baidu.com');
  ```
 
 
-# Redis有几种类型?
+# Redis 有几种类型?
 
 -  **String（字符串）** 
    -  一个 key 对应一个 value。 
    -  一个 key 最大能存储 512MB
    -  常用命令：set、get、decr、incr、mget
 -  **Hash（哈希）** 
-   -  键值(key=>value)对集合，是一个 string 类型的 field 和 value 的映射表， 特别适合用于存储对象
-   -  每个 hash 可以存储2<sup>32</sup>  - 1键值对（40多亿）
+   -  键值(key => value)对集合，是一个 string 类型的 field 和 value 的映射表， 特别适合用于存储对象
+   -  每个 hash 可以存储 2<sup>32</sup>  - 1 键值对（40多亿）
    -  常用命令：hget、hset、hgetall
 -  **List（列表）** 
    - 字符串列表，按照插入顺序排序。可以添加一个元素到列表的头部（左边）  或者尾部（右边）
-   - 列表最多可以包含2<sup>32</sup>  - 1个元素 (40多亿)
-   - list类型经常会被用于消息队列的服务，以完成多程序之间的消息交换
+   - 列表最多可以包含 2<sup>32</sup>  - 1 个元素 (40多亿)
+   - list 类型经常会被用于消息队列的服务，以完成多程序之间的消息交换
    - 常用命令：lpush、rpush、lpop、rpop、lrange
 -  **Set（集合）** 
    - Set 是 String 类型的无序集合。集合成员是唯一的，这就意味着集合中不能出现重复的数据
    - 集合中最大的成员数为 2<sup>32</sup> - 1 (40多亿)
    - 常用命令：sadd、spop、smembers、sunion
 -  **Sorted Set（有序集合)** 
-   - 有序集合和集合一样也是string类型元素的集合,且不允许重复的成员
-   - 不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序
+   - 有序集合和集合一样也是 string 类型元素的集合,且不允许重复的成员
+   - 不同的是每个元素都会关联一个 double 类型的分数。redis 正是通过分数来为集合中的成员进行从小到大的排序
    - 有序集合的成员是唯一的,但分数(score)却可以重复  
    - 集合中最大的成员数为 2<sup>32</sup> - 1 (40多亿)
    - 常用命令：zadd、zrange、zrem、zcard
 
-# PHP数组在底层怎么实现的？
+# PHP 数组在底层怎么实现的？
 
- HashTable是zend的核心数据结构，在PHP里面几乎并用来实现所有常见功能，我们知道的PHP数组即是其典型应用，此外，在zend内部，如函数符号表、全局变量等也都是基于hash table来实现 
+ HashTable 是 zend 的核心数据结构，在PHP里面几乎并用来实现所有常见功能，我们知道的 PHP 数组即是其典型应用，此外，在 zend 内部，如函数符号表、全局变量等也都是基于 hash table 来实现 
 
-- 散列表（hashTable） 具有如下特点 
-  - 支持典型的key->value查询
+- 散列表（hashTable）具有如下特点 
+  - 支持典型的 key => value 查询
   - 可以当做数组使用
-  - 添加、删除节点是O(1)复杂度
-  - key支持混合类型：同时存在关联数组合索引数组
-  - Value支持混合类型：array("string",2332)
-  - 支持线性遍历：如foreach
+  - 添加、删除节点是 O(1)复杂度
+  - key 支持混合类型：同时存在关联数组合索引数组
+  - Value 支持混合类型：array("string",2332)
+  - 支持线性遍历：如 foreach
 
 
 
@@ -147,8 +147,8 @@ header('location:http://www.baidu.com');
 - 调用 [auth.code2Session](https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/login/auth.code2Session.html) 接口，换取 **用户唯一标识 OpenID** 和 **会话密钥 session_key**。
 - 具体思路如下
 
-  - 在main.js 中封装公共函数，用于判断用户是否登录
-  - 在main.js 中分定义全局变量，用于存储接口地址
+  - 在 main.js 中封装公共函数，用于判断用户是否登录
+  - 在 main.js 中分定义全局变量，用于存储接口地址
   - 如果没有登录、则跳转至登录页面
   - 进入登录页面
   - 通过 wx.login 获取用户的 code
@@ -182,7 +182,7 @@ header('location:http://www.baidu.com');
         - 秒杀业务根据消息队列中的请求信息，再做后续处理 
 
 
-- 使用PHP的数组函数**array_push、array_shift**实现一个队列
+- 使用PHP的数组函数 **array_push、array_shift** 实现一个队列
 
 ```php 
 <?php

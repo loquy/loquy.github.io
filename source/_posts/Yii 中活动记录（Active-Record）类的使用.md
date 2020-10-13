@@ -1,5 +1,5 @@
 ---
-title: Yii中活动记录（Active Record）类的使用
+title: Yii 中活动记录（Active Record）类的使用
 tags:
   - PHP
   - Yii

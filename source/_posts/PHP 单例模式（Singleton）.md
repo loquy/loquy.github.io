@@ -1,5 +1,5 @@
 ---
-title: PHP设计模式之单例模式（Singleton）
+title: PHP 设计模式之单例模式（Singleton）
 tags: 
 - 创建型模式
 - PHP

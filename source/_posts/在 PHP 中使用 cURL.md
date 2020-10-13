@@ -1,5 +1,5 @@
 ---
-title: 在PHP中使用cURL
+title: 在 PHP 中使用 cURL
 tags:
   - PHP
   - cURL
@@ -12,9 +12,9 @@ date: 2020-06-10 17:15:08
 
 - 先来看下维基百科的解释：
 
-        cURL是一个开源项目，主要的产品是curl（命令行工具）和libcurl（C语言的API库），两者功能均是：基于网络协议，对指定URL进行网络传输。
+        cURL 是一个开源项目，主要的产品是 curl（命令行工具）和 libcurl（C语言的API库），两者功能均是：基于网络协议，对指定 URL 进行网络传输。
 
-        cURL涉及是任何网络协议传输，不涉及对具体数据的具体处理。（如：html的渲染等）
+        cURL 涉及是任何网络协议传输，不涉及对具体数据的具体处理。（如：html 的渲染等）
 
 - 简单讲就是我们不用浏览器，在curl命令行工具就可以访问任意网址
 
@@ -22,9 +22,9 @@ date: 2020-06-10 17:15:08
 
 # 在PHP中使用cURL
 
-  使用 cURL 函数的基本思想是先使用 **curl_init()** 初始化 cURL会话，接着可以通过 **curl_setopt()** 设置需要的全部选项，然后使用 **curl_exec()** 来执行会话，当执行完会话后使用 **curl_close()** 关闭会话
+  使用 cURL 函数的基本思想是先使用 **curl_init()** 初始化 cURL 会话，接着可以通过 **curl_setopt()** 设置需要的全部选项，然后使用 **curl_exec()** 来执行会话，当执行完会话后使用 **curl_close()** 关闭会话
 
-  - 其中最需要我们配置的是curl_setopt()这步,我们来看下这个函数的说明
+  - 其中最需要我们配置的是 curl_setopt() 这步,我们来看下这个函数的说明
 
   ```php
     /**
@@ -45,7 +45,7 @@ date: 2020-06-10 17:15:08
   ```
   - [option参数选项和值具体看官方文档，用的时候在查询](https://www.php.net/curl_setopt)
 
-  - 我们看下官方文档中使用cURL发送POST和GET封装后的函数
+  - 我们看下官方文档中使用 cURL 发送 POST 和 GET 封装后的函数
   
   ```php 
       /** 
@@ -111,14 +111,14 @@ date: 2020-06-10 17:15:08
   ```
 # 发送GET/POST请求到接口交互数据
 
-- 首先我们得有个运行PHP的环境，我这边使用phpStudy
+- 首先我们得有个运行PHP的环境，我这边使用 PHPStudy
 
-- 其次在站点域名那里配置我们测试的demo的域名
+- 其次在站点域名那里配置我们测试的 demo 的域名
 
 ![phpStudy](https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/1591845702.jpg)
-- 以下为测试demo
+- 以下为测试 demo
   
-  新建两个php文件：一个是提供数据的接口，创建一个数组然后转成json格式输出到浏览器；另个是使用curl获取数据的接口，使用上面封装好的curl_get和curl_post函数获取数据。
+  新建两个 php 文件：一个是提供数据的接口，创建一个数组然后转成 json 格式输出到浏览器；另个是使用 curl 获取数据的接口，使用上面封装好的 curl_get 和 curl_post 函数获取数据。
 
 ```php
   <?php
@@ -225,7 +225,7 @@ date: 2020-06-10 17:15:08
 
 ```
 
-- 在浏览器访问写好的demo
+- 在浏览器访问写好的 demo
 
 ![phpStudy](https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/1591846206.jpg)
 
