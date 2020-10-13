@@ -12,7 +12,7 @@
 - 首先搭建 Github Pages
 - 然后使用 Hexo 部署到 Github 远程仓库
 
-## Github Pages的搭建方式
+## Github Pages 的搭建方式
 如果之前未使用过 Git，可以学习，[Git 小白教程](http://rogerdudler.github.io/git-guide/index.zh.html)
 - 创建名为 username.github.io 的仓库，username 是你的 github 的用户名，不是昵称
 - 克隆到本地 
