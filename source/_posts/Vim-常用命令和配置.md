@@ -16,7 +16,7 @@ description: Vim
  :---|:---|:---
  `默认`       | 普通模式    | 控制光标移动，可对文本进行复制、粘贴等操作
  `i`          | 插入模式    | 写入和编辑文本
- `:`          | 命令行模式  | 保存或退出文本
+ `:`          | 命令行模式  | 保存或退出文本等，设置 Vim 的配置项
  `v`          | 可视模式    | 配合方向键选取某一块文本区域，像使用鼠标一样
 
 # 命令
@@ -95,7 +95,7 @@ description: Vim
     `u`        | 撤销
     `ctrl + r` | 恢复上一步撤销
 
-2. 命令行模式（`:命令`，执行该命令）：
+2. 命令行模式：
 
     命令 | 描述
     :---|:---
@@ -214,13 +214,13 @@ description: Vim
 
     命令 | 描述
     :---|:---
-    PlugInstall [name ...] [#threads] | 安装插件
-    PlugUpdate [name ...] [#threads] | 安装或更新插件
-    PlugClean[!] | 删除未列出的插件
-    PlugUpgrade	 | 升级vim-plug
-    PlugStatus	 | 检查插件状态
-    PlugDiff	 | 检查来自先前更新的更改以及未决的更改
-    PlugSnapshot[!] [output path] | 生成脚本以还原插件的当前快照
+    `:PlugInstall [name ...] [#threads]` | 安装插件
+    `:PlugUpdate [name ...] [#threads]` | 安装或更新插件
+    `:PlugClean[!]` | 删除未列出的插件
+    `:PlugUpgrade`	 | 升级vim-plug
+    `:PlugStatus`	 | 检查插件状态
+    `:PlugDiff`	 | 检查来自先前更新的更改以及未决的更改
+    `:PlugSnapshot[!] [output path]` | 生成脚本以还原插件的当前快照
 
     更多插件参见 [vim Awesome](https://vimawesome.com)。
 
