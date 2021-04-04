@@ -35,14 +35,14 @@ date: 2020-05-26 15:59:13
     git push -u origin master
 - 搭建完成，在浏览器打开 https://username.github.io 即可访问
 
-# Hexo 安装
+## Hexo 安装
 
-##### 安装前提
+### 安装前提
 安装 hexo 相当简单，只需要先安装下列应用程序即可：
 - [Node.js](https://nodejs.org/en/)
 - [Git](https://git-scm.com/)
 
-##### 安装 Hexo
+### 安装 Hexo
 所有必备的应用程序安装完成后，即可使用 npm 安装 hexo。
 
     $ npm install -g hexo-cli
@@ -51,13 +51,13 @@ date: 2020-05-26 15:59:13
 
     $ npm install hexo
     
-##### 新建一个网站和启动服务器运行
+### 新建一个网站和启动服务器运行
 
     $ hexo init <folder> 如果没有设置 folder hexo 默认在目前的文件夹建立网站
 
     $ hexo server 简写 $ hexo s 默认情况下，访问网址为： http://localhost:4000/
 
-##### 部署到 Github Pages
+### 部署到 Github Pages
 - 编辑 **_config.yml** 配置文件
 
         deploy:
@@ -70,7 +70,7 @@ date: 2020-05-26 15:59:13
 - 以上两步可以简写为 **hexo g -d** 或 **hexo d -g**
 
 
-# Hexo 目录结构
+## Hexo 目录结构
     .
     ├── _config.yml 
     ├── package.json
@@ -83,32 +83,32 @@ date: 2020-05-26 15:59:13
     └── public
     └── .deploy_git
 
-#### _config.yml
+### _config.yml
 [Hexo配置文件](https://Hexo.io/zh-cn/docs/configuration)
 
-#### package.json
+### package.json
 应用程序的信息
 
-#### scaffolds
+### scaffolds
 模版件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。Hexo 的模板是指在新建的文章文件中默认填充的内容。
 
-#### source
+### source
 资源文件夹是存放用户资源的地方。除 _posts 文件夹之外，开头命名为 _ (下划线)的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 public 文件夹，而其他文件会被拷贝过去。
 
-#### themes
+### themes
 主题文件夹。Hexo 会根据主题来生成静态页面。
 
-#### 特殊目录
+### 特殊目录
 - node_modules， **npm install hexo** 生成的包和依赖
 - public ，**hexo g** 部署之前预先生成的静态文件
 - .deploy_git， **hexo d** 部署提交到 git 主干的目录
 
-# Hexo 发布文章
+## Hexo 发布文章
 - 创建文章 **hexo new "article title"**
 - 本地预览 **hexo server**
 - 部署网站 **hexo g -d** 或 **hexo d -g**
 
-# 多台电脑同步 Hexo 版本
+## 多台电脑同步 Hexo 版本
 **问题：远程仓库存的是静态文件，换电脑就无法使用 hexo**
 **解决思路：创建分支管理 hexo 源代码**
 
