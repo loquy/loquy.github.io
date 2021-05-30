@@ -7,7 +7,7 @@ categories: PHP
 description: Use unit tests in PHP
 abbrlink: ef77815d
 date: 2021-05-30 08:17:04
-index_img: https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/unit_testing.jpg)
+index_img: https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/unit_testing.jpg
 ---
 # 相关概念
 - `单元测试`
