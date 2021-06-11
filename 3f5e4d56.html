@@ -1,0 +1,1081 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="loquy">
+  <meta name="author" content="loquy">
+  <meta name="keywords" content="loquy">
+  <title>Vim 常用命令和配置 - loquy</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>loquy</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/linux-command">
+                <i class="iconfont icon-books"></i>
+                Linux 命令搜索
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/img/FreshSalt.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-12 23:00" pubdate>
+        2020年10月12日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      20
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Vim 常用命令和配置</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h1><p>在其他模式下使用 <code>Esc</code> 切换回普通模式，命令行模式下使用 <code>:命令</code> + <code>Enter</code> 执行命令。</p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">模式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>默认</code></td>
+<td align="left">普通模式</td>
+<td align="left">控制光标移动，可对文本进行复制、粘贴等操作</td>
+</tr>
+<tr>
+<td align="left"><code>i</code></td>
+<td align="left">插入模式</td>
+<td align="left">写入和编辑文本</td>
+</tr>
+<tr>
+<td align="left"><code>:</code></td>
+<td align="left">命令行模式</td>
+<td align="left">保存或退出文本等，设置 Vim 的配置项</td>
+</tr>
+<tr>
+<td align="left"><code>v</code></td>
+<td align="left">可视模式</td>
+<td align="left">配合方向键选取某一块文本区域，像使用鼠标一样</td>
+</tr>
+</tbody></table>
+<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><p>注意 <code>n</code> 为数字，<code>+</code> 表示组合使用，其他的字符对应键盘上的按键。</p>
+<ol>
+<li><p>普通模式：</p>
+<p> 常用的光标移动命令。</p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>n + h</code> 或 <code>n + ←</code></td>
+<td align="left">光标左移 n 个位置</td>
+</tr>
+<tr>
+<td align="left"><code>n + l</code> 或 <code>n + →</code></td>
+<td align="left">光标右移 n 个位置</td>
+</tr>
+<tr>
+<td align="left"><code>n + j</code> 或 <code>n + ↓</code></td>
+<td align="left">光标下移 n 个位置</td>
+</tr>
+<tr>
+<td align="left"><code>n + k</code> 或 <code>n + ↑</code></td>
+<td align="left">光标上移 n 个位置</td>
+</tr>
+<tr>
+<td align="left"><code>ctrl + f</code></td>
+<td align="left">向下滚动一屏</td>
+</tr>
+<tr>
+<td align="left"><code>ctrl + b</code></td>
+<td align="left">向上滚动一屏</td>
+</tr>
+<tr>
+<td align="left"><code>ctrl + d</code></td>
+<td align="left">向下滚动半屏</td>
+</tr>
+<tr>
+<td align="left"><code>ctrl + u</code></td>
+<td align="left">向上滚动半屏</td>
+</tr>
+<tr>
+<td align="left"><code>0</code></td>
+<td align="left">跳到首行，可以理解为无穷大的h</td>
+</tr>
+<tr>
+<td align="left"><code>^</code></td>
+<td align="left">跳到行首开始的第一个非空白字符</td>
+</tr>
+<tr>
+<td align="left"><code>$</code></td>
+<td align="left">跳到行尾，可以理解为无穷大的l</td>
+</tr>
+<tr>
+<td align="left"><code>gg</code> 或 <code>1 + G</code></td>
+<td align="left">跳到首行，可以理解为无穷大的k</td>
+</tr>
+<tr>
+<td align="left"><code>G</code></td>
+<td align="left">跳到末行，可以理解为无穷大的j</td>
+</tr>
+<tr>
+<td align="left"><code>w</code></td>
+<td align="left">跳到下一个词首</td>
+</tr>
+<tr>
+<td align="left"><code>b</code></td>
+<td align="left">跳到上一个词首</td>
+</tr>
+<tr>
+<td align="left"><code>e</code></td>
+<td align="left">跳到下一个词尾</td>
+</tr>
+<tr>
+<td align="left"><code>ge</code></td>
+<td align="left">跳到上一个词尾</td>
+</tr>
+<tr>
+<td align="left"><code>H</code></td>
+<td align="left">移动到屏幕的最上方那一行的第一个字符</td>
+</tr>
+<tr>
+<td align="left"><code>M</code></td>
+<td align="left">移动到屏幕的最中央那一行的第一个字符</td>
+</tr>
+<tr>
+<td align="left"><code>L</code></td>
+<td align="left">移动到屏幕的最下方那一行的第一个字符</td>
+</tr>
+<tr>
+<td align="left"><code>n + Enter</code></td>
+<td align="left">光标向下移动 n 行</td>
+</tr>
+<tr>
+<td align="left"><code>c</code></td>
+<td align="left">删除当前光标后面的部分. 进入插入模式</td>
+</tr>
+<tr>
+<td align="left"><code>cc</code></td>
+<td align="left">将当前行替换为空行，进入插入模式</td>
+</tr>
+<tr>
+<td align="left"><code>cw</code></td>
+<td align="left">删除当前单词的光标右侧部分，进入插入模式</td>
+</tr>
+<tr>
+<td align="left"><code>s</code></td>
+<td align="left">删除当前字母，进入插入模式</td>
+</tr>
+<tr>
+<td align="left"><code>r</code></td>
+<td align="left">替换当前字母，输入一个字母后自动返回普通模式</td>
+</tr>
+<tr>
+<td align="left"><code>a</code></td>
+<td align="left">在光标右侧插入文本</td>
+</tr>
+<tr>
+<td align="left"><code>A</code></td>
+<td align="left">在行末插入文本</td>
+</tr>
+<tr>
+<td align="left"><code>i</code></td>
+<td align="left">在光标左侧插入文本</td>
+</tr>
+<tr>
+<td align="left"><code>I</code></td>
+<td align="left">在行首插入文本</td>
+</tr>
+<tr>
+<td align="left"><code>o</code></td>
+<td align="left">在光标下插入新行</td>
+</tr>
+<tr>
+<td align="left"><code>O</code></td>
+<td align="left">在光标上插入新行</td>
+</tr>
+<tr>
+<td align="left"><code>n</code></td>
+<td align="left">跳转下一个搜索词</td>
+</tr>
+<tr>
+<td align="left"><code>N</code></td>
+<td align="left">跳转上一个搜索词</td>
+</tr>
+</tbody></table>
+<p> 常用的复制、黏贴、删除、撤销、查找等操作。</p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>n + x</code></td>
+<td align="left">剪切（删除）光标右边n个字符</td>
+</tr>
+<tr>
+<td align="left"><code>n + X</code></td>
+<td align="left">剪切（删除）光标左边n个字符</td>
+</tr>
+<tr>
+<td align="left"><code>y</code></td>
+<td align="left">复制在可视模式下选中的文本</td>
+</tr>
+<tr>
+<td align="left"><code>y + n</code></td>
+<td align="left">复制在可视模式下选中的文本</td>
+</tr>
+<tr>
+<td align="left"><code>yy</code></td>
+<td align="left">复制光标所在整行</td>
+</tr>
+<tr>
+<td align="left"><code>n + yy</code></td>
+<td align="left">复制光标所在的向下 n 行</td>
+</tr>
+<tr>
+<td align="left"><code>y + n + w</code></td>
+<td align="left">复制1(n)个词</td>
+</tr>
+<tr>
+<td align="left"><code>y + n + l</code></td>
+<td align="left">复制光标右边1(n)个字符</td>
+</tr>
+<tr>
+<td align="left"><code>y + n + h</code></td>
+<td align="left">复制光标左边1(n)个字符</td>
+</tr>
+<tr>
+<td align="left"><code>y + $</code></td>
+<td align="left">从光标当前位置复制到行尾</td>
+</tr>
+<tr>
+<td align="left"><code>y + 0</code></td>
+<td align="left">从光标当前位置复制到行首</td>
+</tr>
+<tr>
+<td align="left"><code>y + 0</code></td>
+<td align="left">从光标当前位置复制到行首。</td>
+</tr>
+<tr>
+<td align="left"><code>y + 1 + G</code> 或 <code>y + gg</code></td>
+<td align="left">复制光标以上的所有行</td>
+</tr>
+<tr>
+<td align="left"><code>d</code></td>
+<td align="left">剪切（删除）在可视模式下选中的文本</td>
+</tr>
+<tr>
+<td align="left"><code>dd</code></td>
+<td align="left">剪切（删除）光标所在整行</td>
+</tr>
+<tr>
+<td align="left"><code>n + dd</code></td>
+<td align="left">剪切（删除）光标所在的向下 n 行</td>
+</tr>
+<tr>
+<td align="left"><code>d + n + w</code></td>
+<td align="left">剪切（删除）1(n)个词</td>
+</tr>
+<tr>
+<td align="left"><code>d + n + l</code></td>
+<td align="left">剪切（删除）光标右边1(n)个字符</td>
+</tr>
+<tr>
+<td align="left"><code>d + n + h</code></td>
+<td align="left">剪切（删除）光标左边1(n)个字符</td>
+</tr>
+<tr>
+<td align="left"><code>d + $</code></td>
+<td align="left">从光标当前位置剪切（删除）到行尾</td>
+</tr>
+<tr>
+<td align="left"><code>d + 0</code></td>
+<td align="left">从光标当前位置剪切（删除）到行首</td>
+</tr>
+<tr>
+<td align="left"><code>d + 1 + G</code> 或 <code>d + gg</code></td>
+<td align="left">剪切（删除）光标以上的所有行</td>
+</tr>
+<tr>
+<td align="left"><code>d + G</code></td>
+<td align="left">剪切光标以下的所有行</td>
+</tr>
+<tr>
+<td align="left"><code>p</code></td>
+<td align="left">粘贴光标上一行</td>
+</tr>
+<tr>
+<td align="left"><code>P</code></td>
+<td align="left">粘贴到光标下一行</td>
+</tr>
+<tr>
+<td align="left"><code>u</code></td>
+<td align="left">撤销</td>
+</tr>
+<tr>
+<td align="left"><code>ctrl + r</code></td>
+<td align="left">恢复上一步撤销</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>命令行模式：</p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>:w</code></td>
+<td align="left">保存</td>
+</tr>
+<tr>
+<td align="left"><code>:q</code></td>
+<td align="left">退出</td>
+</tr>
+<tr>
+<td align="left"><code>:wq</code> 或 <code>ZZ</code></td>
+<td align="left">保存退出</td>
+</tr>
+<tr>
+<td align="left"><code>:q!</code> 或 <code>ZQ</code></td>
+<td align="left">强制退出（放弃对文档的修改内容）</td>
+</tr>
+<tr>
+<td align="left"><code>:wq!</code></td>
+<td align="left">强制保存退出</td>
+</tr>
+<tr>
+<td align="left"><code>:set nu</code></td>
+<td align="left">显示行号</td>
+</tr>
+<tr>
+<td align="left"><code>:set nonu</code></td>
+<td align="left">不显示行号</td>
+</tr>
+<tr>
+<td align="left"><code>:整数</code></td>
+<td align="left">跳转到该行</td>
+</tr>
+<tr>
+<td align="left"><code>?字符串</code></td>
+<td align="left">在文本中从下至上搜索该字符串</td>
+</tr>
+<tr>
+<td align="left"><code>/字符串</code></td>
+<td align="left">在文本中从上至下搜索该字符串</td>
+</tr>
+<tr>
+<td align="left"><code>:s/one/two</code></td>
+<td align="left">将当前光标所在行的第一个one替换成two</td>
+</tr>
+<tr>
+<td align="left"><code>:s/one/two/g</code></td>
+<td align="left">将当前光标所在行的所有one替换成two</td>
+</tr>
+<tr>
+<td align="left"><code>:%s/one/two/g</code></td>
+<td align="left">将全文中的所有one替换成two</td>
+</tr>
+<tr>
+<td align="left"><code>:m,ny&lt;cr&gt;</code></td>
+<td align="left">复制m行到n行的内容</td>
+</tr>
+<tr>
+<td align="left"><code>:m,nd&lt;cr&gt;</code></td>
+<td align="left">剪切（删除）m行到n行的内容</td>
+</tr>
+<tr>
+<td align="left"><code>:help 命令</code></td>
+<td align="left">查看命令帮助信息</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><ol>
+<li><p>Vim 的全局配置一般在<code>/etc/vim/vimrc或者/etc/vimrc</code>，对所有用户生效。用户个人的配置在<code>~/.vimrc</code>。</p>
+</li>
+<li><p>配置项一般都有”打开”和”关闭”两个设置。”关闭”就是在”打开”前面加上前缀”no”，双引号开始的行表示注释。</p>
+</li>
+<li><p>加上 <code>:</code> 可在命令行模式运行，一些常用配置：</p>
+ <pre><code class="hljs vim"><span class="hljs-comment">" 显示行号</span>
+<span class="hljs-keyword">set</span> <span class="hljs-keyword">number</span>
+
+<span class="hljs-comment">" 不显示行号</span>
+<span class="hljs-keyword">set</span> nonumber
+
+<span class="hljs-comment">" 不与 Vi 兼容（采用 Vim 自己的操作命令）</span>
+<span class="hljs-keyword">set</span> nocompatible
+
+<span class="hljs-comment">" 打开语法高亮。自动识别代码，使用多种颜色显示。</span>
+<span class="hljs-keyword">syntax</span> <span class="hljs-keyword">on</span>
+
+<span class="hljs-comment">" 在底部显示，当前处于普通模式还是插入模式。</span>
+<span class="hljs-keyword">set</span> showmode
+
+<span class="hljs-comment">" 普通模式下，在底部显示，当前键入的指令。</span>
+<span class="hljs-keyword">set</span> showcmd
+
+<span class="hljs-comment">" 支持使用鼠标。</span>
+<span class="hljs-keyword">set</span> mouse=<span class="hljs-keyword">a</span>
+
+<span class="hljs-comment">" 使用 utf-8 编码。</span>
+<span class="hljs-keyword">set</span> mouse=<span class="hljs-keyword">a</span>
+
+<span class="hljs-comment">" 启用256色。</span>
+<span class="hljs-keyword">set</span> t_Co=<span class="hljs-number">256</span>
+
+<span class="hljs-comment">" 启文件类型检查，并且载入与该类型对应的缩进规则。</span>
+<span class="hljs-keyword">filetype</span> <span class="hljs-built_in">indent</span> <span class="hljs-keyword">on</span>
+
+<span class="hljs-comment">" 按下回车键后，下一行的缩进会自动跟上一行的缩进保持一致。</span>
+<span class="hljs-keyword">set</span> autoindent
+
+<span class="hljs-comment">" Tab 转为多少个空格。</span>
+<span class="hljs-keyword">set</span> softtabstop=<span class="hljs-number">2</span>
+
+<span class="hljs-comment">" 设置行宽，即一行显示多少个字符。</span>
+<span class="hljs-keyword">set</span> textwidth=<span class="hljs-number">80</span>
+
+<span class="hljs-comment">" 光标所在的当前行高亮。</span>
+<span class="hljs-keyword">set</span> cursorline
+
+<span class="hljs-comment">" 自动折行，即太长的行分成几行显示。</span>
+<span class="hljs-keyword">set</span> wrap
+
+<span class="hljs-comment">" 输入搜索模式时，每输入一个字符，就自动跳到第一个匹配的结果。</span>
+<span class="hljs-keyword">set</span> incsearch
+
+<span class="hljs-comment">" 搜索时，高亮显示匹配结果。</span>
+<span class="hljs-keyword">set</span> hlsearch
+
+<span class="hljs-comment">" 搜索时忽略大小写。</span>
+<span class="hljs-keyword">set</span> ignorecase
+
+<span class="hljs-comment">" 递归的按键映射，按 a 和 c 等于按 b。</span>
+:<span class="hljs-keyword">map</span> <span class="hljs-keyword">a</span> <span class="hljs-keyword">b</span>
+:<span class="hljs-keyword">map</span> <span class="hljs-keyword">c</span> <span class="hljs-keyword">a</span>
+    
+<span class="hljs-comment">" 非递归的按键映射，表示按 d 等于按 a。</span>
+:<span class="hljs-keyword">noremap</span> d <span class="hljs-keyword">a</span></code></pre>
+
+</li>
+</ol>
+<h1 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h1><ol>
+<li><p>Unix 安装 <a href="https://github.com/junegunn/vim-plug" target="_blank" rel="noopener">vim-plus</a>（一个极简的Vim插件管理器）：</p>
+<pre><code>curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</code></pre></li>
+<li><p>配置：</p>
+<p> 在~/.vimrc中添加要下载的vim插件，然后重启。    </p>
+ <pre><code class="hljs vim"><span class="hljs-comment">" 开始标签</span>
+
+<span class="hljs-keyword">call</span> plug#begin(<span class="hljs-string">'~/.vim/plugged'</span>)
+
+<span class="hljs-comment">" 单引号内些上你需要安装的插件</span>
+
+    Plug <span class="hljs-string">'xxx'</span>
+
+<span class="hljs-comment">" 结束标签</span>
+
+<span class="hljs-keyword">call</span> plug#end()</code></pre>
+</li>
+<li><p>使用和卸载：</p>
+<p> 在命令行模式输入命令使用插件。</p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>:PlugInstall [name ...] [#threads]</code></td>
+<td align="left">安装插件</td>
+</tr>
+<tr>
+<td align="left"><code>:PlugUpdate [name ...] [#threads]</code></td>
+<td align="left">安装或更新插件</td>
+</tr>
+<tr>
+<td align="left"><code>:PlugClean[!]</code></td>
+<td align="left">删除未列出的插件</td>
+</tr>
+<tr>
+<td align="left"><code>:PlugUpgrade</code></td>
+<td align="left">升级vim-plug</td>
+</tr>
+<tr>
+<td align="left"><code>:PlugStatus</code></td>
+<td align="left">检查插件状态</td>
+</tr>
+<tr>
+<td align="left"><code>:PlugDiff</code></td>
+<td align="left">检查来自先前更新的更改以及未决的更改</td>
+</tr>
+<tr>
+<td align="left"><code>:PlugSnapshot[!] [output path]</code></td>
+<td align="left">生成脚本以还原插件的当前快照</td>
+</tr>
+</tbody></table>
+<p> 更多插件参见 <a href="https://vimawesome.com" target="_blank" rel="noopener">vim Awesome</a>。</p>
+</li>
+</ol>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://www.linuxprobe.com/chapter-04.html" target="_blank" rel="noopener">Vim编辑器与Shell命令脚本</a></li>
+<li><a href="https://www.runoob.com/linux/linux-vim.html" target="_blank" rel="noopener">Linux vi/vim</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/51440836" target="_blank" rel="noopener">史上最全的Vim命令</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2018/09/vimrc.html" target="_blank" rel="noopener">Vim 配置入门</a></li>
+<li><a href="https://github.com/junegunn/vim-plug" target="_blank" rel="noopener">vim-plus</a></li>
+<li><a href="https://vimawesome.com" target="_blank" rel="noopener">vim Awesome</a></li>
+<li><a href="https://github.com/vim-china/hello-vim/blob/master/quick-start-guide.md" target="_blank" rel="noopener">Vim 入门教程</a></li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Linux/">Linux</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Vim/">Vim</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/68d862bb.html">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">在 PHP 中使用多进程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/6a73a53a.html">
+                        <span class="hidden-mobile">Yii 中活动记录（Active Record）类的使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+    <script>
+      fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+          const hitokoto = document.getElementById('hitokoto')
+          hitokoto.innerText = data.hitokoto
+        })
+        .catch(console.error)
+    </script>
+    <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+        var now = new Date();
+
+        function createtime() {
+          var grt = new Date("05/22/2020 11:14:21"); //此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime() + 250);
+          days = (now - grt) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if (String(hnum).length == 1) {
+            hnum = "0" + hnum;
+          }
+          minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if (String(mnum).length == 1) {
+            mnum = "0" + mnum;
+          }
+          seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if (String(snum).length == 1) {
+            snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站运行 " + dnum + " 天";
+          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        }
+        setInterval("createtime()", 250);
+      </script>
+    </div>
+    <p id="hitokoto">:D 获取中...</p>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Vim 常用命令和配置&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?2a5c0150424f0cc3fa8b492f889fcfe3";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) };
+      ga.l = +new Date;
+      ga('create', 'UA-167862106-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
