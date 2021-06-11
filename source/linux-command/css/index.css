@@ -616,6 +616,10 @@ a {
         padding: 9px 14px
     }
 
+    .hotlist {
+        padding: 120px 27px;
+    }
+
     .header_list .logo svg {
         width: 96px
     }
