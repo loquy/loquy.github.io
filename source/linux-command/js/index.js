@@ -3,7 +3,12 @@
         var e = this.$$;
         this.commands = linux_commands || [], this.elm_query = e("query"), this.elm_btn = e("search_btn"), this.elm_result = e("result"), this.elm_search_result = e("search_list_result"), this.root_path = function () {
             var t = e("current_path"), n = window.location.origin + window.location.pathname;
-            return  t ? (n.replace(t.value.trim().replace(/\\/g, "/"), "").replace(/\/$/, "")).replace("list.html", "").replace("index.html", "") : "";
+            return t ? (n.replace(t.value.trim()
+                .replace(/\\/g, "/"), "")
+                .replace(/\/$/, ""))
+                .replace("/list.html", "")
+                .replace("/list#.html", "")
+                .replace("/index.html", "") : "";
         }(), this.query = "", this.query_size = 5, this.page_size = 50, this.init(), this.goToIndex()
     }
     e.prototype = {
