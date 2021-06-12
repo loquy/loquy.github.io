@@ -554,7 +554,7 @@ a {
 .search_list {
     width: 100%;
     margin: auto;
-    padding: 5px 27px;
+    padding: 60px 27px;
 }
 
 .search_list a {
@@ -617,6 +617,12 @@ a {
     }
 
     .hotlist {
+        padding: 120px 27px;
+    }
+
+    .search_list {
+        width: 100%;
+        margin: auto;
         padding: 120px 27px;
     }
 
