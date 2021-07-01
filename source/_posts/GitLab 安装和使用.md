@@ -45,7 +45,9 @@ rpm -ivh gitlab-ce-12.10.0-ce.0.el8.x86_64.rpm
 - 修改 gitlab 默认配置
 
 
-    编辑 /etc/gitlab/gitlab.rb 搜索 external_url 把后的地址修改为你自己的域名或者 IP，是单引号，而且前面的 http 不要改
+    编辑 /etc/gitlab/gitlab.rb 搜索 external_url 
+
+    把后面的地址修改为你自己的域名或者 IP，是单引号，而且前面的 http 不要改
 
     默认填写 http:// 加上本机 IP 即可，如需自定义域名需加入到 /etc/hosts 中
 
