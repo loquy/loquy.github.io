@@ -4,7 +4,7 @@ tags:
   - Git
   - GitLab
 categories: Git
-index_img: 'https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/GitLab.jpg'
+index_img: 'https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/GitLab.png'
 description: GitLab installation and use
 abbrlink: e2e5d3b3
 date: 2021-07-01 09:27:14
