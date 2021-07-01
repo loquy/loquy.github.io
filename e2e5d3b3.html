@@ -17,7 +17,7 @@
   <meta name="description" content="loquy">
   <meta name="author" content="loquy">
   <meta name="keywords" content="loquy">
-  <title>在 PHP 中使用单元测试 - loquy</title>
+  <title>GitLab 安装和使用 - loquy</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -177,8 +177,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-05-30 08:17" pubdate>
-        2021年5月30日 早上
+      <time datetime="2021-07-01 09:27" pubdate>
+        2021年7月1日 上午
       </time>
     </span>
   
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      643 字
+      576 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      7
        分钟
     </span>
   
@@ -229,102 +229,94 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">在 PHP 中使用单元测试</h1>
+            <h1 style="display: none">GitLab 安装和使用</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h1><ul>
-<li><code>单元测试</code><br>单元测试是针对程序的最小单元进行测试，方法、类等都可以是一个单元，根据实际情况判定，一般指的是方法。</li>
-<li><code>断言</code><br>在程序设计中，断言（assertion）是一种放在程序中的一阶逻辑（如一个结果为真或是假的逻辑判断式），目的是为了标示与验证程序开发者预期的结果－当程序运行到断言的位置时，对应的断言应该为真。若断言不为真时，程序会中止运行，并给出错误消息。</li>
-<li><code>PHPUnit</code><br>是一个轻量级的 PHP 测试框架</li>
+              <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p><a href="https://docs.gitlab.com/ee/install/requirements.html" target="_blank" rel="noopener">GitLab 官方安装要求</a></p>
+<pre><code>系统：可自由选择，我虚拟机上的是 CentOS Stream release 8
+
+CPU：4 核是建议的最低核数，最多支持 500 个用户
+
+内存：4GB RAM 是所需的最小内存大小，最多支持 500 个用户
+
+硬盘：必要的硬盘空间在很大程度上取决于您要存储在 GitLab 中的存储库的大小，但根据经验，您应该拥有至少与所有存储库组合占用的空间一样多的可用空间</code></pre><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ul>
+<li>安装和配置必要的依赖项</li>
 </ul>
-<h1 id="PHPUnit-的安装和配置"><a href="#PHPUnit-的安装和配置" class="headerlink" title="PHPUnit 的安装和配置"></a>PHPUnit 的安装和配置</h1><p>目前支持的版本是PHPUnit 9</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a><a href="https://phpunit.de/getting-started/phpunit-9.html" target="_blank" rel="noopener">安装</a></h2><h3 id="PHP-档案包（PHAR）"><a href="#PHP-档案包（PHAR）" class="headerlink" title="PHP 档案包（PHAR）"></a>PHP 档案包（PHAR）</h3><pre><code>➜ wget -O phpunit https://phar.phpunit.de/phpunit-9.phar
+<pre><code class="hljs bash">sudo dnf install -y curl policycoreutils openssh-server perl
+sudo systemctl <span class="hljs-built_in">enable</span> sshd
+sudo systemctl start sshd
 
-➜ chmod +x phpunit
+<span class="hljs-comment"># Check if opening the firewall is needed with: sudo systemctl status firewalld</span>
+sudo firewall-cmd --permanent --add-service=http
+sudo firewall-cmd --permanent --add-service=https
+sudo systemctl reload firewalld</code></pre>
 
-➜ ./phpunit --version
-PHPUnit 9.0.0 by Sebastian Bergmann and contributors.</code></pre><h3 id="Composer"><a href="#Composer" class="headerlink" title="Composer"></a>Composer</h3><pre><code>➜ composer require --dev phpunit/phpunit ^9
-
-➜ ./vendor/bin/phpunit --version
-PHPUnit 9.0.0 by Sebastian Bergmann and contributors.</code></pre><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="XML-配置文件"><a href="#XML-配置文件" class="headerlink" title="XML 配置文件"></a><a href="https://phpunit.readthedocs.io/zh_CN/latest/configuration.html" target="_blank" rel="noopener">XML 配置文件</a></h3><p>用于编排测试套件，示例如下：</p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">phpunit</span> <span class="hljs-attr">bootstrap</span>=<span class="hljs-string">"./bootstrap.php"</span></span>
-<span class="hljs-tag">         <span class="hljs-attr">colors</span>=<span class="hljs-string">"true"</span></span>
-<span class="hljs-tag">         <span class="hljs-attr">verbose</span>=<span class="hljs-string">"true"</span></span>
-<span class="hljs-tag">&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">php</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">ini</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"error_reporting"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"-1"</span>/&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">php</span>&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">testsuites</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">testsuite</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"test"</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">directory</span>&gt;</span>./Tests/<span class="hljs-tag">&lt;/<span class="hljs-name">directory</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">testsuite</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">testsuites</span>&gt;</span>
-
-<span class="hljs-tag">&lt;/<span class="hljs-name">phpunit</span>&gt;</span></code></pre>
-
-<h3 id="Bootstrap-启动文件"><a href="#Bootstrap-启动文件" class="headerlink" title="Bootstrap 启动文件"></a>Bootstrap 启动文件</h3><p>在启动 PHPUnit 时会加载的文件，用于自动加载依赖等，示例如下：</p>
-<pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
-
-$classNameMap = [
-    <span class="hljs-string">'single'</span> =&gt; <span class="hljs-keyword">__DIR__</span> . DIRECTORY_SEPARATOR . <span class="hljs-string">'single'</span>,
-];
-
-spl_autoload_register(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">($className)</span> <span class="hljs-title">use</span> <span class="hljs-params">($classNameMap)</span> </span>&#123;
-    $position = strpos($className, <span class="hljs-string">'\\'</span>);
-    <span class="hljs-keyword">if</span> ($position) &#123;
-        $namespace = substr($className, <span class="hljs-number">0</span>, $position);
-        $directory = $classNameMap[$namespace] ?? <span class="hljs-string">''</span>;
-        <span class="hljs-keyword">if</span> ($directory) &#123;
-            $classFile = $directory . substr($className, $position) . <span class="hljs-string">'.php'</span>;
-            is_file($classFile) &amp;&amp; <span class="hljs-keyword">require</span> $classFile;
-        &#125;
-    &#125;
-&#125;);</code></pre>
-<h3 id="在-PhpStorm-里配置使用"><a href="#在-PhpStorm-里配置使用" class="headerlink" title="在 PhpStorm 里配置使用"></a>在 PhpStorm 里配置使用</h3><ul>
-<li>文件 -&gt; 设置 -&gt; PHP，设置 cli 解释器。</li>
-<li>文件 -&gt; 设置 -&gt; PHP -&gt; 测试框架，设置 phpunit.phar 路径或 composer 下的 phpunit 路径， 设置 xml 配置文件。</li>
-<li>使用 IDE 自动帮我们执行 PHPUnit 的命令，便不用手动操作了，测试时只需点击文件里的执行按钮即可。</li>
+<ul>
+<li>下载 gitlab-ce 社区版的 <a href="https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el8/" target="_blank" rel="noopener">rpm</a> 包</li>
 </ul>
-<h1 id="编写-PHPUnit-测试"><a href="#编写-PHPUnit-测试" class="headerlink" title="编写 PHPUnit 测试"></a>编写 PHPUnit 测试</h1><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ul>
-<li>针对类 Class 的测试写在类 ClassTest 中。</li>
-<li>ClassTest（通常）继承自 PHPUnit\Framework\TestCase。</li>
-<li>测试都是命名为 test* 的公用方法。</li>
-<li>也可以在方法的文档注释块（docblock）中使用 @test 标注将其标记为测试方法。在测试方法内，类似于 assertSame()（<a href="https://phpunit.readthedocs.io/zh_CN/latest/assertions.html" target="_blank" rel="noopener">参见断言</a>）这样的断言方法用来对实际值与预期值的匹配做出断言。</li>
+<pre><code class="hljs bash">rpm -ivh gitlab-ce-12.10.0-ce.0.el8.x86_64.rpm</code></pre>
+
+<ul>
+<li>修改 gitlab 默认配置</li>
 </ul>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><ul>
-<li>类<pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
+<pre><code>编辑 /etc/gitlab/gitlab.rb 搜索 external_url 把后的地址修改为你自己的域名或者 IP，是单引号，而且前面的 http 不要改
 
-<span class="hljs-keyword">namespace</span> <span class="hljs-title">single</span>;
+默认填写 http:// 加上本机 IP 即可，如需自定义域名需加入到 /etc/hosts 中</code></pre><pre><code class="hljs bash">vim /etc/gitlab/gitlab.rb</code></pre>
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">test</span></span>
-<span class="hljs-class"></span>&#123;
-    <span class="hljs-keyword">public</span> $attr;
+<ul>
+<li>重新加载配置后重启 gitlab</li>
+</ul>
+<pre><code class="hljs bash">gitlab-ctl reconfigure
+gitlab-ctl restart</code></pre>
 
-    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hello</span><span class="hljs-params">()</span>: <span class="hljs-title">string</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-string">'hello'</span>;
-    &#125;
-&#125;</code></pre></li>
-<li>测试类<pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="初始化账户与创建仓库"><a href="#初始化账户与创建仓库" class="headerlink" title="初始化账户与创建仓库"></a>初始化账户与创建仓库</h2><pre><code>打开浏览器输入配置的 external_url
 
-<span class="hljs-keyword">use</span> <span class="hljs-title">PHPUnit</span>\<span class="hljs-title">Framework</span>\<span class="hljs-title">TestCase</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">single</span>\<span class="hljs-title">test</span>;
+进行初始化账户设定密码，这个密码为 root 管理员账户的密码
 
-<span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Assert</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">TestCase</span></span>
-<span class="hljs-class"></span>&#123;
-    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testIsTheContrastEqual</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-keyword">$this</span>-&gt;assertEquals(<span class="hljs-string">'hello'</span>, (<span class="hljs-keyword">new</span> test)-&gt;hello());
-    &#125;
+设置完密码之后会自动跳转到登录页面
 
-    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testIsThereAnyAttribute</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-keyword">$this</span>-&gt;assertClassHasAttribute(<span class="hljs-string">'attr'</span>, test::class);
-    &#125;
-&#125;</code></pre></li>
-<li>执行结果<br><img src="https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/PHPUnit.jpg" srcset="/img/loading.gif" alt="execution"></li>
+可以使用 root 登录，也可以在登录界面创建一个账户登录，登录后创建仓库</code></pre><h2 id="安装-Git-后配置-SSH-Key"><a href="#安装-Git-后配置-SSH-Key" class="headerlink" title="安装 Git 后配置 SSH-Key"></a>安装 Git 后配置 SSH-Key</h2><ul>
+<li>安装 <a href="https://git-scm.com/book/zh/v2" target="_blank" rel="noopener">Git</a> 安装后设置你的用户名和邮件地址</li>
+</ul>
+<pre><code class="hljs bash">git config --global user.name <span class="hljs-string">"John Doe"</span>
+git config --global user.email johndoe@example.com</code></pre>
+
+<ul>
+<li>在 Git Bash 上生成 SSH-Key</li>
+</ul>
+<pre><code class="hljs bash">ssh-keygen -t rsa -C <span class="hljs-string">'email'</span> -f ~/.ssh/local_gitlab_rsa</code></pre>
+
+<ul>
+<li>在 ~/.ssh 目录下新建一个 config 文件</li>
+</ul>
+<pre><code class="hljs routeros"><span class="hljs-comment">#gitlab</span>
+HostName gitlab 的主机 IP
+IdentityFile  ~/.ssh/local_gitlab_rsa</code></pre>
+
+<ul>
+<li>添加秘钥</li>
+</ul>
+<pre><code>点击右上角头像，Settings -&gt; SSH 
+
+把刚刚生成的 ~/.ssh/local_gitlab_rsa.pua 文件的内容粘贴上
+
+添加一个 Title，然后 Add Key</code></pre><ul>
+<li>Git 工作流</li>
+</ul>
+<pre><code class="hljs properties"><span class="hljs-attr">git</span> <span class="hljs-string">clone</span>
+<span class="hljs-attr">git</span> <span class="hljs-string">add</span>
+<span class="hljs-attr">git</span> <span class="hljs-string">commit</span>
+<span class="hljs-attr">git</span> <span class="hljs-string">push</span>
+<span class="hljs-attr">git</span> <span class="hljs-string">pull</span>
+<span class="hljs-attr">...</span></code></pre>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://about.gitlab.com/install/#centos-8" target="_blank" rel="noopener">GitLab 官方安装文档</a></li>
+<li><a href="https://docs.gitlab.com/ee/install/requirements.html" target="_blank" rel="noopener">GitLab 官方安装要求</a></li>
+<li><a href="https://git-scm.com/book/zh/v2" target="_blank" rel="noopener">Git Book</a></li>
+<li><a href="https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el8/" target="_blank" rel="noopener">清华大学镜像</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1728804" target="_blank" rel="noopener">GitLab 安装与基础使用</a></li>
+<li><a href="https://gitee.com/help/articles/4229#article-header0" target="_blank" rel="noopener">Git 配置多个 SSH-Key</a></li>
 </ul>
 
             </div>
@@ -335,7 +327,7 @@ spl_autoload_register(<span class="hljs-function"><span class="hljs-keyword">fun
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/PHP/">PHP</a>
+                      <a class="hover-with-bg" href="/categories/Git/">Git</a>
                     
                   </div>
                 
@@ -343,9 +335,9 @@ spl_autoload_register(<span class="hljs-function"><span class="hljs-keyword">fun
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">单元测试</a>
+                      <a class="hover-with-bg" href="/tags/Git/">Git</a>
                     
-                      <a class="hover-with-bg" href="/tags/PHPUnit/">PHPUnit</a>
+                      <a class="hover-with-bg" href="/tags/GitLab/">GitLab</a>
                     
                   </div>
                 
@@ -358,18 +350,12 @@ spl_autoload_register(<span class="hljs-function"><span class="hljs-keyword">fun
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/e2e5d3b3.html">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">GitLab 安装和使用</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/68d862bb.html">
-                        <span class="hidden-mobile">在 PHP 中使用多进程</span>
+                      <a href="/ef77815d.html">
+                        <span class="hidden-mobile">在 PHP 中使用单元测试</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -553,7 +539,7 @@ spl_autoload_register(<span class="hljs-function"><span class="hljs-keyword">fun
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "在 PHP 中使用单元测试&nbsp;",
+        "GitLab 安装和使用&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
