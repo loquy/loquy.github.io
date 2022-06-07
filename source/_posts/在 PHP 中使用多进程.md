@@ -4,7 +4,7 @@ abbrlink: 68d862bb
 date: 2021-04-04 23:38:28
 tags: PHP
 categories: PHP
-index_img: https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/multi-progress.jpg
+index_img: https://www.loquy.cn/images/multi-progress.jpg
 description: Three ways to use multi-process in PHP
 ---
 ## 多道程序设计以及顺序和并发执行
@@ -93,4 +93,4 @@ echo $end - $begin . "\n";
 ```
 
 cli 模式下执行命令 php process.php ，效率还行 181 个节点 12 秒就跑完了
-![ouput](https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/proxy_checker.jpg)
+![ouput](https://www.loquy.cn/images/proxy_checker.jpg)

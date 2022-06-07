@@ -6,7 +6,7 @@ tags:
     - Vim
     - Linux
 categories: Linux
-index_img: https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/Vim.png
+index_img: https://www.loquy.cn/images/Vim.png
 description: Vim
 ---
 # 模式

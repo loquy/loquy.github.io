@@ -5,7 +5,7 @@ tags:
   - LNMP
 categories:
   - - Linux
-index_img: https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/LNMP.jpeg
+index_img: https://www.loquy.cn/images/LNMP.jpeg
 abbrlink: 5ca3d0c3
 date: 2020-07-05 11:37:09
 ---
@@ -17,7 +17,7 @@ date: 2020-07-05 11:37:09
 
 - 使用 `dhclient` 命令为 centos 8 分配一个 ip 地址
 
-![](https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/1593925975.jpg)
+![](https://www.loquy.cn/images/1593925975.jpg)
 
 - 使用vim编辑网卡配置，将上面分配所得的ip地址写入配置文件
 
@@ -25,12 +25,12 @@ date: 2020-07-05 11:37:09
 
 - 注意红框的修改的配置按 `i` 键插入编辑
 
-![](https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/1593924179.jpg)
+![](https://www.loquy.cn/images/1593924179.jpg)
 
 - 按 `Esc` 键然后 `:wq` 保存退出
 - 重启网卡使用 `nmcli c reload` 命令，ping 下百度发现网络可以用了
 
-![](https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/1593925621.jpg)
+![](https://www.loquy.cn/images/1593925621.jpg)
 
 - 使用 dnf 取代了 yum 来进行包管理，安装 nginx、php、mysql
 
@@ -59,7 +59,7 @@ date: 2020-07-05 11:37:09
 ## nginx
 - 浏览器访问服务器 ip
 
-![](https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/1593924883.jpg)
+![](https://www.loquy.cn/images/1593924883.jpg)
 
 ## mysql
 
@@ -80,7 +80,7 @@ date: 2020-07-05 11:37:09
     
         MariaDB[(none)]> quit; 
 
-![](https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/1593925030.jpg)    
+![](https://www.loquy.cn/images/1593925030.jpg)    
 
 ## php
 - 创建文件 index.php
@@ -93,4 +93,4 @@ date: 2020-07-05 11:37:09
         systemctl restart  nginx        
 
 
-![](https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/1593924755.jpg)        
+![](https://www.loquy.cn/images/1593924755.jpg)        

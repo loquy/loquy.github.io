@@ -5,7 +5,7 @@ tags:
   - Hexo
   - 博客搭建
 categories: 博客搭建
-index_img: https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/img/h&g.jpg
+index_img: https://www.loquy.cn/img/h&g.jpg
 abbrlink: 3b0a6c12
 date: 2020-05-26 15:59:13
 ---

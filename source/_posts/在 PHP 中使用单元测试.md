@@ -7,7 +7,7 @@ categories: PHP
 description: Use unit tests in PHP
 abbrlink: ef77815d
 date: 2021-05-30 08:17:04
-index_img: https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/unit_testing.jpg
+index_img: https://www.loquy.cn/images/unit_testing.jpg
 ---
 # 相关概念
 - `单元测试`
@@ -131,4 +131,4 @@ final class Assert extends TestCase
 }
 ```
 - 执行结果
-![execution](https://cdn.jsdelivr.net/gh/loquy/loquy.github.io/images/PHPUnit.jpg)
+![execution](https://www.loquy.cn/images/PHPUnit.jpg)
