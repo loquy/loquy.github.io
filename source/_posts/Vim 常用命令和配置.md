@@ -7,7 +7,6 @@ tags:
     - Linux
 categories: Linux
 index_img: https://www.loquy.cn/images/Vim.png
-description: Vim
 ---
 # 模式
 在其他模式下使用 `Esc` 切换回普通模式，命令行模式下使用 `:命令` + `Enter` 执行命令。

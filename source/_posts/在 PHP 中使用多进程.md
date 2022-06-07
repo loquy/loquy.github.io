@@ -5,7 +5,6 @@ date: 2021-04-04 23:38:28
 tags: PHP
 categories: PHP
 index_img: https://www.loquy.cn/images/multi-progress.jpg
-description: Three ways to use multi-process in PHP
 ---
 ## 多道程序设计以及顺序和并发执行
 - 所谓多道程序设计，就是允许多个程序同时进入内存并运行。多道程序设计是操作系统所采用的最基本、最重要的技术，其根本目的是提高整个系统的效率。

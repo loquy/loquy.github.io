@@ -4,7 +4,7 @@ tags:
   - PHP
   - cURL
 categories: PHP
-index_img: https://www.loquy.cn/img/curl.png
+index_img: https://www.loquy.cn/images/curl.png
 abbrlink: b4a5aa5
 date: 2020-06-10 17:15:08
 ---

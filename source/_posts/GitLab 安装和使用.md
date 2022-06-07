@@ -5,7 +5,6 @@ tags:
   - GitLab
 categories: Git
 index_img: 'https://www.loquy.cn/images/GitLab.png'
-description: GitLab installation and use
 abbrlink: e2e5d3b3
 date: 2021-07-01 09:27:14
 ---

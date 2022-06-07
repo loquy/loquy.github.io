@@ -16,7 +16,7 @@ timezone: 'Asia/Shanghai'
 url: http://www.loquy.cn
 root: /
 permalink: :abbrlink.html
-permalink_defaults: 
+permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
   trailing_html: true # Set to false to remove trailing '.html' from permalinks
@@ -79,7 +79,7 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 ## Use post's date for updated date unless set in front-matter
-use_date_for_updated: false
+updated_option: false
 
 # Pagination
 ## Set per_page to 0 to disable pagination

@@ -4,7 +4,6 @@ tags:
   - 单元测试
   - PHPUnit
 categories: PHP
-description: Use unit tests in PHP
 abbrlink: ef77815d
 date: 2021-05-30 08:17:04
 index_img: https://www.loquy.cn/images/unit_testing.jpg
