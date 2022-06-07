@@ -5,6 +5,7 @@ tags:
   - Yii
 categories: PHP
 index_img: 'https://www.loquy.cn/images/Yii.jpg'
+description: Yii中活动记录（Active Record）类的使用
 abbrlink: 6a73a53a
 date: 2020-08-21 11:33:12
 ---
