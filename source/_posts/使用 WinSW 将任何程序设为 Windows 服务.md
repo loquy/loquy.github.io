@@ -6,7 +6,7 @@ tags:
      - WinSW
      - Windows
 categories: Windows
-index_img: 'https://www.loquy.cn/images/winsw.jpg'
+index_img: 'https://www.loquy.cn/images/WinSW.jpg'
 ---
 # 下载
 
