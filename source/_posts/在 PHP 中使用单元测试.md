@@ -2,10 +2,11 @@
 title: 在 PHP 中使用单元测试
 tags:
   - 单元测试
-  - PHPUnit
 categories: PHP
+category_bar: true
 abbrlink: ef77815d
 date: 2021-05-30 08:17:04
+updated: 2021-05-30 08:17:04
 index_img: https://www.loquy.cn/images/unit_testing.jpg
 ---
 # 相关概念

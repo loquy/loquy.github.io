@@ -3,9 +3,11 @@ title: PHP 7 新特性
 tags:
   - PHP
 categories: PHP
+category_bar: true
 index_img: https://www.loquy.cn/images/php7.jpg
 abbrlink: a8d34c6a
 date: 2020-07-13 22:51:37
+updated: 2020-07-13 22:51:37
 ---
 
 

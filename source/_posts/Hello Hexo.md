@@ -2,9 +2,11 @@
 title: Hello Hexo
 tags: Hexo
 categories: Hexo
+category_bar: true
 index_img: https://www.loquy.cn/images/hexo.jpg
 abbrlink: a1751c09
 date: 2020-05-23 10:33:21
+updated: 2020-05-26 23:11:21
 ---
 Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
 

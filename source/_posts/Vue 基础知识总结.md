@@ -1,10 +1,14 @@
 ---
 title: Vue 基础知识总结
 tags: Vue
-categories: Vue
+categories: 
+- Javascript
+- Vue
+category_bar: true
 index_img: https://www.loquy.cn/images/vue.png
 abbrlink: 1cd82901
 date: 2020-05-23 10:33:22
+updated: 2020-05-23 10:33:22
 ---
 ###### 一、常用指令
 

@@ -2,8 +2,10 @@
 title: 在 PHP 中使用多进程
 abbrlink: 68d862bb
 date: 2021-04-04 23:38:28
+updated: 2021-04-06 22:27:28
 tags: PHP
 categories: PHP
+category_bar: true
 index_img: https://www.loquy.cn/images/multi-progress.jpg
 ---
 ## 多道程序设计以及顺序和并发执行

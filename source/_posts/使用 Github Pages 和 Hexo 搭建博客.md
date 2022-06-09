@@ -3,11 +3,14 @@ title: 使用 Github Pages 和 Hexo 搭建博客
 tags:
   - Github Pages
   - Hexo
-  - 博客搭建
-categories: 博客搭建
+categories: 
+- [Hexo]
+- [Git]
+category_bar: true
 index_img: https://www.loquy.cn/images/h&g.jpg
 abbrlink: 3b0a6c12
 date: 2020-05-26 15:59:13
+updated: 2020-10-13 11:40:12
 ---
 # 项目简介
 当前项目是使用 [Github Pages](https://pages.github.com/) 和 [Hexo](https://Hexo.io/zh-cn/docs/) 搭建的静态博客

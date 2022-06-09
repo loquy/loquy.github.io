@@ -2,12 +2,12 @@
 title: PHP 面试问题整理
 tags: 
 - PHP
-- 面试
 categories:
 - [PHP]
-- [面试]
+category_bar: true
 abbrlink: babcce42
 date: 2020-06-25 10:05:23
+updated: 2020-07-05 14:07:19
 index_img: https://www.loquy.cn/images/php_logo.png
 ---
 # PHP 的生命周期是什么？

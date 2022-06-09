@@ -2,6 +2,7 @@
 title: 使用 WinSW 将任何程序设为 Windows 服务
 abbrlink: 10bdb19a
 date: 2022-06-08 10:13:03
+updated: 2022-06-09 08:40:12
 tags: 
      - WinSW
      - Windows
@@ -130,7 +131,7 @@ WinSW 由 [ XML 配置文件](https://github.com/winsw/winsw/blob/v3/docs/xml-co
 - 将 **WinSW.exe** 重命名为 **Redis.exe** 和 **Redis.xml** 放到同一个目录。
 - 在 **CMD** 中运行 **Redis.exe install**。
 
-## Virtualbox
+## VirtualBox
 
 ### 下载
 

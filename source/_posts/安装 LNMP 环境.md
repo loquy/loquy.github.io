@@ -2,12 +2,12 @@
 title: 安装 LNMP 环境
 tags:
   - Linux
-  - LNMP
-categories:
-  - - Linux
+categories: Linux
+category_bar: true
 index_img: https://www.loquy.cn/images/LNMP.jpeg
 abbrlink: 5ca3d0c3
 date: 2020-07-05 11:37:09
+updated: 2020-07-05 11:37:09
 ---
 # 安装
 - 虚拟机中安装 centos 8（自行搜索,安装后只有命令行，图形界面需要另外安装）

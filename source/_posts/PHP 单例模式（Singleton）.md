@@ -1,13 +1,13 @@
 ---
 title: PHP 设计模式之单例模式（Singleton）
 tags: 
-- 创建型模式
 - PHP
 categories: 
- - [设计模式]
- - [PHP]
+- [PHP]
+category_bar: true
 abbrlink: 77dd5484
 date: 2020-06-22 16:08:19
+updated: 2020-06-22 16:08:19
 index_img: https://www.loquy.cn/images/Singleton.jpg
 ---
 **单例模式被公认为是 反面模式，为了获得更好的可测试性和可维护性，请使用『依赖注入模式』**
