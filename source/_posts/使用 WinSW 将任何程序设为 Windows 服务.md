@@ -50,22 +50,22 @@ WinSW 由 [ XML 配置文件](https://github.com/winsw/winsw/blob/v3/docs/xml-co
 
 | 命令 | 说明 |
 | -------- | ------------ |
-| [安装](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#install-command) | 安装服务。|
-| [卸载](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#uninstall-command) | 卸载服务。|
-| [开始](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#start-command) | 启动服务。|
-| [停止](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#stop-command) | 停止服务。|
-| [重启](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#restart-command) | 停止然后启动服务。|
-| [状态](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#status-command) | 检查服务的状态。|
-| [刷新](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#refresh-command) | 无需重新安装即可刷新服务属性。|
-| [自定义](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#customize-command) | 自定义包装器可执行文件。|
+| [install](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#install-command) | 安装服务。|
+| [uninstall](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#uninstall-command) | 卸载服务。|
+| [start](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#start-command) | 启动服务。|
+| [stop](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#stop-command) | 停止服务。|
+| [restart](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#restart-command) | 停止然后启动服务。|
+| [status](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#status-command) | 检查服务的状态。|
+| [refresh](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#refresh-command) | 无需重新安装即可刷新服务属性。|
+| [customize](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#customize-command) | 自定义包装器可执行文件。|
 
 实验命令：
 
 | 命令 | 说明 |
 | -------- | ------------ |
-| [开发 ps](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#dev-ps-command) | 绘制与服务关联的进程树。|
+| [dev-ps](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#dev-ps-command) | 绘制与服务关联的进程树。|
 | [dev-kill](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#dev-kill-command) | 如果服务停止响应，则终止服务。|
-| [开发列表](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#dev-list-command) | 列出由当前可执行文件管理的服务。|
+| [dev-list](https://github.com/winsw/winsw/blob/v3/docs/cli-commands.md#dev-list-command) | 列出由当前可执行文件管理的服务。|
 
 大多数命令需要管理员权限才能执行。WinSW 将在非提升会话中提示输入 UAC。
 
@@ -134,7 +134,7 @@ WinSW 由 [ XML 配置文件](https://github.com/winsw/winsw/blob/v3/docs/xml-co
 
 ### 下载
 
-最新版本的 Virtualbox 文件可在 [官网](https://www.virtualbox.org/wiki/Downloads) 上获得。
+最新版本的 VirtualBox 文件可在 [官网](https://www.virtualbox.org/wiki/Downloads) 上获得。
 
 ### 配置
 
