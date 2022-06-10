@@ -2,7 +2,7 @@
 title: Vue 基础知识总结
 tags: Vue
 categories: 
-- Javascript
+- JavaScript
 - Vue
 category_bar: true
 index_img: https://www.loquy.cn/images/vue.png
