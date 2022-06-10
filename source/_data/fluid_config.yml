@@ -92,7 +92,7 @@ web_analytics:  # 网页访问统计
     path: window.location.pathname
     # 开启后不统计本地路径( localhost 与 127.0.0.1 )
     # If ture, ignore localhost & 127.0.0.1
-    ignore_local: false
+    ignore_local: true
 
 lazyload: # 对页面中的图片进行懒加载处理，可见范围外的图片不会加载
   enable: true
