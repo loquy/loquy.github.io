@@ -6,7 +6,7 @@ tags:
   - SpringBoot
   - Java
 categories: Java
-index_img: 'https://www.loquy.cn/images/springboot-redis.png'
+index_img: 'https://www.loquy.cn/images/springboot-redis.jpg'
 abbrlink: 54e4e761
 date: 2022-06-13 16:06:27
 updated: 2022-06-13 16:06:27
