@@ -16,38 +16,38 @@ description:
 
     Redis（Remote Dictionary Server )，即远程字典服务，是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。
 
-- 最新版本的 Redis 文件可在 [GitHub Releases](https://github.com/alibaba/Sentinel/releases) 上获得。
+- 最新版本的 Redis 文件可在 [GitHub Releases](https://github.com/redis/redis/releases) 上获得。
 
 - 首先要启动 redis-server，[教程参见此处](https://www.runoob.com/redis/redis-tutorial.html) 。
 
 # Maven 项目结构
 ![](https://www.loquy.cn/images/springboot-10-redis.jpg)
 
-springboot-10-redis
-├─src
-│  ├─main
-│  │  ├─java
-│  │  │  └─com
-│  │  │      └─example
-│  │  │          │  Springboot10RedisApplication.java
-│  │  │          │
-│  │  │          ├─config
-│  │  │          │      RedisConfig.java
-│  │  │          │
-│  │  │          ├─pojo
-│  │  │          │      User.java
-│  │  │          │
-│  │  │          └─utils
-│  │  │                  RedisUtil.java
-│  │  │
-│  │  └─resources
-│  │          application.properties
-│  │
-│  └─test
-│      └─java
-│          └─com
-│              └─example
-│                      Springboot10RedisApplicationTests.java
+    springboot-10-redis
+    ├─src
+    │  ├─main
+    │  │  ├─java
+    │  │  │  └─com
+    │  │  │      └─example
+    │  │  │          │  Springboot10RedisApplication.java
+    │  │  │          │
+    │  │  │          ├─config
+    │  │  │          │      RedisConfig.java
+    │  │  │          │
+    │  │  │          ├─pojo
+    │  │  │          │      User.java
+    │  │  │          │
+    │  │  │          └─utils
+    │  │  │                  RedisUtil.java
+    │  │  │
+    │  │  └─resources
+    │  │          application.properties
+    │  │
+    │  └─test
+    │      └─java
+    │          └─com
+    │              └─example
+    │                      Springboot10RedisApplicationTests.java
 
 # Pom.xml 依赖配置
 

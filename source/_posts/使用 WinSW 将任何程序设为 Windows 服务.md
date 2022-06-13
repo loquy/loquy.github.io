@@ -178,7 +178,7 @@ EXIT
 
 ### 下载
 
-最新版本的 Redis 文件可在 [GitHub Releases](https://github.com/alibaba/Sentinel/releases) 上获得。
+最新版本的 Sentinel 文件可在 [GitHub Releases](https://github.com/alibaba/Sentinel/releases) 上获得。
 
 ### 配置
 
