@@ -32,7 +32,7 @@ CREATE TABLE `user` (
 ```
 
 # Maven 项目结构
-![](https://www.loquy.cn/images/springboot-05-mybatis.jpg.jpg)
+![](https://www.loquy.cn/images/springboot-05-mybatis.jpg)
 
     springboot-05-mybatis
     ├─src
