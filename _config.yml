@@ -101,7 +101,9 @@ theme: fluid  # 指定主题
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/loquy/loquy.github.io.git
+  repo:
+    github: git@github.com:loquy/loquy.github.io.git
+#    coding: https://e.coding.net/loquy/loquy/loquy.git
   branch: master
 
 # 自动生成sitemap
