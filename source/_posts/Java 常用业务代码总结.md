@@ -4,7 +4,7 @@ category_bar: true
 index_img: 'https://www.loquy.cn/images/Java.png'
 abbrlink: 3b0faab3
 date: 2022-06-10 11:13:27
-updated: 2022-06-10 11:13:27
+updated: 2022-06-30 09:30:27
 tags: Java
 categories: Java
 description: 整理记录常用 Java 业务代码，以此备忘，持续更新中...
@@ -466,4 +466,62 @@ public class HashMapUtils {
     }
 ```
 
+# 构造树形结构
 
+```java
+/**
+ * Menu list list.
+ *
+ * @param menu the menu
+ * @return the list
+ */
+public List<Object> menuList(List<TreeEntity> menu) {
+    List<Object> list = new ArrayList<>();
+    for (TreeEntity treeEntity : menu) {
+        Map<String, Object> map = new LinkedHashMap<>();
+        if (treeEntity.getPid() == null) {
+            menuItem(menu, list, treeEntity, map);
+        }
+    }
+    return list;
+}
+
+/**
+ * Menu child list.
+ *
+ * @param menu the menu
+ * @param id   the id
+ * @return the list
+ */
+public List<Object> menuChild(List<TreeEntity> menu, String id) {
+    List<Object> list = new ArrayList<>();
+    for (TreeEntity treeEntity : menu) {
+        Map<String, Object> map = new LinkedHashMap<>();
+        if (treeEntity.getPid() != null && treeEntity.getPid().equals(id)) {
+            menuItem(menu, list, treeEntity, map);
+        }
+    }
+    return list;
+}
+
+private void menuItem(
+        List<TreeEntity> menu,
+        List<Object> list,
+        TreeEntity treeEntity,
+        Map<String, Object> map
+) {
+    map.put("uuid", treeEntity.getUuid());
+    map.put("name", treeEntity.getName());
+    map.put("pid", treeEntity.getPid());
+    map.put("open", true);
+    List<Object> children = menuChild(menu, treeEntity.getUuid());
+    map.put("children", children);
+    map.put("isLast", false);
+    if (children.size() == 0) {
+        map.put("isLast", true);
+    }
+    map.put("isClick", treeEntity.isClick());
+    map.put("remind", treeEntity.getRemind());
+    list.add(map);
+}
+```
