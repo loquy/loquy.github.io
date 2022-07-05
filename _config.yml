@@ -120,4 +120,4 @@ abbrlink:
 feed:
   type: rss
   path: rss.xml
-  limit: 20
+  limit: false
