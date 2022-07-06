@@ -4,10 +4,11 @@ abbrlink: 3f5e4d56
 date: 2020-10-12 23:00:00
 updated: 2020-10-13 10:50:00
 tags:
-    - Vim
-    - Linux
-categories: Linux
-category_bar: true
+- Vim
+- Linux
+categories: 
+- [编程, Linux]
+category_bar: [Linux]
 index_img: https://www.loquy.cn/images/Vim.png
 ---
 # 模式

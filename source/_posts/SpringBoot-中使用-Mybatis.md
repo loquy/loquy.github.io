@@ -1,11 +1,12 @@
 ---
 title: SpringBoot 中使用 Mybatis
-category_bar: true
+category_bar: [Java]
 tags:
   - Mybatis
   - SpringBoot
   - Java
-categories: Java
+categories: 
+  - [编程, Java]
 index_img: 'https://www.loquy.cn/images/springboot-mybatis.jpg'
 abbrlink: d45b7e43
 date: 2022-06-14 10:42:48

@@ -1,10 +1,11 @@
 ---
 title: Oracle 常用查询语句总结
-category_bar: true
+category_bar: [Oracle]
 tags:
   - SQL
   - Oracle
-categories: Oracle
+categories: 
+  - [编程, Oracle]
 index_img: /images/Oracle常用查询语句.png
 abbrlink: e95076da
 date: 2022-07-06 16:27:48

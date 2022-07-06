@@ -2,8 +2,9 @@
 title: 在 PHP 中使用单元测试
 tags:
   - 单元测试
-categories: PHP
-category_bar: true
+categories: 
+  - [编程, PHP]
+category_bar: [PHP]
 abbrlink: ef77815d
 date: 2021-05-30 08:17:04
 updated: 2021-05-30 08:17:04

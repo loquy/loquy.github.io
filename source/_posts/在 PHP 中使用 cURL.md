@@ -3,8 +3,9 @@ title: 在 PHP 中使用 cURL
 tags:
   - PHP
   - cURL
-categories: PHP
-category_bar: true
+categories: 
+  - [编程, PHP]
+category_bar: [PHP]
 index_img: https://www.loquy.cn/images/curl.png
 abbrlink: b4a5aa5
 date: 2020-06-10 17:15:08

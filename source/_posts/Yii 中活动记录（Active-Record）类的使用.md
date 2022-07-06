@@ -3,8 +3,9 @@ title: Yii 中活动记录（Active Record）类的使用
 tags:
   - PHP
   - Yii
-categories: PHP
-category_bar: true
+categories: 
+  - [编程, PHP]
+category_bar: [PHP]
 index_img: 'https://www.loquy.cn/images/Yii.jpg'
 description: Yii中活动记录（Active Record）类的使用
 abbrlink: 6a73a53a

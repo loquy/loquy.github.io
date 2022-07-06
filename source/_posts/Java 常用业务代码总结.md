@@ -1,12 +1,13 @@
 ---
 title: Java 常用业务代码总结
-category_bar: true
+category_bar: [Java]
 index_img: 'https://www.loquy.cn/images/Java.png'
 abbrlink: 3b0faab3
 date: 2022-06-10 11:13:27
 updated: 2022-06-30 09:30:27
 tags: Java
-categories: Java
+categories: 
+- [编程, Java]
 description: 整理记录常用 Java 业务代码，以此备忘，持续更新中...
 ---
 # 遍历文件夹下的所有文件

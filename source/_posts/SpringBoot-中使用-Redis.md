@@ -1,11 +1,12 @@
 ---
 title: SpringBoot 中使用 Redis
-category_bar: true
+category_bar: [Java]
 tags:
   - Redis
   - SpringBoot
   - Java
-categories: Java
+categories: 
+  - [编程, Java]
 index_img: 'https://www.loquy.cn/images/springboot-redis.jpg'
 abbrlink: 54e4e761
 date: 2022-06-13 16:06:27

@@ -3,8 +3,9 @@ title: GitLab 安装和使用
 tags:
   - Git
   - GitLab
-categories: Git 
-category_bar: true
+categories: 
+  - [编程, Git] 
+category_bar: [Git]
 index_img: 'https://www.loquy.cn/images/GitLab.png'
 abbrlink: e2e5d3b3
 date: 2021-07-01 09:27:14

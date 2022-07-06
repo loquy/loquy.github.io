@@ -2,8 +2,9 @@
 title: 安装 LNMP 环境
 tags:
   - Linux
-categories: Linux
-category_bar: true
+categories: 
+  - [编程, Linux]
+category_bar: [Linux]
 index_img: https://www.loquy.cn/images/LNMP.jpeg
 abbrlink: 5ca3d0c3
 date: 2020-07-05 11:37:09

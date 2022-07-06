@@ -3,10 +3,10 @@ title: 使用 Github Pages 和 Hexo 搭建博客
 tags:
   - Github Pages
   - Hexo
-categories: 
-- [Hexo]
-- [Git]
-category_bar: true
+categories:
+  - [编程, Hexo]
+  - [编程, Git]
+category_bar: [Hexo, Git]
 index_img: https://www.loquy.cn/images/h&g.jpg
 abbrlink: 3b0a6c12
 date: 2020-05-26 15:59:13

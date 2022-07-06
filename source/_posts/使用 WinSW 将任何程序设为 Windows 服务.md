@@ -6,7 +6,9 @@ updated: 2022-06-09 08:40:12
 tags: 
      - WinSW
      - Windows
-categories: Windows
+categories:
+- [编程, Windows]
+category_bar: [Windows]
 index_img: 'https://www.loquy.cn/images/WinSW.jpg'
 ---
 # 下载

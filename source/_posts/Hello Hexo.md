@@ -1,8 +1,9 @@
 ---
 title: Hello Hexo
 tags: Hexo
-categories: Hexo
-category_bar: true
+categories: 
+- [编程, Hexo]
+category_bar: [Hexo]
 index_img: https://www.loquy.cn/images/hexo.jpg
 abbrlink: a1751c09
 date: 2020-05-23 10:33:21

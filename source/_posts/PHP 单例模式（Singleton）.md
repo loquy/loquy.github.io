@@ -3,8 +3,8 @@ title: PHP 设计模式之单例模式（Singleton）
 tags: 
 - PHP
 categories: 
-- [PHP]
-category_bar: true
+- [编程, PHP]
+category_bar: [PHP]
 abbrlink: 77dd5484
 date: 2020-06-22 16:08:19
 updated: 2020-06-22 16:08:19

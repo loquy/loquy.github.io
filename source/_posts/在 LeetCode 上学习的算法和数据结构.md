@@ -1,13 +1,13 @@
 ---
 title: 在 LeetCode 上学习的算法和数据结构
-category_bar: true
+category_bar: [算法, 数据结构]
 tags:
   - 算法
   - 数据结构
   - LeetCode
 categories:
-  - - 算法
-  - - 数据结构
+  - [编程, 算法]
+  - [编程, 数据结构]
 index_img: 'https://www.loquy.cn/images/LeetCode.jpg'
 description: 记录在 LeetCode 上学习的算法和数据结构，持续更新...
 abbrlink: b091fa12

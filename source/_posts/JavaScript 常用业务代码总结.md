@@ -1,12 +1,13 @@
 ---
 title: JavaScript 常用业务代码总结
-category_bar: true
+category_bar: [JavaScript]
 index_img: 'https://www.loquy.cn/images/JavaScript.png'
 abbrlink: 9296f96c
 date: 2022-06-10 11:13:52
 updated: 2022-06-29 11:35:52
 tags: JavaScript
-categories: JavaScript
+categories: 
+- [编程, JavaScript]
 description: 整理记录常用 JavaScript 业务代码，以此备忘，持续更新中...
 ---
 # 事件和选择器

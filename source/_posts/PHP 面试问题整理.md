@@ -3,8 +3,8 @@ title: PHP 面试问题整理
 tags: 
 - PHP
 categories:
-- [PHP]
-category_bar: true
+- [编程, PHP]
+category_bar: [PHP]
 abbrlink: babcce42
 date: 2020-06-25 10:05:23
 updated: 2020-07-05 14:07:19
