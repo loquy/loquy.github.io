@@ -255,7 +255,6 @@ public class MongoFileController {
      * @return the string
      */
     @PostMapping("/upload")
-    @ResponseBody
     public String uploadFile(@RequestParam("file") MultipartFile multipartFile) {
         String originFilename = multipartFile.getOriginalFilename();
         String fileId;
@@ -275,7 +274,6 @@ public class MongoFileController {
      * @return the string
      */
     @PostMapping("/remove")
-    @ResponseBody
     public String removeFile(@RequestParam("fileId") String fileId) {
         try {
             MongoFileUtils.deleteByObjectId(fileId);
