@@ -1,15 +1,18 @@
 ---
 title: SpringBoot 中使用 MongoDb 上传文件
+category_bar:
+  - Java
+tags:
+  - MongoDb
+  - SpringBoot
+  - Java
+categories:
+  - - 编程
+    - Java
+index_img: 'https://www.loquy.cn/images/MongoDb.png'
+abbrlink: e153eef8
 date: 2022-07-28 09:37:38
 updated: 2022-07-28 09:37:38
-category_bar: [Java]
-tags:
-- MongoDb
-- SpringBoot
-- Java
-  categories:
-- [编程, Java]
-index_img: 'https://www.loquy.cn/images/MongoDb.png'
 description:
 ---
 # 概述
