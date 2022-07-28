@@ -74,39 +74,39 @@ GridFS 用两个集合来存储一个文件：fs.files与fs.chunks。
 
 ![](https://www.loquy.cn/images/spring-boot-mongodb.jpg)
 
-spring-boot-demo
-│  .gitignore
-│  pom.xml
-│  spring-boot-demo.iml
-│
-└─spring-boot-mongodb
-│  .gitignore
-│  pom.xml
-│  spring-boot-mongodb.iml
-│
-├─src
-│  ├─main
-│  │  ├─java
-│  │  │  └─com
-│  │  │      └─example
-│  │  │          └─mongodb
-│  │  │              │  SpringBootMongodbApplication.java
-│  │  │              │
-│  │  │              ├─controller
-│  │  │              │      MongoFileController.java
-│  │  │              │
-│  │  │              └─utils
-│  │  │                      MongoFileUtils.java
-│  │  │
-│  │  └─resources
-│  │          application.properties
-│  │
-│  └─test
-│      └─java
-│          └─com
-│              └─example
-│                  └─mongodb
-│                          SpringBootMongodbApplicationTests.java
+    spring-boot-demo
+    │  .gitignore
+    │  pom.xml
+    │  spring-boot-demo.iml
+    │
+    └─spring-boot-mongodb
+    │  .gitignore
+    │  pom.xml
+    │  spring-boot-mongodb.iml
+    │
+    ├─src
+    │  ├─main
+    │  │  ├─java
+    │  │  │  └─com
+    │  │  │      └─example
+    │  │  │          └─mongodb
+    │  │  │              │  SpringBootMongodbApplication.java
+    │  │  │              │
+    │  │  │              ├─controller
+    │  │  │              │      MongoFileController.java
+    │  │  │              │
+    │  │  │              └─utils
+    │  │  │                      MongoFileUtils.java
+    │  │  │
+    │  │  └─resources
+    │  │          application.properties
+    │  │
+    │  └─test
+    │      └─java
+    │          └─com
+    │              └─example
+    │                  └─mongodb
+    │                          SpringBootMongodbApplicationTests.java
 
 # Pom.xml 依赖配置
 
