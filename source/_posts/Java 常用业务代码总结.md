@@ -359,7 +359,7 @@ public class FileController {
 /**
  * Swagger2的接口配置
  * 
- * @author fusx
+ * @author loquy
  */
 @Configuration
 @EnableSwagger2
