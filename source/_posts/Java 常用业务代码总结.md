@@ -358,6 +358,7 @@ public class FileController {
 ```java
 /**
  * Swagger2的接口配置
+ * 
  * @author loquy
  */
 @Configuration
