@@ -104,7 +104,7 @@ deploy:
   repo:
     github: git@github.com:loquy/loquy.github.io.git
 #    coding: https://e.coding.net/loquy/loquy/loquy.git
-  branch: master
+  branch: master1
 
 # 自动生成sitemap
 sitemap:
