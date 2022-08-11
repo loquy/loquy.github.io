@@ -9,7 +9,7 @@ tags:
 categories:
   - - 编程
     - Java
-index_img: 'https://www.loquy.cn/images/hibernate.png'
+index_img: 'https://www.loquy.cn/images/hibernate.jpg'
 abbrlink: fb332309
 date: 2022-08-11 09:20:09
 updated: 2022-08-11 09:20:09
