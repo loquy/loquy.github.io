@@ -174,6 +174,8 @@ CREATE TABLE `user` (
 ```
 
 - spring-boot-hibernate
+    - 导入 hibernate 核心的对象关系映射（简称ORM）功能的包
+    - 导入使用 hibernate 实现 java 持久化接口（简称JPA）的包
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -337,6 +339,15 @@ public class DataSourceConfig {
 ```
 
 # Dao 层封装 CRUD
+
+## JPA 实体管理器（EntityManager）
+
+    实体管理器（EntityManager）用于管理系统中的实体，它是实体与数据库之间的桥梁，
+    通过调用实体管理器的相关方法可以把实体持久化到数据库中，
+    同时也可以把数据库中的记录打包成实体对象。
+
+配置好数据源后可以通过 @PersistenceContext 注解注入 EntityManager 到上下文里管理实体，也可以执行原始的sql查询语句。
+详情查看此教程 [JPA 实体管理器](https://www.w3cschool.cn/java/jpa-entitymanager.html)
 
 ## 通用 BaseDao
 
