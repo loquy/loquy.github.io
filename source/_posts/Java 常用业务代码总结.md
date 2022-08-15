@@ -4,7 +4,7 @@ category_bar: [Java]
 index_img: 'https://www.loquy.cn/images/Java.png'
 abbrlink: 3b0faab3
 date: 2022-06-10 11:13:27
-updated: 2022-06-30 09:30:27
+updated: 2022-08-15 09:30:27
 tags: Java
 categories: 
 - [编程, Java]
@@ -525,4 +525,95 @@ private void menuItem(
     map.put("remind", treeEntity.getRemind());
     list.add(map);
 }
+```
+# 读取目录的所有文件后逐行写入新的文件
+
+```java
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+
+/**
+ * @author loquy
+ */
+public class ReadFiles {
+
+    public static void main(String[] args) {
+
+        File fileE = new File("H:\\test.txt");
+
+        if (fileE.exists()) {
+            boolean delete = fileE.delete();
+            System.out.println(delete);
+        }
+
+        File file = new File("H:\\");
+
+        File writerFile = new File("H:\\test.txt");
+        try {
+            boolean newFile = writerFile.createNewFile();
+            System.out.println(newFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        readFiles(file, writerFile);
+    }
+
+    public static void readFiles(File file, File writerFile) {
+        File[] fs = file.listFiles();
+        assert fs != null;
+        for (File f : fs) {
+            // 若是目录，则递归读取
+            if (f.isDirectory()) {
+                readFiles(f, writerFile);
+            }
+            // 不是 java 后缀跳过
+            String suffix = f.getName().substring(f.getName().lastIndexOf(".") + 1);
+            if (!"java".equals(suffix)) {
+                continue;
+            }
+            if (f.isFile()) {
+                try {
+                    readAndWriterFile(f, writerFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void readAndWriterFile(File f, File writerFile) throws IOException {
+        BufferedReader br;
+        br = new BufferedReader(new FileReader(f.getPath()));
+        String con;
+        FileOutputStream fop = new FileOutputStream(writerFile, true);
+        OutputStreamWriter writer = new OutputStreamWriter(fop, StandardCharsets.UTF_8);
+        // 逐行读取
+        while ((con = br.readLine()) != null) {
+            // 跳过空行
+            if (!"".equals(con)) {
+                boolean is = false;
+                // 跳过tab
+                if (con.length() == 1) {
+                    for (int i = 0; i < con.length(); i++) {
+                        char c = con.charAt(i);
+                        if ('\t' == c) {
+                            is = true;
+                            break;
+                        }
+                    }
+                }
+                if (!is) {
+                    System.out.println(con);
+                    writer.append(con);
+                    writer.append("\n");
+                }
+            }
+        }
+        writer.close();
+        fop.close();
+        br.close();
+    }
+}
+
 ```
