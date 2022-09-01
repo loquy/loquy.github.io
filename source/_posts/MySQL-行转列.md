@@ -7,7 +7,7 @@ tags:
   - MySQL
 categories:
   - - 编程
-    - Oracle
+    - MySQL
 index_img: images/mysq行转列.png
 description: MySQL 中使用 CASE 函数达成行转列。
 abbrlink: aad432c8
