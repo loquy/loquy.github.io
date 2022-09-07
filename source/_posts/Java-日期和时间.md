@@ -79,9 +79,9 @@ public static Date strToDate(String strDate) throws ParseException {
 - Java 8
 
 ```java
-public static String localDateTimeToStr(LocalDateTime localDate) {
+public static String localDateTimeToStr(LocalDateTime localDateTime) {
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    return localDate.format(dateTimeFormatter);
+    return localDateTime.format(dateTimeFormatter);
 }
 ```
 ```java
