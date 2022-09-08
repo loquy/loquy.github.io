@@ -24,9 +24,8 @@ Java 提供了两套日期和时间的接口。
     - 时刻：`Instant`；
     - 时区：`ZoneId`，`ZoneOffset`；
     - 时间间隔：`Duration`。
-
-
-以及一套新的用于取代 `SimpleDateFormat` 的格式化类 `DateTimeFormatter`。和旧的 API 相比，新 API 严格区分了时刻、本地日期、本地时间和带时区的日期时间，并且对日期和时间进行运算更加方便。新 API 的类型几乎全部是不变类型（和 String 类似），可以放心使用不必担心被修改。
+    
+   以及一套新的用于取代 `SimpleDateFormat` 的格式化类 `DateTimeFormatter`。和旧的 API 相比，新 API 严格区分了时刻、本地日期、本地时间和带时区的日期时间，并且对日期和时间进行运算更加方便。新 API 的类型几乎全部是不变类型（和 String 类似），可以放心使用不必担心被修改。
 
 3. `SimpleDateFormat` 是线程不安全的类，一般不要定义为 static 变量，如果定义为 static，必须加锁，或者使用 `DateUtils` 工具类。 正例：注意线程安全，使用 `DateUtils`。亦推荐如下处理：
 ```java
