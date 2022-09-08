@@ -91,7 +91,7 @@ public static LocalDateTime strToLocalDateTime(String strDate){
 ```
 
 
-## LocalDate 和 Date 相互转换
+## LocalDateTime 和 Date 相互转换
 
 ```java
 public static LocalDateTime dateToLocalDateTime(Date date){
