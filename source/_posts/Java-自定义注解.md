@@ -13,13 +13,13 @@ description:
 ---
 
 # 注解知识点
-## 思维导图
+- 思维导图
 
 ![Java注解](images/javaAnnotation.jpg)
 
 # 自定义注解
 
-## 自定义注解类编写的规则
+## 编写规则
 
  1. Annotation 型定义为 @interface，所有的 Annotation 会自动继承 java.lang.Annotation 这一接口，并且不能再去继承别的类或是接口。
  2. 参数成员只能用 public 或默认(default) 这两个访问权修饰。
