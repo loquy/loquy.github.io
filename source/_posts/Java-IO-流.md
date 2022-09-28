@@ -234,8 +234,8 @@ public class FileTest03 {
         // 遍历返回的字符数组
         for (String s : fileList) {
             System.out.print(s + "\t\t");
-            System.out.print((new File("C:/", s)).isFile() ? "文件" + "\t\t" : "文件夹" + "\t\t");
-            System.out.println((new File("C:/", s)).length() + "字节");
+            System.out.print((new File("D:/", s)).isFile() ? "文件" + "\t\t" : "文件夹" + "\t\t");
+            System.out.println((new File("D:/", s)).length() + "字节");
         }
     }
 }
@@ -251,20 +251,20 @@ public class FileTest03 {
     data		文件夹		0字节
     home		文件夹		0字节
     JamWorkspaceAndroid		文件夹		0字节
-    note		文件夹		0字节
-    oracle		文件夹		0字节
-    pagefile.sys		文件夹		0字节
-    picture		文件夹		0字节
-    Program Files		文件夹		8192字节
-    Program Files (x86)		文件夹		12288字节
+    note		文件夹		4096字节
+    oracle		文件夹		4096字节
+    pagefile.sys		文件		8053063680字节
+    picture		文件夹		12288字节
+    Program Files		文件夹		4096字节
+    Program Files (x86)		文件夹		4096字节
     project		文件夹		0字节
-    study		文件夹		0字节
-    System Volume Information		文件夹		4096字节
-    test.txt		文件夹		0字节
-    test1.txt		文件夹		0字节
-    Users		文件夹		4096字节
+    study		文件夹		4096字节
+    System Volume Information		文件夹		0字节
+    test.txt		文件		192字节
+    test1.txt		文件		0字节
+    Users		文件夹		0字节
     virtual		文件夹		0字节
-    软件		文件夹		0字节
+    软件		文件夹		4096字节
 
 
 ## 字节流
