@@ -125,8 +125,8 @@ public class FileTest {
         // 指定文件所在的目录
         String path = "D:/";
         // 建立 File 变量，并设定由 f 变量引用
-        File f = new File(path, "notepad.exe");
-        System.out.println("D:\\notepad.exe文件信息如下：");
+        File f = new File(path, "test.txt");
+        System.out.println("D:\\test.txt文件信息如下：");
         System.out.println("============================================");
         System.out.println("文件长度：" + f.length() + "字节");
         System.out.println("文件或者目录：" + (f.isFile() ? "是文件" : "不是文件"));
