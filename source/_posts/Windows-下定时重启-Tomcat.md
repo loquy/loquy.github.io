@@ -8,8 +8,8 @@ tags:
   - Tomcat
   - Windows
 categories:
-  - - 编程
-    - Java
+  - [编程, Java]
+  - [编程, Windows]
 index_img: images/tomcat.png
 abbrlink: 36df66f4
 description:
