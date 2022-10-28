@@ -73,16 +73,16 @@ public class CallWebService {
         Service service = new Service();
         Call call = (Call) service.createCall();
         call.setTargetEndpointAddress(ENDPOINT);
-        // WSDL里面描述的接口名称(要调用的方法)
+        // WSDL 里面描述的接口名称(要调用的方法)
         call.setOperationName(new QName(NAMESPACE, "login"));
-        // 接口方法的参数名, 参数类型,参数模式  IN(输入), OUT(输出) or INOUT(输入输出)
+        // 接口方法的参数名, 参数类型, 参数模式  IN(输入), OUT(输出) or INOUT(输入输出)
         call.addParameter("userId", XMLType.XSD_STRING, ParameterMode.IN);
         call.addParameter("password", XMLType.XSD_STRING, ParameterMode.IN);
         // 设置被调用方法的返回值类型
         call.setReturnType(XMLType.XSD_STRING);
         // 设置超时
         call.setTimeout(30 * 60 * 1000);
-        //设置方法中参数的值
+        // 设置方法中参数的值
         Object[] paramValues = new Object[] {"test", "test"};
         // 给方法传递参数，并且调用方法
         String result = (String) call.invoke(paramValues);
