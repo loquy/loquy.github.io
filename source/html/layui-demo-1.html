@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <!-- 引入 layui.css -->
+    <link href="../js/layui-v2.7.6/layui/css/layui.css" rel="stylesheet">
+</head>
+<body>
+<table id="demo" lay-filter="demo"></table>
+</body>
+<!-- 引入 layui.js -->
+<script src="../js/layui-v2.7.6/layui/layui.js"></script>
+<script src="../js/xm-select-v1.2.4/dist/xm-select.js"></script>
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script id="barDemo" type="text/html">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">更换父数据</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="reset">重置父数据</a>
+</script>
+<script>
+    var init = false;
+    var initData = [
+        {
+            "id": 10000,
+            "username": "user-0",
+            "sex": "女",
+            "sign": "签名-0",
+            "experience": 255,
+            "classify": "作家",
+        },
+        {
+            "id": 10001,
+            "username": "user-1",
+            "sex": "男",
+            "sign": "签名-1",
+            "experience": 884,
+            "classify": "词人",
+        },
+        {
+            "id": 10002,
+            "username": "user-2",
+            "sex": "女",
+            "sign": "签名-2",
+            "experience": 650,
+            "classify": "酱油",
+        },
+        {
+            "id": 10003,
+            "username": "user-3",
+            "sex": "女",
+            "sign": "签名-3",
+            "experience": 362,
+            "classify": "诗人",
+        },
+        {
+            "id": 10004,
+            "username": "user-4",
+            "sex": "男",
+            "sign": "签名-4",
+            "experience": 807,
+            "classify": "作家",
+        },
+        {
+            "id": 10005,
+            "username": "user-5",
+            "sex": "女",
+            "sign": "签名-5",
+            "experience": 173,
+            "classify": "作家",
+        },
+        {
+            "id": 10006,
+            "username": "user-6",
+            "sex": "女",
+            "sign": "签名-6",
+            "experience": 982,
+            "classify": "作家",
+        },
+        {
+            "id": 10007,
+            "username": "user-7",
+            "sex": "男",
+            "sign": "签名-7",
+            "experience": 727,
+            "classify": "作家",
+        },
+        {
+            "id": 10008,
+            "username": "user-8",
+            "sex": "男",
+            "sign": "签名-8",
+            "experience": 951,
+            "classify": "词人",
+        },
+        {
+            "id": 10009,
+            "username": "user-9",
+            "sex": "女",
+            "sign": "签名-9",
+            "experience": 484,
+            "classify": "词人",
+        }
+    ];
+    var tableData = initData;
+    var cols = [
+        [ //表头
+            {field: 'id', title: 'ID', align: "center"},
+            {field: 'username', title: '用户名', align: "center"},
+            {field: 'sex', title: '性别', align: "center"},
+            {
+                field: 'sign', title: '爱好', minWidth: 150, align: "center", templet: function (d) {
+                    return '<div id="XM-' + d.id + '" ></div>'
+                }
+            },
+            {field: 'classify', title: '职业', align: "center"},
+        ]
+    ];
+
+    initTable();
+
+    function initTable() {
+        layui.use('table', function () {
+            layui.table.render({
+                elem: '#demo',
+                page: true, //开启分页
+                cols: cols,
+                data: init ? initData : tableData,
+                done: function (res) {
+                    //修改一些css样式, 这里虽然能够使用, 但是还是不太友好, 努力中...
+                    var cells = document.querySelectorAll('div[lay-id="demo"] .layui-table-cell');
+                    for (var i = 0; i < cells.length; i++) {
+                        cells[i].style.overflow = 'unset';
+                        cells[i].style.height = 'auto';
+                    }
+                    //渲染多选
+                    res.data.forEach(item => {
+                        var xm = xmSelect.render({
+                            el: '#XM-' + item.id,
+                            autoRow: true,
+                            model: {type: 'fixed'},
+                            data: [
+                                {name: '张三', value: 1},
+                                {name: '李四', value: 2},
+                                {name: '王五', value: 3},
+                            ]
+                        })
+
+                        item.__xm = xm;
+                    })
+                }
+            });
+
+        });
+    }
+
+    //触发单元格工具事件
+    layui.table.on('tool(demo)', function (obj) {
+        if (obj.event === 'edit') {
+            parent.tableData = [
+                {
+                    "id": 10000,
+                    "username": "user-0",
+                    "sex": "女",
+                    "sign": "签名-0",
+                    "experience": 255,
+                    "classify": "作家",
+                }
+            ];
+            parent.init = false;
+            parent.initTable();
+        } else if (obj.event === 'reset') {
+            parent.init = true;
+            parent.initTable();
+        }
+    })
+
+    $(function () {
+        //表格滚动时 重新计算位置
+        document.querySelector('.layui-table-body').addEventListener('scroll', () => {
+            xmSelect.get().forEach(function (item) {
+                item.calcPosition();
+            })
+        })
+    })
+</script>
+</html>
+
