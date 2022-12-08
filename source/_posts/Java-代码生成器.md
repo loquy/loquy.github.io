@@ -54,9 +54,9 @@ FreeMarker 是一款用 java 语言编写的模版引擎，它虽然不是 web �
 
 JDBC 提供了一个 Java API （DatabaseMetaData）来读取存储在数据库表中的实际数据（参考：使用 JDBC 提取数据库元数据。[^3]）。
 
-- 获取表信息： getTables。
-- 获取列信息： getColumns。
-- 获取主键信息： getPrimaryKeys。
+- 获取表信息： getTables(...)。
+- 获取列信息： getColumns(...)。
+- 获取主键信息： getPrimaryKeys(...)。
 
 # 表结构
 
@@ -201,38 +201,38 @@ package com.example.codegenerator.constant;
 /**
  * @author loquy
  */
-    public class DbConstant {
+public class DbConstant {
 
     /**
      * 数据库时间类型
      */
-        public static final String[] COLUMNTYPE_TIME = {"datetime", "time", "date", "timestamp"};
+    public static final String[] COLUMNTYPE_TIME = {"datetime", "time", "date", "timestamp"};
 
     /**
      * 数据库数字类型
      */
-        public static final String[] COLUMNTYPE_NUMBER = {"tinyint", "smallint", "mediumint", "int", "number", "integer",
+    public static final String[] COLUMNTYPE_NUMBER = {"tinyint", "smallint", "mediumint", "int", "number", "integer",
             "bit", "bigint", "float", "double", "decimal"};
 
     /**
      * 字符串类型
      */
-        public static final String TYPE_STRING = "String";
+    public static final String TYPE_STRING = "String";
 
     /**
      * 整型
      */
-        public static final String TYPE_INTEGER = "Integer";
+    public static final String TYPE_INTEGER = "Integer";
 
     /**
      * 长整型
      */
-        public static final String TYPE_LONG = "Long";
+    public static final String TYPE_LONG = "Long";
 
     /**
      * 高精度计算类型
      */
-        public static final String TYPE_BIGDECIMAL = "BigDecimal";
+    public static final String TYPE_BIGDECIMAL = "BigDecimal";
 
 
     /**
@@ -240,6 +240,7 @@ package com.example.codegenerator.constant;
      */
     public static final String TYPE_DATE = "Date";
 }
+
 ```
 </details>
 
@@ -305,39 +306,39 @@ import lombok.Data;
 /**
  * @author loquy
  */
-   @Data
-   public class ColumnParam {
+@Data
+public class ColumnParam {
 
     /**
      * 数据库字段名称
-       */
-         private String columnName;
+     */
+    private String columnName;
 
     /**
      * 数据库字段类型
-       */
-         private String columnType;
+     */
+    private String columnType;
 
     /**
      * 数据库字段首字母小写且去掉下划线字符串
-       */
-         private String changeColumnName;
+     */
+    private String changeColumnName;
 
     /**
      * 数据库字段注释
-       */
-         private String columnComment;
+     */
+    private String columnComment;
 
     /**
      * 主键
-       */
-         private String primaryKey;
+     */
+    private String primaryKey;
 
     /**
      * java 类型
-       */
-       private String javaType;
-         }
+     */
+    private String javaType;
+}
 
 ```
 </details>
@@ -382,6 +383,12 @@ public class TableParam {
      * 是否存在浮点型
      */
     private boolean exitBigDecimal;
+
+    /**
+     * 表主键类型
+     */
+    private String primaryKeyType;
+
 }
 
 ```
@@ -406,60 +413,60 @@ import java.util.Date;
  *
  * @author loquy
  */
-    @Data
-    public class TemplatePathParam {
+@Data
+public class TemplatePathParam {
 
     private String currentDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
     /**
      * 包名
      */
-        private String packageName;
+    private String packageName;
 
     /**
      * 代码生成路径
      */
-        private String basePath;
+    private String basePath;
 
     /**
      * 项目名称
      */
-        private String projectName;
+    private String projectName;
 
     /**
      * 作者
      */
-        private String author;
+    private String author;
 
     /**
      * 实体类生成的绝对路径
      */
-        private String entityPath;
+    private String entityPath;
 
     /**
      * dao生成的绝对路径
      */
-        private String daoPath;
+    private String daoPath;
 
     /**
      * param生成的绝对路径
      */
-        private String paramPath;
+    private String paramPath;
 
     /**
      * service接口生成的绝对路径
      */
-        private String servicePath;
+    private String servicePath;
 
     /**
      * service实现类生成的绝对路径
      */
-        private String serviceImplPath;
+    private String serviceImplPath;
 
     /**
      * controller生成的绝对路径
      */
-        private String controllerPath;
+    private String controllerPath;
 
     /**
      * @param packageName 包名
@@ -467,7 +474,7 @@ import java.util.Date;
      * @param projectName 项目名称
      * @param author      作者
      */
-        public TemplatePathParam(String packageName, String basePath, String projectName, String author) {
+    public TemplatePathParam(String packageName, String basePath, String projectName, String author) {
         if (StringUtils.isBlank(packageName)
                 || StringUtils.isBlank(basePath)
                 || StringUtils.isBlank(author)) {
@@ -497,7 +504,7 @@ import java.util.Date;
         this.setServicePath(javaModelPath + "\\service");
         this.setServiceImplPath(javaModelPath + "\\service\\impl");
         this.setControllerPath(javaModelPath + "\\controller");
-        }
+    }
 
 }
 
@@ -569,8 +576,14 @@ public class CodeGenerateUtils {
 
         boolean date = allColumns.stream().anyMatch(m -> "Date".equals(m.getJavaType()));
         boolean bigDecimal = allColumns.stream().anyMatch(m -> "BigDecimal".equals(m.getJavaType()));
+        ColumnParam columnParam = allColumns.stream().filter(m -> m.getColumnName().equals(m.getPrimaryKey())).findFirst().orElse(null);
+
         tableClass.setExitDate(date);
         tableClass.setExitBigDecimal(bigDecimal);
+        tableClass.setPrimaryKeyType("String");
+        if (columnParam != null) {
+            tableClass.setPrimaryKeyType(columnParam.getJavaType());
+        }
 
         System.out.println("============正在生成 " + table + " 表相关文件============");
 
@@ -1339,10 +1352,10 @@ import ${package_name}.param.${table_name}Param;
 import ${package_name}.service.${table_name}Service;
 
 /**
-* <#if table_annotation??>${table_annotation}</#if>Controller
-* @author ${author}
-* @date ${date}
-*/
+ * <#if table_annotation??>${table_annotation}</#if>Controller
+ * @author ${author}
+ * @date ${date}
+ */
 @RestController
 @RequestMapping("/${table_name_small}")
 public class ${table_name}Controller {
@@ -1354,11 +1367,11 @@ public class ${table_name}Controller {
     }
 
     /**
-    * 查询所有
-    */
+     * 查询所有
+     */
     @GetMapping("/list")
     public ResultModel<Page<${table_name}>> list(@RequestParam(value = "currentPage") Integer currentPage,
-                                        @RequestParam(value = "pageSize") Integer pageSize) {
+            @RequestParam(value = "pageSize") Integer pageSize) {
         try {
             Page<${table_name}> page = new Page<>(currentPage, pageSize);
             return ${table_name_small}Service.list(page);
@@ -1369,10 +1382,10 @@ public class ${table_name}Controller {
     }
 
     /**
-    * 查询一个
-    */
+     * 查询一个
+     */
     @GetMapping("read/{id}")
-    public ResultModel<${table_name}> get(@PathVariable Long id) {
+    public ResultModel<${table_name}> get(@PathVariable ${primaryKeyType} id) {
         try {
             return ${table_name_small}Service.getById(id);
         } catch (Exception e) {
@@ -1382,8 +1395,8 @@ public class ${table_name}Controller {
     }
 
     /**
-    * 新增
-    */
+     * 新增
+     */
     @PostMapping("/create")
     public ResultModel<Object> save(@Validated @RequestBody ${table_name}Param ${table_name_small}Param) {
         try {
@@ -1397,8 +1410,8 @@ public class ${table_name}Controller {
     }
 
     /**
-    * 修改
-    */
+     * 修改
+     */
     @PostMapping("/update")
     public ResultModel<Object> update(@Validated @RequestBody ${table_name}Param ${table_name_small}Param) {
         try {
@@ -1412,10 +1425,10 @@ public class ${table_name}Controller {
     }
 
     /**
-    * 删除
-    */
+     * 删除
+     */
     @PostMapping("/delete/{id}")
-    public ResultModel<Object> delete(@PathVariable Long id) {
+    public ResultModel<Object> delete(@PathVariable ${primaryKeyType} id) {
         try {
             return ${table_name_small}Service.removeById(id);
         } catch (Exception e) {
