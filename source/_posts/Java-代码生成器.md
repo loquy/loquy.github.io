@@ -785,7 +785,7 @@ import java.util.Properties;
  *
  * @author loquy
  */
-    public class DbUtils {
+public class DbUtils {
 
     private final Props props = new Props("application.properties");
 
@@ -802,7 +802,7 @@ import java.util.Properties;
     /**
      * 获取jdbc链接
      */
-        public Connection getConnection() throws Exception {
+    public Connection getConnection() throws Exception {
         Properties pro = new Properties();
         pro.setProperty("user", username);
         pro.setProperty("password", password);
@@ -819,12 +819,12 @@ import java.util.Properties;
         Class.forName(driver);
         connection = DriverManager.getConnection(url, pro);
         return connection;
-        }
+    }
 
     /**
      * 获取当前数据库下的所有表名称及注释
      */
-        public List<TableParam> getAllTables(String table) throws Exception {
+    public List<TableParam> getAllTables(String table) throws Exception {
         String tableName = StringUtils.isNotEmpty(table) ? table : "%";
         List<TableParam> list = new ArrayList<>();
         //获取链接
@@ -844,12 +844,12 @@ import java.util.Properties;
             throw new Exception(tableName + "表不存在！");
         }
         return list;
-        }
+    }
 
     /**
      * 获取某张表的所有列
      */
-        public List<ColumnParam> getAllColumns(String tableName) throws Exception {
+    public List<ColumnParam> getAllColumns(String tableName) throws Exception {
         List<ColumnParam> list = new ArrayList<>();
         //获取链接
         Connection conn = getConnection();
@@ -878,12 +878,12 @@ import java.util.Properties;
             throw new Exception(tableName + "表不存在！");
         }
         return list;
-        }
+    }
 
     /**
      * 获取数据库表字段类型对应的java类型
      */
-        public String getJavaType(String columnType) {
+    public String getJavaType(String columnType) {
         columnType = columnType.toLowerCase();
         String dataType = getDbType(columnType);
         if (arraysContains(DbConstant.COLUMNTYPE_TIME, dataType)) {
@@ -905,7 +905,7 @@ import java.util.Properties;
             // 字符串
             return DbConstant.TYPE_STRING;
         }
-        }
+    }
 
     /**
      * 校验数组是否包含指定值
@@ -914,9 +914,9 @@ import java.util.Properties;
      * @param targetValue 值
      * @return 是否包含
      */
-        public static boolean arraysContains(String[] arr, String targetValue) {
+    public static boolean arraysContains(String[] arr, String targetValue) {
         return Arrays.asList(arr).contains(targetValue);
-        }
+    }
 
     /**
      * 获取数据库类型字段
@@ -924,8 +924,8 @@ import java.util.Properties;
      * @param columnType 列类型
      * @return 截取后的列类型
      */
-        public static String getDbType(String columnType)
-        {
+    public static String getDbType(String columnType)
+    {
         if (StringUtils.indexOf(columnType, "(") > 0)
         {
             return StringUtils.substringBefore(columnType, "(");
@@ -934,23 +934,23 @@ import java.util.Properties;
         {
             return columnType;
         }
-        }
+    }
 
     /**
      * 关闭链接
      */
-        public void closeConnection() {
+    public void closeConnection() {
         try {
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        }
+    }
 
     public Props getProps() {
         return props;
     }
-    }
+}
 
 ```
 </details>
