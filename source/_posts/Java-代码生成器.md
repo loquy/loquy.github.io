@@ -1540,7 +1540,7 @@ public class ${table_name}Controller {
 
 # 测试
 
-- 执行代码生成器工具类 CodeGenerateUtils 输出如下。
+- 执行代码生成器工具类 `CodeGenerateUtils` 输出如下。
 
 ```text
 ============正在生成 user 表相关文件============
