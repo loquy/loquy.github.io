@@ -77,7 +77,7 @@ CREATE TABLE `user` (
 
 ![](/images/spring-boot-code-generator.jpg)
 
-    spring-boot-demo
+    spring-boot-code-generator
     │
     ├─src
     │  ├─main
