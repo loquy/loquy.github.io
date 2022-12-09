@@ -15,13 +15,19 @@ description:
 ---
 # 概述
 
-    在项目开发过程中，有很多业务模块的代码是具有一定规律性的，
+    代码生成器的主要目的是提高开发效率，减少重复劳动，并确保生成的代码符合一定的规范。
 
-    例如: controller 控制器、service 接口、service 实现类、dao 类、param 类、entity 实体类等等，
+    可以使用它来自动生成那些具有一定规律性的代码，包括但不限于数据库访问层、业务逻辑层和用户界面层。
 
-    这部分代码可以使用代码生成器生成，我们就可以将更多的时间放在业务逻辑上。
+    它可以根据给定的数据库和表信息，使用模板生成代码，这个过程包括以下步骤：
     
-    我们只需要知道数据库和表相关信息，就可以结合模版生成各个模块的代码，减少了很多重复工作，也减少出错概率，提高效率。
+    1、确定需要生成的代码。
+
+    2、编写代码生成器的逻辑。
+
+    3、使用模板引擎来帮助你生成代码。
+
+    4、编写工具来调用你的代码生成器，并将生成的代码写入文件。
 
 # 实现思路
 
@@ -29,15 +35,23 @@ description:
 
 ![](/images/codeGenIdea.png)
 
-- 需要对数据库表解析获取到元数据，包含表字段名称、字段类型等等。
+- 使用 Java 中的 JDBC API 来连接到数据库，并使用 SQL 查询或 `DatabaseMetaData` 接口来获取数据库表的元数据，例如表名、列名和数据类型。
 
-- 将通用的代码编写成模版文件，部分数据需使用占位符替换。
+- 使用模板引擎（如 [Freemarker](http://freemarker.foofun.cn/) 或 [Velocity](https://velocity.apache.org/)）来定义代码生成模板。模板可能包括普通文本和特殊标记，用于在生成代码时插入元数据。
 
-- 将元数据和模版文件结合，使用一些模版引擎工具（例如：[Freemarker](http://freemarker.foofun.cn/) ）即可生成源代码文件。
+- 使用 Java 代码从模板引擎加载模板，并将元数据插入模板中。最后，将生成的代码写入文件输出到控制台。
 
 # 模板引擎
 
-FreeMarker 是一款用 java 语言编写的模版引擎，它虽然不是 web 应用框架，但它很合适作为 web 应用框架的一个组件（参考：FreeMarker 快速入门。[^2]）。
+参考：FreeMarker 快速入门。[^2]
+
+    FreeMarker 是一款用 java 语言编写的模版引擎，
+
+    它通过提供一组指令来处理模板文件，并将数据和模板文件合并成最终的文件。
+    
+    FreeMarker 模板文件可以包含特殊的指令，这些指令可以控制模板的渲染方式，例如条件判断、循环语句等。
+    
+    程序员可以通过在模板文件中插入这些指令来定制模板的渲染方式。
 
 - 特点：
 
@@ -50,13 +64,96 @@ FreeMarker 是一款用 java 语言编写的模版引擎，它虽然不是 web �
 - 工作原理：
 ![](/images/FreeMarker.jpg)
 
+- 使用步骤：
+  - 加载 FreeMarker 模板引擎的类库。
+  
+  - 设置模板文件的路径和存储数据的 Map 对象。
+  
+  - 创建 FreeMarker 模板引擎的 `Configuration` 对象。
+
+  - 创建模板文件的模板对象。
+  
+  - 程序可以通过调用 FreeMarker 的 `process` 方法，将模板文件和数据进行合并，并将合并后的结果通过 IO 流输出到指定的文件。
+  
 # 数据库元数据
 
-JDBC 提供了一个 Java API （DatabaseMetaData）来读取存储在数据库表中的实际数据（参考：使用 JDBC 提取数据库元数据。[^3]）。
+参考：使用 JDBC 提取数据库元数据。[^3]
 
-- 获取表信息： getTables(...)。
-- 获取列信息： getColumns(...)。
-- 获取主键信息： getPrimaryKeys(...)。
+Java 数据库元数据（`DatabaseMetaData`）是一个接口，它提供了有关数据库的元数据（即数据库的数据字典）的信息。
+
+它可以用来获取表详细信息、获取列详细信息、获取主键详细信息等。
+
+要使用数据库元数据，需要先使用 JDBC（Java Database Connectivity，Java 数据库连接）连接数据库，然后通过 `Connection` 对象的 `getMetaData` 方法获取 `DatabaseMetaData` 对象。
+
+- 获取表信息： `getTables(...)`。
+
+- 获取列信息： `getColumns(...)`。
+
+- 获取主键信息： `getPrimaryKeys(...)`。
+
+下面是一个简单的示例，展示了如何使用数据库元数据获取表详细信息、获取列详细信息、获取主键详细信息：
+
+```java
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class MetaDataExample {
+    public static void main(String[] args) throws SQLException {
+        // 连接 URL
+        String url = "jdbc:mysql://localhost:3306/mydatabase";
+        // 数据库用户名
+        String username = "user";
+        // 数据库密码
+        String password = "password";
+
+        // 建立与数据库的连接
+        Connection conn = DriverManager.getConnection(url, username, password);
+
+        // 获取数据库元数据
+        DatabaseMetaData dbMetaData = conn.getMetaData();
+
+        // 获取表的详细信息
+        ResultSet tables = dbMetaData.getTables(null, null, null, new String[] {"TABLE"});
+        while (tables.next()) {
+            String tableName = tables.getString("TABLE_NAME");
+            String tableType = tables.getString("TABLE_TYPE");
+            String tableRemarks = tables.getString("REMARKS");
+            // 输出表信息
+            System.out.println("Table Name: " + tableName);
+            System.out.println("Table Type: " + tableType);
+            System.out.println("Table Remarks: " + tableRemarks);
+        }
+
+        // 获取列的详细信息
+        ResultSet columns = dbMetaData.getColumns(null, null, "my_table", null);
+        while (columns.next()) {
+            String columnName = columns.getString("COLUMN_NAME");
+            String columnType = columns.getString("TYPE_NAME");
+            String columnSize = columns.getString("COLUMN_SIZE");
+            String columnRemarks = columns.getString("REMARKS");
+            // 输出列信息
+            System.out.println("Column Name: " + columnName);
+            System.out.println("Column Type: " + columnType);
+            System.out.println("Column Size: " + columnSize);
+            System.out.println("Column Remarks: " + columnRemarks);
+        }
+
+        // 获取主键的详细信息
+        ResultSet primaryKeys = dbMetaData.getPrimaryKeys(null, null, "my_table");
+        while (primaryKeys.next()) {
+            String primaryKeyName = primaryKeys.getString("COLUMN_NAME");
+            String primaryKeySeq = primaryKeys.getString("KEY_SEQ");
+            String primaryKeyTableName = primaryKeys.getString("TABLE_NAME");
+            // 输出主键信息
+            System.out.println("Primary Key Name: " + primaryKeyName);
+            System.out.println("Primary Key Sequence: " + primaryKeySeq);
+            System.out.println("Primary Key Table Name: " + primaryKeyTableName);
+        }
+    }
+}
+```
 
 # 表结构
 
