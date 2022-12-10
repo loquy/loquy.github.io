@@ -289,6 +289,12 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 ### 1.1、数据库常量
 
+- 该类定义了三个数组常量：`COLUMNTYPE_TIME`、`COLUMNTYPE_NUMBER`，分别用于存储数据库时间类型和数字类型。
+
+- 还定义了四个字符串常量：`TYPE_STRING`、`TYPE_INTEGER`、`TYPE_LONG` 和 `TYPE_BIGDECIMAL`，用于表示不同类型的数据。
+
+- 例如，`TYPE_STRING` 表示字符串类型，`TYPE_INTEGER` 表示整型，`TYPE_LONG` 表示长整型，`TYPE_BIGDECIMAL` 表示高精度计算类型。
+
 <details>
   <summary>点击查看代码</summary>
 
@@ -343,6 +349,10 @@ public class DbConstant {
 
 ### 1.2、模板常量
 
+- 该类中包含了几个静态常量，这些常量定义了一些模板的文件路径。通过这些常量，可以引用不同的模板文件。
+
+- 例如，`ENTITY_TEMPLATE` 常量指向了一个实体类的模板文件，`DAO_TEMPLATE` 常量指向了 dao 的模板文件，以此类推。
+
 <details>
   <summary>点击查看代码</summary>
 
@@ -391,6 +401,14 @@ public class TemplateConstant {
 ## 2、参数类
 
 ### 2.1、字段参数
+
+- 该类用于封装从数据库表中读取的字段信息。
+
+- 该类包含了字段名、字段类型、字段注释、主键信息以及 Java 类型等信息。
+
+- 通过这些信息，可以在后续的代码生成过程中使用这些信息。
+
+- 例如，在生成实体类时，可以使用字段名、字段类型以及 Java 类型来生成对应的属性和 getter/setter 方法。
 
 <details>
   <summary>点击查看代码</summary>
@@ -442,6 +460,14 @@ public class ColumnParam {
 
 ### 2.2、表参数
 
+- 该类用于封装从数据库表中读取的表信息。
+
+- 该类包含了表名、表注释、表中数据的日期时间格式、是否包含日期字段、是否包含浮点型字段以及表主键类型等信息。
+
+- 通过这些信息，可以在后续的代码生成过程中使用这些信息。
+
+- 例如，在生成实体类时，可以根据表主键类型来生成对应的主键属性。
+
 <details>
   <summary>点击查看代码</summary>
 
@@ -492,6 +518,14 @@ public class TableParam {
 </details>
 
 ### 2.3、模板参数
+
+- 该类用于封装代码生成过程中需要使用的一些路径信息。
+
+- 该类包含了包名、项目名称、作者、生成代码的基础路径以及各个模板文件生成的绝对路径等信息。
+
+- 通过这些信息，可以在后续的代码生成过程中使用这些信息。
+
+- 例如，在生成实体类时，可以使用实体类生成的绝对路径来指定实体类文件的存储路径。
 
 <details>
   <summary>点击查看代码</summary>
@@ -611,6 +645,10 @@ public class TemplatePathParam {
 ## 3、工具类
 
 ### 3.1、代码生成器工具类
+
+- 该类主要用于根据给定的 FreeMarker 模板和数据模型生成代码。`generate()` 方法接受表名作为输入，并从数据库中检索相应的表信息。然后，它使用此信息基于指定的 FreeMarker 模板为应用程序的不同层生成代码（例如实体，DAO，服务，控制器）。
+
+- 生成的代码写入指定的输出目录中的文件系统。该类期望模板位于 classpath 目录下，并使用 `FreeMarkerTemplateUtils` 类加载模板。
 
 <details>
   <summary>点击查看代码</summary>
@@ -859,6 +897,14 @@ public class CodeGenerateUtils {
 
 ### 3.2、数据库工具类
 
+- 该类主要用于连接数据库、获取数据库信息，如表名、字段名、字段类型等，并封装成对象返回。
+
+- 该类中主要用到了 JDBC 连接数据库的 API，包括 `DriverManager.getConnection()` 方法用于获取数据库连接，`DatabaseMetaData` 类中的方法用于获取数据库元数据信息。
+
+- 其中 `getAllTables()` 方法用于获取所有表名及注释，`getAllColumns()` 方法用于获取某张表的所有列信息，`getJavaType()` 方法用于将数据库字段类型转换成 Java 类型。
+
+- 需要注意的是，该类中使用到的配置信息，例如数据库链接地址、用户名、密码等，需要通过读取 `application.properties` 文件获取，读取文件使用了第三方库 `hutool` 的 Props 类。
+
 <details>
   <summary>点击查看代码</summary>
 
@@ -1054,6 +1100,16 @@ public class DbUtils {
 
 ### 3.3、FreeMarker 工具类
 
+- 该类用于加载并获取 FreeMarker 模板文件。
+
+- FreeMarker 是一种模板引擎，可以通过模板文件来生成静态文本，模板文件中可以使用 FreeMarker 的指令和数据变量来动态控制文本的生成。
+
+- `FreeMarkerTemplateUtils` 类中，`CONFIGURATION` 对象表示一个 FreeMarker 模板配置，该对象用于设置 FreeMarker 的各种属性，包括模板文件的加载方式、编码方式、异常处理方式等。
+
+- `getTemplate()` 方法用于根据模板文件名称获取一个 `Template` 对象，该对象表示一个 FreeMarker 模板文件，可以通过它来生成静态文本。
+
+- 在这个工具类中，模板文件的加载方式采用的是 `FileTemplateLoader` 类，即从 classpath 目录下加载模板文件。
+
 <details>
   <summary>点击查看代码</summary>
 
@@ -1104,6 +1160,15 @@ public class FreeMarkerTemplateUtils {
 </details>
 
 ### 3.4、字符串工具类
+
+- 该类包含两个方法：`changeColumnStr` 和 `changeTableStr`。
+
+- `changeColumnStr` 方法用于将一个带下划线的字符串转换为驼峰命名法，例如将 "user_name" 转换为 "userName"。
+
+- `changeTableStr` 方法用于将一个带下划线的字符串转换为驼峰命名法，并且首字母大写，例如将 "tb_user" 转换为 "TbUser"。
+
+- 两个方法都会通过递归调用来处理多个下划线的情况。
+
 <details>
   <summary>点击查看代码</summary>
 
@@ -1150,6 +1215,13 @@ package com.example.codegenerator.utils;
 在 resources/templates 目录下创建模版文件，模板内容可自定义成你所需要的。
 
 ## 1、entity 模版
+
+- 该模板中使用了 Freemarker 模板语言的语法，通过传入的参数（例如表名、字段信息等）来生成对应的实体类代码。
+
+- 例如，在模板中可以使用 `${package_name}` 来表示包名，使用 `${table_name}` 来表示实体类名称，使用 `${model_column}` 来表示表中所有的字段信息。
+
+- 通过这些变量，可以生成完整的实体类代码。例如，通过循环遍历 `${model_column}` 中的每一个字段信息，可以生成对应的属性和 getter/setter 方法。
+
 <details>
   <summary>点击查看代码</summary>
 
@@ -1217,6 +1289,13 @@ public class ${table_name} implements Serializable {
 </details>
 
 ## 2、dao 模板
+
+- 该模板中使用了 Freemarker 模板语言的语法，通过传入的参数（例如包名、实体类名等）来生成对应的 Dao 类代码。
+
+- 该 Dao 类继承自 `BaseDaoImpl`，并在构造函数中调用父类的构造函数传入实体类的类型，以便在操作数据库时获取到实体类的信息。
+
+- 该 Dao 类还使用了 `@Repository` 注解，用于将该类标识为 Spring 的数据访问对象。
+
 <details>
   <summary>点击查看代码</summary>
 
@@ -1243,6 +1322,15 @@ public class ${table_name}Dao extends BaseDaoImpl<${table_name}> {
 </details>
 
 ## 3、param 模板
+
+- 该模板中使用了 Freemarker 模板语言的语法，通过传入的参数（例如包名、表名等）来生成对应的查询参数类代码。
+
+- 该查询参数类实现了 `Serializable` 接口，表示该类的对象可以被序列化。
+
+- 该查询参数类中定义了与数据库表中列名相同的属性，并提供了对应的 getter 和 setter 方法。
+
+- 该类还使用了 `@JsonFormat` 和 `@DateTimeFormat` 注解来格式化日期类型的属性。
+
 <details>
   <summary>点击查看代码</summary>
 
@@ -1296,6 +1384,17 @@ public class ${table_name}Param implements Serializable {
 </details>
 
 ## 4、service 模版
+
+- 这段代码定义了一个接口，用于创建一个服务类，该服务类可以可以用来对名为 `${table_name}` 的实体执行 CRUD（创建、读取、更新、删除）操作。
+
+- 该服务暴露了几个方法，例如 `list`、`getById`、`save`、`updateById` 和 `removeById`，
+
+- 它们分别允许用户获取实体列表、根据 ID 获取单个实体、创建新实体、更新现有实体和删除实体。
+
+- 服务方法都会返回一个 `ResultModel` 对象，其中包含操作结果。
+
+- `ResultModel` 类是一个自定义类，它提供了一种统一的方式来表示应用程序中操作的结果。
+
 <details>
   <summary>点击查看代码</summary>
 
@@ -1358,6 +1457,23 @@ public interface ${table_name}Service {
 </details>
 
 ## 5、service 实现类模版
+
+- 这段代码定义了一个前面定义的 `${table_name}Service` 接口的具体实现。
+
+- 该类使用了 `@Service` 和 `@Transactional` 注解，表示它是一个 Spring 服务 Bean ，并且它使用了 Spring 框架的事务支持。
+
+- 这意味着这个类中使用了 `@Transactional` 注解的任何方法都将在数据库事务中执行。
+
+- 该类的构造函数接收一个 `${table_name}Dao` 实例，这个实例可能是一个数据访问对象（DAO）类，用于对 `${table_name}` 实体执行数据库操作。
+
+- 该类实现了 `${table_name}Service` 接口定义的方法，为每个方法提供了具体的实现。
+
+- 例如，`list` 方法使用 DAO 执行一个 SQL 查询，从数据库中使用提供的 `Page` 对象分页来检索 `${table_name}` 实体的列表。
+
+- 然后该方法返回一个包含实体列表的 `ResultModel` 对象。
+
+- 类中的其他方法也都使用了 DAO 来在数据库中对 `${table_name}` 实体执行 CRUD 操作，并返回一个包含操作结果的 `ResultModel` 对象。
+
 <details>
   <summary>点击查看代码</summary>
 
@@ -1433,6 +1549,29 @@ public class ${table_name}ServiceImpl implements ${table_name}Service{
 </details>
 
 ## 6、controller 模版
+
+- 这段代码是一个 Java 控制器，它提供了一系列用于管理 `${table_name}` 实体的 RESTful API 接口。
+
+- 具体来说，它提供了以下接口：
+
+  - `/list`：用于获取 `${table_name}` 实体的分页列表。
+  
+  - `/read/{id}`：用于获取一个 `${table_name}` 实体的详细信息。
+  
+  - `/create`：用于新建 `${table_name}` 实体。
+  
+  - `/update`：用于更新 `${table_name}` 实体。
+  
+  - `/delete/{id}`：用于删除 `${table_name}` 实体。
+  
+- 该控制器使用 `@RestController` 注解声明了它是一个 RESTful 控制器，并通过 `@RequestMapping("/${table_name_small}")` 注解指定了它的基础路径为 `/${table_name_small}`。
+
+- 除了接口的基础路径之外，每个接口还有一个方法级别的路径。例如，新增接口的完整路径为 `/${table_name_small}/create`。
+
+- 每个接口都有一个对应的方法，该方法实现了接口的具体逻辑。每个方法都通过 `@GetMapping`、`@PostMapping` 或 `@DeleteMapping` 注解来指定它的 HTTP 方法和路径。
+
+- 该控制器还使用了 `@Validated` 和 `@PathVariable` 注解，分别用于对参数进行验证和从路径中获取参数值。
+
 <details>
   <summary>点击查看代码</summary>
 
