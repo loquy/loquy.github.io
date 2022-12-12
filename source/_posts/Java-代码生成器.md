@@ -39,7 +39,7 @@ description:
 
 - 使用模板引擎（如 [Freemarker](http://freemarker.foofun.cn/) 或 [Velocity](https://velocity.apache.org/)）来定义代码生成模板。模板可能包括普通文本和特殊标记，用于在生成代码时插入元数据。
 
-- 使用 Java 代码从模板引擎加载模板，并将元数据插入模板中。最后，将生成的代码写入文件输出到控制台。
+- 使用 Java 代码从模板引擎加载模板，并将元数据插入模板中。最后，将生成的代码写入文件或输出到控制台。
 
 # 模板引擎
 
