@@ -215,6 +215,8 @@ public class ScriptCompiler {
 
 ### 常量
 
+`ScriptConstant` 类的作用是为编译脚本文件提供一个固定的目录，该目录下的脚本文件会被编译为 Java 类并在运行时执行。
+
 - `CLASS_NAME` 常量为字符串 "Main"。
 - `CLASS_PATH` 常量为调用了 `createScriptDir()` 方法的返回值。
 - `createScriptDir()` 是一个静态方法，它的作用是创建一个名为 "custom-script" 的目录，并返回该目录的路径作为 CLASS_PATH 常量的值。具体实现如下：
@@ -223,9 +225,6 @@ public class ScriptCompiler {
    - 获取当前路径的父目录和其父目录的路径，即 `resource` 目录。
    - 将 `resource + File.separator + "custom-script" + File.separator` 赋值给 `customScriptPath` 变量，表示要创建的目录名。
    - 创建 `customScript` 目录，并将 `customScriptPath` 作为 CLASS_PATH 常量的值返回。
-
-
-综上，ScriptConstant 类的作用是为编译脚本文件提供一个固定的目录，该目录下的脚本文件会被编译为 Java 类并在运行时执行。
 
 <details>
   <summary>点击查看代码</summary>
@@ -302,7 +301,7 @@ public class ScriptException extends SecurityException {
 
 `getClassFileBytes()` 方法使用了 NIO 的方式读取 class 文件。该方法通过 `FileInputStream` 打开 class 文件，然后通过 `FileChannel` 读取文件数据，并使用 `ByteBuffer` 缓存数据，最后通过 `WritableByteChannel` 将数据写入到 `ByteArrayOutputStream` 中，并返回其字节数组。
 
-该脚本加载器通过在 `findClass()` 方法中动态加载 class 文件，使得程序可以在运行时动态的调用一些自定义的 Java脚本。
+该脚本加载器通过在 `findClass()` 方法中动态加载 class 文件，使得程序可以在运行时动态的调用一些自定义的 Java 脚本。
 
 <details>
   <summary>点击查看代码</summary>
@@ -373,17 +372,19 @@ public class ScriptLoader extends ClassLoader {
 
 ### 安全管理器
 
-`SecurityManager` 类是控制应用程序的安全权限，以保护系统安全。主要方法为 `initPermission()` 和 `destroyPermission()`。
+继承自 `SecurityManager` 的 `ScriptSecurityManager` 类是一个用于控制 Java 应用程序的安全权限的自定义安全管理器，通过 `initPermission()` 和 `destroyPermission()` 方法设置安全管理器，并通过 `check()` 方法检查和控制权限请求。
 
 `initPermission()` 方法用于设置应用程序的安全管理器，如果还没有设置，则会创建一个 `ScriptSecurityManager` 实例并将其设置为应用程序的安全管理器。它需要一个线程 ID 参数作为标识，以便在 `check()` 方法中检查权限时确定当前线程是否具有特定权限。
 
-`destroyPermission()` 方法用于撤销应用程序的安全管理器，它将之前设置的安全管理器设置为 null，并且将 `destroy` 标志设置为 true。在 `check()` 方法中检查权限时，如果 `destroy` 标志为 true，则不允许任何权限，因为应用程序的安全管理器已被撤销。
+`destroyPermission()` 方法用于撤销应用程序的安全管理器，它将之前设置的安全管理器设置为 null，并且将 `destroy` 标志设置为 true。
 
-`ScriptSecurityManager` 类的 `check()` 方法是由`SecurityManager` 类提供的，用于检查应用程序中的权限请求。`ScriptSecurityManager`类重写了这个方法，实现了对特定权限的检查和控制。如果请求的权限不被允许，它将抛出一个 `SecurityException` 异常，以防止应用程序的不安全行为。
+`ScriptSecurityManager` 类重写了 `checkPermission()` 方法并在里面调用 `check()` 方法 ，在 `check()` 方法中，根据权限的类型和名称，执行不同的检查。
 
-在 `check()` 方法中，根据权限的类型和名称，执行不同的检查。如果权限是 `RuntimePermission`，它会检查请求的名称是否包含 `setSecurityManager` 并且`destroy` 标志为 false，如果是，则不允许该请求。对于其他权限类型，它会检查请求的名称或操作是否包含特定字符串，并且如果包含，则不允许该请求。如果请求的权限被允许，则不会发生任何操作。
+如果请求的权限不被允许，它将抛出一个 `SecurityException` 异常，以防止应用程序的不安全行为。
 
-总之，`ScriptSecurityManager` 类是一个用于控制 Java 应用程序的安全权限的自定义安全管理器，通过 `initPermission()` 和 `destroyPermission()` 方法控制应用程序的安全管理器，并通过 `check()` 方法检查和控制权限请求。
+如果权限是 `RuntimePermission`，它会检查请求的名称是否包含 `setSecurityManager` 并且 `destroy` 标志为 false，如果是，则不允许设置新的安全管理器。
+
+对于其他权限类型，它会检查请求的名称或操作是否包含特定权限的名称，并且如果包含，则不允许该请求。如果请求的权限被允许，则不会发生任何操作。
 
 <details>
   <summary>点击查看代码</summary>
