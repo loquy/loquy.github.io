@@ -375,7 +375,7 @@ public class ScriptLoader extends ClassLoader {
 
 `SecurityManager` 类是控制应用程序的安全权限，以保护系统安全。主要方法为 `initPermission()` 和 `destroyPermission()`。
 
-`initPermission()` 方法用于设置应用程序的安全管理器，如果还没有设置，则会创建一个 `ScriptSecurityManager` 实例并将其设置为应用程序的安全管理器。它需要一个线程ID参数作为标识，以便在`check()` 方法中检查权限时确定当前线程是否具有特定权限。
+`initPermission()` 方法用于设置应用程序的安全管理器，如果还没有设置，则会创建一个 `ScriptSecurityManager` 实例并将其设置为应用程序的安全管理器。它需要一个线程 ID 参数作为标识，以便在 `check()` 方法中检查权限时确定当前线程是否具有特定权限。
 
 `destroyPermission()` 方法用于撤销应用程序的安全管理器，它将之前设置的安全管理器设置为 null，并且将 `destroy` 标志设置为 true。在 `check()` 方法中检查权限时，如果 `destroy` 标志为 true，则不允许任何权限，因为应用程序的安全管理器已被撤销。
 
