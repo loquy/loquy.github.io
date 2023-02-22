@@ -8,8 +8,8 @@ tags:
 categories:
   - - 编程
     - Java
-  index_img: images/JavaCrypto.png
-index_img:
+index_img: images/JavaCrypto.png
+abbrlink: 3c28698d
 description:
 ---
 ## 概述
