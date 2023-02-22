@@ -211,7 +211,7 @@ default String asymmetricDecrypt(String data, String privateKey, String algorith
 }
 ```
 
-#### 摘要接口
+### 摘要接口
 
 接口 `Digest` 的 `digestHex(String data, String algorithm)` 方法接收两个参数：一个是数据，另一个是指定算法。它利用 Hutool 库中的 `Digester` 类来计算消息摘要，并返回摘要的 16 进制字符串表示。
 
