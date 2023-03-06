@@ -4,7 +4,6 @@ category_bar: [Java]
 index_img: 'https://www.loquy.cn/images/Java.png'
 abbrlink: 3b0faab3
 date: 2022-06-10 11:13:27
-updated: 2022-08-15 09:30:27
 tags: Java
 categories: 
 - [编程, Java]
@@ -470,62 +469,131 @@ public class HashMapUtils {
 # 构造树形结构
 
 ```java
-/**
- * Menu list list.
- *
- * @param menu the menu
- * @return the list
- */
-public List<Object> menuList(List<TreeEntity> menu) {
-    List<Object> list = new ArrayList<>();
-    for (TreeEntity treeEntity : menu) {
-        Map<String, Object> map = new LinkedHashMap<>();
-        if (treeEntity.getPid() == null) {
-            menuItem(menu, list, treeEntity, map);
-        }
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+public class TreeEntity {
+    private String uuid;
+    private String pid;
+    private List<TreeEntity> children;
+    private Object value;
+    private String name;
+
+    public TreeEntity(String pid, Object value, String name) {
+        this.uuid = UUID.randomUUID().toString();
+        this.pid = pid;
+        this.children = new ArrayList<>();
+        this.value = value;
+        this.name = name;
     }
-    return list;
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
+
+    public List<TreeEntity> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<TreeEntity> children) {
+        this.children = children;
+    }
+
+    public Object getValue() {
+        return value;
+    }
+
+    public void setValue(Object value) {
+        this.value = value;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void addChild(TreeEntity child) {
+        children.add(child);
+    }
+
+    public void removeChild(TreeEntity child) {
+        children.remove(child);
+    }
 }
 
-/**
- * Menu child list.
- *
- * @param menu the menu
- * @param id   the id
- * @return the list
- */
-public List<Object> menuChild(List<TreeEntity> menu, String id) {
-    List<Object> list = new ArrayList<>();
-    for (TreeEntity treeEntity : menu) {
-        Map<String, Object> map = new LinkedHashMap<>();
-        if (treeEntity.getPid() != null && treeEntity.getPid().equals(id)) {
-            menuItem(menu, list, treeEntity, map);
+```
+
+```java
+
+public static List<TreeEntity> buildTree(List<TreeEntity> nodes, boolean isSearch) {
+    if (isSearch) {
+        // 遍历节点，将uuid添加到nodeIds中
+        Set<String> nodeIds = new HashSet<>();
+        for (TreeEntity node : nodes) {
+            String nodeId = node.getUuid();
+            nodeIds.add(nodeId);
+        }
+
+        // 找到所有没有父节点的节点，并将它们的pid设置为null
+        for (TreeEntity node : nodes) {
+            String pid = node.getPid();
+            if (pid != null && !nodeIds.contains(pid)) {
+                node.setPid(null);
+            }
         }
     }
-    return list;
+
+    // 按照pid进行分组，然后递归构造树
+    Map<String, List<TreeEntity>> map = new HashMap<>();
+    for (TreeEntity node : nodes) {
+        String pid = node.getPid();
+        List<TreeEntity> group = map.computeIfAbsent(pid, k -> new ArrayList<>());
+        group.add(node);
+    }
+
+    List<TreeEntity> roots = map.get(null);
+    if (roots != null) {
+        for (TreeEntity root : roots) {
+            buildSubTree(root, map);
+        }
+    }
+
+    return roots;
 }
 
-private void menuItem(
-        List<TreeEntity> menu,
-        List<Object> list,
-        TreeEntity treeEntity,
-        Map<String, Object> map
-) {
-    map.put("uuid", treeEntity.getUuid());
-    map.put("name", treeEntity.getName());
-    map.put("pid", treeEntity.getPid());
-    map.put("open", true);
-    List<Object> children = menuChild(menu, treeEntity.getUuid());
-    map.put("children", children);
-    map.put("isLast", false);
-    if (children.size() == 0) {
-        map.put("isLast", true);
+
+private static void buildSubTree(TreeEntity node, Map<String, List<TreeEntity>> map) {
+    String nodeId = node.getUuid();
+    node.setValue(node.getUuid());
+    List<TreeEntity> children = map.get(nodeId);
+    node.setChildren(children);
+
+    if (children != null) {
+        for (TreeEntity child : children) {
+            buildSubTree(child, map);
+        }
     }
-    map.put("isClick", treeEntity.isClick());
-    map.put("remind", treeEntity.getRemind());
-    list.add(map);
 }
 ```
+
+
+
 # 读取目录的所有文件后逐行写入新的文件
 
 ```java
@@ -617,3 +685,175 @@ public class ReadFiles {
 }
 
 ```
+
+# 常用字符串操作
+
+
+```java
+package com.example.demo.utils;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
+
+import java.text.ParseException;
+import java.util.Date;
+import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * The type Common String utils.
+ *
+ * @author loquy
+ */
+public class CommonStringUtils {
+
+    private static final String[] IS_DATE_PATTERNS = {
+            "yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm", "yyyy/MM/dd",
+            "yyyy/MM/dd HH:mm:ss", "yyyy/MM/dd HH:mm"
+    };
+
+    /**
+     * The constant IS_NUM_PATTERN.
+     */
+    public static final Pattern IS_NUM_PATTERN = Pattern.compile("-?[0-9]+(\\.[0-9]+)?");
+
+    /**
+     * The constant MESSY_CODE_PATTERN.
+     */
+    public static final Pattern MESSY_CODE_PATTERN = Pattern.compile("\\s*|\t*|\r*|\n*");
+
+    /**
+     * 解析字符串是否是日期
+     *
+     * @param string the string
+     * @return the date
+     */
+    public static Date parseDate(String string) {
+        if (string == null) {
+            return null;
+        }
+        try {
+            return DateUtils.parseDate(string, IS_DATE_PATTERNS);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
+    /**
+     * 解析字符串是否是数字
+     *
+     * @param str the str
+     * @return the boolean
+     */
+    public static boolean isNumeric(String str) {
+        return IS_NUM_PATTERN.matcher(str).matches();
+    }
+
+    /**
+     * 获取指定长度随机数
+     *
+     * @param len the len
+     * @return the random
+     */
+    public static String getRandom(int len) {
+        Random r = new Random();
+        StringBuilder rs = new StringBuilder();
+        for (int i = 0; i < len; i++) {
+            rs.append(r.nextInt(10));
+        }
+        return rs.toString();
+    }
+
+    /**
+     * 获取指定长度字符
+     *
+     * @param len       the len
+     * @param character the character
+     * @return the characters
+     */
+    public static String getCharacters(int len, String character) {
+        StringBuilder rs = new StringBuilder();
+        for (int i = 0; i < len; i++) {
+            rs.append(character);
+        }
+        return rs.toString();
+    }
+
+    /**
+     * 返回左移n位字符串方法
+     *
+     * @param str      the str
+     * @param position the position
+     * @return the string
+     */
+    public static String moveToLeft(String str, int position) {
+        String str1 = str.substring(position);
+        String str2 = str.substring(0, position);
+        return str1 + str2;
+    }
+
+    /**
+     * 返回右移n位字符串方法
+     *
+     * @param str      the str
+     * @param position the position
+     * @return the string
+     */
+    public static String moveToRight(String str, int position) {
+        String str1 = str.substring(str.length() - position);
+        String str2 = str.substring(0, str.length() - position);
+        return str1 + str2;
+    }
+
+    /**
+     * 检查字符串是否乱码
+     *
+     * @param strName the str name
+     * @return the boolean
+     */
+    public static boolean isMessyCode(String strName) {
+        try {
+            Matcher m = MESSY_CODE_PATTERN.matcher(strName);
+            String after = m.replaceAll("");
+            String temp = after.replaceAll("\\p{P}", "");
+            char[] ch = temp.trim().toCharArray();
+
+            for (char c : ch) {
+                if (!Character.isLetterOrDigit(c)) {
+                    String str = "" + c;
+                    if (!str.matches("[\u4e00-\u9fa5]+")) {
+                        return true;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    /**
+     * 原始数据里匹配关键字替换成别的字符串
+     */
+    public static  String keywordReplacement(String rawData, String keyword, String replacementString) throws Exception {
+        StringBuilder stringBuilder = new StringBuilder(rawData);
+
+        Matcher m = Pattern.compile(keyword).matcher(stringBuilder);
+        StringBuffer appendReplacement = new StringBuffer();
+        while (m.find()) {
+            m.appendReplacement(appendReplacement, replacementString);
+        }
+        if (StringUtils.isEmpty(appendReplacement)) {
+            throw new Exception("原始数据里没有匹配到关键字");
+        }
+        m.appendTail(appendReplacement);
+
+        return appendReplacement.toString();
+    }
+}
+
+
+```
+
