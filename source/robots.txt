@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /about/
+Allow: /archives/
+Allow: /categories/
+Allow: /links/
+Allow: /page/
+Allow: /posts/
+Allow: /tags/
+Allow: /404.html
+Disallow: /xml/
+Disallow: /linux-command/
+Disallow: /css/
+Disallow: /html/
+Disallow: /images/
+Disallow: /img/
+Disallow: /js/
+
+Sitemap: https://www.loquy.cn/baidusitemap.xml
+Sitemap: https://www.loquy.cn/sitemap.xml
