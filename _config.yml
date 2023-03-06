@@ -107,6 +107,7 @@ deploy:
     github: git@github.com:loquy/loquy.github.io.git
 #    coding: https://e.coding.net/loquy/loquy/loquy.git
   branch: master
+  ignore_hidden: false
 
 # 自动生成sitemap
 sitemap:
@@ -123,3 +124,23 @@ feed:
   type: rss
   path: rss.xml
   limit: false
+
+# enable: 开启/关闭 推送
+# cron: 执行时间周期
+# count: 每次提交最新的10篇文章，输入0或者不填写则默认为所有文章(建议是最新的10篇文章)
+# date: 更新时间(updated)|创建日期(created)
+# https://github.com/Lete114/hexo-seo-autopush.git
+hexo_seo_autopush:
+  cron: 0 15 * * *
+  baidu:
+    enable: true
+    date: created
+    count: 0
+  bing:
+    enable: true
+    date: created
+    count: 0
+  google:
+    enable: true
+    date: created
+    count: 0
