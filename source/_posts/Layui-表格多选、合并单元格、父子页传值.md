@@ -20,7 +20,7 @@ Layui 表格多选、合并单元格、父子页传值的页面效果如下：
 <iframe  
 height=500
 width=100%
-src="html/layui-demo-2.html"  
+src="/html/layui-demo-2.html"  
 frameborder=0  
 allowfullscreen>
 </iframe>
