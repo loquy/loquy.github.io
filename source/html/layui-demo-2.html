@@ -178,7 +178,6 @@
                 btnAlign: 'c',
                 success: function (layero, index) {
                     var w = $(layero).find("iframe")[0].contentWindow;
-                    w.cols[0].push({fixed: 'right', title: '操作', minWidth: 180, align: "center", toolbar: '#barDemo'});
                     w.init = false;
                     w.initTable();
                 },
