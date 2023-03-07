@@ -11,6 +11,8 @@ categories:
   - [编程, JavaScript]
 index_img: /images/layui.jpg
 description: Layui 表格自定义多选和合并单元格以及 layer 弹窗父子页相互传值。
+date: 2022-11-18 17:43:00
+updated: 2022-11-18 17:43:00
 ---
 
 Layui 表格多选、合并单元格、父子页传值的页面效果如下：
