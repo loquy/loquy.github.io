@@ -6,4 +6,5 @@ node_modules/
 public/
 .deploy*/
 .idea/
+.vs/
 package-lock.json
