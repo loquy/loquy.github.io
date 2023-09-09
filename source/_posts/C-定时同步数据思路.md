@@ -420,4 +420,4 @@ bool isFullSync = ConfigReader.ReadConfigValue<bool>("isFullSync");
 int syncDay = ConfigReader.ReadConfigValue<int>("SyncDay");
 syncDay = Math.Max(syncDay, 0);
 ```
-通过以上的思路和方法，可以有效地实现定时数据同步任务，并确保数据的准确性、一致性和性能。这将有助于维护应用程序的数据质量和稳定性。希望本篇博客对你理解和实现C#数据同步任务有所帮助。
+通过以上的思路和方法，可以有效地实现定时数据同 步任务，并确保数据的准确性、一致性和性能。这将有助于维护应用程序的数据质量和稳定性。希望本篇博客对你理解和实现 C# 数据同步任务有所帮助。
