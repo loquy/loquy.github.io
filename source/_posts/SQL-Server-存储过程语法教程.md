@@ -4,7 +4,7 @@ category_bar:
   - SQL Server
 tags:
   - SQL
-  - Oracle
+  - SQL Server
 categories:
   - - 编程
     - SQL Server
