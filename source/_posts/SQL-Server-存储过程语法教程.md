@@ -906,49 +906,39 @@ END;
    EXEC sp_who2;
    ```
 
-4. `sp_whoisactive`：用于监视当前活动的会话和操作，提供关于正在运行的查询和进程的详细信息。
-   ```sql
-   EXEC sp_whoisactive;
-   ```
-
-5. `sp_configure`：用于查看和更改 SQL Server 的配置选项。
+4. `sp_configure`：用于查看和更改 SQL Server 的配置选项。
    ```sql
    EXEC sp_configure;
    ```
 
-6. `sp_executesql`：用于执行动态 SQL 语句，通常与参数化查询一起使用，以避免 SQL 注入攻击。
+5. `sp_executesql`：用于执行动态 SQL 语句，通常与参数化查询一起使用，以避免 SQL 注入攻击。
    ```sql
    DECLARE @sql NVARCHAR(MAX);
    SET @sql = 'SELECT * FROM MyTable WHERE ColumnName = @Value';
    EXEC sp_executesql @sql, N'@Value INT', @Value = 123;
    ```
 
-7. `sp_renamedb`：用于更改数据库的名称。
+6. `sp_renamedb`：用于更改数据库的名称。
    ```sql
    EXEC sp_renamedb 'OldDatabaseName', 'NewDatabaseName';
    ```
 
-8. `sp_whois`：用于获取指定登录名的详细信息。
-   ```sql
-   EXEC sp_whois 'LoginName';
-   ```
-
-9. `sp_spaceused`：用于获取数据库中表或索引的空间使用情况。
+7. `sp_spaceused`：用于获取数据库中表或索引的空间使用情况。
    ```sql
    EXEC sp_spaceused 'TableName';
    ```
 
-10. `sp_help`：用于查看数据库对象（表、视图等）的结构信息。
+8. `sp_help`：用于查看数据库对象（表、视图等）的结构信息。
     ```sql
     EXEC sp_help 'TableName';
     ```
 
-11. `sp_helptext`：用于查看存储过程、触发器或视图的定义文本。
+9. `sp_helptext`：用于查看存储过程、触发器或视图的定义文本。
     ```sql
     EXEC sp_helptext 'StoredProcedureName';
     ```
 
-12. `sp_depends`：用于查看数据库对象之间的依赖关系，包括对象引用和被引用的关系。
+10. `sp_depends`：用于查看数据库对象之间的依赖关系，包括对象引用和被引用的关系。
     ```sql
     EXEC sp_depends 'ObjectName';
     ```
