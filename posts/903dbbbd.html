@@ -1,0 +1,972 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://www.loquy.cn/images/apple-touch-icon.png">
+  <link rel="icon" href="https://www.loquy.cn/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="loquy">
+  <meta name="keywords" content="loquy">
+  
+    <meta name="description" content="在许多应用程序中，数据同步是一个关键的任务，用于保持应用程序的数据与外部源（如 API 或其他数据库）同步。这篇博客将介绍如何使用 C# 来实现定时数据同步的思路，以确保数据的准确性和一致性。 思路 定时执行同步数据的程序，使用互斥锁或者信号量来控制程序的并发执行，确保定时任务在前一个任务完成之后再触发。1.1. 发送网络请求，请求接口数据，构造数据对应的实体类。1.2. 批量插入或批量更新到数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C# 定时同步数据思路">
+<meta property="og:url" content="http://www.loquy.cn/posts/903dbbbd.html">
+<meta property="og:site_name" content="loquy">
+<meta property="og:description" content="在许多应用程序中，数据同步是一个关键的任务，用于保持应用程序的数据与外部源（如 API 或其他数据库）同步。这篇博客将介绍如何使用 C# 来实现定时数据同步的思路，以确保数据的准确性和一致性。 思路 定时执行同步数据的程序，使用互斥锁或者信号量来控制程序的并发执行，确保定时任务在前一个任务完成之后再触发。1.1. 发送网络请求，请求接口数据，构造数据对应的实体类。1.2. 批量插入或批量更新到数据">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.loquy.cn/images/cron.jpg">
+<meta property="article:published_time" content="2023-09-08T07:43:29.000Z">
+<meta property="article:modified_time" content="2023-09-08T07:43:29.000Z">
+<meta property="article:author" content="loquy">
+<meta property="article:tag" content="C#">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://www.loquy.cn/images/cron.jpg">
+  
+  
+  
+  <title>C# 定时同步数据思路 - loquy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/icon.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.loquy.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2a5c0150424f0cc3fa8b492f889fcfe3","google":"UA-167862106-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","app_key":"Hoi4ulpVAyY7bRNFpECENYQ4","server_url":"https://aouu3kji.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"tajs":null},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss.xml" title="loquy" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>loquy&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/linux-command">
+                <i class="iconfont icon-linux"></i>
+                Linux 命令搜索
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://foreverblog.cn/go.html">
+                <i class="iconfont icon-feichuan"></i>
+                虫洞
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                <i class="iconfont icon-feiji"></i>
+                开往
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://www.loquy.cn/images/unsplash-sol.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C# 定时同步数据思路"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-08 15:43" pubdate>
+          2023年9月8日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          9.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          80 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="C#"
+        id="heading-d7efa19fbe7d3972fd5adb6024223d74" role="tab" data-toggle="collapse" href="#collapse-d7efa19fbe7d3972fd5adb6024223d74"
+        aria-expanded="true"
+      >
+        C#
+        <span class="list-group-count">(6)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-d7efa19fbe7d3972fd5adb6024223d74"
+           role="tabpanel" aria-labelledby="heading-d7efa19fbe7d3972fd5adb6024223d74">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/posts/2a04719d.html" title="ADO.NET 使用教程"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">ADO.NET 使用教程</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/6f32793d.html" title="C# 中的 JSON 数据存储、读取和合并操作"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">C# 中的 JSON 数据存储、读取和合并操作</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/903dbbbd.html" title="C# 定时同步数据思路"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">C# 定时同步数据思路</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/1883a8de.html" title="WinForms 中实现自动关闭的 MessageBox"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">WinForms 中实现自动关闭的 MessageBox</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/29482ab7.html" title="在 C# 中创建 Excel 文件"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在 C# 中创建 Excel 文件</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/ef2f8f88.html" title="用 C# 编写日志文件"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">用 C# 编写日志文件</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C# 定时同步数据思路</h1>
+            
+            <div class="markdown-body">
+              
+              <p>在许多应用程序中，数据同步是一个关键的任务，用于保持应用程序的数据与外部源（如 API 或其他数据库）同步。这篇博客将介绍如何使用 C# 来实现定时数据同步的思路，以确保数据的准确性和一致性。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
+<li>定时执行同步数据的程序，使用互斥锁或者信号量来控制程序的并发执行，确保定时任务在前一个任务完成之后再触发。<br>1.1. 发送网络请求，请求接口数据，构造数据对应的实体类。<br>1.2. 批量插入或批量更新到数据库 。<br>1.3. 把查询放到循环外减少查询次数，去除循环内重复的查询语句，O(n)-&gt;O(1) 减小时间复杂度。</li>
+<li>减少锁表时间，需要过滤数据，减少数据量，然后进行同步。<br>2.1. 配置增量或全量同步，把接口数据分批次 IN 查询，然后和数据库的数据进行对比，不存在则更新 。<br>2.2. 配置同步天数，去同步多少天前的数据。</li>
+</ol>
+<h2 id="1-控制并发执行"><a href="#1-控制并发执行" class="headerlink" title="1. 控制并发执行"></a>1. 控制并发执行</h2><p>在定时执行同步数据的程序中，一个重要的考虑因素是如何控制程序的并发执行，以避免可能的冲突和数据不一致。这可以通过以下方式来实现：</p>
+<h3 id="1-1-使用互斥锁或信号量"><a href="#1-1-使用互斥锁或信号量" class="headerlink" title="1.1 使用互斥锁或信号量"></a>1.1 使用互斥锁或信号量</h3><p>可以使用互斥锁（Mutex）或信号量（Semaphore）来确保定时任务在前一个任务完成之后再触发。这样可以防止多个任务同时执行，避免数据竞争和不一致性问题。</p>
+<blockquote>
+<p>定时同步，代码示例：</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> Quartz;<br><span class="hljs-keyword">using</span> System;<br><span class="hljs-keyword">using</span> System.Threading;<br><span class="hljs-keyword">using</span> System.Threading.Tasks;<br><br><span class="hljs-keyword">namespace</span> <span class="hljs-title">JobNamespace</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">DataSyncJob</span> : <span class="hljs-title">IJob</span><br>    &#123;<br>        <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> SemaphoreSlim semaphore = <span class="hljs-keyword">new</span> SemaphoreSlim(<span class="hljs-number">1</span>);<br><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">Execute</span>(<span class="hljs-params">IJobExecutionContext context</span>)</span><br>        &#123;<br>            <span class="hljs-keyword">try</span><br>            &#123;<br>                <span class="hljs-keyword">await</span> semaphore.WaitAsync();<br><br>                SyncData(<span class="hljs-string">&quot;示例&quot;</span>, () =&gt;<br>                &#123;<br>                    <span class="hljs-comment">// 执行数据同步操作</span><br>                &#125;);<br>            &#125;<br>            <span class="hljs-keyword">catch</span> (Exception ex)<br>            &#123;<br>                Console.WriteLine(<span class="hljs-string">$&quot;定时任务发生异常：<span class="hljs-subst">&#123;ex.Message&#125;</span>&quot;</span>);<br>            &#125;<br>            <span class="hljs-keyword">finally</span><br>            &#123;<br>                semaphore.Release();<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SyncData</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> operationType, Action syncAction</span>)</span><br>        &#123;<br>            Console.WriteLine(<span class="hljs-string">$&quot;开始同步数据：<span class="hljs-subst">&#123;operationType&#125;</span>&quot;</span>);<br>            syncAction.Invoke();<br>            Console.WriteLine(<span class="hljs-string">$&quot;完成同步数据：<span class="hljs-subst">&#123;operationType&#125;</span>&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> Quartz.Impl;<br><span class="hljs-keyword">using</span> Quartz;<br><span class="hljs-keyword">using</span> System;<br><span class="hljs-keyword">using</span> System.Threading.Tasks;<br><span class="hljs-keyword">using</span> JobNamespace.Job;<br><br><span class="hljs-keyword">namespace</span> <span class="hljs-title">Demo</span><br>&#123;<br>    <span class="hljs-keyword">internal</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Program</span><br>    &#123;<br>        <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;summary&gt;</span></span><br>        <span class="hljs-comment"><span class="hljs-doctag">///</span> 应用程序的主入口点。</span><br>        <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;/summary&gt;</span></span><br>        [<span class="hljs-meta">STAThread</span>]<br>        <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>()</span><br>        &#123;<br>            <span class="hljs-comment">// 启动定时任务</span><br>            StartScheduler();<br>        &#125;<br><br>        <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">void</span> <span class="hljs-title">StartScheduler</span>()</span><br>        &#123;<br>            <span class="hljs-keyword">await</span> RunScheduler();<br>        &#125;<br><br>        <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">RunScheduler</span>()</span><br>        &#123;<br>            <span class="hljs-comment">// 创建调度器工厂</span><br>            ISchedulerFactory schedulerFactory = <span class="hljs-keyword">new</span> StdSchedulerFactory();<br>            IScheduler scheduler = <span class="hljs-keyword">await</span> schedulerFactory.GetScheduler();<br><br>            <span class="hljs-comment">// 创建一个触发器，使用 Cron 表达式触发定时任务</span><br>            ITrigger trigger = TriggerBuilder.Create()<br>                .WithIdentity(<span class="hljs-string">&quot;SyncDataTrigger&quot;</span>, <span class="hljs-string">&quot;Sync&quot;</span>)<br>                .WithCronSchedule(<span class="hljs-string">&quot;0/30 * * * * ?&quot;</span>) <span class="hljs-comment">// 每30秒触发一次</span><br>                .Build();<br><br>            <span class="hljs-comment">// 创建一个任务</span><br>            IJobDetail job = JobBuilder.Create&lt;SyncErpData&gt;()<br>                .WithIdentity(<span class="hljs-string">&quot;SyncDataJob&quot;</span>, <span class="hljs-string">&quot;Sync&quot;</span>)<br>                .Build();<br><br>            <span class="hljs-comment">// 将任务和触发器关联到调度器</span><br>            <span class="hljs-keyword">await</span> scheduler.ScheduleJob(job, trigger);<br><br>            <span class="hljs-comment">// 启动调度器</span><br>            <span class="hljs-keyword">await</span> scheduler.Start();<br>        &#125;<br><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h2 id="2-数据请求和处理"><a href="#2-数据请求和处理" class="headerlink" title="2. 数据请求和处理"></a>2. 数据请求和处理</h2><p>在同步数据的过程中，需要执行以下步骤来获取和处理数据：</p>
+<h3 id="2-1-发送网络请求"><a href="#2-1-发送网络请求" class="headerlink" title="2.1 发送网络请求"></a>2.1 发送网络请求</h3><p>首先，需要向外部源发送网络请求，以获取需要同步的数据。这通常涉及与外部 API 进行通信，然后将返回的数据转化为 C# 中的实体类。</p>
+<blockquote>
+<p>发送请求，代码示例：</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> System;<br><span class="hljs-keyword">using</span> System.Net;<br><span class="hljs-keyword">using</span> System.Text;<br><span class="hljs-keyword">using</span> System.IO;<br><span class="hljs-keyword">using</span> Newtonsoft.Json;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> T <span class="hljs-title">ExecutePostRequest</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params"><span class="hljs-built_in">string</span> url, <span class="hljs-built_in">object</span> requestData</span>)</span><br>&#123;<br>    <span class="hljs-keyword">try</span><br>    &#123;<br>        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);<br>        request.Method = <span class="hljs-string">&quot;POST&quot;</span>;<br>        request.ContentType = <span class="hljs-string">&quot;application/json&quot;</span>;<br><br>        <span class="hljs-built_in">string</span> jsonRequestData = JsonConvert.SerializeObject(requestData);<br>        <span class="hljs-built_in">byte</span>[] data = Encoding.UTF8.GetBytes(jsonRequestData);<br><br>        <span class="hljs-keyword">using</span> (Stream requestStream = request.GetRequestStream())<br>        &#123;<br>            requestStream.Write(data, <span class="hljs-number">0</span>, data.Length);<br>        &#125;<br><br>        <span class="hljs-keyword">using</span> (HttpWebResponse response = (HttpWebResponse)request.GetResponse())<br>        &#123;<br>            <span class="hljs-keyword">if</span> (response.StatusCode != HttpStatusCode.OK)<br>            &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(<span class="hljs-string">$&quot;接口调用失败，状态码：<span class="hljs-subst">&#123;response.StatusCode&#125;</span>&quot;</span>);<br>            &#125;<br><br>            <span class="hljs-keyword">using</span> (Stream responseStream = response.GetResponseStream())<br>            <span class="hljs-keyword">using</span> (StreamReader reader = <span class="hljs-keyword">new</span> StreamReader(responseStream))<br>            &#123;<br>                <span class="hljs-built_in">string</span> jsonResponseData = reader.ReadToEnd();<br>                <span class="hljs-keyword">return</span> JsonConvert.DeserializeObject&lt;T&gt;(jsonResponseData);<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">catch</span> (Exception ex)<br>    &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(<span class="hljs-string">$&quot;接口调用发生异常：<span class="hljs-subst">&#123;ex.Message&#125;</span>&quot;</span>);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h3 id="2-2-数据插入或更新"><a href="#2-2-数据插入或更新" class="headerlink" title="2.2 数据插入或更新"></a>2.2 数据插入或更新</h3><p>获取数据后，可以将其批量插入或批量更新到数据库中。这可以通过使用 SqlBulkCopy 来实现，以提高性能和效率。</p>
+<blockquote>
+<p>批量插入，代码示例：</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> System;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> System.Data;<br><span class="hljs-keyword">using</span> System.Data.SqlClient;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">BulkInsertOrders</span>(<span class="hljs-params">List&lt;Order&gt; orders, <span class="hljs-built_in">string</span> connectionString</span>)</span><br>&#123;<br>    <span class="hljs-keyword">try</span><br>    &#123;<br>        <span class="hljs-keyword">using</span> (SqlConnection connection = <span class="hljs-keyword">new</span> SqlConnection(connectionString))<br>        &#123;<br>            connection.Open();<br><br>            <span class="hljs-keyword">using</span> (SqlBulkCopy bulkCopy = <span class="hljs-keyword">new</span> SqlBulkCopy(connection))<br>            &#123;<br>                bulkCopy.DestinationTableName = <span class="hljs-string">&quot;Orders&quot;</span>; <span class="hljs-comment">// 表名</span><br>                bulkCopy.BatchSize = <span class="hljs-number">1000</span>; <span class="hljs-comment">// 每批次的行数</span><br>                bulkCopy.BulkCopyTimeout = <span class="hljs-number">60</span>; <span class="hljs-comment">// 超时时间（秒）</span><br><br>                <span class="hljs-comment">// 定义数据映射，将源数据列映射到目标表的列</span><br>                bulkCopy.ColumnMappings.Add(<span class="hljs-string">&quot;ID&quot;</span>, <span class="hljs-string">&quot;ReferenceID&quot;</span>);<br>                bulkCopy.ColumnMappings.Add(<span class="hljs-string">&quot;CustomerID&quot;</span>, <span class="hljs-string">&quot;CustomerID&quot;</span>);<br>                bulkCopy.ColumnMappings.Add(<span class="hljs-string">&quot;OrderDate&quot;</span>, <span class="hljs-string">&quot;OrderDate&quot;</span>);<br>                bulkCopy.ColumnMappings.Add(<span class="hljs-string">&quot;TotalAmount&quot;</span>, <span class="hljs-string">&quot;Amount&quot;</span>);<br><br>                DataTable dataTable = <span class="hljs-keyword">new</span> DataTable();<br>                dataTable.Columns.Add(<span class="hljs-string">&quot;ID&quot;</span>, <span class="hljs-keyword">typeof</span>(<span class="hljs-built_in">int</span>));<br>                dataTable.Columns.Add(<span class="hljs-string">&quot;CustomerID&quot;</span>, <span class="hljs-keyword">typeof</span>(<span class="hljs-built_in">int</span>));<br>                dataTable.Columns.Add(<span class="hljs-string">&quot;OrderDate&quot;</span>, <span class="hljs-keyword">typeof</span>(DateTime));<br>                dataTable.Columns.Add(<span class="hljs-string">&quot;TotalAmount&quot;</span>, <span class="hljs-keyword">typeof</span>(<span class="hljs-built_in">decimal</span>));<br><br>                <span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> order <span class="hljs-keyword">in</span> orders)<br>                &#123;<br>                    <span class="hljs-comment">// 将数据添加到DataTable</span><br>                    dataTable.Rows.Add(order.ID, order.CustomerID, order.OrderDate, order.TotalAmount);<br>                &#125;<br><br>                <span class="hljs-comment">// 执行批量插入</span><br>                bulkCopy.WriteToServer(dataTable);<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">catch</span> (Exception ex)<br>    &#123;<br>        Console.WriteLine(<span class="hljs-string">&quot;批量插入失败：&quot;</span> + ex.Message);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>批量更新，代码示例：</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> System;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> System.Data;<br><span class="hljs-keyword">using</span> System.Data.SqlClient;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">BulkUpdateOrders</span>(<span class="hljs-params">List&lt;Order&gt; updatedOrders, <span class="hljs-built_in">string</span> connectionString</span>)</span><br>&#123;<br>    <span class="hljs-keyword">try</span><br>    &#123;<br>        <span class="hljs-keyword">using</span> (SqlConnection connection = <span class="hljs-keyword">new</span> SqlConnection(connectionString))<br>        &#123;<br>            connection.Open();<br><br>            <span class="hljs-comment">// 创建一个临时表，用于存储要更新的数据</span><br>            <span class="hljs-keyword">using</span> (SqlBulkCopy bulkCopy = <span class="hljs-keyword">new</span> SqlBulkCopy(connection))<br>            &#123;<br>                bulkCopy.DestinationTableName = <span class="hljs-string">&quot;TempOrders&quot;</span>; <span class="hljs-comment">// 临时表名</span><br>                bulkCopy.BatchSize = <span class="hljs-number">1000</span>; <span class="hljs-comment">// 每批次的行数</span><br>                bulkCopy.BulkCopyTimeout = <span class="hljs-number">60</span>; <span class="hljs-comment">// 超时时间（秒）</span><br><br>                <span class="hljs-comment">// 定义数据映射，将源数据列映射到临时表的列</span><br>                bulkCopy.ColumnMappings.Add(<span class="hljs-string">&quot;ID&quot;</span>, <span class="hljs-string">&quot;ReferenceID&quot;</span>);<br>                bulkCopy.ColumnMappings.Add(<span class="hljs-string">&quot;CustomerID&quot;</span>, <span class="hljs-string">&quot;CustomerID&quot;</span>);<br>                bulkCopy.ColumnMappings.Add(<span class="hljs-string">&quot;OrderDate&quot;</span>, <span class="hljs-string">&quot;OrderDate&quot;</span>);<br>                bulkCopy.ColumnMappings.Add(<span class="hljs-string">&quot;TotalAmount&quot;</span>, <span class="hljs-string">&quot;Amount&quot;</span>);<br><br>                DataTable dataTable = <span class="hljs-keyword">new</span> DataTable();<br>                dataTable.Columns.Add(<span class="hljs-string">&quot;ID&quot;</span>, <span class="hljs-keyword">typeof</span>(<span class="hljs-built_in">int</span>));<br>                dataTable.Columns.Add(<span class="hljs-string">&quot;CustomerID&quot;</span>, <span class="hljs-keyword">typeof</span>(<span class="hljs-built_in">int</span>));<br>                dataTable.Columns.Add(<span class="hljs-string">&quot;OrderDate&quot;</span>, <span class="hljs-keyword">typeof</span>(DateTime));<br>                dataTable.Columns.Add(<span class="hljs-string">&quot;TotalAmount&quot;</span>, <span class="hljs-keyword">typeof</span>(<span class="hljs-built_in">decimal</span>));<br><br>                <span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> order <span class="hljs-keyword">in</span> updatedOrders)<br>                &#123;<br>                    <span class="hljs-comment">// 将要更新的数据添加到DataTable</span><br>                    dataTable.Rows.Add(order.ID, order.CustomerID, order.OrderDate, order.TotalAmount);<br>                &#125;<br><br>                <span class="hljs-comment">// 执行将数据插入到临时表的操作</span><br>                bulkCopy.WriteToServer(dataTable);<br>            &#125;<br><br>            <span class="hljs-comment">// 使用SQL语句执行批量更新操作</span><br>            <span class="hljs-keyword">using</span> (SqlCommand updateCommand = <span class="hljs-keyword">new</span> SqlCommand(<span class="hljs-string">&quot;UPDATE [Orders] SET [CustomerID] = [Temp].[CustomerID], [OrderDate] = [Temp].[OrderDate], [TotalAmount] = [Temp].[Amount] FROM [Orders] INNER JOIN [TempOrders] AS [Temp] ON [Orders].[ReferenceID] = [Temp].[ID]&quot;</span>, connection))<br>            &#123;<br>                updateCommand.ExecuteNonQuery();<br>            &#125;<br><br>            <span class="hljs-comment">// 清空临时表</span><br>            <span class="hljs-keyword">using</span> (SqlCommand truncateCommand = <span class="hljs-keyword">new</span> SqlCommand(<span class="hljs-string">&quot;TRUNCATE TABLE [TempOrders]&quot;</span>, connection))<br>            &#123;<br>                truncateCommand.ExecuteNonQuery();<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">catch</span> (Exception ex)<br>    &#123;<br>        Console.WriteLine(<span class="hljs-string">&quot;批量更新失败：&quot;</span> + ex.Message);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h3 id="2-3-减少查询次数"><a href="#2-3-减少查询次数" class="headerlink" title="2.3 减少查询次数"></a>2.3 减少查询次数</h3><p>为了优化性能，建议将查询操作放到循环外部，以减少查询次数。这可以通过在循环之外查询数据，然后在循环内部对数据进行处理，从而减少数据库查询的次数。这将大大降低时间复杂度，从 O(n) 减小到 O(1)。</p>
+<h2 id="3-减少锁表时间"><a href="#3-减少锁表时间" class="headerlink" title="3. 减少锁表时间"></a>3. 减少锁表时间</h2><p>为了减少锁表时间，可以采取以下措施：</p>
+<h3 id="3-1-数据过滤"><a href="#3-1-数据过滤" class="headerlink" title="3.1 数据过滤"></a>3.1 数据过滤</h3><p>在同步数据之前，可以对数据进行过滤，减少需要同步的数据量。这可以通过配置增量同步或全量同步来实现。对于增量同步，可以将接口数据分成批次，并将其与数据库数据进行对比，然后仅同步不存在的数据。对于全量同步，可以定期同步所有数据，确保数据的一致性。</p>
+<blockquote>
+<p>增量同步或全量同步，代码示例：</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> List&lt;Order&gt; <span class="hljs-title">FindOrdersToUpdate</span>(<span class="hljs-params">List&lt;Order&gt; orders, SqlTransaction transaction</span>)</span><br>&#123;<br>    <span class="hljs-built_in">bool</span> fullSync = ConfigReader.ReadConfigValue&lt;<span class="hljs-built_in">bool</span>&gt;(<span class="hljs-string">&quot;syncMode&quot;</span>);<br><br>    <span class="hljs-keyword">if</span> (fullSync)<br>    &#123;<br>        <span class="hljs-comment">// 全量更新</span><br>        <span class="hljs-keyword">return</span> orders;<br>    &#125;<br><br>    <span class="hljs-comment">// 增量更新</span><br>    List&lt;Order&gt; missingOrders = <span class="hljs-keyword">new</span> List&lt;Order&gt;();<br>    <span class="hljs-built_in">int</span> batchSize = <span class="hljs-number">100</span>;<br>    List&lt;Order&gt; ordersToRemove = <span class="hljs-keyword">new</span> List&lt;Order&gt;();<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; orders.Count; i += batchSize)<br>    &#123;<br>        List&lt;Order&gt; batch = orders.Skip(i).Take(batchSize).ToList();<br><br>        <span class="hljs-built_in">string</span> inClause = <span class="hljs-built_in">string</span>.Join(<span class="hljs-string">&quot;,&quot;</span>, batch.Select(order =&gt; <span class="hljs-string">&quot;&#x27;&quot;</span> + order.ID.ToString() + <span class="hljs-string">&quot;&#x27;&quot;</span>));<br><br>        <span class="hljs-built_in">string</span> query = <span class="hljs-string">$&quot;SELECT [ReferenceID] FROM [dbo].[Orders] WHERE [ReferenceID] IN (<span class="hljs-subst">&#123;inClause&#125;</span>)&quot;</span>;<br>        <span class="hljs-keyword">using</span> (SqlCommand cmd = <span class="hljs-keyword">new</span> SqlCommand(query, transaction.Connection, transaction))<br>        &#123;<br>            <span class="hljs-keyword">using</span> (SqlDataReader reader = cmd.ExecuteReader())<br>            &#123;<br>                <span class="hljs-keyword">while</span> (reader.Read())<br>                &#123;<br>                    <span class="hljs-keyword">if</span> (!reader.IsDBNull(<span class="hljs-number">0</span>))<br>                    &#123;<br>                        <span class="hljs-built_in">string</span> referenceID = reader.GetString(<span class="hljs-number">0</span>);<br>                        <span class="hljs-keyword">var</span> matchingOrder = batch.FirstOrDefault(order =&gt; order.ID == Convert.ToInt32(referenceID));<br><br>                        <span class="hljs-keyword">if</span> (matchingOrder != <span class="hljs-literal">null</span>)<br>                        &#123;<br>                            ordersToRemove.Add(matchingOrder);<br>                        &#125;<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 执行删除操作</span><br>    <span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> orderToRemove <span class="hljs-keyword">in</span> ordersToRemove)<br>    &#123;<br>        orders.Remove(orderToRemove);<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> orders;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h3 id="3-2-同步天数配置"><a href="#3-2-同步天数配置" class="headerlink" title="3.2 同步天数配置"></a>3.2 同步天数配置</h3><p>可以配置同步天数，以确定要同步多少天前的数据。这有助于控制同步的范围，并避免同步过多的历史数据，从而减少锁表时间。</p>
+<blockquote>
+<p>读取 Json 配置文件，代码示例：</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">using</span> Newtonsoft.Json.Linq;<br><span class="hljs-keyword">using</span> System;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> System.Linq;<br><span class="hljs-keyword">using</span> System.Text;<br><span class="hljs-keyword">using</span> System.Threading.Tasks;<br><span class="hljs-keyword">using</span> System.IO;<br><br><span class="hljs-keyword">namespace</span> <span class="hljs-title">Demo</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ConfigReader</span><br>    &#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> T <span class="hljs-title">ReadConfigValue</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params"><span class="hljs-built_in">string</span> settingName, <span class="hljs-built_in">string</span> configFilePath = <span class="hljs-string">&quot;config.json&quot;</span></span>)</span><br>        &#123;<br>            <span class="hljs-built_in">string</span> configJson = File.ReadAllText(configFilePath);<br><br>            JObject config = JObject.Parse(configJson);<br><br>            <span class="hljs-keyword">if</span> (config.TryGetValue(settingName, <span class="hljs-keyword">out</span> <span class="hljs-keyword">var</span> <span class="hljs-keyword">value</span>))<br>            &#123;<br>                <span class="hljs-keyword">try</span><br>                &#123;<br>                    <span class="hljs-keyword">return</span> (T)Convert.ChangeType(<span class="hljs-keyword">value</span>.ToString(), <span class="hljs-keyword">typeof</span>(T));<br>                &#125;<br>                <span class="hljs-keyword">catch</span><br>                &#123;<br>                    <span class="hljs-comment">// 转换失败，返回默认值</span><br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">default</span>(T);<br>                &#125;<br>            &#125;<br><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">default</span>(T);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">// 读取配置文件</span><br><span class="hljs-built_in">bool</span> isFullSync = ConfigReader.ReadConfigValue&lt;<span class="hljs-built_in">bool</span>&gt;(<span class="hljs-string">&quot;isFullSync&quot;</span>);<br><span class="hljs-built_in">int</span> syncDay = ConfigReader.ReadConfigValue&lt;<span class="hljs-built_in">int</span>&gt;(<span class="hljs-string">&quot;SyncDay&quot;</span>);<br>syncDay = Math.Max(syncDay, <span class="hljs-number">0</span>);<br></code></pre></td></tr></table></figure>
+<p>通过以上的思路和方法，可以有效地实现定时数据同 步任务，并确保数据的准确性、一致性和性能。这将有助于维护应用程序的数据质量和稳定性。希望本篇博客对你理解和实现 C# 数据同步任务有所帮助。</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B/" class="category-chain-item">编程</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B/C/" class="category-chain-item">C#</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/">#C#</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C# 定时同步数据思路</div>
+      <div>http://www.loquy.cn/posts/903dbbbd.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>loquy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月8日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/ce3c51f7.html" title="SQL Server 存储过程语法教程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SQL Server 存储过程语法教程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/ef2f8f88.html" title="用 C# 编写日志文件">
+                        <span class="hidden-mobile">用 C# 编写日志文件</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","appKey":"Hoi4ulpVAyY7bRNFpECENYQ4","path":"window.location.pathname","placeholder":"欢迎评论~","avatar":"identicon","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appkey":"Hoi4ulpVAyY7bRNFpECENYQ4"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script> var now = new Date();
+function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(now.getTime() + 250); days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum); mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; } seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; } document.getElementById("timeDate").innerHTML = "本站运行 " + dnum + " 天"; document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; } setInterval("createtime()", 250); </script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2a5c0150424f0cc3fa8b492f889fcfe3";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-167862106-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

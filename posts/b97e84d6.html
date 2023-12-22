@@ -1,0 +1,1451 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://www.loquy.cn/images/apple-touch-icon.png">
+  <link rel="icon" href="https://www.loquy.cn/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="loquy">
+  <meta name="keywords" content="loquy">
+  
+    <meta name="description" content="概述代码生成器的主要目的是提高开发效率，减少重复劳动，并确保生成的代码符合一定的规范。  可以使用它来自动生成那些具有一定规律性的代码，包括但不限于数据库访问层、业务逻辑层和用户界面层。  它可以根据给定的数据库和表信息，使用模板生成代码，这个过程包括以下步骤：  1、确定需要生成的代码。  2、编写代码生成器的逻辑。  3、使用模板引擎来帮助你生成代码。  4、编写工具来调用你的代码生成器，并将">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 代码生成器">
+<meta property="og:url" content="http://www.loquy.cn/posts/b97e84d6.html">
+<meta property="og:site_name" content="loquy">
+<meta property="og:description" content="概述代码生成器的主要目的是提高开发效率，减少重复劳动，并确保生成的代码符合一定的规范。  可以使用它来自动生成那些具有一定规律性的代码，包括但不限于数据库访问层、业务逻辑层和用户界面层。  它可以根据给定的数据库和表信息，使用模板生成代码，这个过程包括以下步骤：  1、确定需要生成的代码。  2、编写代码生成器的逻辑。  3、使用模板引擎来帮助你生成代码。  4、编写工具来调用你的代码生成器，并将">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.loquy.cn/images/code-generator.png">
+<meta property="article:published_time" content="2022-12-07T08:51:00.000Z">
+<meta property="article:modified_time" content="2022-12-12T00:41:00.000Z">
+<meta property="article:author" content="loquy">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="SpringBoot">
+<meta property="article:tag" content="FreeMarker">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://www.loquy.cn/images/code-generator.png">
+  
+  
+  
+  <title>Java 代码生成器 - loquy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/icon.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.loquy.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2a5c0150424f0cc3fa8b492f889fcfe3","google":"UA-167862106-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","app_key":"Hoi4ulpVAyY7bRNFpECENYQ4","server_url":"https://aouu3kji.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"tajs":null},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss.xml" title="loquy" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>loquy&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/linux-command">
+                <i class="iconfont icon-linux"></i>
+                Linux 命令搜索
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://foreverblog.cn/go.html">
+                <i class="iconfont icon-feichuan"></i>
+                虫洞
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                <i class="iconfont icon-feiji"></i>
+                开往
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://www.loquy.cn/images/unsplash-sol.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Java 代码生成器"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-07 16:51" pubdate>
+          2022年12月7日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          43k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          360 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Java"
+        id="heading-d52387880e1ea22817a72d3759213819" role="tab" data-toggle="collapse" href="#collapse-d52387880e1ea22817a72d3759213819"
+        aria-expanded="true"
+      >
+        Java
+        <span class="list-group-count">(16)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-d52387880e1ea22817a72d3759213819"
+           role="tabpanel" aria-labelledby="heading-d52387880e1ea22817a72d3759213819">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/posts/cda4c274.html" title="Java IO 流"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Java IO 流</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/b97e84d6.html" title="Java 代码生成器"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Java 代码生成器</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/3b0faab3.html" title="Java 常用业务代码总结"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Java 常用业务代码总结</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/8ce0f8c6.html" title="Java 日期和时间"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Java 日期和时间</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/f96fd70c.html" title="Java 自定义注解"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Java 自定义注解</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/b10633f0.html" title="Java 调用 Web Service"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Java 调用 Web Service</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/fb332309.html" title="SpringBoot 中使用 Hibernate"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SpringBoot 中使用 Hibernate</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/f2cc0d20.html" title="SpringBoot 中使用 Hutool 跨数据库增删改查"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SpringBoot 中使用 Hutool 跨数据库增删改查</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/e153eef8.html" title="SpringBoot 中使用 MongoDb 上传文件"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SpringBoot 中使用 MongoDb 上传文件</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/d45b7e43.html" title="SpringBoot 中使用 Mybatis"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SpringBoot 中使用 Mybatis</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/54e4e761.html" title="SpringBoot 中使用 Redis"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SpringBoot 中使用 Redis</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/36df66f4.html" title="Windows 下定时重启 Tomcat"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Windows 下定时重启 Tomcat</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/2df684da.html" title="前后端耦合下实现多文件上传和下拉树选择"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">前后端耦合下实现多文件上传和下拉树选择</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/9c06e8ab.html" title="前后端耦合下实现多级联动选择下拉框"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">前后端耦合下实现多级联动选择下拉框</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/3c28698d.html" title="在 Java 中使用 Hutool 进行数据加密和解密"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在 Java 中使用 Hutool 进行数据加密和解密</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/def20d69.html" title="在线运行 Java 代码的原理及实现"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在线运行 Java 代码的原理及实现</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Java 代码生成器</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2022年12月12日 早上
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><pre><code class="hljs">代码生成器的主要目的是提高开发效率，减少重复劳动，并确保生成的代码符合一定的规范。
+
+可以使用它来自动生成那些具有一定规律性的代码，包括但不限于数据库访问层、业务逻辑层和用户界面层。
+
+它可以根据给定的数据库和表信息，使用模板生成代码，这个过程包括以下步骤：
+
+1、确定需要生成的代码。
+
+2、编写代码生成器的逻辑。
+
+3、使用模板引擎来帮助你生成代码。
+
+4、编写工具来调用你的代码生成器，并将生成的代码写入文件。
+</code></pre>
+<h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><p>参考：自定义代码生成器。<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="自定义代码生成器
+">[1]</span></a></sup></p>
+<p><img src="/images/codeGenIdea.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><p>使用 Java 中的 JDBC API 来连接到数据库，并使用 SQL 查询或 <code>DatabaseMetaData</code> 接口来获取数据库表的元数据，例如表名、列名和数据类型。</p>
+</li>
+<li><p>使用模板引擎（如 <a target="_blank" rel="noopener" href="http://freemarker.foofun.cn/">Freemarker</a> 或 <a target="_blank" rel="noopener" href="https://velocity.apache.org/">Velocity</a>）来定义代码生成模板。模板可能包括普通文本和特殊标记，用于在生成代码时插入元数据。</p>
+</li>
+<li><p>使用 Java 代码从模板引擎加载模板，并将元数据插入模板中。最后，将生成的代码写入文件或输出到控制台。</p>
+</li>
+</ul>
+<h1 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h1><p>参考：FreeMarker 快速入门。<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="FreeMarker 快速入门
+">[2]</span></a></sup></p>
+<pre><code class="hljs">FreeMarker 是一款用 java 语言编写的模版引擎，
+
+它通过提供一组指令来处理模板文件，并将数据和模板文件合并成最终的文件。
+
+FreeMarker 模板文件可以包含特殊的指令，这些指令可以控制模板的渲染方式，例如条件判断、循环语句等。
+
+程序员可以通过在模板文件中插入这些指令来定制模板的渲染方式。
+</code></pre>
+<ul>
+<li><p>特点：</p>
+<ul>
+<li><p>轻量级模版引擎，不需要 Servlet 环境就可以很轻松的嵌入到应用程序中。</p>
+</li>
+<li><p>能生成各种文本，如 html，xml，java 等。</p>
+</li>
+<li><p>入门简单，它是用 java 编写的，很多语法和 java 相似。</p>
+</li>
+</ul>
+</li>
+<li><p>工作原理：<br><img src="/images/FreeMarker.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>使用步骤：</p>
+<ul>
+<li><p>加载 FreeMarker 模板引擎的类库。</p>
+</li>
+<li><p>设置模板文件的路径和存储数据的 Map 对象。</p>
+</li>
+<li><p>创建 FreeMarker 模板引擎的 <code>Configuration</code> 对象。</p>
+</li>
+<li><p>创建模板文件的模板对象。</p>
+</li>
+<li><p>程序可以通过调用 FreeMarker 的 <code>process</code> 方法，将模板文件和数据进行合并，并将合并后的结果通过 IO 流输出到指定的文件。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="数据库元数据"><a href="#数据库元数据" class="headerlink" title="数据库元数据"></a>数据库元数据</h1><p>参考：使用 JDBC 提取数据库元数据。<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="使用 JDBC 提取数据库元数据
+">[3]</span></a></sup></p>
+<p>Java 数据库元数据（<code>DatabaseMetaData</code>）是一个接口，它提供了有关数据库的元数据（即数据库的数据字典）的信息。</p>
+<p>它可以用来获取表详细信息、获取列详细信息、获取主键详细信息等。</p>
+<p>要使用数据库元数据，需要先使用 JDBC（Java Database Connectivity，Java 数据库连接）连接数据库，然后通过 <code>Connection</code> 对象的 <code>getMetaData</code> 方法获取 <code>DatabaseMetaData</code> 对象。</p>
+<ul>
+<li><p>获取表信息： <code>getTables(...)</code>。</p>
+</li>
+<li><p>获取列信息： <code>getColumns(...)</code>。</p>
+</li>
+<li><p>获取主键信息： <code>getPrimaryKeys(...)</code>。</p>
+</li>
+</ul>
+<p>下面是一个简单的示例，展示了如何使用数据库元数据获取表详细信息、获取列详细信息、获取主键详细信息：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.sql.Connection;<br><span class="hljs-keyword">import</span> java.sql.DatabaseMetaData;<br><span class="hljs-keyword">import</span> java.sql.ResultSet;<br><span class="hljs-keyword">import</span> java.sql.SQLException;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MetaDataExample</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> SQLException &#123;<br>        <span class="hljs-comment">// 连接 URL</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">url</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;jdbc:mysql://localhost:3306/mydatabase&quot;</span>;<br>        <span class="hljs-comment">// 数据库用户名</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">username</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;user&quot;</span>;<br>        <span class="hljs-comment">// 数据库密码</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">password</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;password&quot;</span>;<br><br>        <span class="hljs-comment">// 建立与数据库的连接</span><br>        <span class="hljs-type">Connection</span> <span class="hljs-variable">conn</span> <span class="hljs-operator">=</span> DriverManager.getConnection(url, username, password);<br><br>        <span class="hljs-comment">// 获取数据库元数据</span><br>        <span class="hljs-type">DatabaseMetaData</span> <span class="hljs-variable">dbMetaData</span> <span class="hljs-operator">=</span> conn.getMetaData();<br><br>        <span class="hljs-comment">// 获取表的详细信息</span><br>        <span class="hljs-type">ResultSet</span> <span class="hljs-variable">tables</span> <span class="hljs-operator">=</span> dbMetaData.getTables(<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[] &#123;<span class="hljs-string">&quot;TABLE&quot;</span>&#125;);<br>        <span class="hljs-keyword">while</span> (tables.next()) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">tableName</span> <span class="hljs-operator">=</span> tables.getString(<span class="hljs-string">&quot;TABLE_NAME&quot;</span>);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">tableType</span> <span class="hljs-operator">=</span> tables.getString(<span class="hljs-string">&quot;TABLE_TYPE&quot;</span>);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">tableRemarks</span> <span class="hljs-operator">=</span> tables.getString(<span class="hljs-string">&quot;REMARKS&quot;</span>);<br>            <span class="hljs-comment">// 输出表信息</span><br>            System.out.println(<span class="hljs-string">&quot;Table Name: &quot;</span> + tableName);<br>            System.out.println(<span class="hljs-string">&quot;Table Type: &quot;</span> + tableType);<br>            System.out.println(<span class="hljs-string">&quot;Table Remarks: &quot;</span> + tableRemarks);<br>        &#125;<br><br>        <span class="hljs-comment">// 获取列的详细信息</span><br>        <span class="hljs-type">ResultSet</span> <span class="hljs-variable">columns</span> <span class="hljs-operator">=</span> dbMetaData.getColumns(<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">&quot;my_table&quot;</span>, <span class="hljs-literal">null</span>);<br>        <span class="hljs-keyword">while</span> (columns.next()) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">columnName</span> <span class="hljs-operator">=</span> columns.getString(<span class="hljs-string">&quot;COLUMN_NAME&quot;</span>);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">columnType</span> <span class="hljs-operator">=</span> columns.getString(<span class="hljs-string">&quot;TYPE_NAME&quot;</span>);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">columnSize</span> <span class="hljs-operator">=</span> columns.getString(<span class="hljs-string">&quot;COLUMN_SIZE&quot;</span>);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">columnRemarks</span> <span class="hljs-operator">=</span> columns.getString(<span class="hljs-string">&quot;REMARKS&quot;</span>);<br>            <span class="hljs-comment">// 输出列信息</span><br>            System.out.println(<span class="hljs-string">&quot;Column Name: &quot;</span> + columnName);<br>            System.out.println(<span class="hljs-string">&quot;Column Type: &quot;</span> + columnType);<br>            System.out.println(<span class="hljs-string">&quot;Column Size: &quot;</span> + columnSize);<br>            System.out.println(<span class="hljs-string">&quot;Column Remarks: &quot;</span> + columnRemarks);<br>        &#125;<br><br>        <span class="hljs-comment">// 获取主键的详细信息</span><br>        <span class="hljs-type">ResultSet</span> <span class="hljs-variable">primaryKeys</span> <span class="hljs-operator">=</span> dbMetaData.getPrimaryKeys(<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">&quot;my_table&quot;</span>);<br>        <span class="hljs-keyword">while</span> (primaryKeys.next()) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">primaryKeyName</span> <span class="hljs-operator">=</span> primaryKeys.getString(<span class="hljs-string">&quot;COLUMN_NAME&quot;</span>);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">primaryKeySeq</span> <span class="hljs-operator">=</span> primaryKeys.getString(<span class="hljs-string">&quot;KEY_SEQ&quot;</span>);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">primaryKeyTableName</span> <span class="hljs-operator">=</span> primaryKeys.getString(<span class="hljs-string">&quot;TABLE_NAME&quot;</span>);<br>            <span class="hljs-comment">// 输出主键信息</span><br>            System.out.println(<span class="hljs-string">&quot;Primary Key Name: &quot;</span> + primaryKeyName);<br>            System.out.println(<span class="hljs-string">&quot;Primary Key Sequence: &quot;</span> + primaryKeySeq);<br>            System.out.println(<span class="hljs-string">&quot;Primary Key Table Name: &quot;</span> + primaryKeyTableName);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="表结构"><a href="#表结构" class="headerlink" title="表结构"></a>表结构</h1><p>创建名为 test 数据库，执行以下 sql 语句创建 user 表。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> `<span class="hljs-keyword">user</span>` (<br>  `id` <span class="hljs-type">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;主键&#x27;</span>,<br>  `name` <span class="hljs-type">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;名称&#x27;</span>,<br>  `pwd` <span class="hljs-type">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;密码&#x27;</span>,<br>  `create_date` datetime <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-built_in">CURRENT_TIMESTAMP</span> <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-built_in">CURRENT_TIMESTAMP</span> COMMENT <span class="hljs-string">&#x27;创建时间&#x27;</span>,<br>  `update_date` datetime <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;更新时间&#x27;</span>,<br>  <span class="hljs-keyword">PRIMARY</span> KEY (`id`)<br>) ENGINE<span class="hljs-operator">=</span>InnoDB <span class="hljs-keyword">DEFAULT</span> CHARSET<span class="hljs-operator">=</span>utf8 COMMENT<span class="hljs-operator">=</span><span class="hljs-string">&#x27;用户表&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><img src="/images/spring-boot-code-generator.jpg" srcset="/img/loading.gif" lazyload></p>
+<pre><code class="hljs">spring-boot-code-generator
+│
+├─src
+│  ├─main
+│  │  ├─java
+│  │  │  └─com
+│  │  │      └─example
+│  │  │          └─codegenerator
+│  │  │              │  SpringBootCodeGeneratorApplication.java
+│  │  │              │
+│  │  │              ├─common
+│  │  │              │      BaseDao.java
+│  │  │              │      BaseDaoImpl.java
+│  │  │              │      Page.java
+│  │  │              │      ResultModel.java
+│  │  │              │
+│  │  │              ├─config
+│  │  │              │      DataSourceConfig.java
+│  │  │              │
+│  │  │              ├─constant
+│  │  │              │      DbConstant.java
+│  │  │              │      TemplateConstant.java
+│  │  │              │
+│  │  │              ├─param
+│  │  │              │      ColumnParam.java
+│  │  │              │      TableParam.java
+│  │  │              │      TemplatePathParam.java
+│  │  │              │
+│  │  │              └─utils
+│  │  │                      CodeGenerateUtils.java
+│  │  │                      DbUtils.java
+│  │  │                      FreeMarkerTemplateUtils.java
+│  │  │                      StrUtils.java
+│  │  │
+│  │  └─resources
+│  │      │  application.properties
+│  │      │
+│  │      └─templates
+│  │              controller.ftl
+│  │              dao.ftl
+│  │              entity.ftl
+│  │              param.ftl
+│  │              service.ftl
+│  │              serviceImpl.ftl
+│  │
+│  └─test
+│      └─java
+│          └─com
+│              └─example
+│                  └─codegenerator
+│                          SpringBootCodeGeneratorApplicationTests.java
+</code></pre>
+<h1 id="依赖配置"><a href="#依赖配置" class="headerlink" title="依赖配置"></a>依赖配置</h1><p>在项目的 pom.xml 的 dependencies 中导入需要的依赖包:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.freemarker<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>freemarker<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.3.31<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;mysql.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>cn.hutool<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hutool-all<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.8.5<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.commons<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-lang3<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.8.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.hibernate.javax.persistence<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hibernate-jpa-2.1-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0.2.Final<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.hibernate<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hibernate-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.6.9.Final<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-orm<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.3.22<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="全局配置"><a href="#全局配置" class="headerlink" title="全局配置"></a>全局配置</h1><p>在项目的 application.properties 文件里添加所需配置：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">spring.datasource.username</span>=<span class="hljs-string">root</span><br><span class="hljs-attr">spring.datasource.password</span>=<span class="hljs-string">root</span><br><span class="hljs-attr">spring.datasource.url</span>=<span class="hljs-string">jdbc:mysql://localhost:3306/test?serverTimezone=UTC&amp;setUnicode=true&amp;charterEncoding=utf-8</span><br><span class="hljs-attr">spring.datasource.driver-class-name</span>=<span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h1><h2 id="1、常量类"><a href="#1、常量类" class="headerlink" title="1、常量类"></a>1、常量类</h2><h3 id="1-1、数据库常量"><a href="#1-1、数据库常量" class="headerlink" title="1.1、数据库常量"></a>1.1、数据库常量</h3><ul>
+<li><p>该类定义了三个数组常量：<code>COLUMNTYPE_TIME</code>、<code>COLUMNTYPE_NUMBER</code>，分别用于存储数据库时间类型和数字类型。</p>
+</li>
+<li><p>还定义了四个字符串常量：<code>TYPE_STRING</code>、<code>TYPE_INTEGER</code>、<code>TYPE_LONG</code> 和 <code>TYPE_BIGDECIMAL</code>，用于表示不同类型的数据。</p>
+</li>
+<li><p>例如，<code>TYPE_STRING</code> 表示字符串类型，<code>TYPE_INTEGER</code> 表示整型，<code>TYPE_LONG</code> 表示长整型，<code>TYPE_BIGDECIMAL</code> 表示高精度计算类型。</p>
+</li>
+</ul>
+<details>
+  <summary>点击查看代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.codegenerator.constant;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> loquy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DbConstant</span> &#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 数据库时间类型</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String[] COLUMNTYPE_TIME = &#123;<span class="hljs-string">&quot;datetime&quot;</span>, <span class="hljs-string">&quot;time&quot;</span>, <span class="hljs-string">&quot;date&quot;</span>, <span class="hljs-string">&quot;timestamp&quot;</span>&#125;;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 数据库数字类型</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String[] COLUMNTYPE_NUMBER = &#123;<span class="hljs-string">&quot;tinyint&quot;</span>, <span class="hljs-string">&quot;smallint&quot;</span>, <span class="hljs-string">&quot;mediumint&quot;</span>, <span class="hljs-string">&quot;int&quot;</span>, <span class="hljs-string">&quot;number&quot;</span>, <span class="hljs-string">&quot;integer&quot;</span>,<br>            <span class="hljs-string">&quot;bit&quot;</span>, <span class="hljs-string">&quot;bigint&quot;</span>, <span class="hljs-string">&quot;float&quot;</span>, <span class="hljs-string">&quot;double&quot;</span>, <span class="hljs-string">&quot;decimal&quot;</span>&#125;;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 字符串类型</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">TYPE_STRING</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;String&quot;</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 整型</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">TYPE_INTEGER</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Integer&quot;</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 长整型</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">TYPE_LONG</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Long&quot;</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 高精度计算类型</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">TYPE_BIGDECIMAL</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;BigDecimal&quot;</span>;<br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 时间类型</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">TYPE_DATE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Date&quot;</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</details>
+
+<h3 id="1-2、模板常量"><a href="#1-2、模板常量" class="headerlink" title="1.2、模板常量"></a>1.2、模板常量</h3><ul>
+<li><p>该类中包含了几个静态常量，这些常量定义了一些模板的文件路径。通过这些常量，可以引用不同的模板文件。</p>
+</li>
+<li><p>例如，<code>ENTITY_TEMPLATE</code> 常量指向了一个实体类的模板文件，<code>DAO_TEMPLATE</code> 常量指向了 dao 的模板文件，以此类推。</p>
+</li>
+</ul>
+<details>
+  <summary>点击查看代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.codegenerator.constant;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> loquy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TemplateConstant</span> &#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 实体类模板</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">ENTITY_TEMPLATE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;templates/entity.ftl&quot;</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * dao模板</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">DAO_TEMPLATE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;templates/dao.ftl&quot;</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * param模板</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">PARAM_TEMPLATE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;templates/param.ftl&quot;</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * service模版</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">SERVICE_TEMPLATE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;templates/service.ftl&quot;</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * service实现类模版</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">SERVICE_IMPL_TEMPLATE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;templates/serviceImpl.ftl&quot;</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * controller模版</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">CONTROLLER_TEMPLATE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;templates/controller.ftl&quot;</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</details>
+
+<h2 id="2、参数类"><a href="#2、参数类" class="headerlink" title="2、参数类"></a>2、参数类</h2><h3 id="2-1、字段参数"><a href="#2-1、字段参数" class="headerlink" title="2.1、字段参数"></a>2.1、字段参数</h3><ul>
+<li><p>该类用于封装从数据库表中读取的字段信息。</p>
+</li>
+<li><p>该类包含了字段名、字段类型、字段注释、主键信息以及 Java 类型等信息。</p>
+</li>
+<li><p>通过这些信息，可以在后续的代码生成过程中使用这些信息。</p>
+</li>
+<li><p>例如，在生成实体类时，可以使用字段名、字段类型以及 Java 类型来生成对应的属性和 getter&#x2F;setter 方法。</p>
+</li>
+</ul>
+<details>
+  <summary>点击查看代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.codegenerator.param;<br><br><span class="hljs-keyword">import</span> lombok.Data;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> loquy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ColumnParam</span> &#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 数据库字段名称</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String columnName;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 数据库字段类型</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String columnType;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 数据库字段首字母小写且去掉下划线字符串</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String changeColumnName;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 数据库字段注释</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String columnComment;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 主键</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String primaryKey;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * java 类型</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String javaType;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</details>
+
+<h3 id="2-2、表参数"><a href="#2-2、表参数" class="headerlink" title="2.2、表参数"></a>2.2、表参数</h3><ul>
+<li><p>该类用于封装从数据库表中读取的表信息。</p>
+</li>
+<li><p>该类包含了表名、表注释、表中数据的日期时间格式、是否包含日期字段、是否包含浮点型字段以及表主键类型等信息。</p>
+</li>
+<li><p>通过这些信息，可以在后续的代码生成过程中使用这些信息。</p>
+</li>
+<li><p>例如，在生成实体类时，可以根据表主键类型来生成对应的主键属性。</p>
+</li>
+</ul>
+<details>
+  <summary>点击查看代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.codegenerator.param;<br><br><span class="hljs-keyword">import</span> lombok.Data;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> loquy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TableParam</span> &#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 表名</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String tableName;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 表注释</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String tableComment;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 日期时间格式化模式</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">String</span> <span class="hljs-variable">datePattern</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 是否存在日期</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> exitDate;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 是否存在浮点型</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> exitBigDecimal;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 表主键类型</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String primaryKeyType;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+</details>
+
+<h3 id="2-3、模板参数"><a href="#2-3、模板参数" class="headerlink" title="2.3、模板参数"></a>2.3、模板参数</h3><ul>
+<li><p>该类用于封装代码生成过程中需要使用的一些路径信息。</p>
+</li>
+<li><p>该类包含了包名、项目名称、作者、生成代码的基础路径以及各个模板文件生成的绝对路径等信息。</p>
+</li>
+<li><p>通过这些信息，可以在后续的代码生成过程中使用这些信息。</p>
+</li>
+<li><p>例如，在生成实体类时，可以使用实体类生成的绝对路径来指定实体类文件的存储路径。</p>
+</li>
+</ul>
+<details>
+  <summary>点击查看代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.codegenerator.param;<br><br><span class="hljs-keyword">import</span> lombok.Data;<br><span class="hljs-keyword">import</span> org.apache.commons.lang3.StringUtils;<br><br><span class="hljs-keyword">import</span> java.text.SimpleDateFormat;<br><span class="hljs-keyword">import</span> java.util.Date;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * The type Template path param.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> loquy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TemplatePathParam</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">String</span> <span class="hljs-variable">currentDate</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleDateFormat</span>(<span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>).format(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>());<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 包名</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String packageName;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 代码生成路径</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String basePath;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 项目名称</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String projectName;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 作者</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String author;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 实体类生成的绝对路径</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String entityPath;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * dao生成的绝对路径</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String daoPath;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * param生成的绝对路径</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String paramPath;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * service接口生成的绝对路径</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String servicePath;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * service实现类生成的绝对路径</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String serviceImplPath;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * controller生成的绝对路径</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> String controllerPath;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> packageName 包名</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> basePath    生成代码的基础路径</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> projectName 项目名称</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> author      作者</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">TemplatePathParam</span><span class="hljs-params">(String packageName, String basePath, String projectName, String author)</span> &#123;<br>        <span class="hljs-keyword">if</span> (StringUtils.isBlank(packageName)<br>                || StringUtils.isBlank(basePath)<br>                || StringUtils.isBlank(author)) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(<span class="hljs-string">&quot;参数不能为空&quot;</span>);<br>        &#125;<br>        <span class="hljs-built_in">this</span>.packageName = packageName;<br>        <span class="hljs-built_in">this</span>.basePath = basePath;<br>        <span class="hljs-built_in">this</span>.author = author;<br>        <span class="hljs-built_in">this</span>.projectName = projectName;<br><br>        String[] split = packageName.split(<span class="hljs-string">&quot;\\.&quot;</span>);<br><br>        StringBuilder javaModelPath;<br>        <span class="hljs-keyword">if</span> (StringUtils.isBlank(projectName)) &#123;<br>            javaModelPath = <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(basePath + <span class="hljs-string">&quot;\\src\\main\\java\\&quot;</span>);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            javaModelPath = <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(basePath + <span class="hljs-string">&quot;\\&quot;</span> + projectName + <span class="hljs-string">&quot;\\src\\main\\java\\&quot;</span>);<br>        &#125;<br><br>        <span class="hljs-keyword">for</span> (String s : split) &#123;<br>            javaModelPath.append(s);<br>            javaModelPath.append(<span class="hljs-string">&quot;\\&quot;</span>);<br>        &#125;<br>        <span class="hljs-built_in">this</span>.setEntityPath(javaModelPath + <span class="hljs-string">&quot;\\entity&quot;</span>);<br>        <span class="hljs-built_in">this</span>.setDaoPath(javaModelPath + <span class="hljs-string">&quot;\\dao&quot;</span>);<br>        <span class="hljs-built_in">this</span>.setParamPath(javaModelPath + <span class="hljs-string">&quot;\\param&quot;</span>);<br>        <span class="hljs-built_in">this</span>.setServicePath(javaModelPath + <span class="hljs-string">&quot;\\service&quot;</span>);<br>        <span class="hljs-built_in">this</span>.setServiceImplPath(javaModelPath + <span class="hljs-string">&quot;\\service\\impl&quot;</span>);<br>        <span class="hljs-built_in">this</span>.setControllerPath(javaModelPath + <span class="hljs-string">&quot;\\controller&quot;</span>);<br>    &#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+</details>
+
+<h2 id="3、工具类"><a href="#3、工具类" class="headerlink" title="3、工具类"></a>3、工具类</h2><h3 id="3-1、代码生成器工具类"><a href="#3-1、代码生成器工具类" class="headerlink" title="3.1、代码生成器工具类"></a>3.1、代码生成器工具类</h3><ul>
+<li><p>该类主要用于根据给定的 FreeMarker 模板和数据模型生成代码。<code>generate()</code> 方法接受表名作为输入，并从数据库中检索相应的表信息。然后，它使用此信息基于指定的 FreeMarker 模板为应用程序的不同层生成代码（例如实体，DAO，服务，控制器）。</p>
+</li>
+<li><p>生成的代码写入指定的输出目录中的文件系统。该类期望模板位于 classpath 目录下，并使用 <code>FreeMarkerTemplateUtils</code> 类加载模板。</p>
+</li>
+</ul>
+<details>
+  <summary>点击查看代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.codegenerator.utils;<br><br><span class="hljs-keyword">import</span> com.example.codegenerator.constant.TemplateConstant;<br><span class="hljs-keyword">import</span> com.example.codegenerator.param.ColumnParam;<br><span class="hljs-keyword">import</span> com.example.codegenerator.param.TableParam;<br><span class="hljs-keyword">import</span> com.example.codegenerator.param.TemplatePathParam;<br><span class="hljs-keyword">import</span> freemarker.template.Template;<br><span class="hljs-keyword">import</span> org.apache.commons.lang3.StringUtils;<br><br><span class="hljs-keyword">import</span> java.io.*;<br><span class="hljs-keyword">import</span> java.nio.charset.StandardCharsets;<br><span class="hljs-keyword">import</span> java.util.HashMap;<br><span class="hljs-keyword">import</span> java.util.List;<br><span class="hljs-keyword">import</span> java.util.Map;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 代码生成器入口</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> loquy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CodeGenerateUtils</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">TemplatePathParam</span> <span class="hljs-variable">templatePathParam</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">CodeGenerateUtils</span> <span class="hljs-variable">codeGenerateUtils</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeGenerateUtils</span>();<br>        codeGenerateUtils.templatePathParam = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TemplatePathParam</span>(<span class="hljs-string">&quot;com.example.codegenerator.modules.test&quot;</span>,<br>                <span class="hljs-string">&quot;D:\\study\\spring-boot-demo\\spring-boot-code-generator&quot;</span>,<br>                <span class="hljs-string">&quot;&quot;</span>,<br>                <span class="hljs-string">&quot;loquy&quot;</span>);<br>        codeGenerateUtils.generate(<span class="hljs-string">&quot;user&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">generate</span><span class="hljs-params">(String tableName)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-comment">//数据库相关</span><br>        <span class="hljs-type">DbUtils</span> <span class="hljs-variable">dbUtil</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DbUtils</span>();<br>        List&lt;TableParam&gt; allTables = dbUtil.getAllTables(tableName);<br>        <span class="hljs-keyword">if</span> (allTables.get(<span class="hljs-number">0</span>).getTableName() == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-comment">//获取所有表</span><br>            List&lt;TableParam&gt; allTable = dbUtil.getAllTables(<span class="hljs-string">&quot;&quot;</span>);<br>            <span class="hljs-keyword">for</span> (TableParam tableClass : allTable) &#123;<br>                generateOne(dbUtil, tableClass);<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            generateOne(dbUtil, allTables.get(<span class="hljs-number">0</span>));<br>        &#125;<br><br>        dbUtil.closeConnection();<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">generateOne</span><span class="hljs-params">(DbUtils dbUtil, TableParam tableClass)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-comment">//表名</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">table</span> <span class="hljs-operator">=</span> tableClass.getTableName();<br>        <span class="hljs-comment">//获取所有列</span><br>        List&lt;ColumnParam&gt; allColumns = dbUtil.getAllColumns(table);<br><br>        <span class="hljs-type">boolean</span> <span class="hljs-variable">date</span> <span class="hljs-operator">=</span> allColumns.stream().anyMatch(m -&gt; <span class="hljs-string">&quot;Date&quot;</span>.equals(m.getJavaType()));<br>        <span class="hljs-type">boolean</span> <span class="hljs-variable">bigDecimal</span> <span class="hljs-operator">=</span> allColumns.stream().anyMatch(m -&gt; <span class="hljs-string">&quot;BigDecimal&quot;</span>.equals(m.getJavaType()));<br>        <span class="hljs-type">ColumnParam</span> <span class="hljs-variable">columnParam</span> <span class="hljs-operator">=</span> allColumns.stream().filter(m -&gt; m.getColumnName().equals(m.getPrimaryKey())).findFirst().orElse(<span class="hljs-literal">null</span>);<br><br>        tableClass.setExitDate(date);<br>        tableClass.setExitBigDecimal(bigDecimal);<br>        tableClass.setPrimaryKeyType(<span class="hljs-string">&quot;String&quot;</span>);<br>        <span class="hljs-keyword">if</span> (columnParam != <span class="hljs-literal">null</span>) &#123;<br>            tableClass.setPrimaryKeyType(columnParam.getJavaType());<br>        &#125;<br><br>        System.out.println(<span class="hljs-string">&quot;============正在生成 &quot;</span> + table + <span class="hljs-string">&quot; 表相关文件============&quot;</span>);<br><br>        <span class="hljs-comment">//生成实体类</span><br>        System.out.println(<span class="hljs-string">&quot;生成 entity 类&quot;</span>);<br>        generateEntityFile(tableClass, allColumns);<br><br>        <span class="hljs-comment">//生成dao层文件</span><br>        System.out.println(<span class="hljs-string">&quot;生成 dao 类&quot;</span>);<br>        generateDaoFile(tableClass);<br><br>        <span class="hljs-comment">//生成param参数类</span><br>        System.out.println(<span class="hljs-string">&quot;生成 param 类&quot;</span>);<br>        generateParamFile(tableClass, allColumns);<br><br>        <span class="hljs-comment">//生成service接口</span><br>        System.out.println(<span class="hljs-string">&quot;生成 service 接口&quot;</span>);<br>        generateServiceFile(tableClass);<br><br>        <span class="hljs-comment">//生成service实现类</span><br>        System.out.println(<span class="hljs-string">&quot;生成 service 实现类&quot;</span>);<br>        generateServiceImplFile(tableClass);<br><br>        <span class="hljs-comment">//生成Controller层文件</span><br>        System.out.println(<span class="hljs-string">&quot;生成 controller 类&quot;</span>);<br>        generateControllerFile(tableClass);<br><br>        System.out.println(<span class="hljs-string">&quot;============ 全部生成完成！ =============&quot;</span>);<br>    &#125;<br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 生成实体文件</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">generateEntityFile</span><span class="hljs-params">(TableParam tableClass, List&lt;ColumnParam&gt; allColumns)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">suffix</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;.java&quot;</span>;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">filePath</span> <span class="hljs-operator">=</span> templatePathParam.getEntityPath();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> templatePathParam.getEntityPath() + <span class="hljs-string">&quot;\\&quot;</span> + StrUtils.changeTableStr(tableClass.getTableName()) + suffix;<br><br>        Map&lt;String, Object&gt; dataMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;(<span class="hljs-number">6</span>);<br>        dataMap.put(<span class="hljs-string">&quot;model_column&quot;</span>, allColumns);<br>        dataMap = getCommonModel(dataMap, tableClass);<br>        generateFileByTemplate(TemplateConstant.ENTITY_TEMPLATE, filePath, file, dataMap);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 生成dao层文件</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">generateDaoFile</span><span class="hljs-params">(TableParam tableClass)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">suffix</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Dao.java&quot;</span>;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">filePath</span> <span class="hljs-operator">=</span> templatePathParam.getDaoPath();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> templatePathParam.getDaoPath() + <span class="hljs-string">&quot;\\&quot;</span> + StrUtils.changeTableStr(tableClass.getTableName()) + suffix;<br><br>        Map&lt;String, Object&gt; dataMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;(<span class="hljs-number">6</span>);<br>        dataMap = getCommonModel(dataMap, tableClass);<br>        generateFileByTemplate(TemplateConstant.DAO_TEMPLATE, filePath, file, dataMap);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 生成参数类</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">generateParamFile</span><span class="hljs-params">(TableParam tableClass, List&lt;ColumnParam&gt; allColumns)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">suffix</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Param.java&quot;</span>;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">filePath</span> <span class="hljs-operator">=</span> templatePathParam.getParamPath();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> templatePathParam.getParamPath() + <span class="hljs-string">&quot;\\&quot;</span> + StrUtils.changeTableStr(tableClass.getTableName()) + suffix;<br><br>        Map&lt;String, Object&gt; dataMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;(<span class="hljs-number">6</span>);<br>        dataMap.put(<span class="hljs-string">&quot;model_column&quot;</span>, allColumns);<br>        dataMap = getCommonModel(dataMap, tableClass);<br>        generateFileByTemplate(TemplateConstant.PARAM_TEMPLATE, filePath, file, dataMap);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 生成业务接口层</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">generateServiceFile</span><span class="hljs-params">(TableParam tableClass)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">suffix</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Service.java&quot;</span>;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">filePath</span> <span class="hljs-operator">=</span> templatePathParam.getServicePath();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> templatePathParam.getServicePath() + <span class="hljs-string">&quot;\\&quot;</span> + StrUtils.changeTableStr(tableClass.getTableName()) + suffix;<br><br>        Map&lt;String, Object&gt; dataMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;(<span class="hljs-number">6</span>);<br>        dataMap = getCommonModel(dataMap, tableClass);<br>        generateFileByTemplate(TemplateConstant.SERVICE_TEMPLATE, filePath, file, dataMap);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 生成业务实现层</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">generateServiceImplFile</span><span class="hljs-params">(TableParam tableClass)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">suffix</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;ServiceImpl.java&quot;</span>;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">filePath</span> <span class="hljs-operator">=</span> templatePathParam.getServiceImplPath();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> templatePathParam.getServiceImplPath() + <span class="hljs-string">&quot;\\&quot;</span> + StrUtils.changeTableStr(tableClass.getTableName()) + suffix;<br><br>        Map&lt;String, Object&gt; dataMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;(<span class="hljs-number">6</span>);<br>        dataMap = getCommonModel(dataMap, tableClass);<br>        generateFileByTemplate(TemplateConstant.SERVICE_IMPL_TEMPLATE, filePath, file, dataMap);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 生成控制层</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">generateControllerFile</span><span class="hljs-params">(TableParam tableClass)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">suffix</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Controller.java&quot;</span>;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">filePath</span> <span class="hljs-operator">=</span> templatePathParam.getControllerPath();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> templatePathParam.getControllerPath() + <span class="hljs-string">&quot;\\&quot;</span> + StrUtils.changeTableStr(tableClass.getTableName()) + suffix;<br><br>        Map&lt;String, Object&gt; dataMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;(<span class="hljs-number">6</span>);<br>        dataMap = getCommonModel(dataMap, tableClass);<br>        generateFileByTemplate(TemplateConstant.CONTROLLER_TEMPLATE, filePath, file, dataMap);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 模版通用参数</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> dataMap    模型map</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> tableClass 表名和表注释参数</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> Map&lt;String, Object&gt; <span class="hljs-title function_">getCommonModel</span><span class="hljs-params">(Map&lt;String, Object&gt; dataMap, TableParam tableClass)</span> &#123;<br>        dataMap.put(<span class="hljs-string">&quot;table_name&quot;</span>, StrUtils.changeTableStr(tableClass.getTableName()));<br>        dataMap.put(<span class="hljs-string">&quot;table_name_small&quot;</span>, StrUtils.changeColumnStr(tableClass.getTableName()));<br>        dataMap.put(<span class="hljs-string">&quot;table&quot;</span>, tableClass.getTableName());<br>        dataMap.put(<span class="hljs-string">&quot;datePattern&quot;</span>, tableClass.getDatePattern());<br>        dataMap.put(<span class="hljs-string">&quot;exitDate&quot;</span>, tableClass.isExitDate());<br>        dataMap.put(<span class="hljs-string">&quot;exitBigDecimal&quot;</span>, tableClass.isExitBigDecimal());<br>        dataMap.put(<span class="hljs-string">&quot;author&quot;</span>, templatePathParam.getAuthor());<br>        dataMap.put(<span class="hljs-string">&quot;date&quot;</span>, templatePathParam.getCurrentDate());<br>        dataMap.put(<span class="hljs-string">&quot;package_name&quot;</span>, templatePathParam.getPackageName());<br>        dataMap.put(<span class="hljs-string">&quot;project_name&quot;</span>, templatePathParam.getProjectName());<br>        dataMap.put(<span class="hljs-string">&quot;table_annotation&quot;</span>, StringUtils.isNotBlank(tableClass.getTableComment()) ? tableClass.getTableComment() : <span class="hljs-literal">null</span>);<br>        <span class="hljs-keyword">return</span> dataMap;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 静态化方法</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> templateName  模版名称</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> filePathParam 文件所在目录 绝对路径</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> fileParam     文件 绝对路径</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> dataMap       数据模型</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">generateFileByTemplate</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String templateName,</span><br><span class="hljs-params">                                        String filePathParam,</span><br><span class="hljs-params">                                        String fileParam,</span><br><span class="hljs-params">                                        Map&lt;String, Object&gt; dataMap)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">Template</span> <span class="hljs-variable">template</span> <span class="hljs-operator">=</span> FreeMarkerTemplateUtils.getTemplate(templateName);<br>        System.out.println(fileParam);<br>        <span class="hljs-comment">//文件夹不存在创建文件夹</span><br>        <span class="hljs-type">File</span> <span class="hljs-variable">filePath</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(filePathParam);<br>        <span class="hljs-keyword">if</span> (!filePath.exists() &amp;&amp; !filePath.isDirectory()) &#123;<br>            <span class="hljs-type">boolean</span> <span class="hljs-variable">mkdirs</span> <span class="hljs-operator">=</span> filePath.mkdirs();<br>            <span class="hljs-keyword">if</span> (!mkdirs) &#123;<br>                System.out.println(filePathParam + <span class="hljs-string">&quot;创建失败！&quot;</span>);<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">//文件不存在创建文件夹</span><br>        <span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(fileParam);<br>        <span class="hljs-keyword">if</span> (!file.exists()) &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-type">boolean</span> <span class="hljs-variable">newFile</span> <span class="hljs-operator">=</span> file.createNewFile();<br>                <span class="hljs-keyword">if</span> (!newFile) &#123;<br>                    System.out.println(fileParam + <span class="hljs-string">&quot;创建失败！&quot;</span>);<br>                &#125;<br>            &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;<br>        <span class="hljs-type">FileOutputStream</span> <span class="hljs-variable">fos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(file);<br>        <span class="hljs-type">Writer</span> <span class="hljs-variable">out</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedWriter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">OutputStreamWriter</span>(fos, StandardCharsets.UTF_8), <span class="hljs-number">10240</span>);<br>        template.process(dataMap, out);<br>    &#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+</details>
+
+<h3 id="3-2、数据库工具类"><a href="#3-2、数据库工具类" class="headerlink" title="3.2、数据库工具类"></a>3.2、数据库工具类</h3><ul>
+<li><p>该类主要用于连接数据库、获取数据库信息，如表名、字段名、字段类型等，并封装成对象返回。</p>
+</li>
+<li><p>该类中主要用到了 JDBC 连接数据库的 API，包括 <code>DriverManager.getConnection()</code> 方法用于获取数据库连接，<code>DatabaseMetaData</code> 类中的方法用于获取数据库元数据信息。</p>
+</li>
+<li><p>其中 <code>getAllTables()</code> 方法用于获取所有表名及注释，<code>getAllColumns()</code> 方法用于获取某张表的所有列信息，<code>getJavaType()</code> 方法用于将数据库字段类型转换成 Java 类型。</p>
+</li>
+<li><p>需要注意的是，该类中使用到的配置信息，例如数据库链接地址、用户名、密码等，需要通过读取 <code>application.properties</code> 文件获取，读取文件使用了第三方库 <code>hutool</code> 的 Props 类。</p>
+</li>
+</ul>
+<details>
+  <summary>点击查看代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.codegenerator.utils;<br><br><span class="hljs-keyword">import</span> cn.hutool.setting.dialect.Props;<br><span class="hljs-keyword">import</span> com.example.codegenerator.constant.DbConstant;<br><span class="hljs-keyword">import</span> com.example.codegenerator.param.ColumnParam;<br><span class="hljs-keyword">import</span> com.example.codegenerator.param.TableParam;<br><span class="hljs-keyword">import</span> org.apache.commons.lang3.StringUtils;<br><br><span class="hljs-keyword">import</span> java.sql.*;<br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.Arrays;<br><span class="hljs-keyword">import</span> java.util.List;<br><span class="hljs-keyword">import</span> java.util.Properties;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 数据库工具类</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> loquy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DbUtils</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Props</span> <span class="hljs-variable">props</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Props</span>(<span class="hljs-string">&quot;application.properties&quot;</span>);<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">url</span> <span class="hljs-operator">=</span> getProps().getProperty(<span class="hljs-string">&quot;spring.datasource.url&quot;</span>);<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">username</span> <span class="hljs-operator">=</span> getProps().getProperty(<span class="hljs-string">&quot;spring.datasource.username&quot;</span>);<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">password</span> <span class="hljs-operator">=</span> getProps().getProperty(<span class="hljs-string">&quot;spring.datasource.password&quot;</span>);<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">driver</span> <span class="hljs-operator">=</span> getProps().getProperty(<span class="hljs-string">&quot;spring.datasource.driver-class-name&quot;</span>);<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">Connection</span> <span class="hljs-variable">connection</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取jdbc链接</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> Connection <span class="hljs-title function_">getConnection</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">Properties</span> <span class="hljs-variable">pro</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Properties</span>();<br>        pro.setProperty(<span class="hljs-string">&quot;user&quot;</span>, username);<br>        pro.setProperty(<span class="hljs-string">&quot;password&quot;</span>, password);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">mysql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;mysql&quot;</span>;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">oracle</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;oracle&quot;</span>;<br>        <span class="hljs-keyword">if</span> (url.contains(mysql)) &#123;<br>            <span class="hljs-comment">//获取mysql表注释</span><br>            pro.setProperty(<span class="hljs-string">&quot;useInformationSchema&quot;</span>, <span class="hljs-string">&quot;true&quot;</span>);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (url.contains(oracle)) &#123;<br>            <span class="hljs-comment">//获取oracle表注释</span><br>            pro.setProperty(<span class="hljs-string">&quot;remarksReporting&quot;</span>, <span class="hljs-string">&quot;true&quot;</span>);<br>        &#125;<br><br>        Class.forName(driver);<br>        connection = DriverManager.getConnection(url, pro);<br>        <span class="hljs-keyword">return</span> connection;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取当前数据库下的所有表名称及注释</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> List&lt;TableParam&gt; <span class="hljs-title function_">getAllTables</span><span class="hljs-params">(String table)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">tableName</span> <span class="hljs-operator">=</span> StringUtils.isNotEmpty(table) ? table : <span class="hljs-string">&quot;%&quot;</span>;<br>        List&lt;TableParam&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        <span class="hljs-comment">//获取链接</span><br>        <span class="hljs-type">Connection</span> <span class="hljs-variable">conn</span> <span class="hljs-operator">=</span> getConnection();<br>        <span class="hljs-comment">//获取元数据</span><br>        <span class="hljs-type">DatabaseMetaData</span> <span class="hljs-variable">metaData</span> <span class="hljs-operator">=</span> conn.getMetaData();<br>        <span class="hljs-comment">//获取所有的数据库表信息</span><br>        <span class="hljs-type">ResultSet</span> <span class="hljs-variable">rs</span> <span class="hljs-operator">=</span> metaData.getTables(conn.getCatalog(), <span class="hljs-string">&quot;%&quot;</span>, tableName, <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[]&#123;<span class="hljs-string">&quot;TABLE&quot;</span>&#125;);<br>        <span class="hljs-keyword">while</span> (rs.next()) &#123;<br>            <span class="hljs-type">TableParam</span> <span class="hljs-variable">tableClass</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TableParam</span>();<br>            tableClass.setTableName(rs.getString(<span class="hljs-number">3</span>));<br>            tableClass.setTableComment(rs.getString(<span class="hljs-number">5</span>));<br>            list.add(tableClass);<br>        &#125;<br><br>        <span class="hljs-keyword">if</span> (list.size() == <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Exception</span>(tableName + <span class="hljs-string">&quot;表不存在！&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">return</span> list;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取某张表的所有列</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> List&lt;ColumnParam&gt; <span class="hljs-title function_">getAllColumns</span><span class="hljs-params">(String tableName)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        List&lt;ColumnParam&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        <span class="hljs-comment">//获取链接</span><br>        <span class="hljs-type">Connection</span> <span class="hljs-variable">conn</span> <span class="hljs-operator">=</span> getConnection();<br>        <span class="hljs-comment">//获取元数据</span><br>        <span class="hljs-type">DatabaseMetaData</span> <span class="hljs-variable">metaData</span> <span class="hljs-operator">=</span> conn.getMetaData();<br>        <span class="hljs-comment">//获取所有的数据库某张表所有列信息</span><br>        <span class="hljs-type">ResultSet</span> <span class="hljs-variable">rs</span> <span class="hljs-operator">=</span> metaData.getColumns(conn.getCatalog(), <span class="hljs-string">&quot;%&quot;</span>, tableName, <span class="hljs-string">&quot;%&quot;</span>);<br>        <span class="hljs-comment">//获取主键字段</span><br>        <span class="hljs-type">ResultSet</span> <span class="hljs-variable">rsPk</span> <span class="hljs-operator">=</span> metaData.getPrimaryKeys(conn.getCatalog(), <span class="hljs-literal">null</span>, tableName);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">primaryKey</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;<br>        <span class="hljs-keyword">while</span> (rsPk.next()) &#123;<br>            primaryKey = rsPk.getString(<span class="hljs-string">&quot;COLUMN_NAME&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">while</span> (rs.next()) &#123;<br>            <span class="hljs-type">ColumnParam</span> <span class="hljs-variable">columnClass</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ColumnParam</span>();<br>            columnClass.setPrimaryKey(primaryKey);<br>            columnClass.setColumnName(rs.getString(<span class="hljs-string">&quot;COLUMN_NAME&quot;</span>));<br>            columnClass.setColumnType(rs.getString(<span class="hljs-string">&quot;TYPE_NAME&quot;</span>));<br>            columnClass.setJavaType(getJavaType(rs.getString(<span class="hljs-string">&quot;TYPE_NAME&quot;</span>)));<br>            columnClass.setColumnComment(rs.getString(<span class="hljs-string">&quot;REMARKS&quot;</span>));<br>            columnClass.setChangeColumnName(StrUtils.changeColumnStr(rs.getString(<span class="hljs-string">&quot;COLUMN_NAME&quot;</span>)));<br>            list.add(columnClass);<br>        &#125;<br><br>        <span class="hljs-keyword">if</span> (list.size() == <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Exception</span>(tableName + <span class="hljs-string">&quot;表不存在！&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">return</span> list;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取数据库表字段类型对应的java类型</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getJavaType</span><span class="hljs-params">(String columnType)</span> &#123;<br>        columnType = columnType.toLowerCase();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">dataType</span> <span class="hljs-operator">=</span> getDbType(columnType);<br>        <span class="hljs-keyword">if</span> (arraysContains(DbConstant.COLUMNTYPE_TIME, dataType)) &#123;<br>            <span class="hljs-comment">// 时间类型</span><br>            <span class="hljs-keyword">return</span> DbConstant.TYPE_DATE;<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (arraysContains(DbConstant.COLUMNTYPE_NUMBER, dataType)) &#123;<br>            String[] str = StringUtils.split(StringUtils.substringBetween(columnType, <span class="hljs-string">&quot;(&quot;</span>, <span class="hljs-string">&quot;)&quot;</span>), <span class="hljs-string">&quot;,&quot;</span>);<br>            <span class="hljs-keyword">if</span> (str != <span class="hljs-literal">null</span> &amp;&amp; str.length == <span class="hljs-number">2</span> &amp;&amp; Integer.parseInt(str[<span class="hljs-number">1</span>]) &gt; <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-comment">// 如果是浮点型 统一用BigDecimal</span><br>                <span class="hljs-keyword">return</span> DbConstant.TYPE_BIGDECIMAL;<br>            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (str != <span class="hljs-literal">null</span> &amp;&amp; str.length == <span class="hljs-number">1</span> &amp;&amp; Integer.parseInt(str[<span class="hljs-number">0</span>]) &lt;= <span class="hljs-number">10</span>) &#123;<br>                <span class="hljs-comment">// 如果是整形</span><br>                <span class="hljs-keyword">return</span> DbConstant.TYPE_INTEGER;<br>            &#125;<span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">// 长整形</span><br>                <span class="hljs-keyword">return</span> DbConstant.TYPE_LONG;<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">// 字符串</span><br>            <span class="hljs-keyword">return</span> DbConstant.TYPE_STRING;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 校验数组是否包含指定值</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> arr         数组</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> targetValue 值</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 是否包含</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">arraysContains</span><span class="hljs-params">(String[] arr, String targetValue)</span> &#123;<br>        <span class="hljs-keyword">return</span> Arrays.asList(arr).contains(targetValue);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取数据库类型字段</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> columnType 列类型</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 截取后的列类型</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">getDbType</span><span class="hljs-params">(String columnType)</span><br>    &#123;<br>        <span class="hljs-keyword">if</span> (StringUtils.indexOf(columnType, <span class="hljs-string">&quot;(&quot;</span>) &gt; <span class="hljs-number">0</span>)<br>        &#123;<br>            <span class="hljs-keyword">return</span> StringUtils.substringBefore(columnType, <span class="hljs-string">&quot;(&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            <span class="hljs-keyword">return</span> columnType;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 关闭链接</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">closeConnection</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            connection.close();<br>        &#125; <span class="hljs-keyword">catch</span> (SQLException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> Props <span class="hljs-title function_">getProps</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> props;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</details>
+
+<h3 id="3-3、FreeMarker-工具类"><a href="#3-3、FreeMarker-工具类" class="headerlink" title="3.3、FreeMarker 工具类"></a>3.3、FreeMarker 工具类</h3><ul>
+<li><p>该类用于加载并获取 FreeMarker 模板文件。</p>
+</li>
+<li><p>FreeMarker 是一种模板引擎，可以通过模板文件来生成静态文本，模板文件中可以使用 FreeMarker 的指令和数据变量来动态控制文本的生成。</p>
+</li>
+<li><p><code>FreeMarkerTemplateUtils</code> 类中，<code>CONFIGURATION</code> 对象表示一个 FreeMarker 模板配置，该对象用于设置 FreeMarker 的各种属性，包括模板文件的加载方式、编码方式、异常处理方式等。</p>
+</li>
+<li><p><code>getTemplate()</code> 方法用于根据模板文件名称获取一个 <code>Template</code> 对象，该对象表示一个 FreeMarker 模板文件，可以通过它来生成静态文本。</p>
+</li>
+<li><p>在这个工具类中，模板文件的加载方式采用的是 <code>FileTemplateLoader</code> 类，即从 classpath 目录下加载模板文件。</p>
+</li>
+</ul>
+<details>
+  <summary>点击查看代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.codegenerator.utils;<br><br><span class="hljs-keyword">import</span> freemarker.cache.FileTemplateLoader;<br><span class="hljs-keyword">import</span> freemarker.cache.NullCacheStorage;<br><span class="hljs-keyword">import</span> freemarker.template.Configuration;<br><span class="hljs-keyword">import</span> freemarker.template.Template;<br><span class="hljs-keyword">import</span> freemarker.template.TemplateExceptionHandler;<br><br><span class="hljs-keyword">import</span> java.io.File;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.util.Objects;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * FreeMarker模版工具类</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> loquy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FreeMarkerTemplateUtils</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-title function_">FreeMarkerTemplateUtils</span><span class="hljs-params">()</span> &#123;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Configuration</span> <span class="hljs-variable">CONFIGURATION</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Configuration</span>(Configuration.VERSION_2_3_22);<br><br>    <span class="hljs-keyword">static</span> &#123;<br>        <span class="hljs-comment">//ClassTemplateLoader方式：需要将模版放在FreeMarkerTemplateUtils类所在的包，加载模版时会从该包下加载</span><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> java.net.URLDecoder.decode(Objects.requireNonNull(<br>                    FreeMarkerTemplateUtils.class.getClassLoader().getResource(<span class="hljs-string">&quot;&quot;</span>)).getPath(), <span class="hljs-string">&quot;utf-8&quot;</span>);<br>            <span class="hljs-comment">//FileTemplateLoader方式：需要将模版放置在classpath目录下 目录有中文也可以</span><br>            CONFIGURATION.setTemplateLoader(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileTemplateLoader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(path)));<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>        CONFIGURATION.setDefaultEncoding(<span class="hljs-string">&quot;UTF-8&quot;</span>);<br>        CONFIGURATION.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);<br>        CONFIGURATION.setCacheStorage(NullCacheStorage.INSTANCE);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Template <span class="hljs-title function_">getTemplate</span><span class="hljs-params">(String templateName)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        <span class="hljs-keyword">return</span> CONFIGURATION.getTemplate(templateName);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</details>
+
+<h3 id="3-4、字符串工具类"><a href="#3-4、字符串工具类" class="headerlink" title="3.4、字符串工具类"></a>3.4、字符串工具类</h3><ul>
+<li><p>该类包含两个方法：<code>changeColumnStr</code> 和 <code>changeTableStr</code>。</p>
+</li>
+<li><p><code>changeColumnStr</code> 方法用于将一个带下划线的字符串转换为驼峰命名法，例如将 “user_name” 转换为 “userName”。</p>
+</li>
+<li><p><code>changeTableStr</code> 方法用于将一个带下划线的字符串转换为驼峰命名法，并且首字母大写，例如将 “tb_user” 转换为 “TbUser”。</p>
+</li>
+<li><p>两个方法都会通过递归调用来处理多个下划线的情况。</p>
+</li>
+</ul>
+<details>
+  <summary>点击查看代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.codegenerator.utils;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 字符串处理工具类</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> loquy</span><br><span class="hljs-comment"> */</span><br> <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StrUtils</span> &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 去掉下划线转驼峰  user_name  -&gt; userName</span><br><span class="hljs-comment">     */</span><br>     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">changeColumnStr</span><span class="hljs-params">(String str)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> str;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">underline</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;_&quot;</span>;<br>        <span class="hljs-keyword">if</span> (name.indexOf(underline) &gt; <span class="hljs-number">0</span> &amp;&amp; name.length() != name.indexOf(underline) + <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">lengthPlace</span> <span class="hljs-operator">=</span> name.indexOf(underline);<br>            name = name.replaceFirst(underline, <span class="hljs-string">&quot;&quot;</span>);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> name.substring(lengthPlace, lengthPlace + <span class="hljs-number">1</span>);<br>            s = s.toUpperCase();<br>            str = name.substring(<span class="hljs-number">0</span>, lengthPlace) + s + name.substring(lengthPlace + <span class="hljs-number">1</span>);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> str;<br>        &#125;<br>        <span class="hljs-keyword">return</span> changeColumnStr(str);<br>     &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 去掉下划线转驼峰  tb_user  -&gt; TbUser</span><br><span class="hljs-comment">     */</span><br>     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">changeTableStr</span><span class="hljs-params">(String str)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> changeColumnStr(str);<br>        <span class="hljs-keyword">return</span> s.substring(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>).toUpperCase() + s.substring(<span class="hljs-number">1</span>);<br>     &#125;<br>  &#125;<br><br></code></pre></td></tr></table></figure>
+</details>
+
+<h1 id="制作通用模板"><a href="#制作通用模板" class="headerlink" title="制作通用模板"></a>制作通用模板</h1><p>在 resources&#x2F;templates 目录下创建模版文件，模板内容可自定义成你所需要的。</p>
+<h2 id="1、entity-模版"><a href="#1、entity-模版" class="headerlink" title="1、entity 模版"></a>1、entity 模版</h2><ul>
+<li><p>该模板中使用了 Freemarker 模板语言的语法，通过传入的参数（例如表名、字段信息等）来生成对应的实体类代码。</p>
+</li>
+<li><p>例如，在模板中可以使用 <code>$&#123;package_name&#125;</code> 来表示包名，使用 <code>$&#123;table_name&#125;</code> 来表示实体类名称，使用 <code>$&#123;model_column&#125;</code> 来表示表中所有的字段信息。</p>
+</li>
+<li><p>通过这些变量，可以生成完整的实体类代码。例如，通过循环遍历 <code>$&#123;model_column&#125;</code> 中的每一个字段信息，可以生成对应的属性和 getter&#x2F;setter 方法。</p>
+</li>
+</ul>
+<details>
+  <summary>点击查看代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> $&#123;package_name&#125;.entity;<br><br><span class="hljs-keyword">import</span> javax.persistence.Entity;<br><span class="hljs-keyword">import</span> javax.persistence.Table;<br><span class="hljs-keyword">import</span> javax.persistence.Column;<br><span class="hljs-keyword">import</span> javax.persistence.Id;<br>&lt;#<span class="hljs-keyword">if</span> exitBigDecimal&gt;<br><span class="hljs-keyword">import</span> java.math.BigDecimal;<br>&lt;/#<span class="hljs-keyword">if</span>&gt;<br>&lt;#<span class="hljs-keyword">if</span> exitDate&gt;<br><span class="hljs-keyword">import</span> java.util.Date;<br><span class="hljs-keyword">import</span> com.fasterxml.jackson.annotation.JsonFormat;<br><span class="hljs-keyword">import</span> org.springframework.format.annotation.DateTimeFormat;<br>&lt;/#<span class="hljs-keyword">if</span>&gt;<br><span class="hljs-keyword">import</span> java.io.Serializable;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* &lt;#if table_annotation??&gt;$&#123;table_annotation&#125;&lt;/#if&gt;Entity</span><br><span class="hljs-comment">* <span class="hljs-doctag">@author</span> $&#123;author&#125;</span><br><span class="hljs-comment">* <span class="hljs-doctag">@date</span> $&#123;date&#125;</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Entity</span><br><span class="hljs-meta">@Table(name = &quot;$&#123;table&#125;&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">$</span>&#123;table_name&#125; <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;<br>&lt;#<span class="hljs-keyword">if</span> model_column?exists&gt;<br>    &lt;#list model_column as model&gt;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">    * $&#123;model.columnComment!&#125;</span><br><span class="hljs-comment">    */</span><br>    &lt;#<span class="hljs-keyword">if</span> (model.primaryKey! = model.columnName)&gt;<br>    <span class="hljs-meta">@Id</span><br>    <span class="hljs-meta">@Column(name = &quot;$&#123;model.columnName?uncap_first&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> $&#123;model.javaType&#125; $&#123;model.changeColumnName?uncap_first&#125;;<br><br>    &lt;#<span class="hljs-keyword">else</span>&gt;<br>    <span class="hljs-meta">@Column(name = &quot;$&#123;model.columnName?uncap_first&#125;&quot;)</span><br>    &lt;#<span class="hljs-keyword">if</span> model.javaType == <span class="hljs-string">&#x27;Date&#x27;</span>&gt;<br>    <span class="hljs-meta">@JsonFormat(pattern = &quot;$&#123;datePattern&#125;&quot;, timezone = &quot;GMT+8&quot;)</span><br>    <span class="hljs-meta">@DateTimeFormat(pattern = &quot;$&#123;datePattern&#125;&quot;)</span><br>    &lt;/#<span class="hljs-keyword">if</span>&gt;<br>    <span class="hljs-keyword">private</span> $&#123;model.javaType&#125; $&#123;model.changeColumnName?uncap_first&#125;;<br><br>    &lt;/#<span class="hljs-keyword">if</span>&gt;<br>    &lt;/#list&gt;<br>&lt;/#<span class="hljs-keyword">if</span>&gt;<br>&lt;#<span class="hljs-keyword">if</span> model_column?exists&gt;<br>    &lt;#list model_column as model&gt;<br>    <span class="hljs-keyword">public</span> $&#123;model.javaType&#125; get$&#123;model.changeColumnName?cap_first &#125;() &#123;<br>        <span class="hljs-keyword">return</span> $&#123;model.changeColumnName&#125;;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> set$&#123;model.changeColumnName?cap_first &#125;($&#123;model.javaType&#125; $&#123;model.changeColumnName?uncap_first &#125;) &#123;<br>        <span class="hljs-built_in">this</span>.$&#123;model.changeColumnName&#125; = $&#123;model.changeColumnName&#125;;<br>    &#125;<br><br>    &lt;/#list&gt;<br>&lt;/#<span class="hljs-keyword">if</span>&gt;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</details>
+
+<h2 id="2、dao-模板"><a href="#2、dao-模板" class="headerlink" title="2、dao 模板"></a>2、dao 模板</h2><ul>
+<li><p>该模板中使用了 Freemarker 模板语言的语法，通过传入的参数（例如包名、实体类名等）来生成对应的 Dao 类代码。</p>
+</li>
+<li><p>该 Dao 类继承自 <code>BaseDaoImpl</code>，并在构造函数中调用父类的构造函数传入实体类的类型，以便在操作数据库时获取到实体类的信息。</p>
+</li>
+<li><p>该 Dao 类还使用了 <code>@Repository</code> 注解，用于将该类标识为 Spring 的数据访问对象。</p>
+</li>
+</ul>
+<details>
+  <summary>点击查看代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> $&#123;package_name&#125;.dao;<br><br><span class="hljs-keyword">import</span> com.example.codegenerator.common.BaseDaoImpl;<br><span class="hljs-keyword">import</span> $&#123;package_name&#125;.entity.$&#123;table_name&#125;;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Repository;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* &lt;#if table_annotation??&gt;$&#123;table_annotation&#125;&lt;/#if&gt;Dao</span><br><span class="hljs-comment">* <span class="hljs-doctag">@author</span> $&#123;author&#125;</span><br><span class="hljs-comment">* <span class="hljs-doctag">@date</span> $&#123;date&#125;</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Repository</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">$</span>&#123;table_name&#125;Dao <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BaseDaoImpl</span>&lt;$&#123;table_name&#125;&gt; &#123;<br>    <span class="hljs-keyword">public</span> $&#123;table_name&#125;Dao() &#123;<br>        <span class="hljs-built_in">super</span>($&#123;table_name&#125;.class);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</details>
+
+<h2 id="3、param-模板"><a href="#3、param-模板" class="headerlink" title="3、param 模板"></a>3、param 模板</h2><ul>
+<li><p>该模板中使用了 Freemarker 模板语言的语法，通过传入的参数（例如包名、表名等）来生成对应的查询参数类代码。</p>
+</li>
+<li><p>该查询参数类实现了 <code>Serializable</code> 接口，表示该类的对象可以被序列化。</p>
+</li>
+<li><p>该查询参数类中定义了与数据库表中列名相同的属性，并提供了对应的 getter 和 setter 方法。</p>
+</li>
+<li><p>该类还使用了 <code>@JsonFormat</code> 和 <code>@DateTimeFormat</code> 注解来格式化日期类型的属性。</p>
+</li>
+</ul>
+<details>
+  <summary>点击查看代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> $&#123;package_name&#125;.param;<br><br><span class="hljs-keyword">import</span> java.io.Serializable;<br>&lt;#<span class="hljs-keyword">if</span> exitBigDecimal&gt;<br>    <span class="hljs-keyword">import</span> java.math.BigDecimal;<br>&lt;/#<span class="hljs-keyword">if</span>&gt;<br>&lt;#<span class="hljs-keyword">if</span> exitDate&gt;<br><span class="hljs-keyword">import</span> java.util.Date;<br><span class="hljs-keyword">import</span> com.fasterxml.jackson.annotation.JsonFormat;<br><span class="hljs-keyword">import</span> org.springframework.format.annotation.DateTimeFormat;<br>&lt;/#<span class="hljs-keyword">if</span>&gt;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* &lt;#if table_annotation??&gt;$&#123;table_annotation&#125;&lt;/#if&gt;Param</span><br><span class="hljs-comment">* <span class="hljs-doctag">@author</span> $&#123;author&#125;</span><br><span class="hljs-comment">* <span class="hljs-doctag">@date</span> $&#123;date&#125;</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">$</span>&#123;table_name&#125;Param <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;<br>&lt;#<span class="hljs-keyword">if</span> model_column?exists&gt;<br>    &lt;#list model_column as model&gt;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">    * $&#123;model.columnComment!&#125;</span><br><span class="hljs-comment">    */</span><br>    &lt;#<span class="hljs-keyword">if</span> model.javaType == <span class="hljs-string">&#x27;Date&#x27;</span>&gt;<br>    <span class="hljs-meta">@JsonFormat(pattern = &quot;$&#123;datePattern&#125;&quot;, timezone = &quot;GMT+8&quot;)</span><br>    <span class="hljs-meta">@DateTimeFormat(pattern = &quot;$&#123;datePattern&#125;&quot;)</span><br>    &lt;/#<span class="hljs-keyword">if</span>&gt;<br>    <span class="hljs-keyword">private</span> $&#123;model.javaType&#125; $&#123;model.changeColumnName?uncap_first&#125;;<br><br>    &lt;/#list&gt;<br>&lt;/#<span class="hljs-keyword">if</span>&gt;<br>&lt;#<span class="hljs-keyword">if</span> model_column?exists&gt;<br>    &lt;#list model_column as model&gt;<br>    <span class="hljs-keyword">public</span> $&#123;model.javaType&#125; get$&#123;model.changeColumnName?cap_first &#125;() &#123;<br>        <span class="hljs-keyword">return</span> $&#123;model.changeColumnName&#125;;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> set$&#123;model.changeColumnName?cap_first &#125;($&#123;model.javaType&#125; $&#123;model.changeColumnName?uncap_first &#125;) &#123;<br>        <span class="hljs-built_in">this</span>.$&#123;model.changeColumnName&#125; = $&#123;model.changeColumnName&#125;;<br>    &#125;<br><br>    &lt;/#list&gt;<br>&lt;/#<span class="hljs-keyword">if</span>&gt;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</details>
+
+<h2 id="4、service-模版"><a href="#4、service-模版" class="headerlink" title="4、service 模版"></a>4、service 模版</h2><ul>
+<li><p>这段代码定义了一个接口，用于创建一个服务类，该服务类可以可以用来对名为 <code>$&#123;table_name&#125;</code> 的实体执行 CRUD（创建、读取、更新、删除）操作。</p>
+</li>
+<li><p>该服务暴露了几个方法，例如 <code>list</code>、<code>getById</code>、<code>save</code>、<code>updateById</code> 和 <code>removeById</code>，</p>
+</li>
+<li><p>它们分别允许用户获取实体列表、根据 ID 获取单个实体、创建新实体、更新现有实体和删除实体。</p>
+</li>
+<li><p>服务方法都会返回一个 <code>ResultModel</code> 对象，其中包含操作结果。</p>
+</li>
+<li><p><code>ResultModel</code> 类是一个自定义类，它提供了一种统一的方式来表示应用程序中操作的结果。</p>
+</li>
+</ul>
+<details>
+  <summary>点击查看代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> $&#123;package_name&#125;.service;<br><br><span class="hljs-keyword">import</span> com.example.codegenerator.common.Page;<br><span class="hljs-keyword">import</span> com.example.codegenerator.common.ResultModel;<br><span class="hljs-keyword">import</span> $&#123;package_name&#125;.entity.$&#123;table_name&#125;;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* &lt;#if table_annotation??&gt;$&#123;table_annotation&#125;&lt;/#if&gt;Service</span><br><span class="hljs-comment">* <span class="hljs-doctag">@author</span> $&#123;author&#125;</span><br><span class="hljs-comment">* <span class="hljs-doctag">@date</span> $&#123;date&#125;</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">$</span>&#123;table_name&#125;Service &#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">    * 查询所有</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@param</span> page the page</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@return</span> the list</span><br><span class="hljs-comment">    */</span><br>    ResultModel&lt;Page&lt;$&#123;table_name&#125;&gt;&gt; list(Page&lt;$&#123;table_name&#125;&gt; page);<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">    * 查询一个</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@param</span> id the id</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@return</span> the by id</span><br><span class="hljs-comment">    */</span><br>    ResultModel&lt;$&#123;table_name&#125;&gt; getById(Object id);<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">    * 新增</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@param</span> $&#123;table_name_small&#125; the $&#123;table_name_small&#125;</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@return</span> the boolean</span><br><span class="hljs-comment">    */</span><br>    ResultModel&lt;Object&gt; <span class="hljs-title function_">save</span><span class="hljs-params">($&#123;table_name&#125; $&#123;table_name_small&#125;)</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">    * 修改</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@param</span> $&#123;table_name_small&#125; the $&#123;table_name_small&#125;</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@return</span> the boolean</span><br><span class="hljs-comment">    */</span><br>    ResultModel&lt;Object&gt; <span class="hljs-title function_">updateById</span><span class="hljs-params">($&#123;table_name&#125; $&#123;table_name_small&#125;)</span>;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">    * 删除</span><br><span class="hljs-comment">    *</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@param</span> id the id</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@return</span> the boolean</span><br><span class="hljs-comment">    */</span><br>    ResultModel&lt;Object&gt; <span class="hljs-title function_">removeById</span><span class="hljs-params">(Object id)</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</details>
+
+<h2 id="5、service-实现类模版"><a href="#5、service-实现类模版" class="headerlink" title="5、service 实现类模版"></a>5、service 实现类模版</h2><ul>
+<li><p>这段代码定义了一个前面定义的 <code>$&#123;table_name&#125;Service</code> 接口的具体实现。</p>
+</li>
+<li><p>该类使用了 <code>@Service</code> 和 <code>@Transactional</code> 注解，表示它是一个 Spring 服务 Bean ，并且它使用了 Spring 框架的事务支持。</p>
+</li>
+<li><p>这意味着这个类中使用了 <code>@Transactional</code> 注解的任何方法都将在数据库事务中执行。</p>
+</li>
+<li><p>该类的构造函数接收一个 <code>$&#123;table_name&#125;Dao</code> 实例，这个实例可能是一个数据访问对象（DAO）类，用于对 <code>$&#123;table_name&#125;</code> 实体执行数据库操作。</p>
+</li>
+<li><p>该类实现了 <code>$&#123;table_name&#125;Service</code> 接口定义的方法，为每个方法提供了具体的实现。</p>
+</li>
+<li><p>例如，<code>list</code> 方法使用 DAO 执行一个 SQL 查询，从数据库中使用提供的 <code>Page</code> 对象分页来检索 <code>$&#123;table_name&#125;</code> 实体的列表。</p>
+</li>
+<li><p>然后该方法返回一个包含实体列表的 <code>ResultModel</code> 对象。</p>
+</li>
+<li><p>类中的其他方法也都使用了 DAO 来在数据库中对 <code>$&#123;table_name&#125;</code> 实体执行 CRUD 操作，并返回一个包含操作结果的 <code>ResultModel</code> 对象。</p>
+</li>
+</ul>
+<details>
+  <summary>点击查看代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> $&#123;package_name&#125;.service.impl;<br><br><span class="hljs-keyword">import</span> com.example.codegenerator.common.Page;<br><span class="hljs-keyword">import</span> com.example.codegenerator.common.ResultModel;<br><span class="hljs-keyword">import</span> $&#123;package_name&#125;.entity.$&#123;table_name&#125;;<br><span class="hljs-keyword">import</span> $&#123;package_name&#125;.service.$&#123;table_name&#125;Service;<br><span class="hljs-keyword">import</span> $&#123;package_name&#125;.dao.$&#123;table_name&#125;Dao;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Service;<br><span class="hljs-keyword">import</span> org.springframework.transaction.annotation.Transactional;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">* &lt;#if table_annotation??&gt;$&#123;table_annotation&#125;&lt;/#if&gt;ServiceImpl</span><br><span class="hljs-comment">* <span class="hljs-doctag">@author</span> $&#123;author&#125;</span><br><span class="hljs-comment">* <span class="hljs-doctag">@date</span> $&#123;date&#125;</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">@Service</span><br><span class="hljs-meta">@Transactional(rollbackFor = Exception.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">$</span>&#123;table_name&#125;ServiceImpl <span class="hljs-keyword">implements</span> <span class="hljs-title class_">$</span>&#123;table_name&#125;Service&#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> $&#123;table_name&#125;Dao $&#123;table_name_small&#125;Dao;<br><br>    <span class="hljs-keyword">public</span> $&#123;table_name&#125;ServiceImpl($&#123;table_name&#125;Dao $&#123;table_name_small&#125;Dao) &#123;<br>        <span class="hljs-built_in">this</span>.$&#123;table_name_small&#125;Dao = $&#123;table_name_small&#125;Dao;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> ResultModel&lt;Page&lt;$&#123;table_name&#125;&gt;&gt; list(Page&lt;$&#123;table_name&#125;&gt; page) &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;select * from $&#123;table_name_small&#125;&quot;</span>;<br>        <span class="hljs-keyword">return</span> ResultModel.success($&#123;table_name_small&#125;Dao.getNativeQueryListByPage(sql, page));<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> ResultModel&lt;$&#123;table_name&#125;&gt; getById(Object id) &#123;<br>        <span class="hljs-keyword">return</span> ResultModel.success($&#123;table_name_small&#125;Dao.findOne(id));<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> ResultModel&lt;Object&gt; <span class="hljs-title function_">save</span><span class="hljs-params">($&#123;table_name&#125; $&#123;table_name_small&#125;)</span> &#123;<br>        $&#123;table_name&#125; $&#123;table_name_small&#125;Old = $&#123;table_name_small&#125;Dao.findOne($&#123;table_name_small&#125;.getId());<br>        <span class="hljs-keyword">if</span> ($&#123;table_name_small&#125;Old == <span class="hljs-literal">null</span>) &#123;<br>            $&#123;table_name_small&#125;Dao.insert($&#123;table_name_small&#125;);<br>            <span class="hljs-keyword">return</span> ResultModel.success(<span class="hljs-string">&quot;保存成功！&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">return</span> ResultModel.fail(<span class="hljs-string">&quot;已存在数据，保存失败！&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> ResultModel&lt;Object&gt; <span class="hljs-title function_">updateById</span><span class="hljs-params">($&#123;table_name&#125; $&#123;table_name_small&#125;)</span> &#123;<br>        $&#123;table_name&#125; $&#123;table_name_small&#125;Old = $&#123;table_name_small&#125;Dao.findOne($&#123;table_name_small&#125;.getId());<br>        <span class="hljs-keyword">if</span> ($&#123;table_name_small&#125;Old != <span class="hljs-literal">null</span>) &#123;<br>            $&#123;table_name_small&#125;Dao.update($&#123;table_name_small&#125;);<br>            <span class="hljs-keyword">return</span> ResultModel.success();<br>        &#125;<br>        <span class="hljs-keyword">return</span> ResultModel.fail(<span class="hljs-string">&quot;更新失败！&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> ResultModel&lt;Object&gt; <span class="hljs-title function_">removeById</span><span class="hljs-params">(Object id)</span> &#123;<br>        $&#123;table_name&#125; $&#123;table_name_small&#125; = $&#123;table_name_small&#125;Dao.findOne(id);<br>        <span class="hljs-keyword">if</span> ($&#123;table_name_small&#125; != <span class="hljs-literal">null</span>) &#123;<br>            $&#123;table_name_small&#125;Dao.delete($&#123;table_name_small&#125;);<br>            <span class="hljs-keyword">return</span> ResultModel.success();<br>        &#125;<br>        <span class="hljs-keyword">return</span> ResultModel.fail(<span class="hljs-string">&quot;删除失败！&quot;</span>);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</details>
+
+<h2 id="6、controller-模版"><a href="#6、controller-模版" class="headerlink" title="6、controller 模版"></a>6、controller 模版</h2><ul>
+<li><p>这段代码是一个 Java 控制器，它提供了一系列用于管理 <code>$&#123;table_name&#125;</code> 实体的 RESTful API 接口。</p>
+</li>
+<li><p>具体来说，它提供了以下接口：</p>
+<ul>
+<li><p><code>/list</code>：用于获取 <code>$&#123;table_name&#125;</code> 实体的分页列表。</p>
+</li>
+<li><p><code>/read/&#123;id&#125;</code>：用于获取一个 <code>$&#123;table_name&#125;</code> 实体的详细信息。</p>
+</li>
+<li><p><code>/create</code>：用于新建 <code>$&#123;table_name&#125;</code> 实体。</p>
+</li>
+<li><p><code>/update</code>：用于更新 <code>$&#123;table_name&#125;</code> 实体。</p>
+</li>
+<li><p><code>/delete/&#123;id&#125;</code>：用于删除 <code>$&#123;table_name&#125;</code> 实体。</p>
+</li>
+</ul>
+</li>
+<li><p>该控制器使用 <code>@RestController</code> 注解声明了它是一个 RESTful 控制器，并通过 <code>@RequestMapping(&quot;/$&#123;table_name_small&#125;&quot;)</code> 注解指定了它的基础路径为 <code>/$&#123;table_name_small&#125;</code>。</p>
+</li>
+<li><p>除了接口的基础路径之外，每个接口还有一个方法级别的路径。例如，新增接口的完整路径为 <code>/$&#123;table_name_small&#125;/create</code>。</p>
+</li>
+<li><p>每个接口都有一个对应的方法，该方法实现了接口的具体逻辑。每个方法都通过 <code>@GetMapping</code>、<code>@PostMapping</code> 或 <code>@DeleteMapping</code> 注解来指定它的 HTTP 方法和路径。</p>
+</li>
+<li><p>该控制器还使用了 <code>@Validated</code> 和 <code>@PathVariable</code> 注解，分别用于对参数进行验证和从路径中获取参数值。</p>
+</li>
+</ul>
+<details>
+  <summary>点击查看代码</summary>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> $&#123;package_name&#125;.controller;<br><br><span class="hljs-keyword">import</span> com.example.codegenerator.common.Page;<br><span class="hljs-keyword">import</span> com.example.codegenerator.common.ResultModel;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.*;<br><span class="hljs-keyword">import</span> org.springframework.beans.BeanUtils;<br><span class="hljs-keyword">import</span> org.springframework.validation.annotation.Validated;<br><span class="hljs-keyword">import</span> $&#123;package_name&#125;.entity.$&#123;table_name&#125;;<br><span class="hljs-keyword">import</span> $&#123;package_name&#125;.param.$&#123;table_name&#125;Param;<br><span class="hljs-keyword">import</span> $&#123;package_name&#125;.service.$&#123;table_name&#125;Service;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * &lt;#if table_annotation??&gt;$&#123;table_annotation&#125;&lt;/#if&gt;Controller</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> $&#123;author&#125;</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> $&#123;date&#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/$&#123;table_name_small&#125;&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">$</span>&#123;table_name&#125;Controller &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> $&#123;table_name&#125;Service $&#123;table_name_small&#125;Service;<br><br>    <span class="hljs-keyword">public</span> $&#123;table_name&#125;Controller($&#123;table_name&#125;Service $&#123;table_name_small&#125;Service) &#123;<br>        <span class="hljs-built_in">this</span>.$&#123;table_name_small&#125;Service = $&#123;table_name_small&#125;Service;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 查询所有</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@GetMapping(&quot;/list&quot;)</span><br>    <span class="hljs-keyword">public</span> ResultModel&lt;Page&lt;$&#123;table_name&#125;&gt;&gt; list(<span class="hljs-meta">@RequestParam(value = &quot;currentPage&quot;)</span> Integer currentPage,<br>            <span class="hljs-meta">@RequestParam(value = &quot;pageSize&quot;)</span> Integer pageSize) &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            Page&lt;$&#123;table_name&#125;&gt; page = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Page</span>&lt;&gt;(currentPage, pageSize);<br>            <span class="hljs-keyword">return</span> $&#123;table_name_small&#125;Service.list(page);<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>            <span class="hljs-keyword">return</span> ResultModel.fail(e.getMessage());<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 查询一个</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@GetMapping(&quot;read/&#123;id&#125;&quot;)</span><br>    <span class="hljs-keyword">public</span> ResultModel&lt;$&#123;table_name&#125;&gt; get(<span class="hljs-meta">@PathVariable</span> $&#123;primaryKeyType&#125; id) &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">return</span> $&#123;table_name_small&#125;Service.getById(id);<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>            <span class="hljs-keyword">return</span> ResultModel.fail(e.getMessage());<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 新增</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@PostMapping(&quot;/create&quot;)</span><br>    <span class="hljs-keyword">public</span> ResultModel&lt;Object&gt; <span class="hljs-title function_">save</span><span class="hljs-params">(<span class="hljs-meta">@Validated</span> <span class="hljs-meta">@RequestBody</span> $&#123;table_name&#125;Param $&#123;table_name_small&#125;Param)</span> &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            $&#123;table_name&#125; $&#123;table_name_small&#125; = <span class="hljs-keyword">new</span> <span class="hljs-title class_">$</span>&#123;table_name&#125;();<br>            BeanUtils.copyProperties($&#123;table_name_small&#125;Param, $&#123;table_name_small&#125;);<br>            <span class="hljs-keyword">return</span> $&#123;table_name_small&#125;Service.save($&#123;table_name_small&#125;);<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>            <span class="hljs-keyword">return</span> ResultModel.fail(e.getMessage());<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 修改</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@PostMapping(&quot;/update&quot;)</span><br>    <span class="hljs-keyword">public</span> ResultModel&lt;Object&gt; <span class="hljs-title function_">update</span><span class="hljs-params">(<span class="hljs-meta">@Validated</span> <span class="hljs-meta">@RequestBody</span> $&#123;table_name&#125;Param $&#123;table_name_small&#125;Param)</span> &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            $&#123;table_name&#125; $&#123;table_name_small&#125; = <span class="hljs-keyword">new</span> <span class="hljs-title class_">$</span>&#123;table_name&#125;();<br>            BeanUtils.copyProperties($&#123;table_name_small&#125;Param, $&#123;table_name_small&#125;);<br>            <span class="hljs-keyword">return</span> $&#123;table_name_small&#125;Service.updateById($&#123;table_name_small&#125;);<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>            <span class="hljs-keyword">return</span> ResultModel.fail(e.getMessage());<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 删除</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@PostMapping(&quot;/delete/&#123;id&#125;&quot;)</span><br>    <span class="hljs-keyword">public</span> ResultModel&lt;Object&gt; <span class="hljs-title function_">delete</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> $&#123;primaryKeyType&#125; id)</span> &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">return</span> $&#123;table_name_small&#125;Service.removeById(id);<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>            <span class="hljs-keyword">return</span> ResultModel.fail(e.getMessage());<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</details>
+
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><ul>
+<li>执行代码生成器工具类 <code>CodeGenerateUtils</code> 输出如下。</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs text">============正在生成 user 表相关文件============<br>生成 entity 类<br>D:\study\spring-boot-demo\spring-boot-code-generator\src\main\java\com\example\codegenerator\modules\test\\entity\User.java<br>生成 dao 类<br>D:\study\spring-boot-demo\spring-boot-code-generator\src\main\java\com\example\codegenerator\modules\test\\dao\UserDao.java<br>生成 param 类<br>D:\study\spring-boot-demo\spring-boot-code-generator\src\main\java\com\example\codegenerator\modules\test\\param\UserParam.java<br>生成 service 接口<br>D:\study\spring-boot-demo\spring-boot-code-generator\src\main\java\com\example\codegenerator\modules\test\\service\UserService.java<br>生成 service 实现类<br>D:\study\spring-boot-demo\spring-boot-code-generator\src\main\java\com\example\codegenerator\modules\test\\service\impl\UserServiceImpl.java<br>生成 controller 类<br>D:\study\spring-boot-demo\spring-boot-code-generator\src\main\java\com\example\codegenerator\modules\test\\controller\UserController.java<br>============ 全部生成完成！ =============<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>文件创建成功，相关模块文件如下。</li>
+</ul>
+<p><img src="/images/codeGenFiles.jpg" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>启动项目测试刚生成的模块接口是否正常，调用增删改查接口如下。</li>
+</ul>
+<p><img src="/images/codeGenList.jpg" srcset="/img/loading.gif" lazyload><br><img src="/images/codeGenRead.jpg" srcset="/img/loading.gif" lazyload><br><img src="/images/codeGenCreate.jpg" srcset="/img/loading.gif" lazyload><br><img src="/images/codeGenDelete.jpg" srcset="/img/loading.gif" lazyload></p>
+<h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><p><a target="_blank" rel="noopener" href="https://github.com/loquy/spring-boot-demo">参见此仓库</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://yun.itheima.com/jishu/419.html?bilibi">自定义代码生成器</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000011768799">FreeMarker 快速入门</a>
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://blog.csdn.net/niugang0920/article/details/119530050">使用 JDBC 提取数据库元数据</a>
+<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B/" class="category-chain-item">编程</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B/Java/" class="category-chain-item">Java</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/">#Java</a>
+      
+        <a href="/tags/SpringBoot/">#SpringBoot</a>
+      
+        <a href="/tags/FreeMarker/">#FreeMarker</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Java 代码生成器</div>
+      <div>http://www.loquy.cn/posts/b97e84d6.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>loquy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月7日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2022年12月12日</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/def20d69.html" title="在线运行 Java 代码的原理及实现">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">在线运行 Java 代码的原理及实现</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/8ce0f8c6.html" title="Java 日期和时间">
+                        <span class="hidden-mobile">Java 日期和时间</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","appKey":"Hoi4ulpVAyY7bRNFpECENYQ4","path":"window.location.pathname","placeholder":"欢迎评论~","avatar":"identicon","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appkey":"Hoi4ulpVAyY7bRNFpECENYQ4"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script> var now = new Date();
+function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(now.getTime() + 250); days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum); mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; } seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; } document.getElementById("timeDate").innerHTML = "本站运行 " + dnum + " 天"; document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; } setInterval("createtime()", 250); </script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2a5c0150424f0cc3fa8b492f889fcfe3";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-167862106-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

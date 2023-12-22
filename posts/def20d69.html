@@ -1,0 +1,1139 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://www.loquy.cn/images/apple-touch-icon.png">
+  <link rel="icon" href="https://www.loquy.cn/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="loquy">
+  <meta name="keywords" content="loquy">
+  
+    <meta name="description" content="简介在线运行 Java 代码是指用户在浏览器中输入 Java 代码，通过在线编译和加载，最终在服务器上运行代码并返回结果。这种技术被广泛应用于在线编程学习、在线面试和在线评测等场景。 原理动态编译Java 的动态编译是指在运行时将 Java 代码编译成字节码的过程。Java 提供了一个标准的 API：JavaCompiler 和 ToolProvider，可以用来进行动态编译。在动态编译时，需要将">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在线运行 Java 代码的原理及实现">
+<meta property="og:url" content="http://www.loquy.cn/posts/def20d69.html">
+<meta property="og:site_name" content="loquy">
+<meta property="og:description" content="简介在线运行 Java 代码是指用户在浏览器中输入 Java 代码，通过在线编译和加载，最终在服务器上运行代码并返回结果。这种技术被广泛应用于在线编程学习、在线面试和在线评测等场景。 原理动态编译Java 的动态编译是指在运行时将 Java 代码编译成字节码的过程。Java 提供了一个标准的 API：JavaCompiler 和 ToolProvider，可以用来进行动态编译。在动态编译时，需要将">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.loquy.cn/images/JavaCompilerCover.png">
+<meta property="article:published_time" content="2023-02-20T09:06:00.000Z">
+<meta property="article:modified_time" content="2023-02-21T02:03:00.000Z">
+<meta property="article:author" content="loquy">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="SpringBoot">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://www.loquy.cn/images/JavaCompilerCover.png">
+  
+  
+  
+  <title>在线运行 Java 代码的原理及实现 - loquy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/icon.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.loquy.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2a5c0150424f0cc3fa8b492f889fcfe3","google":"UA-167862106-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","app_key":"Hoi4ulpVAyY7bRNFpECENYQ4","server_url":"https://aouu3kji.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"tajs":null},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss.xml" title="loquy" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>loquy&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/linux-command">
+                <i class="iconfont icon-linux"></i>
+                Linux 命令搜索
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://foreverblog.cn/go.html">
+                <i class="iconfont icon-feichuan"></i>
+                虫洞
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                <i class="iconfont icon-feiji"></i>
+                开往
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://www.loquy.cn/images/unsplash-sol.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="在线运行 Java 代码的原理及实现"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-20 17:06" pubdate>
+          2023年2月20日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          16k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          133 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Java"
+        id="heading-d52387880e1ea22817a72d3759213819" role="tab" data-toggle="collapse" href="#collapse-d52387880e1ea22817a72d3759213819"
+        aria-expanded="true"
+      >
+        Java
+        <span class="list-group-count">(16)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-d52387880e1ea22817a72d3759213819"
+           role="tabpanel" aria-labelledby="heading-d52387880e1ea22817a72d3759213819">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/posts/cda4c274.html" title="Java IO 流"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Java IO 流</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/b97e84d6.html" title="Java 代码生成器"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Java 代码生成器</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/3b0faab3.html" title="Java 常用业务代码总结"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Java 常用业务代码总结</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/8ce0f8c6.html" title="Java 日期和时间"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Java 日期和时间</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/f96fd70c.html" title="Java 自定义注解"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Java 自定义注解</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/b10633f0.html" title="Java 调用 Web Service"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Java 调用 Web Service</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/fb332309.html" title="SpringBoot 中使用 Hibernate"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SpringBoot 中使用 Hibernate</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/f2cc0d20.html" title="SpringBoot 中使用 Hutool 跨数据库增删改查"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SpringBoot 中使用 Hutool 跨数据库增删改查</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/e153eef8.html" title="SpringBoot 中使用 MongoDb 上传文件"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SpringBoot 中使用 MongoDb 上传文件</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/d45b7e43.html" title="SpringBoot 中使用 Mybatis"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SpringBoot 中使用 Mybatis</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/54e4e761.html" title="SpringBoot 中使用 Redis"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SpringBoot 中使用 Redis</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/36df66f4.html" title="Windows 下定时重启 Tomcat"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Windows 下定时重启 Tomcat</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/2df684da.html" title="前后端耦合下实现多文件上传和下拉树选择"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">前后端耦合下实现多文件上传和下拉树选择</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/9c06e8ab.html" title="前后端耦合下实现多级联动选择下拉框"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">前后端耦合下实现多级联动选择下拉框</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/3c28698d.html" title="在 Java 中使用 Hutool 进行数据加密和解密"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在 Java 中使用 Hutool 进行数据加密和解密</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/def20d69.html" title="在线运行 Java 代码的原理及实现"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">在线运行 Java 代码的原理及实现</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">在线运行 Java 代码的原理及实现</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年2月21日 上午
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在线运行 Java 代码是指用户在浏览器中输入 Java 代码，通过在线编译和加载，最终在服务器上运行代码并返回结果。这种技术被广泛应用于在线编程学习、在线面试和在线评测等场景。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="动态编译"><a href="#动态编译" class="headerlink" title="动态编译"></a>动态编译</h3><p>Java 的动态编译是指在运行时将 Java 代码编译成字节码的过程。Java 提供了一个标准的 API：<code>JavaCompiler</code> 和 <code>ToolProvider</code>，可以用来进行动态编译。在动态编译时，需要将 Java 代码转换为 <code>JavaFileObject</code> 对象，然后通过 <code>JavaCompiler.getTask()</code> 方法来编译 <code>JavaFileObject</code> 对象。在编译过程中，可以使用 <code>DiagnosticCollector</code> 类来收集编译过程中的错误和警告信息。</p>
+<h3 id="动态加载"><a href="#动态加载" class="headerlink" title="动态加载"></a>动态加载</h3><p>Java 的动态加载是指在运行时将编译好的字节码加载到内存中，并生成对应的 class 对象的过程。Java 提供了一个标准的 API：<code>ClassLoader</code>，可以用来进行动态加载。通过自定义 <code>ClassLoader</code> 类来加载字节码，然后调用 <code>ClassLoader.loadClass()</code> 方法即可加载类。</p>
+<h3 id="线程的限制"><a href="#线程的限制" class="headerlink" title="线程的限制"></a>线程的限制</h3><p>在线运行 Java 代码需要考虑线程的限制和安全性控制。为了避免在线运行的代码对服务器产生过多的负载，可以使用线程池来限制并发访问以及设置超时时间停止线程。</p>
+<h3 id="安全性控制"><a href="#安全性控制" class="headerlink" title="安全性控制"></a>安全性控制</h3><p>为了保证在线运行的代码安全性，需要限制在线运行的代码只能访问一些受控的资源，并且禁止访问其他资源。Java 提供了一个安全管理器（<code>SecurityManager</code>）来控制代码的安全性，可以在代码运行前启用安全管理器，限制代码的访问权限。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h3><p><code>ScriptCompiler</code> 类实现了一个动态编译和执行 Java 代码，主要功能包括：</p>
+<ul>
+<li>编译 Java 代码字符串为 Java Class，并加载该 Class。</li>
+<li>执行该 Class 中的 Main 方法，并将输出结果返回。</li>
+</ul>
+<p>包括以下几个主要步骤：</p>
+<ul>
+<li>使用 Java Compiler API 编译 Java 代码字符串为 Java Class。<ul>
+<li>利用 Java Compiler API 获取系统默认的 <code>JavaCompiler</code>，然后创建一个 <code>DiagnosticCollector</code> 用于收集编译过程中的诊断信息。</li>
+<li>使用 <code>StandardJavaFileManager</code> 创建一个 <code>JavaFileObject</code> 对象，表示一个源代码文件，将 Java 代码字符串作为文件内容。</li>
+<li>设置编译选项，这里设置了编译输出目录和编译源文件列表。</li>
+<li>调用 <code>CompilationTask</code> 的 <code>call()</code> 方法编译 Java 代码，如果编译失败，则将诊断信息拼接成字符串并抛出异常。</li>
+</ul>
+</li>
+<li>使用自定义的 <code>ClassLoader</code> 加载编译好的 Java Class。<ul>
+<li><code>ScriptLoader</code> 首先将类名转换成类文件名，然后从指定的路径中加载对应的类文件，返回该类的 class 对象。</li>
+</ul>
+</li>
+<li>执行编译好的 Java Class 的 Main 方法，并将输出结果返回。<ul>
+<li>创建一个 <code>ByteArrayOutputStream</code> 对象用于缓存执行结果。</li>
+<li>使用 <code>System.setOut()</code> 方法将 <code>System.out</code> 的输出重定向到缓存输出流中。</li>
+<li>通过反射获取 Main 方法并执行，将传入的参数作为 Main 方法的参数，执行过程中会输出内容到缓存输出流中。</li>
+<li>将缓存输出流中的内容转换成字符串并返回，同时将 <code>System.out</code> 重定向回原来的输出流。</li>
+</ul>
+</li>
+<li>对执行 Main 方法进行安全控制，防止代码执行恶意操作。<ul>
+<li>在执行 Main 方法之前和之后，调用 <code>ScriptSecurityManager</code> 的相关方法进行安全控制，限制了代码执行的权限和行为，防止代码执行恶意操作。</li>
+</ul>
+</li>
+</ul>
+<details>
+  <summary>点击查看代码</summary>
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> script;<br><br><span class="hljs-keyword">import</span> javax.tools.*;<br><span class="hljs-keyword">import</span> java.io.ByteArrayOutputStream;<br><span class="hljs-keyword">import</span> java.io.PrintStream;<br><span class="hljs-keyword">import</span> java.lang.reflect.InvocationTargetException;<br><span class="hljs-keyword">import</span> java.lang.reflect.Method;<br><span class="hljs-keyword">import</span> java.net.URI;<br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.Arrays;<br><span class="hljs-keyword">import</span> java.util.Collections;<br><span class="hljs-keyword">import</span> java.util.List;<br><span class="hljs-keyword">import</span> java.util.concurrent.*;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> loquy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ScriptCompiler</span> &#123;<br><br>    <span class="hljs-keyword">public</span> Class&lt;?&gt; compile(String javaSource) <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">JavaCompiler</span> <span class="hljs-variable">javaCompiler</span> <span class="hljs-operator">=</span> ToolProvider.getSystemJavaCompiler();<br>        DiagnosticCollector&lt;JavaFileObject&gt; diagnosticsCollector = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DiagnosticCollector</span>&lt;&gt;();<br>        <span class="hljs-type">StandardJavaFileManager</span> <span class="hljs-variable">standardFileManager</span> <span class="hljs-operator">=</span> javaCompiler.getStandardFileManager(<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>);<br>        <span class="hljs-type">JavaFileObject</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringObject</span>(ScriptConstant.CLASS_NAME, javaSource);<br>        Iterable&lt;String&gt; options = Arrays.asList(<span class="hljs-string">&quot;-d&quot;</span>, ScriptConstant.CLASS_PATH);<br>        Iterable&lt;? <span class="hljs-keyword">extends</span> <span class="hljs-title class_">JavaFileObject</span>&gt; files = Collections.singletonList(file);<br><br>        JavaCompiler.<span class="hljs-type">CompilationTask</span> <span class="hljs-variable">task</span> <span class="hljs-operator">=</span> javaCompiler.getTask(<span class="hljs-literal">null</span>, standardFileManager, diagnosticsCollector, options, <span class="hljs-literal">null</span>, files);<br>        <span class="hljs-type">Boolean</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> task.call();<br>        <span class="hljs-keyword">if</span> (!result) &#123;<br>            <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">diagnosticString</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>            List&lt;Diagnostic&lt;? <span class="hljs-keyword">extends</span> <span class="hljs-title class_">JavaFileObject</span>&gt;&gt; diagnostics = diagnosticsCollector.getDiagnostics();<br>            <span class="hljs-keyword">for</span> (Diagnostic&lt;? <span class="hljs-keyword">extends</span> <span class="hljs-title class_">JavaFileObject</span>&gt; diagnostic : diagnostics) &#123;<br>                diagnosticString.append(diagnostic);<br>            &#125;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Exception</span>(<span class="hljs-string">&quot;编译失败，请检查语法是否正确，具体错误：&quot;</span> + diagnosticString);<br>        &#125;<br>        <span class="hljs-keyword">return</span> loadClass(<span class="hljs-string">&quot;Main&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 加载CLASS</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> className 类名</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> class文件</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> Class&lt;?&gt; loadClass(String className) <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-comment">//用自定义classLoader加载这个class</span><br>        <span class="hljs-type">ScriptLoader</span> <span class="hljs-variable">scriptLoader</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ScriptLoader</span>(getClass().getClassLoader());<br>        <span class="hljs-keyword">return</span> scriptLoader.loadClass(className);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">executeMainMethod</span><span class="hljs-params">(Class&lt;?&gt; clazz, Long timeLimit, String[] args)</span> <span class="hljs-keyword">throws</span> ScriptException &#123;<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">ExecutorService</span> <span class="hljs-variable">executorService</span> <span class="hljs-operator">=</span> Executors.newFixedThreadPool(<span class="hljs-number">10</span>);<br>        List&lt;FutureTask&lt;String&gt;&gt; futureTaskList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        Callable&lt;String&gt; mainMethodExecuteCallable = () -&gt; executeMainMethodWithClass(clazz, args);<br>        FutureTask&lt;String&gt; futureTask = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FutureTask</span>&lt;&gt;(mainMethodExecuteCallable);<br>        futureTaskList.add(futureTask);<br>        executorService.submit(futureTask);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>        FutureTask&lt;String&gt; taskItem = futureTaskList.get(<span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">try</span> &#123;<br>            result = taskItem.get(timeLimit, TimeUnit.MILLISECONDS);<br>        &#125; <span class="hljs-keyword">catch</span> (TimeoutException e) &#123;<br>            taskItem.cancel(<span class="hljs-literal">true</span>);<br>            e.printStackTrace();<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ScriptException</span>(<span class="hljs-string">&quot;运行超时了！限定时间为:&quot;</span> + timeLimit + <span class="hljs-string">&quot;毫秒&quot;</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (SecurityException | ExecutionException | InterruptedException e) &#123;<br>            e.printStackTrace();<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ScriptException</span>(<span class="hljs-string">&quot;执行失败，请检查代码是否含有危险操作，具体错误：&quot;</span> + e.getMessage());<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br><br><br>    <span class="hljs-keyword">private</span> String <span class="hljs-title function_">executeMainMethodWithClass</span><span class="hljs-params">(Class&lt;?&gt; clazz, String[] args)</span> <span class="hljs-keyword">throws</span> ScriptException &#123;<br>        <span class="hljs-type">ByteArrayOutputStream</span> <span class="hljs-variable">baoStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ByteArrayOutputStream</span>(<span class="hljs-number">1024</span>);<br>        <span class="hljs-type">PrintStream</span> <span class="hljs-variable">cacheStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PrintStream</span>(baoStream);<br>        <span class="hljs-type">PrintStream</span> <span class="hljs-variable">oldStream</span> <span class="hljs-operator">=</span> System.out;<br>        System.setOut(cacheStream);<br>        <span class="hljs-comment">//执行Main方法</span><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-type">long</span> <span class="hljs-variable">threadId</span> <span class="hljs-operator">=</span> Thread.currentThread().getId();<br>            ScriptSecurityManager.initPermission(threadId);<br>            <span class="hljs-type">Method</span> <span class="hljs-variable">method</span> <span class="hljs-operator">=</span> clazz.getMethod(<span class="hljs-string">&quot;main&quot;</span>, String[].class);<br>            method.invoke(<span class="hljs-literal">null</span>, (Object) args);<br>            ScriptSecurityManager.destroyPermission();<br>        &#125; <span class="hljs-keyword">catch</span> (InvocationTargetException e) &#123;<br>            <span class="hljs-comment">// 获取目标异常</span><br>            <span class="hljs-type">Throwable</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> e.getTargetException();<br>            t.printStackTrace();<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ScriptException</span>(t.getMessage());<br>        &#125; <span class="hljs-keyword">catch</span> (IllegalAccessException | NoSuchMethodException e) &#123;<br>            e.printStackTrace();<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ScriptException</span>(e.getMessage());<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            ScriptSecurityManager.destroyPermission();<br>        &#125;<br>        System.setOut(oldStream);<br>        <span class="hljs-keyword">return</span> baoStream.toString();<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StringObject</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">SimpleJavaFileObject</span> &#123;<br>        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String contents;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-title function_">StringObject</span><span class="hljs-params">(String className, String contents)</span> &#123;<br>            <span class="hljs-built_in">super</span>(URI.create(<span class="hljs-string">&quot;String:///&quot;</span> + className + Kind.SOURCE.extension), Kind.SOURCE);<br>            <span class="hljs-built_in">this</span>.contents = contents;<br>        &#125;<br><br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> CharSequence <span class="hljs-title function_">getCharContent</span><span class="hljs-params">(<span class="hljs-type">boolean</span> ignoreEncodingErrors)</span> &#123;<br>            <span class="hljs-keyword">return</span> contents;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">code</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;    import java.io.*;\n&quot;</span> +<br>                <span class="hljs-string">&quot;    public class Main &#123;\n&quot;</span> +<br>                <span class="hljs-string">&quot;        public static void main(String[] args) throws InterruptedException&#123;\n&quot;</span> +<br>                <span class="hljs-string">&quot;            File file = new File(\&quot;D:\\\\test\&quot;);\n&quot;</span> +<br>                <span class="hljs-string">&quot;            System.out.println(args[0]);\n&quot;</span> +<br><span class="hljs-comment">//                &quot;            boolean delete = file.delete();\n&quot; +</span><br><span class="hljs-comment">//                &quot; for (int i = 10; i&gt;=0; i--) &#123;\n&quot; +</span><br><span class="hljs-comment">//                &quot; Thread.sleep(1000);  \n&quot; +</span><br><span class="hljs-comment">//                &quot; &#125;\n&quot; +</span><br><span class="hljs-comment">//                &quot;            System.out.println(delete);\n&quot; +</span><br><span class="hljs-comment">//                &quot;            System.exit(0);\n&quot; +</span><br>                <span class="hljs-string">&quot;        &#125;\n&quot;</span> +<br>                <span class="hljs-string">&quot;    &#125;&quot;</span>;<br>        System.out.println(code);<br>        <span class="hljs-type">ScriptCompiler</span> <span class="hljs-variable">scriptCompiler</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ScriptCompiler</span>();<br>        <span class="hljs-keyword">try</span> &#123;<br>            Class&lt;?&gt; clazz = scriptCompiler.compile(code);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">string</span> <span class="hljs-operator">=</span> scriptCompiler.executeMainMethod(clazz, <span class="hljs-number">1000L</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[]&#123;<span class="hljs-string">&quot;123&quot;</span>&#125;);<br>            System.out.println(<span class="hljs-string">&quot;---------&gt;&quot;</span> + string);<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>            System.out.println(e.getMessage());<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+</details>
+
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p><code>ScriptConstant</code> 类的作用是为编译脚本文件提供一个固定的目录，该目录下的脚本文件会被编译为 Java 类并在运行时执行。</p>
+<ul>
+<li><code>CLASS_NAME</code> 常量为字符串 “Main”。</li>
+<li><code>CLASS_PATH</code> 常量为调用了 <code>createScriptDir()</code> 方法的返回值。</li>
+<li><code>createScriptDir()</code> 是一个静态方法，它的作用是创建一个名为 “custom-script” 的目录，并返回该目录的路径作为 CLASS_PATH 常量的值。具体实现如下：<ul>
+<li>通过 <code>ScriptConstant.class.getProtectionDomain().getCodeSource().getLocation().getPath()</code> 方法获取当前类的绝对路径。</li>
+<li>将路径字符串按照 UTF-8 编码方式进行解码，以避免因为路径中存在特殊字符导致的问题。</li>
+<li>获取当前路径的父目录和其父目录的路径，即 <code>resource</code> 目录。</li>
+<li>将 <code>resource + File.separator + &quot;custom-script&quot; + File.separator</code> 赋值给 <code>customScriptPath</code> 变量，表示要创建的目录名。</li>
+<li>创建 <code>customScript</code> 目录，并将 <code>customScriptPath</code> 作为 CLASS_PATH 常量的值返回。</li>
+</ul>
+</li>
+</ul>
+<details>
+  <summary>点击查看代码</summary>
+
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> script;<br><br><span class="hljs-keyword">import</span> java.io.File;<br><span class="hljs-keyword">import</span> java.io.UnsupportedEncodingException;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> loquy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ScriptConstant</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">CLASS_NAME</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Main&quot;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">CLASS_PATH</span> <span class="hljs-operator">=</span> createScriptDir();<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">createScriptDir</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> ScriptConstant.class.getProtectionDomain().getCodeSource().getLocation().getPath();<br>        <span class="hljs-keyword">try</span> &#123;<br>            path = java.net.URLDecoder.decode(path, <span class="hljs-string">&quot;UTF-8&quot;</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (UnsupportedEncodingException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>        <span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(path);<br>        <span class="hljs-type">File</span> <span class="hljs-variable">parent</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(file.getParent());<br>        <span class="hljs-type">File</span> <span class="hljs-variable">resource</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(parent.getParent());<br>        <span class="hljs-type">String</span> <span class="hljs-variable">customScriptPath</span> <span class="hljs-operator">=</span> resource + File.separator + <span class="hljs-string">&quot;custom-script&quot;</span> + File.separator;<br>        <span class="hljs-type">File</span> <span class="hljs-variable">customScript</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(customScriptPath);<br>        <span class="hljs-keyword">if</span> (!customScript.exists()) &#123;<br>            customScript.mkdirs();<br>        &#125;<br>        <span class="hljs-keyword">return</span> customScriptPath;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+</details>
+
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p><code>ScriptException</code> 的异常类继承自 <code>SecurityException</code> 类。该类通过 <code>public ScriptException(String message)</code> 构造函数提供了一个带有字符串参数的构造函数，用于创建一个新的 <code>ScriptException</code> 对象，这个对象包含了给定的字符串消息。</p>
+<p>这个自定义的异常类可能用于在处理脚本时发生错误时抛出异常。例如，当脚本执行时发生安全性异常时，就可以抛出这个自定义的异常，以便在调用脚本的代码中处理异常并采取适当的措施。</p>
+<details>
+  <summary>点击查看代码</summary>
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> script;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> loquy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ScriptException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">SecurityException</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ScriptException</span><span class="hljs-params">(String message)</span> &#123;<br>        <span class="hljs-built_in">super</span>(message);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+</details>
+
+<h3 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h3><p>继承自 <code>ClassLoader</code> 的 <code>ScriptLoader</code> 类，用于在运行时动态加载自定义脚本。</p>
+<p>该类重写了 <code>findClass()</code> 方法，在此方法中，将类名转换为类文件的路径，然后通过 <code>getClassFileBytes()</code> 方法读取该路径下的 class 文件，并返回其字节码。最后，使用 <code>defineClass()</code> 方法将字节码转化为 Java 类的实例，并返回该类的 class 对象。</p>
+<p><code>getClassFileBytes()</code> 方法使用了 NIO 的方式读取 class 文件。该方法通过 <code>FileInputStream</code> 打开 class 文件，然后通过 <code>FileChannel</code> 读取文件数据，并使用 <code>ByteBuffer</code> 缓存数据，最后通过 <code>WritableByteChannel</code> 将数据写入到 <code>ByteArrayOutputStream</code> 中，并返回其字节数组。</p>
+<p>该脚本加载器通过在 <code>findClass()</code> 方法中动态加载 class 文件，使得程序可以在运行时动态的调用一些自定义的 Java 脚本。</p>
+<details>
+  <summary>点击查看代码</summary>
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> script;<br><br><span class="hljs-keyword">import</span> java.io.ByteArrayOutputStream;<br><span class="hljs-keyword">import</span> java.io.FileInputStream;<br><span class="hljs-keyword">import</span> java.nio.ByteBuffer;<br><span class="hljs-keyword">import</span> java.nio.channels.Channels;<br><span class="hljs-keyword">import</span> java.nio.channels.FileChannel;<br><span class="hljs-keyword">import</span> java.nio.channels.WritableByteChannel;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> loquy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ScriptLoader</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">ClassLoader</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ScriptLoader</span><span class="hljs-params">(ClassLoader parent)</span> &#123;<br>        <span class="hljs-built_in">super</span>(parent);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> Class&lt;?&gt; findClass(String name) &#123;<br>        <span class="hljs-comment">//将包转为目录</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">classPath</span> <span class="hljs-operator">=</span> name.replace(<span class="hljs-string">&quot;.&quot;</span>, <span class="hljs-string">&quot;\\&quot;</span>) + <span class="hljs-string">&quot;.class&quot;</span>;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">classFile</span> <span class="hljs-operator">=</span> ScriptConstant.CLASS_PATH + classPath;<br>        Class&lt;?&gt; clazz = <span class="hljs-literal">null</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-type">byte</span>[] data = getClassFileBytes(classFile);<br>            clazz = defineClass(name, data, <span class="hljs-number">0</span>, data.length);<br>            <span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span> == clazz) &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Exception</span>(<span class="hljs-string">&quot;类加载器里不能找到这个类&quot;</span>);<br>            &#125;<br><br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>        <span class="hljs-keyword">return</span> clazz;<br><br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">byte</span>[] getClassFileBytes(String classFile) <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-comment">//采用NIO读取</span><br>        <span class="hljs-type">FileInputStream</span> <span class="hljs-variable">fis</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(classFile);<br>        <span class="hljs-type">FileChannel</span> <span class="hljs-variable">fileC</span> <span class="hljs-operator">=</span> fis.getChannel();<br>        <span class="hljs-type">ByteArrayOutputStream</span> <span class="hljs-variable">baos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ByteArrayOutputStream</span>();<br>        <span class="hljs-type">WritableByteChannel</span> <span class="hljs-variable">outC</span> <span class="hljs-operator">=</span> Channels.newChannel(baos);<br>        <span class="hljs-type">ByteBuffer</span> <span class="hljs-variable">buffer</span> <span class="hljs-operator">=</span> ByteBuffer.allocateDirect(<span class="hljs-number">1024</span>);<br>        <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> fileC.read(buffer);<br>            <span class="hljs-keyword">if</span> (i == <span class="hljs-number">0</span> || i == -<span class="hljs-number">1</span>) &#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>            buffer.flip();<br>            outC.write(buffer);<br>            buffer.clear();<br>        &#125;<br>        fis.close();<br>        <span class="hljs-keyword">return</span> baos.toByteArray();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+</details>
+
+<h3 id="安全管理器"><a href="#安全管理器" class="headerlink" title="安全管理器"></a>安全管理器</h3><p>继承自 <code>SecurityManager</code> 的 <code>ScriptSecurityManager</code> 类是一个用于控制 Java 应用程序的安全权限的自定义安全管理器，通过 <code>initPermission()</code> 和 <code>destroyPermission()</code> 方法设置安全管理器，并通过 <code>check()</code> 方法检查和控制权限请求。</p>
+<p><code>initPermission()</code> 方法用于设置应用程序的安全管理器，如果还没有设置，则会创建一个 <code>ScriptSecurityManager</code> 实例并将其设置为应用程序的安全管理器。它需要一个线程 ID 参数作为标识，以便在 <code>check()</code> 方法中检查权限时确定当前线程是否具有特定权限。</p>
+<p><code>destroyPermission()</code> 方法用于撤销应用程序的安全管理器，它将之前设置的安全管理器设置为 null，并且将 <code>destroy</code> 标志设置为 true。</p>
+<p><code>ScriptSecurityManager</code> 类重写了 <code>checkPermission()</code> 方法并在里面调用 <code>check()</code> 方法 ，在 <code>check()</code> 方法中，根据权限的类型和名称，执行不同的检查。</p>
+<p>如果请求的权限不被允许，它将抛出一个 <code>SecurityException</code> 异常，以防止应用程序的不安全行为。</p>
+<p>如果权限是 <code>RuntimePermission</code>，它会检查请求的名称是否包含 <code>setSecurityManager</code> 并且 <code>destroy</code> 标志为 false，如果是，则不允许设置新的安全管理器。</p>
+<p>对于其他权限类型，它会检查请求的名称或操作是否包含特定权限的名称，并且如果包含，则不允许该请求。如果请求的权限被允许，则不会发生任何操作。</p>
+<details>
+  <summary>点击查看代码</summary>
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> script;<br><br><span class="hljs-keyword">import</span> java.security.Permission;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> loquy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ScriptSecurityManager</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">SecurityManager</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">destroy</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">long</span> threadId;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">initPermission</span><span class="hljs-params">(<span class="hljs-type">long</span> threadId)</span> &#123;<br>        <span class="hljs-type">SecurityManager</span> <span class="hljs-variable">originalSecurityManager</span> <span class="hljs-operator">=</span> System.getSecurityManager();<br>        <span class="hljs-keyword">if</span> (originalSecurityManager == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-type">SecurityManager</span> <span class="hljs-variable">sm</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ScriptSecurityManager</span>();<br>            System.setSecurityManager(sm);<br>        &#125;<br>        ScriptSecurityManager.threadId = threadId;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">destroyPermission</span><span class="hljs-params">()</span> &#123;<br>        ScriptSecurityManager.destroy = <span class="hljs-literal">true</span>;<br>        System.setSecurityManager(<span class="hljs-literal">null</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">check</span><span class="hljs-params">(Permission perm)</span> <span class="hljs-keyword">throws</span> ScriptException &#123;<br>        <span class="hljs-type">long</span> <span class="hljs-variable">threadId</span> <span class="hljs-operator">=</span> Thread.currentThread().getId();<br>        <span class="hljs-keyword">if</span> (threadId == ScriptSecurityManager.threadId) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> perm.getName();<br>            <span class="hljs-type">String</span> <span class="hljs-variable">actions</span> <span class="hljs-operator">=</span> perm.getActions();<br>            <span class="hljs-keyword">if</span> (perm <span class="hljs-keyword">instanceof</span> RuntimePermission) &#123;<br>                <span class="hljs-type">String</span> <span class="hljs-variable">setSecurityManager</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;setSecurityManager&quot;</span>;<br>                <span class="hljs-keyword">if</span> (name.contains(setSecurityManager) &amp;&amp; !destroy) &#123;<br>                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SecurityException</span>(<span class="hljs-string">&quot;不允许设置安全管理器！&quot;</span>);<br>                &#125;<br>                checkPerm(name, <span class="hljs-string">&quot;exitVM&quot;</span>, <span class="hljs-string">&quot;不允许调用exit方法！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;loadLibrary&quot;</span>, <span class="hljs-string">&quot;不允许链接库！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;createClassLoader&quot;</span>, <span class="hljs-string">&quot;不允许创建类加载器！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;getClassLoader&quot;</span>, <span class="hljs-string">&quot;不允许获取类加载器！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;writeFileDescriptor&quot;</span>, <span class="hljs-string">&quot;不允许写入文件描述符！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;queuePrintJob&quot;</span>, <span class="hljs-string">&quot;不允许调用线程发起打印作业请求！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;setContextClassLoader&quot;</span>, <span class="hljs-string">&quot;不允许线程使用的上下文类装入器的设置！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;enableContextClassLoaderOverride&quot;</span>, <span class="hljs-string">&quot;不允许线程上下文类装入器方法的子类实现！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;closeClassLoader&quot;</span>, <span class="hljs-string">&quot;不允许关闭类加载器！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;createSecurityManager&quot;</span>, <span class="hljs-string">&quot;不允许创建一个新的安全管理器！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;shutdownHooks&quot;</span>, <span class="hljs-string">&quot;不允许注册和取消虚拟机关机钩子！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;setFactory&quot;</span>, <span class="hljs-string">&quot;不允许设置ServerSocket或socket使用的套接字工厂，或URL使用的流处理程序工厂！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;setIO&quot;</span>, <span class="hljs-string">&quot;不允许System.out、 System.in 和 System.err 的设置！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;modifyThread&quot;</span>, <span class="hljs-string">&quot;不允许线程的修改！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;defineClassInPackage&quot;</span>, <span class="hljs-string">&quot;不允许在参数指定的包中定义类！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;modifyThread&quot;</span>, <span class="hljs-string">&quot;不允许线程的修改！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;stopThread&quot;</span>, <span class="hljs-string">&quot;不允许通过调用Thread stop方法停止线程！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;modifyThreadGroup&quot;</span>, <span class="hljs-string">&quot;不允许修改线程组！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;getProtectionDomain&quot;</span>, <span class="hljs-string">&quot;不允许获取特定代码源的策略信息！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;getFileSystemAttributes&quot;</span>, <span class="hljs-string">&quot;不允许文件系统属性的检索！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;loadLibrary&quot;</span>, <span class="hljs-string">&quot;不允许指定库的动态链接！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;accessClassInPackage&quot;</span>, <span class="hljs-string">&quot;不允许通过类装入器的loadClass方法访问指定的包！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;defineClassInPackage&quot;</span>, <span class="hljs-string">&quot;不允许通过类装入器的defineClass方法定义指定包中的类！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;accessDeclaredMembers&quot;</span>, <span class="hljs-string">&quot;不允许对类的已声明成员的访问！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;queuePrintJob&quot;</span>, <span class="hljs-string">&quot;不允许打印作业请求的启动！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;getStackTrace&quot;</span>, <span class="hljs-string">&quot;不允许获取另一个线程的堆栈跟踪信息！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;setDefaultUncaughtExceptionHandler&quot;</span>, <span class="hljs-string">&quot;不允许设置当线程因未捕获异常而突然终止时使用的默认处理程序！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;preferences&quot;</span>, <span class="hljs-string">&quot;不允许允许在Preferences持久备份存储中检索或更新操作！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;usePolicy&quot;</span>, <span class="hljs-string">&quot;不允许授予禁用Java插件的默认安全提示行为！&quot;</span>);<br>            &#125;<br>            <span class="hljs-keyword">if</span> (perm <span class="hljs-keyword">instanceof</span> java.io.FilePermission) &#123;<br>                checkPerm(actions, <span class="hljs-string">&quot;execute&quot;</span>, <span class="hljs-string">&quot;不允许调用exec方法！&quot;</span>);<br>                checkPerm(actions, <span class="hljs-string">&quot;write&quot;</span>, <span class="hljs-string">&quot;不允许写入文件！&quot;</span>);<br>                checkPerm(actions, <span class="hljs-string">&quot;delete&quot;</span>, <span class="hljs-string">&quot;不允许删除文件！&quot;</span>);<br>            &#125;<br>            <span class="hljs-keyword">if</span> (perm <span class="hljs-keyword">instanceof</span> java.net.SocketPermission) &#123;<br>                checkPerm(name, <span class="hljs-string">&quot;resolve,connect&quot;</span>, <span class="hljs-string">&quot;不允许打开到指定主机和端口号的套接字连接！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;listen&quot;</span>, <span class="hljs-string">&quot;不允许在指定的本地端口号上等待连接请求！&quot;</span>);<br>                checkPerm(name, <span class="hljs-string">&quot;connect,accept&quot;</span>, <span class="hljs-string">&quot;不允许接受来自指定主机和端口号的套接字连接！&quot;</span>);<br>            &#125;<br>            <span class="hljs-keyword">if</span> (perm <span class="hljs-keyword">instanceof</span> java.util.PropertyPermission) &#123;<br>                checkPerm(name, <span class="hljs-string">&quot;read,write&quot;</span>, <span class="hljs-string">&quot;不允许访问或修改系统属性！&quot;</span>);<br>            &#125;<br>            <span class="hljs-keyword">if</span> (perm <span class="hljs-keyword">instanceof</span> java.security.SecurityPermission) &#123;<br>                checkPerm(name,<span class="hljs-string">&quot;createAccessControlContext,getDomainCombiner,getPolicy,setPolicy,createPolicy,getProperty,&quot;</span> +<br>                                <span class="hljs-string">&quot;setProperty,insertProvider,removeProvider,clearProviderProperties,putProviderProperty,removeProviderProperty&quot;</span>,<br>                        <span class="hljs-string">&quot;不允许具有指定权限目标名称的权限！&quot;</span>);<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">checkPermission</span><span class="hljs-params">(Permission perm)</span> <span class="hljs-keyword">throws</span> ScriptException &#123;<br>        check(perm);<br><br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">checkPermission</span><span class="hljs-params">(Permission perm, Object context)</span> <span class="hljs-keyword">throws</span> ScriptException &#123;<br>        check(perm);<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">checkPerm</span><span class="hljs-params">(String perm, String checks, String msg)</span> <span class="hljs-keyword">throws</span> ScriptException &#123;<br>        String[] check = checks.split(<span class="hljs-string">&quot;,&quot;</span>);<br>        <span class="hljs-keyword">for</span> (String checkPerm : check) &#123;<br>            <span class="hljs-keyword">if</span> (perm.contains(checkPerm)) &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ScriptException</span>(msg);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+</details>
+
+<h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><p><a target="_blank" rel="noopener" href="https://github.com/loquy/spring-boot-demo">参见此仓库</a></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B/" class="category-chain-item">编程</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B/Java/" class="category-chain-item">Java</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/">#Java</a>
+      
+        <a href="/tags/SpringBoot/">#SpringBoot</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>在线运行 Java 代码的原理及实现</div>
+      <div>http://www.loquy.cn/posts/def20d69.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>loquy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月20日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年2月21日</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/3c28698d.html" title="在 Java 中使用 Hutool 进行数据加密和解密">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">在 Java 中使用 Hutool 进行数据加密和解密</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/b97e84d6.html" title="Java 代码生成器">
+                        <span class="hidden-mobile">Java 代码生成器</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","appKey":"Hoi4ulpVAyY7bRNFpECENYQ4","path":"window.location.pathname","placeholder":"欢迎评论~","avatar":"identicon","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appkey":"Hoi4ulpVAyY7bRNFpECENYQ4"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script> var now = new Date();
+function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(now.getTime() + 250); days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum); mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; } seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; } document.getElementById("timeDate").innerHTML = "本站运行 " + dnum + " 天"; document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; } setInterval("createtime()", 250); </script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2a5c0150424f0cc3fa8b492f889fcfe3";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-167862106-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

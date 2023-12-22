@@ -1,0 +1,1608 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://www.loquy.cn/images/apple-touch-icon.png">
+  <link rel="icon" href="https://www.loquy.cn/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="loquy">
+  <meta name="keywords" content="loquy">
+  
+    <meta name="description" content="记录在 LeetCode 上学习的算法和数据结构，持续更新...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 LeetCode 上学习的算法和数据结构">
+<meta property="og:url" content="http://www.loquy.cn/posts/b091fa12.html">
+<meta property="og:site_name" content="loquy">
+<meta property="og:description" content="记录在 LeetCode 上学习的算法和数据结构，持续更新...">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.loquy.cn/images/LeetCode.jpg">
+<meta property="article:published_time" content="2022-06-15T03:08:06.000Z">
+<meta property="article:modified_time" content="2022-06-15T03:08:06.000Z">
+<meta property="article:author" content="loquy">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="LeetCode">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.loquy.cn/images/LeetCode.jpg">
+  
+  
+  
+  <title>在 LeetCode 上学习的算法和数据结构 - loquy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/icon.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.loquy.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2a5c0150424f0cc3fa8b492f889fcfe3","google":"UA-167862106-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","app_key":"Hoi4ulpVAyY7bRNFpECENYQ4","server_url":"https://aouu3kji.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"tajs":null},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss.xml" title="loquy" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>loquy&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/linux-command">
+                <i class="iconfont icon-linux"></i>
+                Linux 命令搜索
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://foreverblog.cn/go.html">
+                <i class="iconfont icon-feichuan"></i>
+                虫洞
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                <i class="iconfont icon-feiji"></i>
+                开往
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://www.loquy.cn/images/unsplash-sol.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="在 LeetCode 上学习的算法和数据结构"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-15 11:08" pubdate>
+          2022年6月15日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="算法"
+        id="heading-046a899ee7a6ec88d370211a518c9e80" role="tab" data-toggle="collapse" href="#collapse-046a899ee7a6ec88d370211a518c9e80"
+        aria-expanded="true"
+      >
+        算法
+        <span class="list-group-count">(2)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-046a899ee7a6ec88d370211a518c9e80"
+           role="tabpanel" aria-labelledby="heading-046a899ee7a6ec88d370211a518c9e80">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/posts/3718dbb0.html" title="二叉树的三种遍历方式"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">二叉树的三种遍历方式</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/b091fa12.html" title="在 LeetCode 上学习的算法和数据结构"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">在 LeetCode 上学习的算法和数据结构</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="数据结构"
+        id="heading-0fea7c47d93da5689f31820ee525b367" role="tab" data-toggle="collapse" href="#collapse-0fea7c47d93da5689f31820ee525b367"
+        aria-expanded="true"
+      >
+        数据结构
+        <span class="list-group-count">(2)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-0fea7c47d93da5689f31820ee525b367"
+           role="tabpanel" aria-labelledby="heading-0fea7c47d93da5689f31820ee525b367">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/posts/3718dbb0.html" title="二叉树的三种遍历方式"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">二叉树的三种遍历方式</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/b091fa12.html" title="在 LeetCode 上学习的算法和数据结构"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">在 LeetCode 上学习的算法和数据结构</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">在 LeetCode 上学习的算法和数据结构</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h1><p>在 <a target="_blank" rel="noopener" href="https://leetcode.cn/">LeetCode</a> 上学习算法和数据结构。</p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="center">题目</th>
+<th align="center">题解</th>
+<th align="center">标签</th>
+<th align="center">难度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/TwoSum.md">两数之和</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/array/TwoSum.java">Java</a></td>
+<td align="center"><code> 数组</code> <code> 哈希表</code></td>
+<td align="center">简单</td>
+</tr>
+<tr>
+<td align="center">26</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/RemoveDuplicatesFromSortedArray.md">删除有序数组中的重复项</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/array/RemoveDuplicatesFromSortedArray.java">Java</a></td>
+<td align="center"><code>数组</code>  <code>双指针</code></td>
+<td align="center">简单</td>
+</tr>
+<tr>
+<td align="center">27</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/RemoveElement.md">移除元素</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/array/RemoveElement.java">Java</a></td>
+<td align="center"><code>数组</code>  <code>双指针</code></td>
+<td align="center">简单</td>
+</tr>
+<tr>
+<td align="center">35</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/array/SearchInsertPosition.java">搜索插入位置</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/SearchInsertPosition.md">Java</a></td>
+<td align="center"><code> 数组</code> <code> 二分查找</code></td>
+<td align="center">简单</td>
+</tr>
+<tr>
+<td align="center">53</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/MaximumSubarray.md">最大子数组和</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/array/MaximumSubarray.java">Java</a></td>
+<td align="center"><code>数组</code> <code>分治</code> <code>动态规划</code></td>
+<td align="center">简单</td>
+</tr>
+<tr>
+<td align="center">66</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/PlusOne.md">加一</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/array/PlusOne.java">Java</a></td>
+<td align="center"><code> 数组</code> <code> 数学</code></td>
+<td align="center">简单</td>
+</tr>
+<tr>
+<td align="center">88</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/MergeSortedArray.md">合并两个有序数组</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/array/MergeSortedArray.java">Java</a></td>
+<td align="center"><code> 数组</code> <code> 双指针</code> <code> 排序</code></td>
+<td align="center">简单</td>
+</tr>
+<tr>
+<td align="center">108</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/ConvertSortedArrayToBinarySearchTree.md">将有序数组转换为二叉搜索树</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/array/ConvertSortedArrayToBinarySearchTree.java">Java</a></td>
+<td align="center"><code>数组</code> <code>二叉搜索树</code> <code>分治</code></td>
+<td align="center">简单</td>
+</tr>
+<tr>
+<td align="center">118</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/PascalsTriangle.md">杨辉三角</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/array/PascalsTriangle.java">Java</a></td>
+<td align="center"><code> 数组</code> <code> 动态规划</code></td>
+<td align="center">简单</td>
+</tr>
+<tr>
+<td align="center">136</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/SingleNumber.md">只出现一次的数字</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/array/SingleNumber.java">Java</a></td>
+<td align="center"><code> 位运算</code> <code> 数组</code></td>
+<td align="center">简单</td>
+</tr>
+<tr>
+<td align="center">169</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/MajorityElement.md">多数元素</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/array/MajorityElement.java">Java</a></td>
+<td align="center"><code>数组</code> <code>哈希表</code> <code>分治</code> <code>计数</code> <code>排序</code></td>
+<td align="center">简单</td>
+</tr>
+<tr>
+<td align="center">228</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/SummaryRanges.md">汇总区间</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/array/SummaryRanges.java">Java</a></td>
+<td align="center"><code> 数组</code></td>
+<td align="center">简单</td>
+</tr>
+<tr>
+<td align="center">268</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/MissingNumber.md">丢失的数字</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/array/MissingNumber.java">Java</a></td>
+<td align="center"><code> 位运算</code> <code> 数组</code> <code> 哈希表</code> <code> 数学</code> <code> 排序</code></td>
+<td align="center">简单</td>
+</tr>
+<tr>
+<td align="center">283</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/MissingNumber.md">移动零</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/array/MoveZeroes.java">Java</a></td>
+<td align="center"><code> 位运算</code> <code> 数组</code> <code> 哈希表</code> <code> 数学</code> <code> 排序</code></td>
+<td align="center">简单</td>
+</tr>
+<tr>
+<td align="center">303</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/RangeSumQueryImmutable.md">区域和检索 - 数组不可变</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/array/RangeSumQueryImmutable.java">Java</a></td>
+<td align="center"><code> 设计</code> <code> 数组</code> <code> 前缀和</code></td>
+<td align="center">简单</td>
+</tr>
+<tr>
+<td align="center">349</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/IntersectionOfTwoArrays.md">两个数组的交集</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/array/IntersectionOfTwoArrays.java">Java</a></td>
+<td align="center"><code>数组</code> <code>哈希表</code> <code>双指针</code> <code>二分查找</code> <code>排序</code></td>
+<td align="center">简单</td>
+</tr>
+<tr>
+<td align="center">448</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/FindAllNumbersDisappearedInAnArray.md">找到所有数组中消失的数字</a></td>
+<td align="center"><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/array/FindAllNumbersDisappearedInAnArray.java">Java</a></td>
+<td align="center"><code>数组</code> <code>哈希表</code></td>
+<td align="center">简单</td>
+</tr>
+</tbody></table>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>题目</th>
+<th>题解</th>
+<th>标签</th>
+<th>难度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/AddTwoNumbers.md">两数相加</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/linkedlist/AddTwoNumbers.java">Java</a></td>
+<td><code>递归</code> <code>链表</code> <code>数学</code></td>
+<td>中等</td>
+</tr>
+<tr>
+<td>21</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/MergeTwoSortedLists.md">合并两个有序链表</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/linkedlist/MergeTwoLists.java">Java</a></td>
+<td><code>递归</code> <code>链表</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>83</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/RemoveDuplicatesFromSortedList.md">删除排序链表中的重复元素</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/linkedlist/RemoveDuplicatesFromSortedList.java">Java</a></td>
+<td><code>链表</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>141</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/LinkedListCycle.md">环形链表</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/linkedlist/LinkedListCycle.java">Java</a></td>
+<td><code>哈希表</code> <code>链表</code> <code>双指针</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>160</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/IntersectionOfTwoLinkedLists.md">相交链表</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/linkedlist/IntersectionOfTwoLinkedLists.java">Java</a></td>
+<td><code>哈希表</code> <code>链表</code> <code>双指针</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>203</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/RemoveLinkedListElements.md">移除链表元素</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/linkedlist/RemoveLinkedListElements.java">Java</a></td>
+<td><code>递归</code> <code>链表</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>206</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/ReverseLinkedList.md">反转链表</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/linkedlist/ReverseLinkedList.java">Java</a></td>
+<td><code>递归</code> <code>链表</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>234</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/PalindromeLinkedList.md">回文链表</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/linkedlist/PalindromeLinkedList.java">Java</a></td>
+<td><code>栈</code> <code>递归</code> <code>链表</code> <code>双指针</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>237</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/DeleteNodeInALinkedList.md">删除链表中的节点</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/linkedlist/DeleteNodeInALinkedList.java">Java</a></td>
+<td><code>链表</code></td>
+<td>简单</td>
+</tr>
+</tbody></table>
+<h2 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h2><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>题目</th>
+<th>题解</th>
+<th>标签</th>
+<th>难度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>7</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/ReverseInteger.md">整数反转</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/math/Reverse.java">Java</a></td>
+<td><code>数学</code></td>
+<td>中等</td>
+</tr>
+<tr>
+<td>9</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/PalindromeNumber.md">回文数</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/math/IsPalindrome.java">Java</a></td>
+<td><code>数学</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>29</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/DivideTwoIntegers.md">两数相除</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/math/DivideTwoIntegers.java">Java</a></td>
+<td><code>位运算</code>  <code>数学</code></td>
+<td>中等</td>
+</tr>
+<tr>
+<td>69</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/Sqrtx.md">x 的平方根</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/math/Sqrtx.java">Java</a></td>
+<td><code>数学</code> <code>二分查找</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>70</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/ClimbingStairs.md">爬楼梯</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/math/ClimbingStairs.java">Java</a></td>
+<td><code>记忆化搜索</code> <code>数学</code> <code>动态规划</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>202</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/HappyNumber.md">快乐数</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/math/HappyNumber.java">Java</a></td>
+<td><code>哈希表</code> <code>数学</code> <code>双指针</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>231</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/PowerOfTwo.md">2 的幂</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/math/PowerOfTwo.java">Java</a></td>
+<td><code>位运算</code> <code>递归</code> <code>数学</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>258</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/AddDigits.md">各位相加</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/math/AddDigits.java">Java</a></td>
+<td><code>数学</code> <code>数论</code> <code>模拟</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>263</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/UglyNumber.md">丑数</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/math/UglyNumber.java">Java</a></td>
+<td><code>数学</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>326</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/PowerOfThree.md">3 的幂</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/math/PowerOfThree.java">Java</a></td>
+<td><code>递归</code> <code>数学</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>338</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/CountingBits.md">比特位计数</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/math/CountingBits.java">Java</a></td>
+<td><code>位运算</code> <code>动态规划</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>342</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/PowerOfFour.md">4 的幂</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/math/PowerOfFour.java">Java</a></td>
+<td><code>位运算</code> <code>递归</code> <code>数学</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>367</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/ValidPerfectSquare.md">有效的完全平方数</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/math/ValidPerfectSquare.java">Java</a></td>
+<td><code>数学</code> <code>二分查找</code></td>
+<td></td>
+</tr>
+<tr>
+<td>405</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/ConvertANumberToHexadecimal.md">数字转换为十六进制数</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/math/ConvertANumberToHexadecimal.java">Java</a></td>
+<td><code>位运算</code> <code>数学</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>441</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/ArrangingCoins.md">排列硬币</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/math/ArrangingCoins.java">Java</a></td>
+<td><code>数学</code> <code>二分查找</code></td>
+<td>简单</td>
+</tr>
+</tbody></table>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>题目</th>
+<th>题解</th>
+<th>标签</th>
+<th>难度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>225</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/ImplementStackUsingQueues.md">用队列实现栈</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/queue/ImplementStackUsingQueues.java">Java</a></td>
+<td><code>栈</code> <code>设计</code> <code>队列</code></td>
+<td>简单</td>
+</tr>
+</tbody></table>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>题目</th>
+<th>题解</th>
+<th>标签</th>
+<th>难度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>155</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/MinStack.md">最小栈</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/stack/MinStack.java">Java</a></td>
+<td><code>栈</code> <code>设计</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>232</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/ImplementQueueUsingStacks.md">用栈实现队列</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/stack/ImplementQueueUsingStacks.java">Java</a></td>
+<td><code>栈</code> <code>设计</code> <code>队列</code></td>
+<td>简单</td>
+</tr>
+</tbody></table>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>题目</th>
+<th>题解</th>
+<th>标签</th>
+<th>难度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>13</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/RomanToInteger.md">罗马数字转整数</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/string/RomanToInt.java">Java</a></td>
+<td><code>哈希表</code> <code>数学</code> <code>字符串</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>20</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/ValidParentheses.md">有效的括号</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/string/ValidParentheses.java">Java</a></td>
+<td><code>栈</code> <code>字符串</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>28</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/ImplementStrstr.md">实现 strStr()</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/string/ImplementStrstr.java">Java</a></td>
+<td><code>双指针</code> <code>字符串</code> <code>字符串匹配</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>58</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/LengthOfLastWord.md">最后一个单词的长度</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/string/LengthOfLastWord.java">Java</a></td>
+<td><code>字符串</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>67</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/AddBinary.md">二进制求和</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/string/AddBinary.java">Java</a></td>
+<td><code>位运算</code> <code>数学</code> <code>字符串</code> <code>模拟</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>125</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/ValidPalindrome.md">验证回文串</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/tree/ValidPalindrome.java">Java</a></td>
+<td><code>双指针</code> <code>字符串</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>168</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/ExcelSheetColumnTitle.md">Excel 表列名称</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/string/ExcelSheetColumnTitle.java">Java</a></td>
+<td><code>数学</code> <code>字符串</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>171</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/ExcelSheetColumnNumber.md">Excel 表列序号</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/string/ExcelSheetColumnNumber.java">Java</a></td>
+<td><code>数学</code> <code>字符串</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>205</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/IsomorphicStrings.md">同构字符串</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/string/IsomorphicStrings.java">Java</a></td>
+<td><code>哈希表</code> <code>字符串</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>242</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/ValidAnagram.md">有效的字母异位词</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/string/ValidAnagram.java">Java</a></td>
+<td><code>哈希表</code> <code>字符串</code> <code>排序</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>257</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/BinaryTreePaths.md">二叉树的所有路径</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/string/BinaryTreePaths.java">Java</a></td>
+<td><code>树</code> <code>深度优先搜索</code> <code>字符串</code> <code>二叉树</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>290</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/WordPattern.md">单词规律</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/string/WordPattern.java">Java</a></td>
+<td><code>哈希表</code> <code>字符串</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>344</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/string/ReverseString.java">反转字符串</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/ReverseString.md">Java</a></td>
+<td><code>递归</code> <code>双指针</code> <code>字符串</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>387</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/FirstUniqueCharacterInAString.md">字符串中的第一个唯一字符</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/string/FirstUniqueCharacterInAString.java">Java</a></td>
+<td><code>队列</code> <code>哈希表</code> <code>字符串</code> <code>计数</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>389</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/FindTheDifference.md">找不同</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/string/FindTheDifference.java">Java</a></td>
+<td><code>位运算</code> <code>哈希表</code> <code>字符串</code> <code>排序</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>392</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/IsSubsequence.md">判断子序列</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/string/IsSubsequence.java">Java</a></td>
+<td><code>双指针</code> <code>字符串</code> <code>动态规划</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>409</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/LongestPalindrome.md">最长回文串</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/string/LongestPalindrome.java">Java</a></td>
+<td><code>贪心</code> <code>哈希表</code> <code>字符串</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>434</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/NumberOfSegmentsInAString.md">字符串中的单词数</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/string/NumberOfSegmentsInAString.java">Java</a></td>
+<td><code>字符串</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>459</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/RepeatedSubstringPattern.md">重复的子字符串</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/string/RepeatedSubstringPattern.java">Java</a></td>
+<td><code>字符串</code> <code>字符串匹配</code></td>
+<td>简单</td>
+</tr>
+</tbody></table>
+<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>题目</th>
+<th>题解</th>
+<th>标签</th>
+<th>难度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>94</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/BinaryTreeInorderTraversal.md">二叉树的中序遍历</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/tree/BinaryTreeInorderTraversal.java">Java</a></td>
+<td><code>栈</code> <code>树</code> <code>深度优先搜索</code> <code>二叉树</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>100</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/SameTree.md">相同的树</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/tree/SameTree.java">Java</a></td>
+<td><code>树</code> <code>深度优先搜索</code> <code>广度优先搜索</code> <code>二叉树</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>101</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/SymmetricTree.md">对称二叉树</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/tree/SymmetricTree.java">Java</a></td>
+<td><code>树</code> <code>深度优先搜索</code> <code>广度优先搜索</code> <code>二叉树</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>104</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/MaximumDepthOfBinaryTree.md">二叉树的最大深度</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/tree/MaximumDepthOfBinaryTree.java">Java</a></td>
+<td><code>树</code> <code>深度优先搜索</code> <code>广度优先搜索</code> <code>二叉树</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>110</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/BalancedBinaryTree.md">平衡二叉树</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/tree/BalancedBinaryTree.java">Java</a></td>
+<td><code>树</code> <code>深度优先搜索</code> <code>二叉树</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>111</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/MinimumDepthOfBinaryTree.md">二叉树的最小深度</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/tree/MinimumDepthOfBinaryTree.java">Java</a></td>
+<td><code>树</code> <code>深度优先搜索</code> <code>广度优先搜索</code> <code>二叉树</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>112</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/PathSum.md">路径总和</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/tree/PathSum.java">Java</a></td>
+<td><code>树</code> <code>深度优先搜索</code> <code>二叉树</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>144</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/BinaryTreePreorderTraversal.md">二叉树的前序遍历</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/tree/BinaryTreePreorderTraversal.java">Java</a></td>
+<td><code>栈</code> <code>树</code> <code>深度优先搜索</code> <code>二叉树</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>145</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/BinaryTreePostorderTraversal.md">二叉树的后序遍历</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/tree/BinaryTreePostorderTraversal.java">Java</a></td>
+<td><code>栈</code> <code>树</code> <code>深度优先搜索</code> <code>二叉树</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>226</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/InvertBinaryTree.md">翻转二叉树</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/tree/InvertBinaryTree.java">Java</a></td>
+<td><code>树</code> <code>深度优先搜索</code> <code>广度优先搜索</code> <code>二叉树</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>235</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/LowestCommonAncestorOfABinarySearchTree.md">二叉搜索树的最近公共祖先</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/tree/LowestCommonAncestorOfABinarySearchTree.java">Java</a></td>
+<td><code>树</code> <code>深度优先搜索</code> <code>二叉搜索树</code> <code>二叉树</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>404</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/docs/SumOfLeftLeaves.md">左叶子之和</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/java/com/leetcode/editor/tree/SumOfLeftLeaves.java">Java</a></td>
+<td><code>树</code> <code>深度优先搜索</code> <code>广度优先搜索</code> <code>二叉树</code></td>
+<td>简单</td>
+</tr>
+</tbody></table>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>题目</th>
+<th>题解</th>
+<th>标签</th>
+<th>难度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>175</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/combine-two-tables/">组合两个表</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/sql/CombineTwoTables.sql">MySQL</a></td>
+<td><code>数据库</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>176</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/second-highest-salary/">第二高的薪水</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/sql/NthHighestSalary.sql">MySQL</a></td>
+<td><code>数据库</code></td>
+<td>中等</td>
+</tr>
+<tr>
+<td>177</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/nth-highest-salary/">第N高的薪水</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/sql/SecondHighestSalary.sql">MySQL</a></td>
+<td><code>数据库</code></td>
+<td>中等</td>
+</tr>
+<tr>
+<td>181</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/employees-earning-more-than-their-managers/">超过经理收入的员工</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/sql/EmployeesEarningMoreThanTheirManagers.sql">MySQL</a></td>
+<td><code>数据库</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>182</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/duplicate-emails/">查找重复的电子邮箱</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/sql/DuplicateEmails.sql">MySQL</a></td>
+<td><code>数据库</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>183</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/customers-who-never-order/">从不订购的客户</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/sql/CustomersWhoNeverOrder.sql">MySQL</a></td>
+<td><code>数据库</code></td>
+<td>简单</td>
+</tr>
+<tr>
+<td>184</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/department-highest-salary/">部门工资最高的员工</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/loquy/leetcode/blob/main/src/main/resources/sql/DepartmentHighestSalary.sql">MySQL</a></td>
+<td><code>数据库</code></td>
+<td>中等</td>
+</tr>
+</tbody></table>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B/" class="category-chain-item">编程</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">#数据结构</a>
+      
+        <a href="/tags/LeetCode/">#LeetCode</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>在 LeetCode 上学习的算法和数据结构</div>
+      <div>http://www.loquy.cn/posts/b091fa12.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>loquy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年6月15日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/9883083f.html" title="《文学回忆录》读书笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">《文学回忆录》读书笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/d45b7e43.html" title="SpringBoot 中使用 Mybatis">
+                        <span class="hidden-mobile">SpringBoot 中使用 Mybatis</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","appKey":"Hoi4ulpVAyY7bRNFpECENYQ4","path":"window.location.pathname","placeholder":"欢迎评论~","avatar":"identicon","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appkey":"Hoi4ulpVAyY7bRNFpECENYQ4"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script> var now = new Date();
+function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(now.getTime() + 250); days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum); mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; } seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; } document.getElementById("timeDate").innerHTML = "本站运行 " + dnum + " 天"; document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; } setInterval("createtime()", 250); </script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2a5c0150424f0cc3fa8b492f889fcfe3";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-167862106-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

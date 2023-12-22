@@ -1,0 +1,1070 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://www.loquy.cn/images/apple-touch-icon.png">
+  <link rel="icon" href="https://www.loquy.cn/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="loquy">
+  <meta name="keywords" content="loquy">
+  
+    <meta name="description" content="整理记录常用 Java 业务代码，以此备忘，持续更新中...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 常用业务代码总结">
+<meta property="og:url" content="http://www.loquy.cn/posts/3b0faab3.html">
+<meta property="og:site_name" content="loquy">
+<meta property="og:description" content="整理记录常用 Java 业务代码，以此备忘，持续更新中...">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.loquy.cn/images/Java.png">
+<meta property="article:published_time" content="2022-06-10T03:13:27.000Z">
+<meta property="article:modified_time" content="2023-12-22T06:37:30.965Z">
+<meta property="article:author" content="loquy">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.loquy.cn/images/Java.png">
+  
+  
+  
+  <title>Java 常用业务代码总结 - loquy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/icon.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.loquy.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2a5c0150424f0cc3fa8b492f889fcfe3","google":"UA-167862106-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","app_key":"Hoi4ulpVAyY7bRNFpECENYQ4","server_url":"https://aouu3kji.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"tajs":null},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss.xml" title="loquy" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>loquy&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/linux-command">
+                <i class="iconfont icon-linux"></i>
+                Linux 命令搜索
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://foreverblog.cn/go.html">
+                <i class="iconfont icon-feichuan"></i>
+                虫洞
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                <i class="iconfont icon-feiji"></i>
+                开往
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://www.loquy.cn/images/unsplash-sol.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Java 常用业务代码总结"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-10 11:13" pubdate>
+          2022年6月10日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          20k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          164 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Java"
+        id="heading-d52387880e1ea22817a72d3759213819" role="tab" data-toggle="collapse" href="#collapse-d52387880e1ea22817a72d3759213819"
+        aria-expanded="true"
+      >
+        Java
+        <span class="list-group-count">(16)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-d52387880e1ea22817a72d3759213819"
+           role="tabpanel" aria-labelledby="heading-d52387880e1ea22817a72d3759213819">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/posts/cda4c274.html" title="Java IO 流"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Java IO 流</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/b97e84d6.html" title="Java 代码生成器"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Java 代码生成器</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/3b0faab3.html" title="Java 常用业务代码总结"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Java 常用业务代码总结</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/8ce0f8c6.html" title="Java 日期和时间"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Java 日期和时间</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/f96fd70c.html" title="Java 自定义注解"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Java 自定义注解</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/b10633f0.html" title="Java 调用 Web Service"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Java 调用 Web Service</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/fb332309.html" title="SpringBoot 中使用 Hibernate"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SpringBoot 中使用 Hibernate</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/f2cc0d20.html" title="SpringBoot 中使用 Hutool 跨数据库增删改查"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SpringBoot 中使用 Hutool 跨数据库增删改查</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/e153eef8.html" title="SpringBoot 中使用 MongoDb 上传文件"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SpringBoot 中使用 MongoDb 上传文件</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/d45b7e43.html" title="SpringBoot 中使用 Mybatis"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SpringBoot 中使用 Mybatis</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/54e4e761.html" title="SpringBoot 中使用 Redis"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">SpringBoot 中使用 Redis</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/36df66f4.html" title="Windows 下定时重启 Tomcat"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Windows 下定时重启 Tomcat</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/2df684da.html" title="前后端耦合下实现多文件上传和下拉树选择"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">前后端耦合下实现多文件上传和下拉树选择</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/9c06e8ab.html" title="前后端耦合下实现多级联动选择下拉框"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">前后端耦合下实现多级联动选择下拉框</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/3c28698d.html" title="在 Java 中使用 Hutool 进行数据加密和解密"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在 Java 中使用 Hutool 进行数据加密和解密</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/def20d69.html" title="在线运行 Java 代码的原理及实现"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在线运行 Java 代码的原理及实现</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Java 常用业务代码总结</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2023年12月22日 下午
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <h1 id="遍历文件夹下的所有文件"><a href="#遍历文件夹下的所有文件" class="headerlink" title="遍历文件夹下的所有文件"></a>遍历文件夹下的所有文件</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ArrayList&lt;File&gt; <span class="hljs-title function_">readFiles</span><span class="hljs-params">(File file)</span>&#123;<br>    ArrayList&lt;File&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    File[] fs = file.listFiles();<br>    <span class="hljs-keyword">assert</span> fs != <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">for</span> (File f : fs) &#123;<br>        <span class="hljs-comment">// 若是目录，则递归读取</span><br>        <span class="hljs-keyword">if</span> (f.isDirectory()) &#123;<br>            readFiles(f);<br>        &#125;<br>        <span class="hljs-comment">// 若是文件，添加到集合</span><br>        <span class="hljs-keyword">if</span> (f.isFile()) &#123;<br>            list.add(f);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> list;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="导出Excel"><a href="#导出Excel" class="headerlink" title="导出Excel"></a>导出Excel</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">exportData</span><span class="hljs-params">(List&lt;Map&lt;String, Object&gt;&gt; data, Map&lt;String, String&gt; headerMap, String title, HttpServletResponse response)</span> &#123;<br>    <span class="hljs-comment">// 通过工具类创建writer，默认创建xls格式</span><br>    <span class="hljs-type">ExcelWriter</span> <span class="hljs-variable">writer</span> <span class="hljs-operator">=</span> ExcelUtil.getWriter();<br>    writer.merge(headerMap.size() - <span class="hljs-number">1</span>, title);<br>    <span class="hljs-keyword">for</span> (Map&lt;String, Object&gt; stringObjectMap : data) &#123;<br>        List&lt;String&gt; removeKeys = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();<br>        <span class="hljs-keyword">for</span> (String stringObjectKey : stringObjectMap.keySet()) &#123;<br>            <span class="hljs-keyword">if</span> (!headerMap.containsKey(stringObjectKey)) &#123;<br>                removeKeys.add(stringObjectKey);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (String removeKey : removeKeys) &#123;<br>            stringObjectMap.remove(removeKey);<br>        &#125;<br>    &#125;<br>    writer.setHeaderAlias(headerMap);<br>    <span class="hljs-comment">// 一次性写出内容，使用默认样式，强制输出标题</span><br>    writer.write(data, <span class="hljs-literal">true</span>);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (i &lt; data.size()) &#123;<br>        <span class="hljs-comment">//自动宽度</span><br>        writer.autoSizeColumn(i);<br>        i++;<br>    &#125;<br>    <span class="hljs-comment">//out为OutputStream，需要写出到的目标流</span><br>    <span class="hljs-comment">//response为HttpServletResponse对象</span><br>    response.setContentType(<span class="hljs-string">&quot;application/vnd.ms-excel;charset=utf-8&quot;</span>);<br>    <span class="hljs-comment">//devices.xls是弹出下载对话框的文件名，不能为中文，中文请自行编码</span><br>    <span class="hljs-keyword">try</span> &#123;<br>        response.setHeader(<span class="hljs-string">&quot;Content-Disposition&quot;</span>, <span class="hljs-string">&quot;attachment;filename=&quot;</span> + URLEncoder.encode(title + <span class="hljs-string">&quot;.xls&quot;</span>, <span class="hljs-string">&quot;utf-8&quot;</span>));<br>    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>    <span class="hljs-type">ServletOutputStream</span> <span class="hljs-variable">out</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">try</span> &#123;<br>        out = response.getOutputStream();<br>    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        e.printStackTrace();<br>    &#125;<br>    writer.flush(out);<br>    <span class="hljs-comment">// 关闭writer，释放内存</span><br>    writer.close();<br>    <span class="hljs-comment">//此处记得关闭输出Servlet流</span><br>    IoUtil.close(out);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="接口接收-Json-数组对象"><a href="#接口接收-Json-数组对象" class="headerlink" title="接口接收 Json 数组对象"></a>接口接收 Json 数组对象</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@PostMapping(&quot;example&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">example</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> List&lt;exampleDto&gt; exampleDtoList)</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="接口通用返回泛型数据的格式"><a href="#接口通用返回泛型数据的格式" class="headerlink" title="接口通用返回泛型数据的格式"></a>接口通用返回泛型数据的格式</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ApiModel(value = &quot;通用返回格式&quot;)</span><br><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@NoArgsConstructor</span><br><span class="hljs-meta">@AllArgsConstructor</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ResultModel</span>&lt;T&gt; <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;<br><br>    <span class="hljs-meta">@ApiModelProperty(value = &quot;返回状态码（0成功，-1失败）&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> code;<br><br>    <span class="hljs-meta">@ApiModelProperty(value = &quot;返回消息&quot;)</span><br>    <span class="hljs-keyword">public</span> String message;<br><br>    <span class="hljs-meta">@ApiModelProperty(value = &quot;返回数据&quot;)</span><br>    <span class="hljs-keyword">public</span> T data;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>&lt;T&gt; ResultModel&lt;T&gt; <span class="hljs-title function_">success</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ResultModel</span>&lt;&gt;(ResultEnums.SUCCESS.getCode(), ResultEnums.SUCCESS.getMessage(), <span class="hljs-literal">null</span>);<br>    &#125;<br><br> <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>&lt;T&gt; ResultModel&lt;T&gt; <span class="hljs-title function_">success</span><span class="hljs-params">(T data)</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ResultModel</span>&lt;&gt;(ResultEnums.SUCCESS.getCode(), ResultEnums.SUCCESS.getMessage(), data);<br>    &#125;<br><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>&lt;T&gt; ResultModel&lt;T&gt; <span class="hljs-title function_">success</span><span class="hljs-params">(T data, String message)</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ResultModel</span>&lt;&gt;(ResultEnums.SUCCESS.getCode(), message, data);<br>    &#125;<br><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>&lt;T&gt; ResultModel&lt;T&gt; <span class="hljs-title function_">fail</span><span class="hljs-params">(String message)</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ResultModel</span>&lt;&gt;(ResultEnums.FAIL.getCode(), message, <span class="hljs-literal">null</span>);<br>    &#125;<br><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>&lt;T&gt; ResultModel&lt;T&gt; <span class="hljs-title function_">fail</span><span class="hljs-params">(<span class="hljs-type">int</span> code, String message)</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ResultModel</span>&lt;&gt;(code, message, <span class="hljs-literal">null</span>);<br>    &#125;<br><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>&lt;T&gt; ResultModel&lt;T&gt; <span class="hljs-title function_">fail</span><span class="hljs-params">(<span class="hljs-type">int</span> code, String message, T data)</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ResultModel</span>&lt;&gt;(code, message, data);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="开启定时任务"><a href="#开启定时任务" class="headerlink" title="开启定时任务"></a>开启定时任务</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.cron;<br><br><span class="hljs-keyword">import</span> org.springframework.scheduling.annotation.EnableScheduling;<br><span class="hljs-keyword">import</span> org.springframework.scheduling.annotation.Scheduled;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-meta">@Component</span><br><span class="hljs-meta">@EnableScheduling</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">exampleCron</span> &#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 每天凌晨执行一次</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Scheduled(cron = &quot;1 * * * * ?&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">example</span><span class="hljs-params">()</span> &#123;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h1 id="开启事务"><a href="#开启事务" class="headerlink" title="开启事务"></a>开启事务</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Transactional(rollbackFor = Exception.class)</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="判断多个线程结束"><a href="#判断多个线程结束" class="headerlink" title="判断多个线程结束"></a>判断多个线程结束</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">threadIsOver</span><span class="hljs-params">(ArrayList&lt;SearchByTime&gt; threads, <span class="hljs-type">long</span> start)</span>&#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">size</span> <span class="hljs-operator">=</span> threads.size();<br>    HashSet&lt;Object&gt; died = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();<br>    <span class="hljs-keyword">do</span> &#123;<br>        <span class="hljs-keyword">for</span> (SearchByTime thread : threads) &#123;<br>            <span class="hljs-keyword">if</span> (!thread.isAlive()) &#123;<br>                died.add(thread.getId());<br>            &#125;<br>        &#125;<br>    &#125; <span class="hljs-keyword">while</span> (size != died.size());<br>    <span class="hljs-type">long</span> <span class="hljs-variable">end</span> <span class="hljs-operator">=</span> System.currentTimeMillis();<br>    System.out.println(<span class="hljs-string">&quot;\033[42m所有线程执行完毕&quot;</span> +<br>                       <span class="hljs-string">&quot;，线程数：&quot;</span>+ size +<br>                       <span class="hljs-string">&quot;，用时: &quot;</span> + (end - start) / <span class="hljs-number">1000</span> + <span class="hljs-string">&quot;s&quot;</span> + <span class="hljs-string">&quot;\033[0m&quot;</span><br>                      );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.thread;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SearchByTime</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span> &#123;<br>    <br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h1 id="请求接口"><a href="#请求接口" class="headerlink" title="请求接口"></a>请求接口</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> JSONArray <span class="hljs-title function_">get</span><span class="hljs-params">(String apiFrom, String startTime, String endTime, String timeType)</span> &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">baseUrl</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">url</span> <span class="hljs-operator">=</span> baseUrl + apiFrom<br>        + <span class="hljs-string">&quot;?start_time=&quot;</span> + startTime + <span class="hljs-string">&quot;&amp;&quot;</span><br>        + <span class="hljs-string">&quot;end_time=&quot;</span> + endTime + <span class="hljs-string">&quot;&amp;&quot;</span><br>        + <span class="hljs-string">&quot;time_type=&quot;</span> + timeType;<br>    url = url.replaceAll(<span class="hljs-string">&quot; &quot;</span>, <span class="hljs-string">&quot;%20&quot;</span>);<br>    <span class="hljs-type">HttpResponse</span> <span class="hljs-variable">response</span> <span class="hljs-operator">=</span> HttpRequest.get(url)<br>        .header(<span class="hljs-string">&quot;charset&quot;</span>, <span class="hljs-string">&quot;UTF-8&quot;</span>)<br>        .timeout(<span class="hljs-number">60000</span> * <span class="hljs-number">5</span>)<br>        .execute();<br>    <span class="hljs-type">JSONObject</span> <span class="hljs-variable">jsonObject</span> <span class="hljs-operator">=</span> JSONObject.parseObject(response.body());<br>    <span class="hljs-type">Object</span> <span class="hljs-variable">code</span> <span class="hljs-operator">=</span> jsonObject.get(<span class="hljs-string">&quot;code&quot;</span>);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">msg</span> <span class="hljs-operator">=</span> (String) jsonObject.get(<span class="hljs-string">&quot;msg&quot;</span>);<br>    <span class="hljs-type">JSONArray</span> <span class="hljs-variable">data</span> <span class="hljs-operator">=</span> jsonObject.getJSONArray(<span class="hljs-string">&quot;result&quot;</span>);<br>    <span class="hljs-type">Integer</span> <span class="hljs-variable">successCode</span> <span class="hljs-operator">=</span> <span class="hljs-number">2000</span>;<br>    <span class="hljs-keyword">if</span> (!successCode.equals(code)) &#123;<br>        logger.info(msg + <span class="hljs-string">&quot;\n获取接口数据失败，接口地址：&quot;</span> + url);<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JSONArray</span>();<br>    &#125;<br>    <span class="hljs-keyword">return</span> data;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> JSONArray <span class="hljs-title function_">post</span><span class="hljs-params">(String token)</span> &#123;<br>    <span class="hljs-type">JSONObject</span> <span class="hljs-variable">params</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JSONObject</span>();<br>    params.put(<span class="hljs-string">&quot;pageSize&quot;</span>, <span class="hljs-number">1000</span>);<br>    params.put(<span class="hljs-string">&quot;currentPage&quot;</span>, currentPage);<br>    <span class="hljs-type">HttpResponse</span> <span class="hljs-variable">response</span> <span class="hljs-operator">=</span> HttpRequest.post(baseUrl + <span class="hljs-string">&quot;xx&quot;</span>)<br>        .header(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json&quot;</span>)<br>        .header(<span class="hljs-string">&quot;charset&quot;</span>, <span class="hljs-string">&quot;UTF-8&quot;</span>)<br>        .header(<span class="hljs-string">&quot;Authorization&quot;</span>, token)<br>        .body(params.toJSONString())<br>        .execute();<br><br>    <span class="hljs-type">JSONObject</span> <span class="hljs-variable">JsonObject</span> <span class="hljs-operator">=</span> JSONObject.parseObject(response.body());<br>    <span class="hljs-type">Object</span> <span class="hljs-variable">code</span> <span class="hljs-operator">=</span> JsonObject.get(<span class="hljs-string">&quot;code&quot;</span>);<br>    <span class="hljs-type">JSONArray</span> <span class="hljs-variable">data</span> <span class="hljs-operator">=</span> JsonObject.getJSONArray(<span class="hljs-string">&quot;data&quot;</span>);<br>    <span class="hljs-keyword">if</span> (!successCode.equals(code)) &#123;<br>        logger.info(<span class="hljs-string">&quot;获取接口数据失败&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> data;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="文件上传下载"><a href="#文件上传下载" class="headerlink" title="文件上传下载"></a>文件上传下载</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.controller;<br><br><span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestParam;<br><span class="hljs-keyword">import</span> org.springframework.web.multipart.commons.CommonsMultipartFile;<br><br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;<br><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;<br><span class="hljs-keyword">import</span> java.io.*;<br><span class="hljs-keyword">import</span> java.net.URLEncoder;<br><br><span class="hljs-meta">@Controller</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FileController</span> &#123;<br><br>    <span class="hljs-comment">//@RequestParam(&quot;file&quot;) 将name=file控件得到的文件封装成CommonsMultipartFile 对象</span><br>    <span class="hljs-comment">//批量上传CommonsMultipartFile则为数组即可</span><br>    <span class="hljs-meta">@RequestMapping(&quot;/upload&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">fileUpload</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam(&quot;file&quot;)</span> CommonsMultipartFile file , HttpServletRequest request)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br><br>        <span class="hljs-comment">//获取文件名 : file.getOriginalFilename();</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">uploadFileName</span> <span class="hljs-operator">=</span> file.getOriginalFilename();<br><br>        <span class="hljs-comment">//如果文件名为空，直接回到首页！</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;&quot;</span>.equals(uploadFileName))&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;redirect:/index.jsp&quot;</span>;<br>        &#125;<br>        System.out.println(<span class="hljs-string">&quot;上传文件名 : &quot;</span>+uploadFileName);<br><br>        <span class="hljs-comment">//上传路径保存设置</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> request.getServletContext().getRealPath(<span class="hljs-string">&quot;/upload&quot;</span>);<br>        <span class="hljs-comment">//如果路径不存在，创建一个</span><br>        <span class="hljs-type">File</span> <span class="hljs-variable">realPath</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(path);<br>        <span class="hljs-keyword">if</span> (!realPath.exists())&#123;<br>            realPath.mkdir();<br>        &#125;<br>        System.out.println(<span class="hljs-string">&quot;上传文件保存地址：&quot;</span>+realPath);<br><br>        <span class="hljs-type">InputStream</span> <span class="hljs-variable">is</span> <span class="hljs-operator">=</span> file.getInputStream(); <span class="hljs-comment">//文件输入流</span><br>        <span class="hljs-type">OutputStream</span> <span class="hljs-variable">os</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(realPath,uploadFileName)); <span class="hljs-comment">//文件输出流</span><br><br>        <span class="hljs-comment">//读取写出</span><br>        <span class="hljs-type">int</span> len=<span class="hljs-number">0</span>;<br>        <span class="hljs-type">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span>];<br>        <span class="hljs-keyword">while</span> ((len=is.read(buffer))!=-<span class="hljs-number">1</span>)&#123;<br>            os.write(buffer,<span class="hljs-number">0</span>,len);<br>            os.flush();<br>        &#125;<br>        os.close();<br>        is.close();<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;redirect:/index.jsp&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">     * 采用file.Transto 来保存上传的文件</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@RequestMapping(&quot;/upload2&quot;)</span><br>    <span class="hljs-keyword">public</span> String  <span class="hljs-title function_">fileUpload2</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam(&quot;file&quot;)</span> CommonsMultipartFile file, HttpServletRequest request)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br><br>        <span class="hljs-comment">//上传路径保存设置</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> request.getServletContext().getRealPath(<span class="hljs-string">&quot;/upload&quot;</span>);<br>        <span class="hljs-type">File</span> <span class="hljs-variable">realPath</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(path);<br>        <span class="hljs-keyword">if</span> (!realPath.exists())&#123;<br>            realPath.mkdir();<br>        &#125;<br>        <span class="hljs-comment">//上传文件地址</span><br>        System.out.println(<span class="hljs-string">&quot;上传文件保存地址：&quot;</span>+realPath);<br><br>        <span class="hljs-comment">//通过CommonsMultipartFile的方法直接写文件（注意这个时候）</span><br>        file.transferTo(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(realPath +<span class="hljs-string">&quot;/&quot;</span>+ file.getOriginalFilename()));<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;redirect:/index.jsp&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@RequestMapping(value=&quot;/download&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">downloads</span><span class="hljs-params">(HttpServletResponse response , HttpServletRequest request)</span> <span class="hljs-keyword">throws</span> Exception&#123;<br>        <span class="hljs-comment">//要下载的图片地址</span><br>        <span class="hljs-type">String</span>  <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> request.getServletContext().getRealPath(<span class="hljs-string">&quot;/static&quot;</span>);<br>        <span class="hljs-type">String</span>  <span class="hljs-variable">fileName</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;1.jpg&quot;</span>;<br>        System.out.println(path);<br>        <span class="hljs-comment">//1、设置response 响应头</span><br>        response.reset(); <span class="hljs-comment">//设置页面不缓存,清空buffer</span><br>        response.setCharacterEncoding(<span class="hljs-string">&quot;UTF-8&quot;</span>); <span class="hljs-comment">//字符编码</span><br>        response.setContentType(<span class="hljs-string">&quot;multipart/form-data&quot;</span>); <span class="hljs-comment">//二进制传输数据</span><br>        <span class="hljs-comment">//设置响应头</span><br>        response.setHeader(<span class="hljs-string">&quot;Content-Disposition&quot;</span>,<br>                <span class="hljs-string">&quot;attachment;fileName=&quot;</span>+ URLEncoder.encode(fileName, <span class="hljs-string">&quot;UTF-8&quot;</span>));<br><br>        <span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(path,fileName);<br>        <span class="hljs-comment">//2、 读取文件--输入流</span><br>        InputStream input=<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(file);<br>        <span class="hljs-comment">//3、 写出文件--输出流</span><br>        <span class="hljs-type">OutputStream</span> <span class="hljs-variable">out</span> <span class="hljs-operator">=</span> response.getOutputStream();<br><br>        <span class="hljs-type">byte</span>[] buff =<span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span>];<br>        <span class="hljs-type">int</span> index=<span class="hljs-number">0</span>;<br>        <span class="hljs-comment">//4、执行 写出操作</span><br>        <span class="hljs-keyword">while</span>((index= input.read(buff))!= -<span class="hljs-number">1</span>)&#123;<br>            out.write(buff, <span class="hljs-number">0</span>, index);<br>            out.flush();<br>        &#125;<br>        out.close();<br>        input.close();<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h1 id="自动生成接口文档"><a href="#自动生成接口文档" class="headerlink" title="自动生成接口文档"></a>自动生成接口文档</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Swagger2的接口配置</span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> loquy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Configuration</span><br><span class="hljs-meta">@EnableSwagger2</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SwaggerConfig</span><br>&#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 创建API</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Docket <span class="hljs-title function_">createRestApi</span><span class="hljs-params">()</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Docket</span>(DocumentationType.SWAGGER_2)<br>                <span class="hljs-comment">// 详细定制</span><br>                .apiInfo(apiInfo())<br>                .select()<br>                <span class="hljs-comment">// 指定当前包路径</span><br>                .apis(RequestHandlerSelectors.basePackage(<span class="hljs-string">&quot;com.example.app.api&quot;</span>))<br>                <span class="hljs-comment">// 扫描所有 .apis(RequestHandlerSelectors.any())</span><br>                .paths(PathSelectors.any())<br>                .build();<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 添加摘要信息</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> ApiInfo <span class="hljs-title function_">apiInfo</span><span class="hljs-params">()</span><br>    &#123;<br>        <span class="hljs-comment">// 用ApiInfoBuilder进行定制</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ApiInfoBuilder</span>()<br>                .title(<span class="hljs-string">&quot;标题&quot;</span>)<br>                .description(<span class="hljs-string">&quot;描述&quot;</span>)<br>                .version(<span class="hljs-string">&quot;版本号:1.01&quot;</span>)<br>                .build();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="Bean-和-Map-的转换"><a href="#Bean-和-Map-的转换" class="headerlink" title="Bean 和 Map 的转换"></a>Bean 和 Map 的转换</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.fjzxdz.ams.<span class="hljs-keyword">module</span>.wryzl.utils;<br><br><span class="hljs-keyword">import</span> org.springframework.cglib.beans.BeanMap;<br><br><span class="hljs-keyword">import</span> java.util.HashMap;<br><span class="hljs-keyword">import</span> java.util.Map;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HashMapUtils</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">calculateInitialCapacity</span><span class="hljs-params">(<span class="hljs-type">int</span> expectedSize)</span> &#123;<br>        <span class="hljs-keyword">return</span> (<span class="hljs-type">int</span>) ((expectedSize / <span class="hljs-number">0.75</span>) + <span class="hljs-number">1</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; Map&lt;String, Object&gt; <span class="hljs-title function_">beanToMap</span><span class="hljs-params">(T bean)</span> &#123;<br>        Map&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;(<span class="hljs-number">16</span>);<br>        <span class="hljs-keyword">if</span> (bean != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-type">BeanMap</span> <span class="hljs-variable">beanMap</span> <span class="hljs-operator">=</span> BeanMap.create(bean);<br>            <span class="hljs-keyword">for</span> (Object key : beanMap.keySet()) &#123;<br>                map.put(key + <span class="hljs-string">&quot;&quot;</span>, beanMap.get(key));<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> map;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; T <span class="hljs-title function_">mapToBean</span><span class="hljs-params">(Map&lt;String, Object&gt; map, Class&lt;T&gt; clazz)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">T</span> <span class="hljs-variable">bean</span> <span class="hljs-operator">=</span> clazz.newInstance();<br>        <span class="hljs-type">BeanMap</span> <span class="hljs-variable">beanMap</span> <span class="hljs-operator">=</span> BeanMap.create(bean);<br>        beanMap.putAll(map);<br>        <span class="hljs-keyword">return</span> bean;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h1 id="Oracle中分页查询语句"><a href="#Oracle中分页查询语句" class="headerlink" title="Oracle中分页查询语句"></a>Oracle中分页查询语句</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> HashMap&lt;String, Object&gt; <span class="hljs-title function_">getPageList</span><span class="hljs-params">(String listSql, String page, String pageSize)</span> &#123;<br>    List&lt;HashMap&lt;String, Object&gt;&gt; list = simpleDao.getNativeQueryList(<span class="hljs-string">&quot;SELECT\n&quot;</span> +<br>            <span class="hljs-string">&quot;\t* \n&quot;</span> +<br>            <span class="hljs-string">&quot;FROM\n&quot;</span> +<br>            <span class="hljs-string">&quot;\t(\n&quot;</span> +<br>            <span class="hljs-string">&quot;SELECT\n&quot;</span> +<br>            <span class="hljs-string">&quot;\ta.*,\n&quot;</span> +<br>            <span class="hljs-string">&quot;\tROWNUM rn \n&quot;</span> +<br>            <span class="hljs-string">&quot;FROM\n&quot;</span> +<br>            <span class="hljs-string">&quot;\t(\n&quot;</span> + listSql +<br>            <span class="hljs-string">&quot;\t) a \n&quot;</span> +<br>            <span class="hljs-string">&quot;\t) \n&quot;</span> +<br>            <span class="hljs-string">&quot;WHERE\n&quot;</span> +<br>            <span class="hljs-string">&quot;\trn &gt; ( &quot;</span> + page + <span class="hljs-string">&quot; - 1 ) * &quot;</span> + pageSize + <span class="hljs-string">&quot; \n&quot;</span> +<br>            <span class="hljs-string">&quot;\tAND rn &lt;= ( &quot;</span> + page + <span class="hljs-string">&quot; ) * &quot;</span> + pageSize + <span class="hljs-string">&quot;&quot;</span>);<br><br>    List&lt;HashMap&lt;String, Object&gt;&gt; countList = simpleDao.getNativeQueryList(<span class="hljs-string">&quot;SELECT\n&quot;</span> +<br>            <span class="hljs-string">&quot;\tcount( * ) total\n&quot;</span> +<br>            <span class="hljs-string">&quot;FROM\n&quot;</span> +<br>            <span class="hljs-string">&quot;\t(\n&quot;</span> + listSql +<br>            <span class="hljs-string">&quot;\t)&quot;</span>);<br><br>    HashMap&lt;String, Object&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;(HashMapUtils.calculateInitialCapacity(<span class="hljs-number">4</span>));<br>    map.put(<span class="hljs-string">&quot;list&quot;</span>, list);<br>    map.put(<span class="hljs-string">&quot;total&quot;</span>, countList.size() &gt; <span class="hljs-number">0</span> ? countList.get(<span class="hljs-number">0</span>).get(<span class="hljs-string">&quot;total&quot;</span>) : <span class="hljs-number">0</span>);<br>    map.put(<span class="hljs-string">&quot;page&quot;</span>, Integer.valueOf(page));<br>    map.put(<span class="hljs-string">&quot;pageSize&quot;</span>, Integer.valueOf(pageSize));<br><br>    <span class="hljs-keyword">return</span> map;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="构造树形结构"><a href="#构造树形结构" class="headerlink" title="构造树形结构"></a>构造树形结构</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.List;<br><span class="hljs-keyword">import</span> java.util.UUID;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TreeEntity</span> &#123;<br>    <span class="hljs-keyword">private</span> String uuid;<br>    <span class="hljs-keyword">private</span> String pid;<br>    <span class="hljs-keyword">private</span> List&lt;TreeEntity&gt; children;<br>    <span class="hljs-keyword">private</span> Object value;<br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">TreeEntity</span><span class="hljs-params">(String pid, Object value, String name)</span> &#123;<br>        <span class="hljs-built_in">this</span>.uuid = UUID.randomUUID().toString();<br>        <span class="hljs-built_in">this</span>.pid = pid;<br>        <span class="hljs-built_in">this</span>.children = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        <span class="hljs-built_in">this</span>.value = value;<br>        <span class="hljs-built_in">this</span>.name = name;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getUuid</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> uuid;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setUuid</span><span class="hljs-params">(String uuid)</span> &#123;<br>        <span class="hljs-built_in">this</span>.uuid = uuid;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getPid</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> pid;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setPid</span><span class="hljs-params">(String pid)</span> &#123;<br>        <span class="hljs-built_in">this</span>.pid = pid;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> List&lt;TreeEntity&gt; <span class="hljs-title function_">getChildren</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> children;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setChildren</span><span class="hljs-params">(List&lt;TreeEntity&gt; children)</span> &#123;<br>        <span class="hljs-built_in">this</span>.children = children;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> Object <span class="hljs-title function_">getValue</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> value;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setValue</span><span class="hljs-params">(Object value)</span> &#123;<br>        <span class="hljs-built_in">this</span>.value = value;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getName</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> name;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setName</span><span class="hljs-params">(String name)</span> &#123;<br>        <span class="hljs-built_in">this</span>.name = name;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addChild</span><span class="hljs-params">(TreeEntity child)</span> &#123;<br>        children.add(child);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">removeChild</span><span class="hljs-params">(TreeEntity child)</span> &#123;<br>        children.remove(child);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> List&lt;TreeEntity&gt; <span class="hljs-title function_">buildTree</span><span class="hljs-params">(List&lt;TreeEntity&gt; nodes, <span class="hljs-type">boolean</span> isSearch)</span> &#123;<br>    <span class="hljs-keyword">if</span> (isSearch) &#123;<br>        <span class="hljs-comment">// 遍历节点，将uuid添加到nodeIds中</span><br>        Set&lt;String&gt; nodeIds = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();<br>        <span class="hljs-keyword">for</span> (TreeEntity node : nodes) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">nodeId</span> <span class="hljs-operator">=</span> node.getUuid();<br>            nodeIds.add(nodeId);<br>        &#125;<br><br>        <span class="hljs-comment">// 找到所有没有父节点的节点，并将它们的pid设置为null</span><br>        <span class="hljs-keyword">for</span> (TreeEntity node : nodes) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">pid</span> <span class="hljs-operator">=</span> node.getPid();<br>            <span class="hljs-keyword">if</span> (pid != <span class="hljs-literal">null</span> &amp;&amp; !nodeIds.contains(pid)) &#123;<br>                node.setPid(<span class="hljs-literal">null</span>);<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 按照pid进行分组，然后递归构造树</span><br>    Map&lt;String, List&lt;TreeEntity&gt;&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    <span class="hljs-keyword">for</span> (TreeEntity node : nodes) &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">pid</span> <span class="hljs-operator">=</span> node.getPid();<br>        List&lt;TreeEntity&gt; group = map.computeIfAbsent(pid, k -&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;());<br>        group.add(node);<br>    &#125;<br><br>    List&lt;TreeEntity&gt; roots = map.get(<span class="hljs-literal">null</span>);<br>    <span class="hljs-keyword">if</span> (roots != <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">for</span> (TreeEntity root : roots) &#123;<br>            buildSubTree(root, map);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> roots;<br>&#125;<br><br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">buildSubTree</span><span class="hljs-params">(TreeEntity node, Map&lt;String, List&lt;TreeEntity&gt;&gt; map)</span> &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">nodeId</span> <span class="hljs-operator">=</span> node.getUuid();<br>    node.setValue(node.getUuid());<br>    List&lt;TreeEntity&gt; children = map.get(nodeId);<br>    node.setChildren(children);<br><br>    <span class="hljs-keyword">if</span> (children != <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">for</span> (TreeEntity child : children) &#123;<br>            buildSubTree(child, map);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="读取目录的所有文件后逐行写入新的文件"><a href="#读取目录的所有文件后逐行写入新的文件" class="headerlink" title="读取目录的所有文件后逐行写入新的文件"></a>读取目录的所有文件后逐行写入新的文件</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;<br><span class="hljs-keyword">import</span> java.nio.charset.StandardCharsets;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> loquy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ReadFiles</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br><br>        <span class="hljs-type">File</span> <span class="hljs-variable">fileE</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;H:\\test.txt&quot;</span>);<br><br>        <span class="hljs-keyword">if</span> (fileE.exists()) &#123;<br>            <span class="hljs-type">boolean</span> <span class="hljs-variable">delete</span> <span class="hljs-operator">=</span> fileE.delete();<br>            System.out.println(delete);<br>        &#125;<br><br>        <span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;H:\\&quot;</span>);<br><br>        <span class="hljs-type">File</span> <span class="hljs-variable">writerFile</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;H:\\test.txt&quot;</span>);<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-type">boolean</span> <span class="hljs-variable">newFile</span> <span class="hljs-operator">=</span> writerFile.createNewFile();<br>            System.out.println(newFile);<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        readFiles(file, writerFile);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">readFiles</span><span class="hljs-params">(File file, File writerFile)</span> &#123;<br>        File[] fs = file.listFiles();<br>        <span class="hljs-keyword">assert</span> fs != <span class="hljs-literal">null</span>;<br>        <span class="hljs-keyword">for</span> (File f : fs) &#123;<br>            <span class="hljs-comment">// 若是目录，则递归读取</span><br>            <span class="hljs-keyword">if</span> (f.isDirectory()) &#123;<br>                readFiles(f, writerFile);<br>            &#125;<br>            <span class="hljs-comment">// 不是 java 后缀跳过</span><br>            <span class="hljs-type">String</span> <span class="hljs-variable">suffix</span> <span class="hljs-operator">=</span> f.getName().substring(f.getName().lastIndexOf(<span class="hljs-string">&quot;.&quot;</span>) + <span class="hljs-number">1</span>);<br>            <span class="hljs-keyword">if</span> (!<span class="hljs-string">&quot;java&quot;</span>.equals(suffix)) &#123;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (f.isFile()) &#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    readAndWriterFile(f, writerFile);<br>                &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">readAndWriterFile</span><span class="hljs-params">(File f, File writerFile)</span> <span class="hljs-keyword">throws</span> IOException &#123;<br>        BufferedReader br;<br>        br = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>(f.getPath()));<br>        String con;<br>        <span class="hljs-type">FileOutputStream</span> <span class="hljs-variable">fop</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(writerFile, <span class="hljs-literal">true</span>);<br>        <span class="hljs-type">OutputStreamWriter</span> <span class="hljs-variable">writer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">OutputStreamWriter</span>(fop, StandardCharsets.UTF_8);<br>        <span class="hljs-comment">// 逐行读取</span><br>        <span class="hljs-keyword">while</span> ((con = br.readLine()) != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-comment">// 跳过空行</span><br>            <span class="hljs-keyword">if</span> (!<span class="hljs-string">&quot;&quot;</span>.equals(con)) &#123;<br>                <span class="hljs-type">boolean</span> <span class="hljs-variable">is</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;<br>                <span class="hljs-comment">// 跳过tab</span><br>                <span class="hljs-keyword">if</span> (con.length() == <span class="hljs-number">1</span>) &#123;<br>                    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; con.length(); i++) &#123;<br>                        <span class="hljs-type">char</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> con.charAt(i);<br>                        <span class="hljs-keyword">if</span> (<span class="hljs-string">&#x27;\t&#x27;</span> == c) &#123;<br>                            is = <span class="hljs-literal">true</span>;<br>                            <span class="hljs-keyword">break</span>;<br>                        &#125;<br>                    &#125;<br>                &#125;<br>                <span class="hljs-keyword">if</span> (!is) &#123;<br>                    System.out.println(con);<br>                    writer.append(con);<br>                    writer.append(<span class="hljs-string">&quot;\n&quot;</span>);<br>                &#125;<br>            &#125;<br>        &#125;<br>        writer.close();<br>        fop.close();<br>        br.close();<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h1 id="常用字符串操作"><a href="#常用字符串操作" class="headerlink" title="常用字符串操作"></a>常用字符串操作</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.demo.utils;<br><br><span class="hljs-keyword">import</span> org.apache.commons.lang3.StringUtils;<br><span class="hljs-keyword">import</span> org.apache.commons.lang3.time.DateUtils;<br><br><span class="hljs-keyword">import</span> java.text.ParseException;<br><span class="hljs-keyword">import</span> java.util.Date;<br><span class="hljs-keyword">import</span> java.util.Random;<br><span class="hljs-keyword">import</span> java.util.regex.Matcher;<br><span class="hljs-keyword">import</span> java.util.regex.Pattern;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * The type Common String utils.</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> loquy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CommonStringUtils</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String[] IS_DATE_PATTERNS = &#123;<br>            <span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>, <span class="hljs-string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>, <span class="hljs-string">&quot;yyyy-MM-dd HH:mm&quot;</span>, <span class="hljs-string">&quot;yyyy/MM/dd&quot;</span>,<br>            <span class="hljs-string">&quot;yyyy/MM/dd HH:mm:ss&quot;</span>, <span class="hljs-string">&quot;yyyy/MM/dd HH:mm&quot;</span><br>    &#125;;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * The constant IS_NUM_PATTERN.</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Pattern</span> <span class="hljs-variable">IS_NUM_PATTERN</span> <span class="hljs-operator">=</span> Pattern.compile(<span class="hljs-string">&quot;-?[0-9]+(\\.[0-9]+)?&quot;</span>);<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * The constant MESSY_CODE_PATTERN.</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Pattern</span> <span class="hljs-variable">MESSY_CODE_PATTERN</span> <span class="hljs-operator">=</span> Pattern.compile(<span class="hljs-string">&quot;\\s*|\t*|\r*|\n*&quot;</span>);<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 解析字符串是否是日期</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> string the string</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> the date</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Date <span class="hljs-title function_">parseDate</span><span class="hljs-params">(String string)</span> &#123;<br>        <span class="hljs-keyword">if</span> (string == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>        &#125;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">return</span> DateUtils.parseDate(string, IS_DATE_PATTERNS);<br>        &#125; <span class="hljs-keyword">catch</span> (ParseException e) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 解析字符串是否是数字</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> str the str</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> the boolean</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isNumeric</span><span class="hljs-params">(String str)</span> &#123;<br>        <span class="hljs-keyword">return</span> IS_NUM_PATTERN.matcher(str).matches();<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取指定长度随机数</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> len the len</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> the random</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">getRandom</span><span class="hljs-params">(<span class="hljs-type">int</span> len)</span> &#123;<br>        <span class="hljs-type">Random</span> <span class="hljs-variable">r</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Random</span>();<br>        <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">rs</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>            rs.append(r.nextInt(<span class="hljs-number">10</span>));<br>        &#125;<br>        <span class="hljs-keyword">return</span> rs.toString();<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取指定长度字符</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> len       the len</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> character the character</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> the characters</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">getCharacters</span><span class="hljs-params">(<span class="hljs-type">int</span> len, String character)</span> &#123;<br>        <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">rs</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>            rs.append(character);<br>        &#125;<br>        <span class="hljs-keyword">return</span> rs.toString();<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 返回左移n位字符串方法</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> str      the str</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> position the position</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> the string</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">moveToLeft</span><span class="hljs-params">(String str, <span class="hljs-type">int</span> position)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">str1</span> <span class="hljs-operator">=</span> str.substring(position);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">str2</span> <span class="hljs-operator">=</span> str.substring(<span class="hljs-number">0</span>, position);<br>        <span class="hljs-keyword">return</span> str1 + str2;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 返回右移n位字符串方法</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> str      the str</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> position the position</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> the string</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">moveToRight</span><span class="hljs-params">(String str, <span class="hljs-type">int</span> position)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">str1</span> <span class="hljs-operator">=</span> str.substring(str.length() - position);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">str2</span> <span class="hljs-operator">=</span> str.substring(<span class="hljs-number">0</span>, str.length() - position);<br>        <span class="hljs-keyword">return</span> str1 + str2;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 检查字符串是否乱码</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> strName the str name</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> the boolean</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isMessyCode</span><span class="hljs-params">(String strName)</span> &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-type">Matcher</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> MESSY_CODE_PATTERN.matcher(strName);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">after</span> <span class="hljs-operator">=</span> m.replaceAll(<span class="hljs-string">&quot;&quot;</span>);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> after.replaceAll(<span class="hljs-string">&quot;\\p&#123;P&#125;&quot;</span>, <span class="hljs-string">&quot;&quot;</span>);<br>            <span class="hljs-type">char</span>[] ch = temp.trim().toCharArray();<br><br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">char</span> c : ch) &#123;<br>                <span class="hljs-keyword">if</span> (!Character.isLetterOrDigit(c)) &#123;<br>                    <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span> + c;<br>                    <span class="hljs-keyword">if</span> (!str.matches(<span class="hljs-string">&quot;[\u4e00-\u9fa5]+&quot;</span>)) &#123;<br>                        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 原始数据里匹配关键字替换成别的字符串</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>  String <span class="hljs-title function_">keywordReplacement</span><span class="hljs-params">(String rawData, String keyword, String replacementString)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">stringBuilder</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(rawData);<br><br>        <span class="hljs-type">Matcher</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> Pattern.compile(keyword).matcher(stringBuilder);<br>        <span class="hljs-type">StringBuffer</span> <span class="hljs-variable">appendReplacement</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuffer</span>();<br>        <span class="hljs-keyword">while</span> (m.find()) &#123;<br>            m.appendReplacement(appendReplacement, replacementString);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (StringUtils.isEmpty(appendReplacement)) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Exception</span>(<span class="hljs-string">&quot;原始数据里没有匹配到关键字&quot;</span>);<br>        &#125;<br>        m.appendTail(appendReplacement);<br><br>        <span class="hljs-keyword">return</span> appendReplacement.toString();<br>    &#125;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B/" class="category-chain-item">编程</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B/Java/" class="category-chain-item">Java</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/">#Java</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Java 常用业务代码总结</div>
+      <div>http://www.loquy.cn/posts/3b0faab3.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>loquy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年6月10日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年12月22日</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/9296f96c.html" title="JavaScript 常用业务代码总结">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JavaScript 常用业务代码总结</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/10bdb19a.html" title="使用 WinSW 将任何程序设为 Windows 服务">
+                        <span class="hidden-mobile">使用 WinSW 将任何程序设为 Windows 服务</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","appKey":"Hoi4ulpVAyY7bRNFpECENYQ4","path":"window.location.pathname","placeholder":"欢迎评论~","avatar":"identicon","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appkey":"Hoi4ulpVAyY7bRNFpECENYQ4"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script> var now = new Date();
+function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(now.getTime() + 250); days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum); mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; } seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; } document.getElementById("timeDate").innerHTML = "本站运行 " + dnum + " 天"; document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; } setInterval("createtime()", 250); </script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2a5c0150424f0cc3fa8b492f889fcfe3";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-167862106-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

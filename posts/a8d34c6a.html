@@ -1,0 +1,1031 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://www.loquy.cn/images/apple-touch-icon.png">
+  <link rel="icon" href="https://www.loquy.cn/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="loquy">
+  <meta name="keywords" content="loquy">
+  
+    <meta name="description" content="标量类型声明标量类型声明 有两种模式: 强制 (默认) 和 严格模式。 现在可以使用下列类型参数（无论用强制模式还是严格模式）： 字符串 (string), 整数 (int), 浮点数 (float), 以及布尔值 (bool)。它们扩充了PHP5中引入的其他类型：类名，接口，数组和 回调类型。 1234567&#x2F;&#x2F; 强制模式function sumOfInts(int ...$ints)&amp;#123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP 7 新特性">
+<meta property="og:url" content="http://www.loquy.cn/posts/a8d34c6a.html">
+<meta property="og:site_name" content="loquy">
+<meta property="og:description" content="标量类型声明标量类型声明 有两种模式: 强制 (默认) 和 严格模式。 现在可以使用下列类型参数（无论用强制模式还是严格模式）： 字符串 (string), 整数 (int), 浮点数 (float), 以及布尔值 (bool)。它们扩充了PHP5中引入的其他类型：类名，接口，数组和 回调类型。 1234567&#x2F;&#x2F; 强制模式function sumOfInts(int ...$ints)&amp;#123">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.loquy.cn/images/php7.jpg">
+<meta property="article:published_time" content="2020-07-13T14:51:37.000Z">
+<meta property="article:modified_time" content="2020-07-13T14:51:37.000Z">
+<meta property="article:author" content="loquy">
+<meta property="article:tag" content="PHP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.loquy.cn/images/php7.jpg">
+  
+  
+  
+  <title>PHP 7 新特性 - loquy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/icon.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.loquy.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2a5c0150424f0cc3fa8b492f889fcfe3","google":"UA-167862106-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","app_key":"Hoi4ulpVAyY7bRNFpECENYQ4","server_url":"https://aouu3kji.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"tajs":null},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss.xml" title="loquy" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>loquy&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/linux-command">
+                <i class="iconfont icon-linux"></i>
+                Linux 命令搜索
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://foreverblog.cn/go.html">
+                <i class="iconfont icon-feichuan"></i>
+                虫洞
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                <i class="iconfont icon-feiji"></i>
+                开往
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://www.loquy.cn/images/unsplash-sol.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PHP 7 新特性"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-07-13 22:51" pubdate>
+          2020年7月13日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          6.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          52 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="PHP"
+        id="heading-2fec392304a5c23ac138da22847f9b7c" role="tab" data-toggle="collapse" href="#collapse-2fec392304a5c23ac138da22847f9b7c"
+        aria-expanded="true"
+      >
+        PHP
+        <span class="list-group-count">(7)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-2fec392304a5c23ac138da22847f9b7c"
+           role="tabpanel" aria-labelledby="heading-2fec392304a5c23ac138da22847f9b7c">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/posts/a8d34c6a.html" title="PHP 7 新特性"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">PHP 7 新特性</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/77dd5484.html" title="PHP 设计模式之单例模式（Singleton）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">PHP 设计模式之单例模式（Singleton）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/babcce42.html" title="PHP 面试问题整理"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">PHP 面试问题整理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/6a73a53a.html" title="Yii 中活动记录（Active Record）类的使用"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Yii 中活动记录（Active Record）类的使用</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/b4a5aa5.html" title="在 PHP 中使用 cURL"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在 PHP 中使用 cURL</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/ef77815d.html" title="在 PHP 中使用单元测试"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在 PHP 中使用单元测试</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/68d862bb.html" title="在 PHP 中使用多进程"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在 PHP 中使用多进程</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">PHP 7 新特性</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="标量类型声明"><a href="#标量类型声明" class="headerlink" title="标量类型声明"></a>标量类型声明</h1><p>标量类型声明 有两种模式: 强制 (默认) 和 严格模式。 现在可以使用下列类型参数（无论用强制模式还是严格模式）： 字符串 (string), 整数 (int), 浮点数 (float), 以及布尔值 (bool)。它们扩充了PHP5中引入的其他类型：类名，接口，数组和 回调类型。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">// 强制模式</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sumOfInts</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> ...<span class="hljs-variable">$ints</span></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">array_sum</span>(<span class="hljs-variable">$ints</span>);<br>&#125;<br><br><span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-title function_ invoke__">sumOfInts</span>(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;3&#x27;</span>, <span class="hljs-number">4.1</span>));<br></code></pre></td></tr></table></figure>
+<p>以上例程会输出：</p>
+<pre><code class="hljs">int(9)
+</code></pre>
+<p>要使用严格模式，一个 declare 声明指令必须放在文件的顶部。这意味着严格声明标量是基于文件可配的。 这个指令不仅影响参数的类型声明，也影响到函数的返回值声明]</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">// 严格模式</span><br><span class="hljs-keyword">declare</span>(strict_types=<span class="hljs-number">1</span>);<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sumOfInts</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> ...<span class="hljs-variable">$ints</span></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">array_sum</span>(<span class="hljs-variable">$ints</span>);<br>&#125;<br><br><span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-title function_ invoke__">sumOfInts</span>(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;3&#x27;</span>, <span class="hljs-number">4.1</span>));<br></code></pre></td></tr></table></figure>
+<p>以上程序由于采用了严格模式，所以如果参数中出现不适整数的类型会报错，执行输出结果为：</p>
+<pre><code class="hljs">PHP Fatal error:  Uncaught TypeError: Argument 2 passed to sumOfInts() must be of the type integer, string given...
+</code></pre>
+<h1 id="返回值类型声明"><a href="#返回值类型声明" class="headerlink" title="返回值类型声明"></a>返回值类型声明</h1><p>PHP 7 增加了对返回类型声明的支持。 类似于参数类型声明，返回类型声明指明了函数返回值的类型。可用的类型与参数声明中可用的类型相同。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">arraysSum</span>(<span class="hljs-params"><span class="hljs-keyword">array</span> ...<span class="hljs-variable">$arrays</span></span>): <span class="hljs-title">array</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">array_map</span>(function(<span class="hljs-keyword">array</span> <span class="hljs-variable">$array</span>): <span class="hljs-keyword">int</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">array_sum</span>(<span class="hljs-variable">$array</span>);<br>    &#125;, <span class="hljs-variable">$arrays</span>);<br>&#125;<br><br><span class="hljs-title function_ invoke__">print_r</span>(<span class="hljs-title function_ invoke__">arraysSum</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], [<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>], [<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>]));<br></code></pre></td></tr></table></figure>
+<p>以上例程会输出：</p>
+<pre><code class="hljs">Array
+(
+    [0] =&gt; 6
+    [1] =&gt; 15
+    [2] =&gt; 24
+)
+</code></pre>
+<h1 id="null合并运算符"><a href="#null合并运算符" class="headerlink" title="null合并运算符"></a>null合并运算符</h1><p>由于日常使用中存在大量同时使用三元表达式和 isset()的情况， 我们添加了 null 合并运算符 (??) 这个语法糖。如果变量存在且值不为 NULL， 它就会返回自身的值，否则返回它的第二个操作数。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">// 如果$_GET[&#x27;user&#x27;]存在且不为空则返回它自己，否则返回合并运算符后面的值</span><br><span class="hljs-variable">$username</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;user&#x27;</span>] ?? <span class="hljs-string">&#x27;nobody&#x27;</span>;<br><span class="hljs-comment">// 相当于:</span><br><span class="hljs-variable">$username</span> = <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;user&#x27;</span>]) ? <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;user&#x27;</span>] : <span class="hljs-string">&#x27;nobody&#x27;</span>;<br><br><span class="hljs-comment">// 多个合并运算符可以一起使用</span><br><span class="hljs-variable">$username</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;user&#x27;</span>] ?? <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;user&#x27;</span>] ?? <span class="hljs-string">&#x27;nobody&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<h1 id="太空船操作符（组合比较符）"><a href="#太空船操作符（组合比较符）" class="headerlink" title="太空船操作符（组合比较符）"></a>太空船操作符（组合比较符）</h1><p>太空船操作符用于比较两个表达式。当 $a 小于、等于或大于 $b 时它分别返回 -1  0 或 1。 比较的原则是沿用 PHP 的常规比较规则进行的。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">// 整数</span><br><span class="hljs-keyword">echo</span> <span class="hljs-number">1</span> &lt;=&gt; <span class="hljs-number">1</span>; <span class="hljs-comment">// 0</span><br><span class="hljs-keyword">echo</span> <span class="hljs-number">1</span> &lt;=&gt; <span class="hljs-number">2</span>; <span class="hljs-comment">// -1</span><br><span class="hljs-keyword">echo</span> <span class="hljs-number">2</span> &lt;=&gt; <span class="hljs-number">1</span>; <span class="hljs-comment">// 1</span><br><br><span class="hljs-comment">// 浮点数</span><br><span class="hljs-keyword">echo</span> <span class="hljs-number">1.5</span> &lt;=&gt; <span class="hljs-number">1.5</span>; <span class="hljs-comment">// 0</span><br><span class="hljs-keyword">echo</span> <span class="hljs-number">1.5</span> &lt;=&gt; <span class="hljs-number">2.5</span>; <span class="hljs-comment">// -1</span><br><span class="hljs-keyword">echo</span> <span class="hljs-number">2.5</span> &lt;=&gt; <span class="hljs-number">1.5</span>; <span class="hljs-comment">// 1</span><br> <br><span class="hljs-comment">// 字符串</span><br><span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;a&quot;</span> &lt;=&gt; <span class="hljs-string">&quot;a&quot;</span>; <span class="hljs-comment">// 0</span><br><span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;a&quot;</span> &lt;=&gt; <span class="hljs-string">&quot;b&quot;</span>; <span class="hljs-comment">// -1</span><br><span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;b&quot;</span> &lt;=&gt; <span class="hljs-string">&quot;a&quot;</span>; <span class="hljs-comment">// 1</span><br></code></pre></td></tr></table></figure>
+<h1 id="通过-define-定义常量数组"><a href="#通过-define-定义常量数组" class="headerlink" title="通过 define() 定义常量数组"></a>通过 define() 定义常量数组</h1><p>Array 类型的常量现在可以通过 define() 来定义。在 PHP5.6 中仅能通过 const 定义。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">define</span>(<span class="hljs-string">&#x27;ANIMALS&#x27;</span>, [<br>    <span class="hljs-string">&#x27;dog&#x27;</span>,<br>    <span class="hljs-string">&#x27;cat&#x27;</span>,<br>    <span class="hljs-string">&#x27;bird&#x27;</span><br>]);<br><br><span class="hljs-keyword">echo</span> ANIMALS[<span class="hljs-number">1</span>]; <span class="hljs-comment">// 输出 &quot;cat&quot;</span><br></code></pre></td></tr></table></figure>
+<h1 id="匿名类"><a href="#匿名类" class="headerlink" title="匿名类"></a>匿名类</h1><p>现在支持通过 new class 来实例化一个匿名类，这可以用来替代一些“用后即焚”的完整类定义。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Logger</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params"><span class="hljs-keyword">string</span> <span class="hljs-variable">$msg</span></span>)</span>;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Application</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-variable">$logger</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getLogger</span>(<span class="hljs-params"></span>): <span class="hljs-title">Logger</span> </span>&#123;<br>         <span class="hljs-keyword">return</span> <span class="hljs-variable language_">$this</span>-&gt;logger;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setLogger</span>(<span class="hljs-params">Logger <span class="hljs-variable">$logger</span></span>) </span>&#123;<br>         <span class="hljs-variable language_">$this</span>-&gt;logger = <span class="hljs-variable">$logger</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-variable">$app</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Application</span>;<br><span class="hljs-variable">$app</span>-&gt;<span class="hljs-title function_ invoke__">setLogger</span>(<span class="hljs-keyword">new</span> <span class="hljs-keyword">class</span> <span class="hljs-keyword">implements</span> Logger &#123;<br>    <span class="hljs-keyword">public</span> function <span class="hljs-title function_ invoke__">log</span>(<span class="hljs-keyword">string</span> <span class="hljs-variable">$msg</span>) &#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-variable">$msg</span>;<br>    &#125;<br>&#125;);<br><br><span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$app</span>-&gt;<span class="hljs-title function_ invoke__">getLogger</span>());<br></code></pre></td></tr></table></figure>
+<p>以上例程会输出：</p>
+<pre><code class="hljs">object(class@anonymous)#2 (0) &#123;
+&#125;
+</code></pre>
+<h1 id="Unicode-codepoint-转译语法"><a href="#Unicode-codepoint-转译语法" class="headerlink" title="Unicode codepoint 转译语法"></a>Unicode codepoint 转译语法</h1><p>这接受一个以16进制形式的 Unicode codepoint，并打印出一个双引号或 heredoc 包围的 UTF-8 编码格式的字符串。 可以接受任何有效的 codepoint，并且开头的 0 是可以省略的。</p>
+<p>echo “\u{aa}”;<br>echo “\u{0000aa}”;<br>echo “\u{9999}”;<br>以上例程会输出：</p>
+<pre><code class="hljs">ª
+ª (same as before but with optional leading 0&#39;s)
+香
+</code></pre>
+<h1 id="Closure-call"><a href="#Closure-call" class="headerlink" title="Closure::call()"></a>Closure::call()</h1><p>Closure::call() 现在有着更好的性能，简短干练的暂时绑定一个方法到对象上闭包并调用它。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;<span class="hljs-keyword">private</span> <span class="hljs-variable">$x</span> = <span class="hljs-number">1</span>;&#125;<br><br><span class="hljs-comment">// PHP 7 之前版本的代码</span><br><span class="hljs-variable">$getXCB</span> = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<span class="hljs-keyword">return</span> <span class="hljs-variable language_">$this</span>-&gt;x;&#125;;<br><span class="hljs-variable">$getX</span> = <span class="hljs-variable">$getXCB</span>-&gt;<span class="hljs-title function_ invoke__">bindTo</span>(<span class="hljs-keyword">new</span> A, <span class="hljs-string">&#x27;A&#x27;</span>); <span class="hljs-comment">// 中间层闭包</span><br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$getX</span>();<br><br><span class="hljs-comment">// PHP 7+ 及更高版本的代码</span><br><span class="hljs-variable">$getX</span> = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<span class="hljs-keyword">return</span> <span class="hljs-variable language_">$this</span>-&gt;x;&#125;;<br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$getX</span>-&gt;<span class="hljs-title function_ invoke__">call</span>(<span class="hljs-keyword">new</span> A);<br></code></pre></td></tr></table></figure>
+<p>以上例程会输出：</p>
+<pre><code class="hljs">1
+1
+</code></pre>
+<h1 id="为unserialize-提供过滤"><a href="#为unserialize-提供过滤" class="headerlink" title="为unserialize()提供过滤"></a>为unserialize()提供过滤</h1><p>这个特性旨在提供更安全的方式解包不可靠的数据。它通过白名单的方式来防止潜在的代码注入。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs php"><br><span class="hljs-comment">// 将所有的对象都转换为 __PHP_Incomplete_Class 对象</span><br><span class="hljs-variable">$data</span> = <span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$foo</span>, [<span class="hljs-string">&quot;allowed_classes&quot;</span> =&gt; <span class="hljs-literal">false</span>]);<br><br><span class="hljs-comment">// 将除 MyClass 和 MyClass2 之外的所有对象都转换为 __PHP_Incomplete_Class 对象</span><br><span class="hljs-variable">$data</span> = <span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$foo</span>, [<span class="hljs-string">&quot;allowed_classes&quot;</span> =&gt; [<span class="hljs-string">&quot;MyClass&quot;</span>, <span class="hljs-string">&quot;MyClass2&quot;</span>]);<br><br><span class="hljs-comment">// 默认情况下所有的类都是可接受的，等同于省略第二个参数</span><br><span class="hljs-variable">$data</span> = <span class="hljs-title function_ invoke__">unserialize</span>(<span class="hljs-variable">$foo</span>, [<span class="hljs-string">&quot;allowed_classes&quot;</span> =&gt; <span class="hljs-literal">true</span>]);<br></code></pre></td></tr></table></figure>
+<h1 id="IntlChar"><a href="#IntlChar" class="headerlink" title="IntlChar"></a>IntlChar</h1><p>新增加的 IntlChar 类旨在暴露出更多的 ICU 功能。这个类自身定义了许多静态方法用于操作多字符集的 unicode 字符。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">printf</span>(<span class="hljs-string">&#x27;%x&#x27;</span>, <span class="hljs-title class_">IntlChar</span>::<span class="hljs-variable constant_">CODEPOINT_MAX</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-title class_">IntlChar</span>::<span class="hljs-title function_ invoke__">charName</span>(<span class="hljs-string">&#x27;@&#x27;</span>);<br><span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-title class_">IntlChar</span>::<span class="hljs-title function_ invoke__">ispunct</span>(<span class="hljs-string">&#x27;!&#x27;</span>));<br></code></pre></td></tr></table></figure>
+<p>以上例程会输出：</p>
+<pre><code class="hljs">10ffff
+COMMERCIAL AT
+bool(true)
+</code></pre>
+<p>若要使用此类，请先安装Intl扩展</p>
+<h1 id="预期"><a href="#预期" class="headerlink" title="预期"></a>预期</h1><p>预期是向后兼用并增强之前的 assert() 的方法。 它使得在生产环境中启用断言为零成本，并且提供当断言失败时抛出特定异常的能力。</p>
+<p>老版本的API出于兼容目的将继续被维护，assert()现在是一个语言结构，它允许第一个参数是一个表达式，而不仅仅是一个待计算的 string或一个待测试的boolean。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">ini_set</span>(<span class="hljs-string">&#x27;assert.exception&#x27;</span>, <span class="hljs-number">1</span>);<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomError</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AssertionError</span> </span>&#123;&#125;<br><br><span class="hljs-title function_ invoke__">assert</span>(<span class="hljs-literal">false</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">CustomError</span>(<span class="hljs-string">&#x27;Some error message&#x27;</span>));<br></code></pre></td></tr></table></figure>
+<p>以上例程会输出：</p>
+<pre><code class="hljs">Fatal error: Uncaught CustomError: Some error message
+</code></pre>
+<h1 id="Group-use-declarations"><a href="#Group-use-declarations" class="headerlink" title="Group use declarations"></a>Group use declarations</h1><p>从同一 namespace 导入的类、函数和常量现在可以通过单个 use 语句 一次性导入了。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs php"><br><span class="hljs-comment">// PHP 7 之前的代码</span><br><span class="hljs-keyword">use</span> <span class="hljs-title">some</span>\<span class="hljs-title">namespace</span>\<span class="hljs-title">ClassA</span>;<br><span class="hljs-keyword">use</span> <span class="hljs-title">some</span>\<span class="hljs-title">namespace</span>\<span class="hljs-title">ClassB</span>;<br><span class="hljs-keyword">use</span> <span class="hljs-title">some</span>\<span class="hljs-title">namespace</span>\<span class="hljs-title">ClassC</span> <span class="hljs-keyword">as</span> <span class="hljs-title">C</span>;<br><br><span class="hljs-keyword">use</span> <span class="hljs-keyword">function</span> <span class="hljs-title">some</span>\<span class="hljs-title">namespace</span>\<span class="hljs-title">fn_a</span>;<br><span class="hljs-keyword">use</span> <span class="hljs-keyword">function</span> <span class="hljs-title">some</span>\<span class="hljs-title">namespace</span>\<span class="hljs-title">fn_b</span>;<br><span class="hljs-keyword">use</span> <span class="hljs-keyword">function</span> <span class="hljs-title">some</span>\<span class="hljs-title">namespace</span>\<span class="hljs-title">fn_c</span>;<br><br><span class="hljs-keyword">use</span> <span class="hljs-keyword">const</span> <span class="hljs-title">some</span>\<span class="hljs-title">namespace</span>\<span class="hljs-title">ConstA</span>;<br><span class="hljs-keyword">use</span> <span class="hljs-keyword">const</span> <span class="hljs-title">some</span>\<span class="hljs-title">namespace</span>\<span class="hljs-title">ConstB</span>;<br><span class="hljs-keyword">use</span> <span class="hljs-keyword">const</span> <span class="hljs-title">some</span>\<span class="hljs-title">namespace</span>\<span class="hljs-title">ConstC</span>;<br><br><span class="hljs-comment">// PHP 7+ 及更高版本的代码</span><br><span class="hljs-keyword">use</span> <span class="hljs-title">some</span>\<span class="hljs-title">namespace</span>\&#123;<span class="hljs-title">ClassA</span>, <span class="hljs-title">ClassB</span>, <span class="hljs-title">ClassC</span> <span class="hljs-keyword">as</span> <span class="hljs-title">C</span>&#125;;<br><span class="hljs-keyword">use</span> <span class="hljs-keyword">function</span> <span class="hljs-title">some</span>\<span class="hljs-title">namespace</span>\&#123;<span class="hljs-title">fn_a</span>, <span class="hljs-title">fn_b</span>, <span class="hljs-title">fn_c</span>&#125;;<br><span class="hljs-keyword">use</span> <span class="hljs-keyword">const</span> <span class="hljs-title">some</span>\<span class="hljs-title">namespace</span>\&#123;<span class="hljs-title">ConstA</span>, <span class="hljs-title">ConstB</span>, <span class="hljs-title">ConstC</span>&#125;;<br></code></pre></td></tr></table></figure>
+<h1 id="生成器可以返回表达式"><a href="#生成器可以返回表达式" class="headerlink" title="生成器可以返回表达式"></a>生成器可以返回表达式</h1><p>此特性基于 PHP 5.5 版本中引入的生成器特性构建的。 它允许在生成器函数中通过使用 return 语法来返回一个表达式 （但是不允许返回引用值）， 可以通过调用 Generator::getReturn() 方法来获取生成器的返回值， 但是这个方法只能在生成器完成产生工作以后调用一次。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs php"><br><span class="hljs-variable">$gen</span> = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;<br>&#125;)();<br><br><span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$gen</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$val</span>) &#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$val</span>, PHP_EOL;<br>&#125;<br><br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$gen</span>-&gt;<span class="hljs-title function_ invoke__">getReturn</span>(), PHP_EOL;<br></code></pre></td></tr></table></figure>
+<p>以上例程会输出：</p>
+<pre><code class="hljs">1
+2
+3
+</code></pre>
+<p>在生成器中能够返回最终的值是一个非常便利的特性， 因为它使得调用生成器的客户端代码可以直接得到生成器（或者其他协同计算）的返回值， 相对于之前版本中客户端代码必须先检查生成器是否产生了最终的值然后再进行响应处理 来得方便多了。</p>
+<h1 id="Generator-delegation"><a href="#Generator-delegation" class="headerlink" title="Generator delegation"></a>Generator delegation</h1><p>现在，只需在最外层生成其中使用 yield from， 就可以把一个生成器自动委派给其他的生成器， Traversable 对象或者 array。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs php"><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gen</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>;<br><br>    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">from</span> <span class="hljs-title function_ invoke__">gen2</span>();<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gen2</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">yield</span> <span class="hljs-number">3</span>;<br>    <span class="hljs-keyword">yield</span> <span class="hljs-number">4</span>;<br>&#125;<br><br><span class="hljs-keyword">foreach</span> (<span class="hljs-title function_ invoke__">gen</span>() <span class="hljs-keyword">as</span> <span class="hljs-variable">$val</span>)<br>&#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$val</span>, PHP_EOL;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>以上例程会输出：</p>
+<pre><code class="hljs">1
+2
+3
+4
+</code></pre>
+<h1 id="整数除法函数-intdiv"><a href="#整数除法函数-intdiv" class="headerlink" title="整数除法函数 intdiv()"></a>整数除法函数 intdiv()</h1><p>新加的函数 intdiv() 用来进行 整数的除法运算。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs php"><br><span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-title function_ invoke__">intdiv</span>(<span class="hljs-number">10</span>, <span class="hljs-number">3</span>));<br></code></pre></td></tr></table></figure>
+<p>以上例程会输出：</p>
+<pre><code class="hljs">int(3)
+</code></pre>
+<h1 id="会话选项"><a href="#会话选项" class="headerlink" title="会话选项"></a>会话选项</h1><p>session_start() 可以接受一个 array 作为参数， 用来覆盖 php.ini 文件中设置的 会话配置选项。</p>
+<p>在调用 session_start() 的时候， 传入的选项参数中也支持 session.lazy_write 行为， 默认情况下这个配置项是打开的。它的作用是控制 PHP 只有在会话中的数据发生变化的时候才 写入会话存储文件，如果会话中的数据没有发生改变，那么 PHP 会在读取完会话数据之后， 立即关闭会话存储文件，不做任何修改，可以通过设置 read_and_close 来实现。</p>
+<p>例如，下列代码设置 session.cache_limiter 为 private，并且在读取完毕会话数据之后马上关闭会话存储文件。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">session_start</span>([<br>    <span class="hljs-string">&#x27;cache_limiter&#x27;</span> =&gt; <span class="hljs-string">&#x27;private&#x27;</span>,<br>    <span class="hljs-string">&#x27;read_and_close&#x27;</span> =&gt; <span class="hljs-literal">true</span>,<br>]);<br></code></pre></td></tr></table></figure>
+<h1 id="preg-replace-callback-array"><a href="#preg-replace-callback-array" class="headerlink" title="preg_replace_callback_array()"></a>preg_replace_callback_array()</h1><p>在 PHP 7 之前，当使用 preg_replace_callback() 函数的时候， 由于针对每个正则表达式都要执行回调函数，可能导致过多的分支代码。 而使用新加的 preg_replace_callback_array() 函数， 可以使得代码更加简洁。</p>
+<p>现在，可以使用一个关联数组来对每个正则表达式注册回调函数， 正则表达式本身作为关联数组的键， 而对应的回调函数就是关联数组的值。</p>
+<h1 id="CSPRNG-Functions"><a href="#CSPRNG-Functions" class="headerlink" title="CSPRNG Functions"></a>CSPRNG Functions</h1><p>新加入两个跨平台的函数： random_bytes() 和 random_int() 用来产生高安全级别的随机字符串和随机整数。</p>
+<h1 id="可以使用-list-函数来展开实现了-ArrayAccess-接口的对象"><a href="#可以使用-list-函数来展开实现了-ArrayAccess-接口的对象" class="headerlink" title="可以使用 list() 函数来展开实现了 ArrayAccess 接口的对象"></a>可以使用 list() 函数来展开实现了 ArrayAccess 接口的对象</h1><p>在之前版本中，list() 函数不能保证 正确的展开实现了 ArrayAccess 接口的对象， 现在这个问题已经被修复。</p>
+<h1 id="其他特性"><a href="#其他特性" class="headerlink" title="其他特性"></a>其他特性</h1><p>允许在克隆表达式上访问对象成员，例如： (clone $foo)-&gt;bar()。</p>
+<p>————————————————<br>文章来源于PHP官方文档：<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/migration70.new-features.php">PHP 5.6.x 移植到 PHP 7.0.x</a> </p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B/" class="category-chain-item">编程</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B/PHP/" class="category-chain-item">PHP</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/PHP/">#PHP</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>PHP 7 新特性</div>
+      <div>http://www.loquy.cn/posts/a8d34c6a.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>loquy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年7月13日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/6a73a53a.html" title="Yii 中活动记录（Active Record）类的使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Yii 中活动记录（Active Record）类的使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/5ca3d0c3.html" title="安装 LNMP 环境">
+                        <span class="hidden-mobile">安装 LNMP 环境</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","appKey":"Hoi4ulpVAyY7bRNFpECENYQ4","path":"window.location.pathname","placeholder":"欢迎评论~","avatar":"identicon","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appkey":"Hoi4ulpVAyY7bRNFpECENYQ4"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script> var now = new Date();
+function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(now.getTime() + 250); days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum); mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; } seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; } document.getElementById("timeDate").innerHTML = "本站运行 " + dnum + " 天"; document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; } setInterval("createtime()", 250); </script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2a5c0150424f0cc3fa8b492f889fcfe3";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-167862106-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1161 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://www.loquy.cn/images/apple-touch-icon.png">
+  <link rel="icon" href="https://www.loquy.cn/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="loquy">
+  <meta name="keywords" content="loquy">
+  
+    <meta name="description" content="PHP 的生命周期是什么？PHP 生命周期有5个阶段：  模块初始化阶段 （module init）  Zend 引擎的初始化操作。SAPI、FPM（master 进程 ）启动，加载扩展、模块初始化   请求初始化阶段 （request init）  FPM 里 worker 进程接收一个请求并读取请求数据，PHP初始化本次请求所需的环境变量   PHP脚本执行阶段 Zend 引擎接将 PHP 代">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP 面试问题整理">
+<meta property="og:url" content="http://www.loquy.cn/posts/babcce42.html">
+<meta property="og:site_name" content="loquy">
+<meta property="og:description" content="PHP 的生命周期是什么？PHP 生命周期有5个阶段：  模块初始化阶段 （module init）  Zend 引擎的初始化操作。SAPI、FPM（master 进程 ）启动，加载扩展、模块初始化   请求初始化阶段 （request init）  FPM 里 worker 进程接收一个请求并读取请求数据，PHP初始化本次请求所需的环境变量   PHP脚本执行阶段 Zend 引擎接将 PHP 代">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.loquy.cn/images/php_logo.png">
+<meta property="article:published_time" content="2020-06-25T02:05:23.000Z">
+<meta property="article:modified_time" content="2020-07-05T06:07:19.000Z">
+<meta property="article:author" content="loquy">
+<meta property="article:tag" content="PHP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.loquy.cn/images/php_logo.png">
+  
+  
+  
+  <title>PHP 面试问题整理 - loquy</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/icon.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.loquy.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2a5c0150424f0cc3fa8b492f889fcfe3","google":"UA-167862106-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","app_key":"Hoi4ulpVAyY7bRNFpECENYQ4","server_url":"https://aouu3kji.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"tajs":null},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss.xml" title="loquy" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>loquy&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/linux-command">
+                <i class="iconfont icon-linux"></i>
+                Linux 命令搜索
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://foreverblog.cn/go.html">
+                <i class="iconfont icon-feichuan"></i>
+                虫洞
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+                <i class="iconfont icon-feiji"></i>
+                开往
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://www.loquy.cn/images/unsplash-sol.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PHP 面试问题整理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-06-25 10:05" pubdate>
+          2020年6月25日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          4.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="PHP"
+        id="heading-2fec392304a5c23ac138da22847f9b7c" role="tab" data-toggle="collapse" href="#collapse-2fec392304a5c23ac138da22847f9b7c"
+        aria-expanded="true"
+      >
+        PHP
+        <span class="list-group-count">(7)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-2fec392304a5c23ac138da22847f9b7c"
+           role="tabpanel" aria-labelledby="heading-2fec392304a5c23ac138da22847f9b7c">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/posts/a8d34c6a.html" title="PHP 7 新特性"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">PHP 7 新特性</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/77dd5484.html" title="PHP 设计模式之单例模式（Singleton）"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">PHP 设计模式之单例模式（Singleton）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/babcce42.html" title="PHP 面试问题整理"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">PHP 面试问题整理</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/6a73a53a.html" title="Yii 中活动记录（Active Record）类的使用"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Yii 中活动记录（Active Record）类的使用</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/b4a5aa5.html" title="在 PHP 中使用 cURL"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在 PHP 中使用 cURL</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/ef77815d.html" title="在 PHP 中使用单元测试"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在 PHP 中使用单元测试</span>
+        </a>
+      
+    
+      
+      
+        <a href="/posts/68d862bb.html" title="在 PHP 中使用多进程"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">在 PHP 中使用多进程</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">PHP 面试问题整理</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2020年7月5日 下午
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <h1 id="PHP-的生命周期是什么？"><a href="#PHP-的生命周期是什么？" class="headerlink" title="PHP 的生命周期是什么？"></a>PHP 的生命周期是什么？</h1><p>PHP 生命周期有5个阶段：</p>
+<ul>
+<li><strong>模块初始化阶段</strong> （module init） <ul>
+<li>Zend 引擎的初始化操作。SAPI、FPM（master 进程 ）启动，加载扩展、模块初始化</li>
+</ul>
+</li>
+<li><strong>请求初始化阶段</strong> （request init） <ul>
+<li>FPM 里 worker 进程接收一个请求并读取请求数据，PHP初始化本次请求所需的环境变量</li>
+</ul>
+</li>
+<li><strong>PHP脚本执行阶段</strong><ul>
+<li>Zend 引擎接将 PHP 代码编译成 opcodes 并顺次执行</li>
+</ul>
+</li>
+<li><strong>请求关闭阶段</strong> （request shutdown） <ul>
+<li>按顺序调用各个模块的 RSHUTDOWN 方法，对每个变量调用 unset 函数</li>
+</ul>
+</li>
+<li><strong>模块关闭阶段</strong> （module shutdown） <ul>
+<li>SAPI 关闭，进行资源的清理，关闭各个模块，关闭 FPM</li>
+</ul>
+</li>
+</ul>
+<h1 id="数据库事务的理解-？"><a href="#数据库事务的理解-？" class="headerlink" title="数据库事务的理解 ？"></a>数据库事务的理解 ？</h1><p> <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E5%BA%93/103728">数据库</a>事务(transaction)是访问并可能操作各种<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%95%B0%E6%8D%AE%E9%A1%B9/3227309">数据项</a>的一个数据库操作序列，这些操作要么全部执行,要么全部不执行，是一个不可分割的工作单位。事务由事务开始与事务结束之间执行的全部数据库操作组成。 </p>
+<ul>
+<li>原子性（Atomic）	<ul>
+<li>事务<code>要么全部完成，要么全部取消</code>。 如果事务崩溃，状态回到事务之前（事务回滚）。</li>
+</ul>
+</li>
+<li>一致性（Consitency）<ul>
+<li>只有合法的数据（依照关系约束和函数约束）才能写入数据库。</li>
+</ul>
+</li>
+<li>隔离性（Isolation）<ul>
+<li>如果2个事务 T1 和 T2 同时运行，事务 T1 和 T2 最终的结果是相同的，不管 T1和T2谁先结束。</li>
+</ul>
+</li>
+<li>持久性（Durability）<ul>
+<li>一旦事务提交，不管发生什么（崩溃或者出错），数据要保存在数据库中。</li>
+</ul>
+</li>
+</ul>
+<h1 id="数据库设计范式是什么-？"><a href="#数据库设计范式是什么-？" class="headerlink" title="数据库设计范式是什么 ？"></a>数据库设计范式是什么 ？</h1><ul>
+<li><p>第一范式（1NF）</p>
+<ul>
+<li>表中的列只能含有原子性(不可再分)的值。</li>
+</ul>
+</li>
+<li><p>第二范式（2NF）</p>
+<ul>
+<li>满足第一范式 ，没有部分依赖</li>
+</ul>
+</li>
+<li><p>第三范式（3NF）</p>
+<ul>
+<li>满足第二范式，没有传递依赖</li>
+</ul>
+</li>
+</ul>
+<h1 id="PHP-Swoole是什么？"><a href="#PHP-Swoole是什么？" class="headerlink" title="PHP Swoole是什么？"></a>PHP Swoole是什么？</h1><ul>
+<li><p>PHP 协程框架</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">Swoole </span>使 PHP 开发人员可以编写高性能高并发的 TCP、UDP、Unix Socket、HTTP、 WebSocket 等服务，让 PHP 不再局限于 Web 领域。<span class="hljs-keyword">Swoole4 </span>协程的成熟将 PHP 带入了前所未有的时期， 为性能的提升提供了独一无二的可能性。<span class="hljs-keyword">Swoole </span>可以广泛应用于互联网、移动通信、云计算、 网络游戏、物联网（IOT）、车联网、智能家居等领域。使用 PHP + <span class="hljs-keyword">Swoole </span>可以使企业 IT 研发团队的效率大大提升，更加专注于开发创新产品 <br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="PHP-和-Nginx-怎么交互的？"><a href="#PHP-和-Nginx-怎么交互的？" class="headerlink" title="PHP 和 Nginx 怎么交互的？"></a>PHP 和 Nginx 怎么交互的？</h1><p>Nginx + PHP 的工程模式下，两位主角分工明确，Nginx 负责承载 HTTP 请求的响应与返回，以及超时控制记录日志等 HTTP 相关的功能，而PHP则负责处理具体请求要做的业务逻辑，它们俩的这种合作模式也是常见的分层架构设计中的一种，在它们各有专注面的同时，FastCGI 又很好的将两块衔接，保障上下游通信交互</p>
+<ul>
+<li>发送 HTTP 请求 Nginx 接收</li>
+<li>Nginx 解析到对应 PHP 文件</li>
+<li>加载 Nginx 的 FastCGI 模块启动对应端口</li>
+<li>PHP-FPM 监听对应端口，接收请求，启用 worker 进程处理</li>
+<li>PHP-FPM 处理完请求，返回给 Nginx</li>
+</ul>
+<h1 id="MySQL-存储引擎有什么？"><a href="#MySQL-存储引擎有什么？" class="headerlink" title="MySQL 存储引擎有什么？"></a><strong>MySQL</strong> 存储引擎有什么？</h1><p> 存储引擎其实就是对于数据库文件的一种存取机制  ，如何实现存储数据，如何为存储的数据建立索引以及   如何更新，查询数据等技术实现的方法。 </p>
+<ul>
+<li><strong>InnoDB</strong> <ul>
+<li>优点支持事务处理、崩溃修复能力和并发控制。缺点是读写效率较差，占用空间大。</li>
+</ul>
+</li>
+<li><strong>MyISAM</strong> <ul>
+<li>优点占用空间小，处理速度快。缺点是不支持事务的完整性和并发性。</li>
+</ul>
+</li>
+<li><strong>MEMORY</strong><ul>
+<li>所有的数据存储在内存中，关闭机器数据消失。</li>
+</ul>
+</li>
+<li><strong>ARCHIVE</strong><ul>
+<li>提供了压缩功能，拥有高效的插入速度，不支持索引，所查询性能较差</li>
+</ul>
+</li>
+</ul>
+<h1 id="PHP-网页跳转的方式？"><a href="#PHP-网页跳转的方式？" class="headerlink" title="PHP 网页跳转的方式？"></a>PHP 网页跳转的方式？</h1><ul>
+<li><p>header()函数;</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;location:http://www.baidu.com&#x27;</span>);<br></code></pre></td></tr></table></figure></li>
+<li><p>meta标签</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;&lt;meta http-equiv=&quot;refresh&quot; content=&quot;1;url=http://www.baidu.com&quot;&gt;&#x27;</span>;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>script标签;</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">echo</span><span class="hljs-string">&#x27;&lt;script&gt;window.location.href=&quot;http://www.baidu.com&quot;&lt;/script&gt;&#x27;</span>;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="Redis-有几种类型"><a href="#Redis-有几种类型" class="headerlink" title="Redis 有几种类型?"></a>Redis 有几种类型?</h1><ul>
+<li><strong>String（字符串）</strong> <ul>
+<li>一个 key 对应一个 value。 </li>
+<li>一个 key 最大能存储 512MB</li>
+<li>常用命令：set、get、decr、incr、mget</li>
+</ul>
+</li>
+<li><strong>Hash（哈希）</strong> <ul>
+<li>键值(key &#x3D;&gt; value)对集合，是一个 string 类型的 field 和 value 的映射表， 特别适合用于存储对象</li>
+<li>每个 hash 可以存储 2<sup>32</sup>  - 1 键值对（40多亿）</li>
+<li>常用命令：hget、hset、hgetall</li>
+</ul>
+</li>
+<li><strong>List（列表）</strong> <ul>
+<li>字符串列表，按照插入顺序排序。可以添加一个元素到列表的头部（左边）  或者尾部（右边）</li>
+<li>列表最多可以包含 2<sup>32</sup>  - 1 个元素 (40多亿)</li>
+<li>list 类型经常会被用于消息队列的服务，以完成多程序之间的消息交换</li>
+<li>常用命令：lpush、rpush、lpop、rpop、lrange</li>
+</ul>
+</li>
+<li><strong>Set（集合）</strong> <ul>
+<li>Set 是 String 类型的无序集合。集合成员是唯一的，这就意味着集合中不能出现重复的数据</li>
+<li>集合中最大的成员数为 2<sup>32</sup> - 1 (40多亿)</li>
+<li>常用命令：sadd、spop、smembers、sunion</li>
+</ul>
+</li>
+<li><strong>Sorted Set（有序集合)</strong> <ul>
+<li>有序集合和集合一样也是 string 类型元素的集合,且不允许重复的成员</li>
+<li>不同的是每个元素都会关联一个 double 类型的分数。redis 正是通过分数来为集合中的成员进行从小到大的排序</li>
+<li>有序集合的成员是唯一的,但分数(score)却可以重复  </li>
+<li>集合中最大的成员数为 2<sup>32</sup> - 1 (40多亿)</li>
+<li>常用命令：zadd、zrange、zrem、zcard</li>
+</ul>
+</li>
+</ul>
+<h1 id="PHP-数组在底层怎么实现的？"><a href="#PHP-数组在底层怎么实现的？" class="headerlink" title="PHP 数组在底层怎么实现的？"></a>PHP 数组在底层怎么实现的？</h1><p> HashTable 是 zend 的核心数据结构，在PHP里面几乎并用来实现所有常见功能，我们知道的 PHP 数组即是其典型应用，此外，在 zend 内部，如函数符号表、全局变量等也都是基于 hash table 来实现 </p>
+<ul>
+<li>散列表（hashTable）具有如下特点 <ul>
+<li>支持典型的 key &#x3D;&gt; value 查询</li>
+<li>可以当做数组使用</li>
+<li>添加、删除节点是 O(1)复杂度</li>
+<li>key 支持混合类型：同时存在关联数组合索引数组</li>
+<li>Value 支持混合类型：array(“string”,2332)</li>
+<li>支持线性遍历：如 foreach</li>
+</ul>
+</li>
+</ul>
+<h1 id="微信授权登录的流程？"><a href="#微信授权登录的流程？" class="headerlink" title="微信授权登录的流程？"></a>微信授权登录的流程？</h1><ul>
+<li><p>调用 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/open-api/login/wx.login.html">wx.login()</a> 获取 <strong>临时登录凭证code</strong> ，并回传到开发者服务器。</p>
+</li>
+<li><p>调用 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/login/auth.code2Session.html">auth.code2Session</a> 接口，换取 <strong>用户唯一标识 OpenID</strong> 和 <strong>会话密钥 session_key</strong>。</p>
+</li>
+<li><p>具体思路如下</p>
+<ul>
+<li>在 main.js 中封装公共函数，用于判断用户是否登录</li>
+<li>在 main.js 中分定义全局变量，用于存储接口地址</li>
+<li>如果没有登录、则跳转至登录页面</li>
+<li>进入登录页面</li>
+<li>通过 wx.login 获取用户的 code</li>
+<li>通过 code 获取用户的 SessionKey、OpenId 等信息</li>
+<li>通过 openId 调用后台 Api 获取用户的信息</li>
+<li>获取成功，则说明已经授权过了,直接登录成功</li>
+<li>获取失败，则说明没有授权过，需要授权之后才能进行登录</li>
+<li>用户点击页面微信登录按钮 open-type&#x3D;”getUserInfo”</li>
+<li>获取用户数据，然后调用后台接口写入数据库</li>
+</ul>
+</li>
+</ul>
+<h1 id="什么是消息队列-Message-Queue-？"><a href="#什么是消息队列-Message-Queue-？" class="headerlink" title="什么是消息队列 (Message Queue) ？"></a>什么是消息队列 (Message Queue) ？</h1><ul>
+<li><p>从本质上说消息对列就是一个队列结构的中间件，也就是说消息放入这个中间件之后就可以直接返回，并不需要系统立即处理，而另外会有一个程序读取这些数据，并按顺序进行逐次处理。</p>
+</li>
+<li><p>它有三个好处</p>
+<ul>
+<li><p><strong>异步</strong></p>
+<ul>
+<li>用户注册后，需要发注册邮件和注册短信。传统的做法有两种 1.串行的方式；2.并行方式</li>
+<li>串行方式：将注册信息写入数据库成功后，发送注册邮件，再发送注册短信。以上三个任务全部完成后，返回给客户端</li>
+<li>并行方式：将注册信息写入数据库成功后，发送注册邮件的同时，发送注册短信。以上三个任务完成后，返回给客户端。</li>
+<li>消息队列：将注册信息写入数据库成功后，写入消息队列，异步读取需要发送的邮件和短信</li>
+</ul>
+</li>
+<li><p><strong>解耦</strong></p>
+<ul>
+<li>订单系统：用户下单后，订单系统完成持久化处理，将消息写入消息队列，返回用户订单下单成功</li>
+<li>库存系统：订阅下单的消息，采用拉&#x2F;推的方式，获取下单信息，库存系统根据下单信息，进行库存操作</li>
+<li>假如：在下单时库存系统不能正常使用。也不影响正常下单，因为下单后，订单系统写入消息队列就不再关心其他的后续操作了。实现订单系统与库存系统的应用解耦</li>
+</ul>
+</li>
+<li><p><strong>削峰&#x2F;限流</strong></p>
+<ul>
+<li>秒杀活动，一般会因为流量过大，导致流量暴增，应用挂掉。为解决这个问题，一般需要在应用前端加入消息队列</li>
+<li>可以控制活动的人数，缓解短时间内高流量压垮应用  </li>
+<li>用户的请求，服务器接收后，首先写入消息队列。假如消息队列长度超过最大数量，则直接抛弃用户请求或跳转到错误页面 </li>
+<li>秒杀业务根据消息队列中的请求信息，再做后续处理</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>使用PHP的数组函数 <strong>array_push、array_shift</strong> 实现一个队列</p>
+</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QueueArray</span></span><br><span class="hljs-class"></span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-variable">$arr</span> = <span class="hljs-keyword">array</span>();<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tailEnqueue</span>(<span class="hljs-params"><span class="hljs-variable">$val</span></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">array_push</span>(<span class="hljs-variable">$this</span>-&gt;arr, <span class="hljs-variable">$val</span>); <span class="hljs-comment">// 队尾入队</span><br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tailDequeue</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">array_pop</span>(<span class="hljs-variable">$this</span>-&gt;arr); <span class="hljs-comment">// 队尾出队</span><br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">headEnqueue</span>(<span class="hljs-params"><span class="hljs-variable">$val</span></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">array_unshift</span>(<span class="hljs-variable">$this</span>-&gt;arr, <span class="hljs-variable">$val</span>); <span class="hljs-comment">// 队首入队</span><br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">headDequeue</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">array_shift</span>(<span class="hljs-variable">$this</span>-&gt;arr); <span class="hljs-comment">//队首出队</span><br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">length</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">count</span>(<span class="hljs-variable">$this</span>-&gt;arr); <span class="hljs-comment">// 队列长度</span><br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">head</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">reset</span>(<span class="hljs-variable">$this</span>-&gt;arr); <span class="hljs-comment">// 获取队首元素</span><br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tail</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">end</span>(<span class="hljs-variable">$this</span>-&gt;arr); <span class="hljs-comment">// 获取队尾元素</span><br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clear</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">unset</span>(<span class="hljs-variable language_">$this</span>-&gt;arr); <span class="hljs-comment">// 清空队列</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B/" class="category-chain-item">编程</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B/PHP/" class="category-chain-item">PHP</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/PHP/">#PHP</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>PHP 面试问题整理</div>
+      <div>http://www.loquy.cn/posts/babcce42.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>loquy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年6月25日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2020年7月5日</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/5ca3d0c3.html" title="安装 LNMP 环境">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">安装 LNMP 环境</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/77dd5484.html" title="PHP 设计模式之单例模式（Singleton）">
+                        <span class="hidden-mobile">PHP 设计模式之单例模式（Singleton）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","appKey":"Hoi4ulpVAyY7bRNFpECENYQ4","path":"window.location.pathname","placeholder":"欢迎评论~","avatar":"identicon","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appkey":"Hoi4ulpVAyY7bRNFpECENYQ4"},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script> var now = new Date();
+function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(now.getTime() + 250); days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum); mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; } seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; } document.getElementById("timeDate").innerHTML = "本站运行 " + dnum + " 天"; document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; } setInterval("createtime()", 250); </script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2a5c0150424f0cc3fa8b492f889fcfe3";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-167862106-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
