@@ -62,7 +62,8 @@ color:  # 主题颜色配置，不一定能每一处都生效，可能会被局�
 
 font:  # 主题字体配置
   font_size: 16px                   # 全局字号
-  font_family: serif                # 全局字体
+  font_family:                 # 全局字体
+  letter_spacing: 0.02em
   code_font_size: 85%               # 代码的字号
 
 custom_js:   # 指定自定义 js 文件路径，路径是相对 source 目录，如 /js/custom.js 对应存放目录 source/js/custom.js，支持列表
@@ -121,6 +122,19 @@ version:  # 版本相关
 #---------------------------
 navbar:
   blog_title: loquy's blog # 导航栏左侧的标题，为空则按 hexo config.title 显示
+  # 导航栏毛玻璃特效，实验性功能，可能会造成页面滚动掉帧和抖动，部分浏览器不支持会自动不生效
+  # Navigation bar frosted glass special animation. It is an experimental feature
+  ground_glass:
+    enable: true
+
+    # 模糊像素，只能为数字，数字越大模糊度越高
+    # Number of blurred pixel. the larger the number, the higher the blur
+    px: 3
+
+    # 不透明度，数字越大透明度越低，注意透明过度可能看不清菜单字体
+    # Ratio of opacity, 1.0 is completely opaque
+    # available: 0 - 1.0
+    alpha: 0.7
   menu:  # 可自行增减，key 用来关联 languages/*.yml，如不存在关联则显示 key 本身的值；icon 是 css class，可以省略；增加 name 可以强制显示指定名称
     - { key: 'home', link: '/', icon: 'iconfont icon-home-fill' }
     - { key: 'archive', link: '/archives/', icon: 'iconfont icon-archive-fill' }
