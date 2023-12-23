@@ -76,7 +76,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.loquy.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2a5c0150424f0cc3fa8b492f889fcfe3","google":"UA-167862106-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","app_key":"Hoi4ulpVAyY7bRNFpECENYQ4","server_url":"https://aouu3kji.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"tajs":null},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.loquy.cn","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2a5c0150424f0cc3fa8b492f889fcfe3","google":"UA-167862106-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","app_key":"Hoi4ulpVAyY7bRNFpECENYQ4","server_url":"https://aouu3kji.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"tajs":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -85,9 +85,53 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
 
   
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss.xml" title="loquy" type="application/atom+xml">
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2a5c0150424f0cc3fa8b492f889fcfe3";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/rss.xml" title="loquy" type="application/atom+xml">
 </head>
 
 
@@ -119,9 +163,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -131,9 +175,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -143,9 +187,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -155,9 +199,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -167,9 +211,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -179,9 +223,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/linux-command">
+              <a class="nav-link" href="/linux-command" target="_self">
                 <i class="iconfont icon-linux"></i>
-                Linux 命令搜索
+                <span>Linux 命令搜索</span>
               </a>
             </li>
           
@@ -191,9 +235,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" target="_blank" rel="noopener" href="https://foreverblog.cn/go.html">
+              <a class="nav-link" href="https://foreverblog.cn/go.html" target="_self">
                 <i class="iconfont icon-feichuan"></i>
-                虫洞
+                <span>虫洞</span>
               </a>
             </li>
           
@@ -203,9 +247,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+              <a class="nav-link" href="https://www.travellings.cn/go.html" target="_self">
                 <i class="iconfont icon-feiji"></i>
-                开往
+                <span>开往</span>
               </a>
             </li>
           
@@ -213,15 +257,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
           
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -262,7 +307,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          5.5k 字
+          1.5k 字
         
       </span>
     
@@ -273,7 +318,7 @@
         
         
         
-          46 分钟
+          13 分钟
         
       </span>
     
@@ -424,20 +469,20 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">在 PHP 中使用 cURL</h1>
+            <h1 id="seo-header">在 PHP 中使用 cURL</h1>
             
-              <p class="note note-info">
+              <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于：2020年6月11日 下午
+                    本文最后更新于 2020年6月11日 下午
                   
                 
               </p>
             
-            <div class="markdown-body">
-              
-              <h1 id="什么是cURL"><a href="#什么是cURL" class="headerlink" title="什么是cURL"></a>什么是cURL</h1><ul>
+            
+              <div class="markdown-body">
+                
+                <h1 id="什么是cURL"><a href="#什么是cURL" class="headerlink" title="什么是cURL"></a>什么是cURL</h1><ul>
 <li><p>先来看下维基百科的解释：</p>
 <pre><code class="hljs">  cURL 是一个开源项目，主要的产品是 curl（命令行工具）和 libcurl（C语言的API库），两者功能均是：基于网络协议，对指定 URL 进行网络传输。
 
@@ -461,7 +506,7 @@
 </li>
 </ul>
   <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">/** </span><br><span class="hljs-comment">* Send a POST requst using cURL                              </span><br><span class="hljs-comment">* <span class="hljs-doctag">@param</span> string $url to request </span><br><span class="hljs-comment">* <span class="hljs-doctag">@param</span> array $post values to send </span><br><span class="hljs-comment">* <span class="hljs-doctag">@param</span> array $options for cURL </span><br><span class="hljs-comment">* <span class="hljs-doctag">@return</span> string </span><br><span class="hljs-comment">*/</span> <br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curl_post</span>(<span class="hljs-params"><span class="hljs-variable">$url</span>, <span class="hljs-keyword">array</span> <span class="hljs-variable">$post</span> = <span class="hljs-keyword">array</span>(<span class="hljs-params"></span>), <span class="hljs-keyword">array</span> <span class="hljs-variable">$options</span> = <span class="hljs-keyword">array</span>(<span class="hljs-params"></span>)</span>) </span><br><span class="hljs-function"></span>&#123; <br>    <span class="hljs-variable">$defaults</span> = <span class="hljs-keyword">array</span>( <br>        CURLOPT_POST =&gt; <span class="hljs-number">1</span>, <span class="hljs-comment">// 发送 POST 请求</span><br>        CURLOPT_HEADER =&gt; <span class="hljs-number">0</span>, <span class="hljs-comment">// 启用时会将头文件的信息作为数据流输出，这边不启用。 </span><br>        CURLOPT_URL =&gt; <span class="hljs-variable">$url</span>, <span class="hljs-comment">// 需要获取的 URL 地址，也可以在curl_init() 初始化会话的时候</span><br>        CURLOPT_FRESH_CONNECT =&gt; <span class="hljs-number">1</span>, <span class="hljs-comment">// 强制获取一个新的连接，而不是缓存中的连接</span><br>        CURLOPT_RETURNTRANSFER =&gt; <span class="hljs-number">1</span>, <span class="hljs-comment">// 将curl_exec()获取的信息以字符串返回，而不是直接输出。</span><br>        CURLOPT_FORBID_REUSE =&gt; <span class="hljs-number">1</span>, <span class="hljs-comment">// 在完成交互以后强制明确的断开连接，不能在连接池中重用</span><br>        <span class="hljs-comment">// CURLOPT_TIMEOUT =&gt; 10, // 允许 cURL 函数执行的最长秒数，这边先不限制</span><br>        CURLOPT_POSTFIELDS =&gt; <span class="hljs-title function_ invoke__">http_build_query</span>(<span class="hljs-variable">$post</span>), <span class="hljs-comment">// 全部数据使用HTTP协议中的 &quot;POST&quot; 操作来发送，http_build_query返回一个 URL 编码后的字符串</span><br>        <span class="hljs-comment">// 以下两个设置是为了防止访问没有SSL证书的网站报错</span><br>        CURLOPT_SSL_VERIFYPEER =&gt; <span class="hljs-number">0</span>, <span class="hljs-comment">// 禁止 cURL 验证对等证书（peer&#x27;scertificate）。要验证的交换证书可以在 CURLOPT_CAINFO 选项中设置，或在 CURLOPT_CAPATH中设置证书目录。</span><br>        CURLOPT_SSL_VERIFYHOST =&gt; <span class="hljs-number">0</span> <span class="hljs-comment">// 设置为 1 是检查服务器SSL证书中是否存在一个公用名, 0 为不检查名称</span><br>    ); <br><br>    <span class="hljs-variable">$ch</span> = <span class="hljs-title function_ invoke__">curl_init</span>(); <br>    <span class="hljs-title function_ invoke__">curl_setopt_array</span>(<span class="hljs-variable">$ch</span>, (<span class="hljs-variable">$options</span> + <span class="hljs-variable">$defaults</span>));<br>    <span class="hljs-keyword">if</span>( ! <span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">curl_exec</span>(<span class="hljs-variable">$ch</span>)) <br>    &#123; <br>        <span class="hljs-title function_ invoke__">trigger_error</span>(<span class="hljs-title function_ invoke__">curl_error</span>(<span class="hljs-variable">$ch</span>)); <br>    &#125; <br>    <span class="hljs-title function_ invoke__">curl_close</span>(<span class="hljs-variable">$ch</span>); <br>    <span class="hljs-keyword">return</span> <span class="hljs-variable">$result</span>; <br>&#125; <br><br><span class="hljs-comment">/** </span><br><span class="hljs-comment">* Send a GET requst using cURL </span><br><span class="hljs-comment">* <span class="hljs-doctag">@param</span> string $url to request </span><br><span class="hljs-comment">* <span class="hljs-doctag">@param</span> array $get values to send </span><br><span class="hljs-comment">* <span class="hljs-doctag">@param</span> array $options for cURL </span><br><span class="hljs-comment">* <span class="hljs-doctag">@return</span> string </span><br><span class="hljs-comment">*/</span> <br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curl_get</span>(<span class="hljs-params"><span class="hljs-variable">$url</span>, <span class="hljs-keyword">array</span> <span class="hljs-variable">$get</span> = <span class="hljs-keyword">array</span>(<span class="hljs-params"></span>), <span class="hljs-keyword">array</span> <span class="hljs-variable">$options</span> = <span class="hljs-keyword">array</span>(<span class="hljs-params"></span>)</span>) </span><br><span class="hljs-function"></span>&#123;    <br>    <span class="hljs-variable">$defaults</span> = <span class="hljs-keyword">array</span>( <br>        CURLOPT_URL =&gt; <span class="hljs-variable">$url</span>. (<span class="hljs-title function_ invoke__">strpos</span>(<span class="hljs-variable">$url</span>, <span class="hljs-string">&#x27;?&#x27;</span>) === <span class="hljs-literal">FALSE</span> ? <span class="hljs-string">&#x27;?&#x27;</span> : <span class="hljs-string">&#x27;&#x27;</span>). <span class="hljs-title function_ invoke__">http_build_query</span>(<span class="hljs-variable">$get</span>), <span class="hljs-comment">// 需要获取的 URL 地址，也可以在curl_init() 初始化会话的时候。 </span><br>        CURLOPT_HEADER =&gt; <span class="hljs-number">0</span>, <span class="hljs-comment">// 启用时会将头文件的信息作为数据流输出。 </span><br>        CURLOPT_RETURNTRANSFER =&gt; <span class="hljs-literal">TRUE</span>, <br>        <span class="hljs-comment">// CURLOPT_TIMEOUT =&gt; 10,</span><br>        CURLOPT_SSL_VERIFYPEER =&gt; <span class="hljs-number">0</span>, <br>        CURLOPT_SSL_VERIFYHOST =&gt; <span class="hljs-number">0</span>            <br>    ); <br>    <br>    <span class="hljs-variable">$ch</span> = <span class="hljs-title function_ invoke__">curl_init</span>(); <br>    <span class="hljs-title function_ invoke__">curl_setopt_array</span>(<span class="hljs-variable">$ch</span>, (<span class="hljs-variable">$options</span> + <span class="hljs-variable">$defaults</span>)); <br>    <span class="hljs-keyword">if</span>( ! <span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">curl_exec</span>(<span class="hljs-variable">$ch</span>)) <br>    &#123; <br>        <span class="hljs-title function_ invoke__">trigger_error</span>(<span class="hljs-title function_ invoke__">curl_error</span>(<span class="hljs-variable">$ch</span>)); <br>    &#125; <br>    <span class="hljs-title function_ invoke__">curl_close</span>(<span class="hljs-variable">$ch</span>); <br>    <span class="hljs-keyword">return</span> <span class="hljs-variable">$result</span>; <br>&#125;<br></code></pre></td></tr></table></figure>
-<h1 id="发送GET-x2F-POST请求到接口交互数据"><a href="#发送GET-x2F-POST请求到接口交互数据" class="headerlink" title="发送GET&#x2F;POST请求到接口交互数据"></a>发送GET&#x2F;POST请求到接口交互数据</h1><ul>
+<h1 id="发送GET-POST请求到接口交互数据"><a href="#发送GET-POST请求到接口交互数据" class="headerlink" title="发送GET&#x2F;POST请求到接口交互数据"></a>发送GET&#x2F;POST请求到接口交互数据</h1><ul>
 <li><p>首先我们得有个运行PHP的环境，我这边使用 PHPStudy</p>
 </li>
 <li><p>其次在站点域名那里配置我们测试的 demo 的域名</p>
@@ -484,8 +529,9 @@
 <p><img src="https://www.loquy.cn/images/1591846227.jpg" srcset="/img/loading.gif" lazyload alt="phpStudy"></p>
 <p><strong>到此便使用curl成功获取到数据</strong></p>
 
-              
-            </div>
+                
+              </div>
+            
             <hr/>
             <div>
               <div class="post-metas my-3">
@@ -522,9 +568,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/PHP/">#PHP</a>
+        <a href="/tags/PHP/" class="print-no-link">#PHP</a>
       
-        <a href="/tags/cURL/">#cURL</a>
+        <a href="/tags/cURL/" class="print-no-link">#cURL</a>
       
     </div>
   
@@ -558,21 +604,23 @@
           <div>2020年6月11日</div>
         </div>
       
-      <div class="license-meta-item">
-        <div>许可协议</div>
-        <div>
-          
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
             
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
             
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                <i class="iconfont icon-by"></i>
-              </span>
-              </a>
-            
-          
+          </div>
         </div>
-      </div>
+      
     </div>
     <div class="license-icon iconfont"></div>
   </div>
@@ -606,12 +654,14 @@
             </div>
 
             
-  <article id="comments" lazyload>
-    
+  
+  
+    <article id="comments" lazyload>
+      
   <div id="valine"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#valine', function() {
-      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
         var options = Object.assign(
           {"appId":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","appKey":"Hoi4ulpVAyY7bRNFpECENYQ4","path":"window.location.pathname","placeholder":"欢迎评论~","avatar":"identicon","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appkey":"Hoi4ulpVAyY7bRNFpECENYQ4"},
           {
@@ -631,7 +681,8 @@
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-  </article>
+    </article>
+  
 
 
           </article>
@@ -643,7 +694,10 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -677,6 +731,7 @@
 
 
   
+
 
 
 
@@ -772,7 +827,7 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
@@ -797,50 +852,6 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
 
 
   
-    <!-- Baidu Analytics -->
-    <script defer>
-      if (!Fluid.ctx.dnt) {
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?2a5c0150424f0cc3fa8b492f889fcfe3";
-          var s = document.getElementsByTagName("script")[0];
-          s.parentNode.insertBefore(hm, s);
-        })();
-      }
-    </script>
-  
-
-  
-    <!-- Google Analytics -->
-    <script defer>
-      if (!Fluid.ctx.dnt) {
-        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
-          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
-          ga.l = +new Date;
-          ga('create', 'UA-167862106-1', 'auto');
-          ga('send', 'pageview');
-        });
-      }
-    </script>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-  
-
-
-
-
-  
     <script  src="/js/img-lazyload.js" ></script>
   
 
@@ -849,100 +860,47 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
     var toc = jQuery('#toc');
     if (toc.length === 0 || !window.tocbot) { return; }
     var boardCtn = jQuery('#board-ctn');
     var boardTop = boardCtn.offset().top;
 
-    window.tocbot.init({
+    window.tocbot.init(Object.assign({
       tocSelector     : '#toc-body',
       contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
       linkClass       : 'tocbot-link',
       activeLinkClass : 'tocbot-active-link',
       listClass       : 'tocbot-list',
       isCollapsedClass: 'tocbot-is-collapsed',
       collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
       scrollSmooth    : true,
-      headingsOffset  : -boardTop
-    });
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
     if (toc.find('.toc-list-item').length > 0) {
       toc.css('visibility', 'visible');
     }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
   });
 </script>
 
 
-  <script>
-  (function() {
-    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
-    var enableCopy = CONFIG.copy_btn;
-    if (!enableLang && !enableCopy) {
-      return;
-    }
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 
-    function getBgClass(ele) {
-      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
-    }
-
-    var copyTmpl = '';
-    copyTmpl += '<div class="code-widget">';
-    copyTmpl += 'LANG';
-    copyTmpl += '</div>';
-    jQuery('.markdown-body pre').each(function() {
-      var $pre = jQuery(this);
-      if ($pre.find('code.mermaid').length > 0) {
-        return;
-      }
-      if ($pre.find('span.line').length > 0) {
-        return;
-      }
-
-      var lang = '';
-
-      if (enableLang) {
-        lang = CONFIG.code_language.default;
-        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
-          lang = $pre[0].children[0].classList[1];
-        } else if ($pre[0].getAttribute('data-language')) {
-          lang = $pre[0].getAttribute('data-language');
-        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
-          lang = $pre[0].children[0].classList[1];
-          $pre.parent().addClass('code-wrapper');
-        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
-          $pre.wrap('<div class="code-wrapper"></div>');
-        }
-        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
-      }
-      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
-        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
-
-      if (enableCopy) {
-        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
-          var clipboard = new window.ClipboardJS('.copy-btn', {
-            target: function(trigger) {
-              var nodes = trigger.parentNode.childNodes;
-              for (var i = 0; i < nodes.length; i++) {
-                if (nodes[i].tagName === 'CODE') {
-                  return nodes[i];
-                }
-              }
-            }
-          });
-          clipboard.on('success', function(e) {
-            e.clearSelection();
-            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
-            setTimeout(function() {
-              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
-            }, 2000);
-          });
-        });
-      }
-    });
-  })();
-</script>
+  <script>Fluid.plugins.codeWidget();</script>
 
 
   
@@ -964,6 +922,21 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
       window.anchors.options.class = 'anchorjs-link-left';
     }
     window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
   });
 </script>
 
@@ -978,9 +951,9 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
-
   <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 

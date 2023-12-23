@@ -65,7 +65,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.loquy.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2a5c0150424f0cc3fa8b492f889fcfe3","google":"UA-167862106-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","app_key":"Hoi4ulpVAyY7bRNFpECENYQ4","server_url":"https://aouu3kji.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"tajs":null},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.loquy.cn","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2a5c0150424f0cc3fa8b492f889fcfe3","google":"UA-167862106-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","app_key":"Hoi4ulpVAyY7bRNFpECENYQ4","server_url":"https://aouu3kji.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"tajs":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -74,9 +74,53 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
 
   
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss.xml" title="loquy" type="application/atom+xml">
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2a5c0150424f0cc3fa8b492f889fcfe3";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/rss.xml" title="loquy" type="application/atom+xml">
 </head>
 
 
@@ -108,9 +152,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -120,9 +164,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -132,9 +176,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -144,9 +188,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -156,9 +200,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -168,9 +212,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/linux-command">
+              <a class="nav-link" href="/linux-command" target="_self">
                 <i class="iconfont icon-linux"></i>
-                Linux 命令搜索
+                <span>Linux 命令搜索</span>
               </a>
             </li>
           
@@ -180,9 +224,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" target="_blank" rel="noopener" href="https://foreverblog.cn/go.html">
+              <a class="nav-link" href="https://foreverblog.cn/go.html" target="_self">
                 <i class="iconfont icon-feichuan"></i>
-                虫洞
+                <span>虫洞</span>
               </a>
             </li>
           
@@ -192,9 +236,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+              <a class="nav-link" href="https://www.travellings.cn/go.html" target="_self">
                 <i class="iconfont icon-feiji"></i>
-                开往
+                <span>开往</span>
               </a>
             </li>
           
@@ -202,15 +246,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
           
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -269,12 +314,12 @@
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
         <a href="/posts/3b0faab3.html" target="_self">
           Java 常用业务代码总结
         </a>
-      </h1>
+      </h2>
 
       
       <a class="index-excerpt " href="/posts/3b0faab3.html" target="_self">
@@ -343,12 +388,12 @@
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
         <a href="/posts/10bdb19a.html" target="_self">
           使用 WinSW 将任何程序设为 Windows 服务
         </a>
-      </h1>
+      </h2>
 
       
       <a class="index-excerpt " href="/posts/10bdb19a.html" target="_self">
@@ -419,12 +464,12 @@
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
         <a href="/posts/e2e5d3b3.html" target="_self">
           GitLab 安装和使用
         </a>
-      </h1>
+      </h2>
 
       
       <a class="index-excerpt " href="/posts/e2e5d3b3.html" target="_self">
@@ -495,12 +540,12 @@
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
         <a href="/posts/ef77815d.html" target="_self">
           在 PHP 中使用单元测试
         </a>
-      </h1>
+      </h2>
 
       
       <a class="index-excerpt " href="/posts/ef77815d.html" target="_self">
@@ -569,12 +614,12 @@
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
         <a href="/posts/68d862bb.html" target="_self">
           在 PHP 中使用多进程
         </a>
-      </h1>
+      </h2>
 
       
       <a class="index-excerpt " href="/posts/68d862bb.html" target="_self">
@@ -643,12 +688,12 @@
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
         <a href="/posts/3f5e4d56.html" target="_self">
           Vim 常用命令和配置
         </a>
-      </h1>
+      </h2>
 
       
       <a class="index-excerpt " href="/posts/3f5e4d56.html" target="_self">
@@ -719,12 +764,12 @@
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
         <a href="/posts/6a73a53a.html" target="_self">
           Yii 中活动记录（Active Record）类的使用
         </a>
-      </h1>
+      </h2>
 
       
       <a class="index-excerpt " href="/posts/6a73a53a.html" target="_self">
@@ -795,17 +840,17 @@
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
         <a href="/posts/a8d34c6a.html" target="_self">
           PHP 7 新特性
         </a>
-      </h1>
+      </h2>
 
       
       <a class="index-excerpt " href="/posts/a8d34c6a.html" target="_self">
         <div>
-          标量类型声明标量类型声明 有两种模式: 强制 (默认) 和 严格模式。 现在可以使用下列类型参数（无论用强制模式还是严格模式）： 字符串 (string), 整数 (int), 浮点数 (float), 以及布尔值 (bool)。它们扩充了PHP5中引入的其他类型：类名，接口，数组和 回调类型。 1234567&#x2F;&#x2F; 强制模式function sumOfInts(int ...$ints)&amp;#123
+          标量类型声明标量类型声明 有两种模式: 强制 (默认) 和 严格模式。 现在可以使用下列类型参数（无论用强制模式还是严格模式）： 字符串 (string), 整数 (int), 浮点数 (float), 以及布尔值 (bool)。它们扩充了PHP5中引入的其他类型：类名，接口，数组和 回调类型。 1234567// 强制模式function sumOfInts(int ...$ints)&#123
         </div>
       </a>
 
@@ -869,17 +914,17 @@
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
         <a href="/posts/5ca3d0c3.html" target="_self">
           安装 LNMP 环境
         </a>
-      </h1>
+      </h2>
 
       
       <a class="index-excerpt " href="/posts/5ca3d0c3.html" target="_self">
         <div>
-          安装 虚拟机中安装 centos 8（自行搜索,安装后只有命令行，图形界面需要另外安装）  切换 root 账号   su root   使用 dhclient 命令为 centos 8 分配一个 ip 地址     使用vim编辑网卡配置，将上面分配所得的ip地址写入配置文件   vim &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-enp0s3   注意红框的修改的
+          安装 虚拟机中安装 centos 8（自行搜索,安装后只有命令行，图形界面需要另外安装）  切换 root 账号   su root   使用 dhclient 命令为 centos 8 分配一个 ip 地址     使用vim编辑网卡配置，将上面分配所得的ip地址写入配置文件   vim /etc/sysconfig/network-scripts/ifcfg-enp0s3   注意红框的修改的
         </div>
       </a>
 
@@ -943,12 +988,12 @@
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
         <a href="/posts/babcce42.html" target="_self">
           PHP 面试问题整理
         </a>
-      </h1>
+      </h2>
 
       
       <a class="index-excerpt " href="/posts/babcce42.html" target="_self">
@@ -1111,7 +1156,7 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
@@ -1166,59 +1211,15 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
 
 
   
-    <!-- Baidu Analytics -->
-    <script defer>
-      if (!Fluid.ctx.dnt) {
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?2a5c0150424f0cc3fa8b492f889fcfe3";
-          var s = document.getElementsByTagName("script")[0];
-          s.parentNode.insertBefore(hm, s);
-        })();
-      }
-    </script>
-  
-
-  
-    <!-- Google Analytics -->
-    <script defer>
-      if (!Fluid.ctx.dnt) {
-        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
-          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
-          ga.l = +new Date;
-          ga('create', 'UA-167862106-1', 'auto');
-          ga('send', 'pageview');
-        });
-      }
-    </script>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-  
-
-
-
-
-  
     <script  src="/js/img-lazyload.js" ></script>
   
 
 
 
 
-  <script  src="/js/local-search.js" ></script>
-
   <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 

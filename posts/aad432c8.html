@@ -76,7 +76,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.loquy.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2a5c0150424f0cc3fa8b492f889fcfe3","google":"UA-167862106-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","app_key":"Hoi4ulpVAyY7bRNFpECENYQ4","server_url":"https://aouu3kji.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"tajs":null},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.loquy.cn","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2a5c0150424f0cc3fa8b492f889fcfe3","google":"UA-167862106-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","app_key":"Hoi4ulpVAyY7bRNFpECENYQ4","server_url":"https://aouu3kji.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"tajs":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -85,9 +85,53 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
 
   
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss.xml" title="loquy" type="application/atom+xml">
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2a5c0150424f0cc3fa8b492f889fcfe3";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/rss.xml" title="loquy" type="application/atom+xml">
 </head>
 
 
@@ -119,9 +163,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -131,9 +175,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -143,9 +187,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -155,9 +199,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -167,9 +211,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -179,9 +223,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/linux-command">
+              <a class="nav-link" href="/linux-command" target="_self">
                 <i class="iconfont icon-linux"></i>
-                Linux 命令搜索
+                <span>Linux 命令搜索</span>
               </a>
             </li>
           
@@ -191,9 +235,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" target="_blank" rel="noopener" href="https://foreverblog.cn/go.html">
+              <a class="nav-link" href="https://foreverblog.cn/go.html" target="_self">
                 <i class="iconfont icon-feichuan"></i>
-                虫洞
+                <span>虫洞</span>
               </a>
             </li>
           
@@ -203,9 +247,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+              <a class="nav-link" href="https://www.travellings.cn/go.html" target="_self">
                 <i class="iconfont icon-feiji"></i>
-                开往
+                <span>开往</span>
               </a>
             </li>
           
@@ -213,15 +257,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
           
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -262,7 +307,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          2.3k 字
+          521 字
         
       </span>
     
@@ -273,7 +318,7 @@
         
         
         
-          20 分钟
+          5 分钟
         
       </span>
     
@@ -370,12 +415,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">MySQL 行转列</h1>
+            <h1 id="seo-header">MySQL 行转列</h1>
             
-            <div class="markdown-body">
-              
-              <h1 id="列表数据"><a href="#列表数据" class="headerlink" title="列表数据"></a>列表数据</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> score;<br><span class="hljs-operator">+</span><span class="hljs-comment">----+--------+---------+-------+</span><br><span class="hljs-operator">|</span> id <span class="hljs-operator">|</span> name   <span class="hljs-operator">|</span> subject <span class="hljs-operator">|</span> score <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+--------+---------+-------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">1</span> <span class="hljs-operator">|</span> 张三   <span class="hljs-operator">|</span> 语文    <span class="hljs-operator">|</span>    <span class="hljs-number">10</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">2</span> <span class="hljs-operator">|</span> 张三   <span class="hljs-operator">|</span> 数学    <span class="hljs-operator">|</span>    <span class="hljs-number">30</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">3</span> <span class="hljs-operator">|</span> 张三   <span class="hljs-operator">|</span> 英语    <span class="hljs-operator">|</span>    <span class="hljs-number">40</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">4</span> <span class="hljs-operator">|</span> 张三   <span class="hljs-operator">|</span> 化学    <span class="hljs-operator">|</span>    <span class="hljs-number">50</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">5</span> <span class="hljs-operator">|</span> 李四   <span class="hljs-operator">|</span> 语文    <span class="hljs-operator">|</span>    <span class="hljs-number">60</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">6</span> <span class="hljs-operator">|</span> 李四   <span class="hljs-operator">|</span> 数学    <span class="hljs-operator">|</span>    <span class="hljs-number">70</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">7</span> <span class="hljs-operator">|</span> 李四   <span class="hljs-operator">|</span> 英语    <span class="hljs-operator">|</span>    <span class="hljs-number">80</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">8</span> <span class="hljs-operator">|</span> 王五   <span class="hljs-operator">|</span> 英语    <span class="hljs-operator">|</span>    <span class="hljs-number">90</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">9</span> <span class="hljs-operator">|</span> 王五   <span class="hljs-operator">|</span> 语文    <span class="hljs-operator">|</span>   <span class="hljs-number">100</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> <span class="hljs-number">10</span> <span class="hljs-operator">|</span> 王五   <span class="hljs-operator">|</span> 数学    <span class="hljs-operator">|</span>   <span class="hljs-number">110</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> <span class="hljs-number">11</span> <span class="hljs-operator">|</span> 王五   <span class="hljs-operator">|</span> 数学    <span class="hljs-operator">|</span>   <span class="hljs-number">120</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+--------+---------+-------+</span><br></code></pre></td></tr></table></figure>
+            
+              <div class="markdown-body">
+                
+                <h1 id="列表数据"><a href="#列表数据" class="headerlink" title="列表数据"></a>列表数据</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> score;<br><span class="hljs-operator">+</span><span class="hljs-comment">----+--------+---------+-------+</span><br><span class="hljs-operator">|</span> id <span class="hljs-operator">|</span> name   <span class="hljs-operator">|</span> subject <span class="hljs-operator">|</span> score <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+--------+---------+-------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">1</span> <span class="hljs-operator">|</span> 张三   <span class="hljs-operator">|</span> 语文    <span class="hljs-operator">|</span>    <span class="hljs-number">10</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">2</span> <span class="hljs-operator">|</span> 张三   <span class="hljs-operator">|</span> 数学    <span class="hljs-operator">|</span>    <span class="hljs-number">30</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">3</span> <span class="hljs-operator">|</span> 张三   <span class="hljs-operator">|</span> 英语    <span class="hljs-operator">|</span>    <span class="hljs-number">40</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">4</span> <span class="hljs-operator">|</span> 张三   <span class="hljs-operator">|</span> 化学    <span class="hljs-operator">|</span>    <span class="hljs-number">50</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">5</span> <span class="hljs-operator">|</span> 李四   <span class="hljs-operator">|</span> 语文    <span class="hljs-operator">|</span>    <span class="hljs-number">60</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">6</span> <span class="hljs-operator">|</span> 李四   <span class="hljs-operator">|</span> 数学    <span class="hljs-operator">|</span>    <span class="hljs-number">70</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">7</span> <span class="hljs-operator">|</span> 李四   <span class="hljs-operator">|</span> 英语    <span class="hljs-operator">|</span>    <span class="hljs-number">80</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">8</span> <span class="hljs-operator">|</span> 王五   <span class="hljs-operator">|</span> 英语    <span class="hljs-operator">|</span>    <span class="hljs-number">90</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">9</span> <span class="hljs-operator">|</span> 王五   <span class="hljs-operator">|</span> 语文    <span class="hljs-operator">|</span>   <span class="hljs-number">100</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> <span class="hljs-number">10</span> <span class="hljs-operator">|</span> 王五   <span class="hljs-operator">|</span> 数学    <span class="hljs-operator">|</span>   <span class="hljs-number">110</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> <span class="hljs-number">11</span> <span class="hljs-operator">|</span> 王五   <span class="hljs-operator">|</span> 数学    <span class="hljs-operator">|</span>   <span class="hljs-number">120</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+--------+---------+-------+</span><br></code></pre></td></tr></table></figure>
 
 <h1 id="行转列写法"><a href="#行转列写法" class="headerlink" title="行转列写法"></a>行转列写法</h1><ul>
 <li>CASE 函数定义和用法</li>
@@ -404,8 +449,9 @@
 </ul>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `score` (`id`, `name`, `subject`, `score`) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;张三&#x27;</span>, <span class="hljs-string">&#x27;语文&#x27;</span>, <span class="hljs-number">10</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `score` (`id`, `name`, `subject`, `score`) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;张三&#x27;</span>, <span class="hljs-string">&#x27;数学&#x27;</span>, <span class="hljs-number">30</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `score` (`id`, `name`, `subject`, `score`) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;张三&#x27;</span>, <span class="hljs-string">&#x27;英语&#x27;</span>, <span class="hljs-number">40</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `score` (`id`, `name`, `subject`, `score`) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">4</span>, <span class="hljs-string">&#x27;张三&#x27;</span>, <span class="hljs-string">&#x27;化学&#x27;</span>, <span class="hljs-number">50</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `score` (`id`, `name`, `subject`, `score`) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">5</span>, <span class="hljs-string">&#x27;李四&#x27;</span>, <span class="hljs-string">&#x27;语文&#x27;</span>, <span class="hljs-number">60</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `score` (`id`, `name`, `subject`, `score`) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">6</span>, <span class="hljs-string">&#x27;李四&#x27;</span>, <span class="hljs-string">&#x27;数学&#x27;</span>, <span class="hljs-number">70</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `score` (`id`, `name`, `subject`, `score`) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">7</span>, <span class="hljs-string">&#x27;李四&#x27;</span>, <span class="hljs-string">&#x27;英语&#x27;</span>, <span class="hljs-number">80</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `score` (`id`, `name`, `subject`, `score`) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">8</span>, <span class="hljs-string">&#x27;王五&#x27;</span>, <span class="hljs-string">&#x27;英语&#x27;</span>, <span class="hljs-number">90</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `score` (`id`, `name`, `subject`, `score`) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">9</span>, <span class="hljs-string">&#x27;王五&#x27;</span>, <span class="hljs-string">&#x27;语文&#x27;</span>, <span class="hljs-number">100</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `score` (`id`, `name`, `subject`, `score`) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">10</span>, <span class="hljs-string">&#x27;王五&#x27;</span>, <span class="hljs-string">&#x27;数学&#x27;</span>, <span class="hljs-number">110</span>);<br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> `score` (`id`, `name`, `subject`, `score`) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">11</span>, <span class="hljs-string">&#x27;王五&#x27;</span>, <span class="hljs-string">&#x27;数学&#x27;</span>, <span class="hljs-number">120</span>);<br></code></pre></td></tr></table></figure>
 
-              
-            </div>
+                
+              </div>
+            
             <hr/>
             <div>
               <div class="post-metas my-3">
@@ -442,9 +488,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/SQL/">#SQL</a>
+        <a href="/tags/SQL/" class="print-no-link">#SQL</a>
       
-        <a href="/tags/MySQL/">#MySQL</a>
+        <a href="/tags/MySQL/" class="print-no-link">#MySQL</a>
       
     </div>
   
@@ -473,21 +519,23 @@
         </div>
       
       
-      <div class="license-meta-item">
-        <div>许可协议</div>
-        <div>
-          
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
             
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
             
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                <i class="iconfont icon-by"></i>
-              </span>
-              </a>
-            
-          
+          </div>
         </div>
-      </div>
+      
     </div>
     <div class="license-icon iconfont"></div>
   </div>
@@ -521,12 +569,14 @@
             </div>
 
             
-  <article id="comments" lazyload>
-    
+  
+  
+    <article id="comments" lazyload>
+      
   <div id="valine"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#valine', function() {
-      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
         var options = Object.assign(
           {"appId":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","appKey":"Hoi4ulpVAyY7bRNFpECENYQ4","path":"window.location.pathname","placeholder":"欢迎评论~","avatar":"identicon","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appkey":"Hoi4ulpVAyY7bRNFpECENYQ4"},
           {
@@ -546,7 +596,8 @@
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-  </article>
+    </article>
+  
 
 
           </article>
@@ -558,7 +609,10 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -592,6 +646,7 @@
 
 
   
+
 
 
 
@@ -687,7 +742,7 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
@@ -712,50 +767,6 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
 
 
   
-    <!-- Baidu Analytics -->
-    <script defer>
-      if (!Fluid.ctx.dnt) {
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?2a5c0150424f0cc3fa8b492f889fcfe3";
-          var s = document.getElementsByTagName("script")[0];
-          s.parentNode.insertBefore(hm, s);
-        })();
-      }
-    </script>
-  
-
-  
-    <!-- Google Analytics -->
-    <script defer>
-      if (!Fluid.ctx.dnt) {
-        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
-          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
-          ga.l = +new Date;
-          ga('create', 'UA-167862106-1', 'auto');
-          ga('send', 'pageview');
-        });
-      }
-    </script>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-  
-
-
-
-
-  
     <script  src="/js/img-lazyload.js" ></script>
   
 
@@ -764,100 +775,47 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
     var toc = jQuery('#toc');
     if (toc.length === 0 || !window.tocbot) { return; }
     var boardCtn = jQuery('#board-ctn');
     var boardTop = boardCtn.offset().top;
 
-    window.tocbot.init({
+    window.tocbot.init(Object.assign({
       tocSelector     : '#toc-body',
       contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
       linkClass       : 'tocbot-link',
       activeLinkClass : 'tocbot-active-link',
       listClass       : 'tocbot-list',
       isCollapsedClass: 'tocbot-is-collapsed',
       collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
       scrollSmooth    : true,
-      headingsOffset  : -boardTop
-    });
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
     if (toc.find('.toc-list-item').length > 0) {
       toc.css('visibility', 'visible');
     }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
   });
 </script>
 
 
-  <script>
-  (function() {
-    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
-    var enableCopy = CONFIG.copy_btn;
-    if (!enableLang && !enableCopy) {
-      return;
-    }
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 
-    function getBgClass(ele) {
-      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
-    }
-
-    var copyTmpl = '';
-    copyTmpl += '<div class="code-widget">';
-    copyTmpl += 'LANG';
-    copyTmpl += '</div>';
-    jQuery('.markdown-body pre').each(function() {
-      var $pre = jQuery(this);
-      if ($pre.find('code.mermaid').length > 0) {
-        return;
-      }
-      if ($pre.find('span.line').length > 0) {
-        return;
-      }
-
-      var lang = '';
-
-      if (enableLang) {
-        lang = CONFIG.code_language.default;
-        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
-          lang = $pre[0].children[0].classList[1];
-        } else if ($pre[0].getAttribute('data-language')) {
-          lang = $pre[0].getAttribute('data-language');
-        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
-          lang = $pre[0].children[0].classList[1];
-          $pre.parent().addClass('code-wrapper');
-        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
-          $pre.wrap('<div class="code-wrapper"></div>');
-        }
-        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
-      }
-      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
-        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
-
-      if (enableCopy) {
-        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
-          var clipboard = new window.ClipboardJS('.copy-btn', {
-            target: function(trigger) {
-              var nodes = trigger.parentNode.childNodes;
-              for (var i = 0; i < nodes.length; i++) {
-                if (nodes[i].tagName === 'CODE') {
-                  return nodes[i];
-                }
-              }
-            }
-          });
-          clipboard.on('success', function(e) {
-            e.clearSelection();
-            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
-            setTimeout(function() {
-              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
-            }, 2000);
-          });
-        });
-      }
-    });
-  })();
-</script>
+  <script>Fluid.plugins.codeWidget();</script>
 
 
   
@@ -879,6 +837,21 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
       window.anchors.options.class = 'anchorjs-link-left';
     }
     window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
   });
 </script>
 
@@ -893,9 +866,9 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
-
   <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 

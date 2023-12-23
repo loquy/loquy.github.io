@@ -75,7 +75,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.loquy.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2a5c0150424f0cc3fa8b492f889fcfe3","google":"UA-167862106-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","app_key":"Hoi4ulpVAyY7bRNFpECENYQ4","server_url":"https://aouu3kji.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"tajs":null},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.loquy.cn","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2a5c0150424f0cc3fa8b492f889fcfe3","google":"UA-167862106-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","app_key":"Hoi4ulpVAyY7bRNFpECENYQ4","server_url":"https://aouu3kji.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"tajs":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -84,9 +84,53 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
 
   
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss.xml" title="loquy" type="application/atom+xml">
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2a5c0150424f0cc3fa8b492f889fcfe3";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/rss.xml" title="loquy" type="application/atom+xml">
 </head>
 
 
@@ -118,9 +162,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -130,9 +174,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -142,9 +186,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -154,9 +198,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -166,9 +210,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -178,9 +222,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/linux-command">
+              <a class="nav-link" href="/linux-command" target="_self">
                 <i class="iconfont icon-linux"></i>
-                Linux 命令搜索
+                <span>Linux 命令搜索</span>
               </a>
             </li>
           
@@ -190,9 +234,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" target="_blank" rel="noopener" href="https://foreverblog.cn/go.html">
+              <a class="nav-link" href="https://foreverblog.cn/go.html" target="_self">
                 <i class="iconfont icon-feichuan"></i>
-                虫洞
+                <span>虫洞</span>
               </a>
             </li>
           
@@ -202,9 +246,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+              <a class="nav-link" href="https://www.travellings.cn/go.html" target="_self">
                 <i class="iconfont icon-feiji"></i>
-                开往
+                <span>开往</span>
               </a>
             </li>
           
@@ -212,15 +256,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
           
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -261,7 +306,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          35k 字
+          11k 字
         
       </span>
     
@@ -272,7 +317,7 @@
         
         
         
-          291 分钟
+          90 分钟
         
       </span>
     
@@ -436,20 +481,20 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">JavaScript 常用业务代码总结</h1>
+            <h1 id="seo-header">JavaScript 常用业务代码总结</h1>
             
-              <p class="note note-info">
+              <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于：2022年6月29日 中午
+                    本文最后更新于 2022年6月29日 中午
                   
                 
               </p>
             
-            <div class="markdown-body">
-              
-              <h1 id="事件和选择器"><a href="#事件和选择器" class="headerlink" title="事件和选择器"></a>事件和选择器</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 元素选择器</span><br>$(<span class="hljs-string">&quot;p&quot;</span>)<br><span class="hljs-comment">// #id 选择器</span><br>$(<span class="hljs-string">&quot;#test&quot;</span>)<br><span class="hljs-comment">// .class 选择器</span><br>$(<span class="hljs-string">&quot;.test&quot;</span>)<br><br></code></pre></td></tr></table></figure>
+            
+              <div class="markdown-body">
+                
+                <h1 id="事件和选择器"><a href="#事件和选择器" class="headerlink" title="事件和选择器"></a>事件和选择器</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 元素选择器</span><br>$(<span class="hljs-string">&quot;p&quot;</span>)<br><span class="hljs-comment">// #id 选择器</span><br>$(<span class="hljs-string">&quot;#test&quot;</span>)<br><span class="hljs-comment">// .class 选择器</span><br>$(<span class="hljs-string">&quot;.test&quot;</span>)<br><br></code></pre></td></tr></table></figure>
 
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 点击事件</span><br>$(<span class="hljs-string">&quot;p&quot;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-comment">// 动作触发后执行的代码!!</span><br>&#125;);<br><span class="hljs-comment">// 添加一个或多个事件处理程序</span><br>$(<span class="hljs-string">&quot;p&quot;</span>).<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;click&quot;</span>,<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;段落被点击了。&quot;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
 
@@ -1032,7 +1077,7 @@
 <h3 id="执行提交方法："><a href="#执行提交方法：" class="headerlink" title="执行提交方法："></a><strong>执行提交方法：</strong></h3><p>有时我们未必要通过点击表单内的按钮来进行提交，这时需要用到提交方法：<code>form.submit(filter, callback);</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;layui-form&quot;</span> lay-filter=<span class="hljs-string">&quot;test1&quot;</span>&gt;<br>  &lt;!-- 表单内部 --&gt;<br>&lt;/div&gt;<br> <br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;testSubmitBtn&quot;</span>&gt;</span>任意位置按钮<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br> <br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml">layui.<span class="hljs-title function_">use</span>(<span class="hljs-string">&#x27;form&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123; </span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-keyword">var</span> form = layui.<span class="hljs-property">form</span>;</span></span><br><span class="language-javascript"><span class="language-xml">  </span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-comment">//方法提交</span></span></span><br><span class="language-javascript"><span class="language-xml">  $(<span class="hljs-string">&#x27;#testSubmitBtn&#x27;</span>).<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)&#123;</span></span><br><span class="language-javascript"><span class="language-xml">    form.<span class="hljs-title function_">submit</span>(<span class="hljs-string">&#x27;test1&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)&#123; <span class="hljs-comment">// 注：v2.7.0 新增</span></span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-comment">// 回调函数返回结果跟上述 submit 事件完全一致</span></span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-keyword">var</span> field = data.<span class="hljs-property">field</span>;</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-comment">// do something</span></span></span><br><span class="language-javascript"><span class="language-xml">    &#125;);</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</span></span><br><span class="language-javascript"><span class="language-xml">  &#125;);</span></span><br><span class="language-javascript"><span class="language-xml">&#125;);</span></span><br><span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
 
-<h2 id="表单赋值-x2F-取值"><a href="#表单赋值-x2F-取值" class="headerlink" title="表单赋值 &#x2F; 取值"></a>表单赋值 &#x2F; 取值</h2><p>语法：<em>form.val(‘filter’, object);</em></p>
+<h2 id="表单赋值-取值"><a href="#表单赋值-取值" class="headerlink" title="表单赋值 &#x2F; 取值"></a>表单赋值 &#x2F; 取值</h2><p>语法：<em>form.val(‘filter’, object);</em></p>
 <p>用于给指定表单集合的元素赋值和取值。如果 object 参数存在，则为赋值；如果 object 参数不存在，则为取值。<br>注：其中「取值」功能为 layui 2.5.5 开始新增</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//给表单赋值</span><br>form.<span class="hljs-title function_">val</span>(<span class="hljs-string">&quot;formTest&quot;</span>, &#123; <span class="hljs-comment">//formTest 即 class=&quot;layui-form&quot; 所在元素属性 lay-filter=&quot;&quot; 对应的值</span><br>  <span class="hljs-string">&quot;username&quot;</span>: <span class="hljs-string">&quot;贤心&quot;</span> <span class="hljs-comment">// &quot;name&quot;: &quot;value&quot;</span><br>  ,<span class="hljs-string">&quot;sex&quot;</span>: <span class="hljs-string">&quot;女&quot;</span><br>  ,<span class="hljs-string">&quot;auth&quot;</span>: <span class="hljs-number">3</span><br>  ,<span class="hljs-string">&quot;check[write]&quot;</span>: <span class="hljs-literal">true</span><br>  ,<span class="hljs-string">&quot;open&quot;</span>: <span class="hljs-literal">false</span><br>  ,<span class="hljs-string">&quot;desc&quot;</span>: <span class="hljs-string">&quot;我爱layui&quot;</span><br>&#125;);<br> <br><span class="hljs-comment">//获取表单区域所有值</span><br><span class="hljs-keyword">var</span> data1 = form.<span class="hljs-title function_">val</span>(<span class="hljs-string">&quot;formTest&quot;</span>);<br></code></pre></td></tr></table></figure>
 
@@ -1246,8 +1291,9 @@
 <h2 id="delete-关键字"><a href="#delete-关键字" class="headerlink" title="delete 关键字"></a>delete 关键字</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> colors = [<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>, <span class="hljs-string">&quot;grey&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>];<br><br><span class="hljs-keyword">delete</span> colors[<span class="hljs-number">0</span>];<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(colors); <span class="hljs-comment">// [undefined, &quot;blue&quot;, &quot;grey&quot;, &quot;green&quot;]</span><br></code></pre></td></tr></table></figure>
 
 
-              
-            </div>
+                
+              </div>
+            
             <hr/>
             <div>
               <div class="post-metas my-3">
@@ -1284,7 +1330,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/JavaScript/">#JavaScript</a>
+        <a href="/tags/JavaScript/" class="print-no-link">#JavaScript</a>
       
     </div>
   
@@ -1318,21 +1364,23 @@
           <div>2022年6月29日</div>
         </div>
       
-      <div class="license-meta-item">
-        <div>许可协议</div>
-        <div>
-          
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
             
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
             
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                <i class="iconfont icon-by"></i>
-              </span>
-              </a>
-            
-          
+          </div>
         </div>
-      </div>
+      
     </div>
     <div class="license-icon iconfont"></div>
   </div>
@@ -1366,12 +1414,14 @@
             </div>
 
             
-  <article id="comments" lazyload>
-    
+  
+  
+    <article id="comments" lazyload>
+      
   <div id="valine"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#valine', function() {
-      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
         var options = Object.assign(
           {"appId":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","appKey":"Hoi4ulpVAyY7bRNFpECENYQ4","path":"window.location.pathname","placeholder":"欢迎评论~","avatar":"identicon","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appkey":"Hoi4ulpVAyY7bRNFpECENYQ4"},
           {
@@ -1391,7 +1441,8 @@
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-  </article>
+    </article>
+  
 
 
           </article>
@@ -1403,7 +1454,10 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -1437,6 +1491,7 @@
 
 
   
+
 
 
 
@@ -1532,7 +1587,7 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
@@ -1557,50 +1612,6 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
 
 
   
-    <!-- Baidu Analytics -->
-    <script defer>
-      if (!Fluid.ctx.dnt) {
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?2a5c0150424f0cc3fa8b492f889fcfe3";
-          var s = document.getElementsByTagName("script")[0];
-          s.parentNode.insertBefore(hm, s);
-        })();
-      }
-    </script>
-  
-
-  
-    <!-- Google Analytics -->
-    <script defer>
-      if (!Fluid.ctx.dnt) {
-        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
-          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
-          ga.l = +new Date;
-          ga('create', 'UA-167862106-1', 'auto');
-          ga('send', 'pageview');
-        });
-      }
-    </script>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-  
-
-
-
-
-  
     <script  src="/js/img-lazyload.js" ></script>
   
 
@@ -1609,100 +1620,47 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
     var toc = jQuery('#toc');
     if (toc.length === 0 || !window.tocbot) { return; }
     var boardCtn = jQuery('#board-ctn');
     var boardTop = boardCtn.offset().top;
 
-    window.tocbot.init({
+    window.tocbot.init(Object.assign({
       tocSelector     : '#toc-body',
       contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
       linkClass       : 'tocbot-link',
       activeLinkClass : 'tocbot-active-link',
       listClass       : 'tocbot-list',
       isCollapsedClass: 'tocbot-is-collapsed',
       collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
       scrollSmooth    : true,
-      headingsOffset  : -boardTop
-    });
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
     if (toc.find('.toc-list-item').length > 0) {
       toc.css('visibility', 'visible');
     }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
   });
 </script>
 
 
-  <script>
-  (function() {
-    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
-    var enableCopy = CONFIG.copy_btn;
-    if (!enableLang && !enableCopy) {
-      return;
-    }
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 
-    function getBgClass(ele) {
-      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
-    }
-
-    var copyTmpl = '';
-    copyTmpl += '<div class="code-widget">';
-    copyTmpl += 'LANG';
-    copyTmpl += '</div>';
-    jQuery('.markdown-body pre').each(function() {
-      var $pre = jQuery(this);
-      if ($pre.find('code.mermaid').length > 0) {
-        return;
-      }
-      if ($pre.find('span.line').length > 0) {
-        return;
-      }
-
-      var lang = '';
-
-      if (enableLang) {
-        lang = CONFIG.code_language.default;
-        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
-          lang = $pre[0].children[0].classList[1];
-        } else if ($pre[0].getAttribute('data-language')) {
-          lang = $pre[0].getAttribute('data-language');
-        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
-          lang = $pre[0].children[0].classList[1];
-          $pre.parent().addClass('code-wrapper');
-        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
-          $pre.wrap('<div class="code-wrapper"></div>');
-        }
-        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
-      }
-      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
-        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
-
-      if (enableCopy) {
-        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
-          var clipboard = new window.ClipboardJS('.copy-btn', {
-            target: function(trigger) {
-              var nodes = trigger.parentNode.childNodes;
-              for (var i = 0; i < nodes.length; i++) {
-                if (nodes[i].tagName === 'CODE') {
-                  return nodes[i];
-                }
-              }
-            }
-          });
-          clipboard.on('success', function(e) {
-            e.clearSelection();
-            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
-            setTimeout(function() {
-              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
-            }, 2000);
-          });
-        });
-      }
-    });
-  })();
-</script>
+  <script>Fluid.plugins.codeWidget();</script>
 
 
   
@@ -1724,6 +1682,21 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
       window.anchors.options.class = 'anchorjs-link-left';
     }
     window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
   });
 </script>
 
@@ -1738,9 +1711,9 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
-
   <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 

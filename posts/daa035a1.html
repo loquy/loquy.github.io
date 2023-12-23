@@ -77,7 +77,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.loquy.cn","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2a5c0150424f0cc3fa8b492f889fcfe3","google":"UA-167862106-1","gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","app_key":"Hoi4ulpVAyY7bRNFpECENYQ4","server_url":"https://aouu3kji.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"tajs":null},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.loquy.cn","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2a5c0150424f0cc3fa8b492f889fcfe3","google":"UA-167862106-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","app_key":"Hoi4ulpVAyY7bRNFpECENYQ4","server_url":"https://aouu3kji.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"tajs":null},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -86,9 +86,53 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
 
   
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss.xml" title="loquy" type="application/atom+xml">
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2a5c0150424f0cc3fa8b492f889fcfe3";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/rss.xml" title="loquy" type="application/atom+xml">
 </head>
 
 
@@ -120,9 +164,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -132,9 +176,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -144,9 +188,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -156,9 +200,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -168,9 +212,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -180,9 +224,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/linux-command">
+              <a class="nav-link" href="/linux-command" target="_self">
                 <i class="iconfont icon-linux"></i>
-                Linux 命令搜索
+                <span>Linux 命令搜索</span>
               </a>
             </li>
           
@@ -192,9 +236,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" target="_blank" rel="noopener" href="https://foreverblog.cn/go.html">
+              <a class="nav-link" href="https://foreverblog.cn/go.html" target="_self">
                 <i class="iconfont icon-feichuan"></i>
-                虫洞
+                <span>虫洞</span>
               </a>
             </li>
           
@@ -204,9 +248,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html">
+              <a class="nav-link" href="https://www.travellings.cn/go.html" target="_self">
                 <i class="iconfont icon-feiji"></i>
-                开往
+                <span>开往</span>
               </a>
             </li>
           
@@ -214,15 +258,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
           
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -263,7 +308,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          19k 字
+          3.8k 字
         
       </span>
     
@@ -274,7 +319,7 @@
         
         
         
-          159 分钟
+          32 分钟
         
       </span>
     
@@ -438,12 +483,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">Layui 表格多选、合并单元格、父子页传值</h1>
+            <h1 id="seo-header">Layui 表格多选、合并单元格、父子页传值</h1>
             
-            <div class="markdown-body">
-              
-              <p>Layui 表格多选、合并单元格、父子页传值的页面效果如下：</p>
+            
+              <div class="markdown-body">
+                
+                <p>Layui 表格多选、合并单元格、父子页传值的页面效果如下：</p>
 <iframe  
 height=500
 width=100%
@@ -497,8 +542,9 @@ allowfullscreen>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&lt;script&gt;<br>    <span class="hljs-keyword">var</span> init = <span class="hljs-literal">false</span>;<br>    <span class="hljs-keyword">var</span> initData = [<br>        &#123;<br>            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">10000</span>,<br>            <span class="hljs-string">&quot;username&quot;</span>: <span class="hljs-string">&quot;user-0&quot;</span>,<br>            <span class="hljs-string">&quot;sex&quot;</span>: <span class="hljs-string">&quot;女&quot;</span>,<br>            <span class="hljs-string">&quot;sign&quot;</span>: <span class="hljs-string">&quot;签名-0&quot;</span>,<br>            <span class="hljs-string">&quot;experience&quot;</span>: <span class="hljs-number">255</span>,<br>            <span class="hljs-string">&quot;classify&quot;</span>: <span class="hljs-string">&quot;作家&quot;</span>,<br>        &#125;,<br>        &#123;<br>            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">10001</span>,<br>            <span class="hljs-string">&quot;username&quot;</span>: <span class="hljs-string">&quot;user-1&quot;</span>,<br>            <span class="hljs-string">&quot;sex&quot;</span>: <span class="hljs-string">&quot;男&quot;</span>,<br>            <span class="hljs-string">&quot;sign&quot;</span>: <span class="hljs-string">&quot;签名-1&quot;</span>,<br>            <span class="hljs-string">&quot;experience&quot;</span>: <span class="hljs-number">884</span>,<br>            <span class="hljs-string">&quot;classify&quot;</span>: <span class="hljs-string">&quot;词人&quot;</span>,<br>        &#125;,<br>        &#123;<br>            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">10002</span>,<br>            <span class="hljs-string">&quot;username&quot;</span>: <span class="hljs-string">&quot;user-2&quot;</span>,<br>            <span class="hljs-string">&quot;sex&quot;</span>: <span class="hljs-string">&quot;女&quot;</span>,<br>            <span class="hljs-string">&quot;sign&quot;</span>: <span class="hljs-string">&quot;签名-2&quot;</span>,<br>            <span class="hljs-string">&quot;experience&quot;</span>: <span class="hljs-number">650</span>,<br>            <span class="hljs-string">&quot;classify&quot;</span>: <span class="hljs-string">&quot;酱油&quot;</span>,<br>        &#125;,<br>        &#123;<br>            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">10003</span>,<br>            <span class="hljs-string">&quot;username&quot;</span>: <span class="hljs-string">&quot;user-3&quot;</span>,<br>            <span class="hljs-string">&quot;sex&quot;</span>: <span class="hljs-string">&quot;女&quot;</span>,<br>            <span class="hljs-string">&quot;sign&quot;</span>: <span class="hljs-string">&quot;签名-3&quot;</span>,<br>            <span class="hljs-string">&quot;experience&quot;</span>: <span class="hljs-number">362</span>,<br>            <span class="hljs-string">&quot;classify&quot;</span>: <span class="hljs-string">&quot;诗人&quot;</span>,<br>        &#125;,<br>        &#123;<br>            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">10004</span>,<br>            <span class="hljs-string">&quot;username&quot;</span>: <span class="hljs-string">&quot;user-4&quot;</span>,<br>            <span class="hljs-string">&quot;sex&quot;</span>: <span class="hljs-string">&quot;男&quot;</span>,<br>            <span class="hljs-string">&quot;sign&quot;</span>: <span class="hljs-string">&quot;签名-4&quot;</span>,<br>            <span class="hljs-string">&quot;experience&quot;</span>: <span class="hljs-number">807</span>,<br>            <span class="hljs-string">&quot;classify&quot;</span>: <span class="hljs-string">&quot;作家&quot;</span>,<br>        &#125;,<br>        &#123;<br>            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">10005</span>,<br>            <span class="hljs-string">&quot;username&quot;</span>: <span class="hljs-string">&quot;user-5&quot;</span>,<br>            <span class="hljs-string">&quot;sex&quot;</span>: <span class="hljs-string">&quot;女&quot;</span>,<br>            <span class="hljs-string">&quot;sign&quot;</span>: <span class="hljs-string">&quot;签名-5&quot;</span>,<br>            <span class="hljs-string">&quot;experience&quot;</span>: <span class="hljs-number">173</span>,<br>            <span class="hljs-string">&quot;classify&quot;</span>: <span class="hljs-string">&quot;作家&quot;</span>,<br>        &#125;,<br>        &#123;<br>            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">10006</span>,<br>            <span class="hljs-string">&quot;username&quot;</span>: <span class="hljs-string">&quot;user-6&quot;</span>,<br>            <span class="hljs-string">&quot;sex&quot;</span>: <span class="hljs-string">&quot;女&quot;</span>,<br>            <span class="hljs-string">&quot;sign&quot;</span>: <span class="hljs-string">&quot;签名-6&quot;</span>,<br>            <span class="hljs-string">&quot;experience&quot;</span>: <span class="hljs-number">982</span>,<br>            <span class="hljs-string">&quot;classify&quot;</span>: <span class="hljs-string">&quot;作家&quot;</span>,<br>        &#125;,<br>        &#123;<br>            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">10007</span>,<br>            <span class="hljs-string">&quot;username&quot;</span>: <span class="hljs-string">&quot;user-7&quot;</span>,<br>            <span class="hljs-string">&quot;sex&quot;</span>: <span class="hljs-string">&quot;男&quot;</span>,<br>            <span class="hljs-string">&quot;sign&quot;</span>: <span class="hljs-string">&quot;签名-7&quot;</span>,<br>            <span class="hljs-string">&quot;experience&quot;</span>: <span class="hljs-number">727</span>,<br>            <span class="hljs-string">&quot;classify&quot;</span>: <span class="hljs-string">&quot;作家&quot;</span>,<br>        &#125;,<br>        &#123;<br>            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">10008</span>,<br>            <span class="hljs-string">&quot;username&quot;</span>: <span class="hljs-string">&quot;user-8&quot;</span>,<br>            <span class="hljs-string">&quot;sex&quot;</span>: <span class="hljs-string">&quot;男&quot;</span>,<br>            <span class="hljs-string">&quot;sign&quot;</span>: <span class="hljs-string">&quot;签名-8&quot;</span>,<br>            <span class="hljs-string">&quot;experience&quot;</span>: <span class="hljs-number">951</span>,<br>            <span class="hljs-string">&quot;classify&quot;</span>: <span class="hljs-string">&quot;词人&quot;</span>,<br>        &#125;,<br>        &#123;<br>            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">10009</span>,<br>            <span class="hljs-string">&quot;username&quot;</span>: <span class="hljs-string">&quot;user-9&quot;</span>,<br>            <span class="hljs-string">&quot;sex&quot;</span>: <span class="hljs-string">&quot;女&quot;</span>,<br>            <span class="hljs-string">&quot;sign&quot;</span>: <span class="hljs-string">&quot;签名-9&quot;</span>,<br>            <span class="hljs-string">&quot;experience&quot;</span>: <span class="hljs-number">484</span>,<br>            <span class="hljs-string">&quot;classify&quot;</span>: <span class="hljs-string">&quot;词人&quot;</span>,<br>        &#125;<br>    ];<br>    <span class="hljs-keyword">var</span> tableData = initData;<br>    <span class="hljs-keyword">var</span> cols = [<br>        [ <span class="hljs-comment">//表头</span><br>            &#123;<span class="hljs-attr">field</span>: <span class="hljs-string">&#x27;id&#x27;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;ID&#x27;</span>, <span class="hljs-attr">align</span>: <span class="hljs-string">&quot;center&quot;</span>&#125;,<br>            &#123;<span class="hljs-attr">field</span>: <span class="hljs-string">&#x27;username&#x27;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;用户名&#x27;</span>, <span class="hljs-attr">align</span>: <span class="hljs-string">&quot;center&quot;</span>&#125;,<br>            &#123;<span class="hljs-attr">field</span>: <span class="hljs-string">&#x27;sex&#x27;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;性别&#x27;</span>, <span class="hljs-attr">align</span>: <span class="hljs-string">&quot;center&quot;</span>&#125;,<br>            &#123;<br>                <span class="hljs-attr">field</span>: <span class="hljs-string">&#x27;sign&#x27;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;爱好&#x27;</span>, <span class="hljs-attr">minWidth</span>: <span class="hljs-number">150</span>, <span class="hljs-attr">align</span>: <span class="hljs-string">&quot;center&quot;</span>, <span class="hljs-attr">templet</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">d</span>) &#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&lt;div id=&quot;XM-&#x27;</span> + d.<span class="hljs-property">id</span> + <span class="hljs-string">&#x27;&quot; &gt;&lt;/div&gt;&#x27;</span><br>                &#125;<br>            &#125;,<br>            &#123;<span class="hljs-attr">field</span>: <span class="hljs-string">&#x27;classify&#x27;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;职业&#x27;</span>, <span class="hljs-attr">align</span>: <span class="hljs-string">&quot;center&quot;</span>&#125;,<br>        ]<br>    ];<br><br>    <span class="hljs-title function_">initTable</span>();<br><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">initTable</span>(<span class="hljs-params"></span>) &#123;<br>        layui.<span class="hljs-title function_">use</span>(<span class="hljs-string">&#x27;table&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>            layui.<span class="hljs-property">table</span>.<span class="hljs-title function_">render</span>(&#123;<br>                <span class="hljs-attr">elem</span>: <span class="hljs-string">&#x27;#demo&#x27;</span>,<br>                <span class="hljs-attr">page</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">//开启分页</span><br>                <span class="hljs-attr">cols</span>: cols,<br>                <span class="hljs-attr">data</span>: init ? initData : tableData,<br>                <span class="hljs-attr">done</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">res</span>) &#123;<br>                    <span class="hljs-comment">//修改一些css样式, 这里虽然能够使用, 但是还是不太友好, 努力中...</span><br>                    <span class="hljs-keyword">var</span> cells = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&#x27;div[lay-id=&quot;demo&quot;] .layui-table-cell&#x27;</span>);<br>                    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; cells.<span class="hljs-property">length</span>; i++) &#123;<br>                        cells[i].<span class="hljs-property">style</span>.<span class="hljs-property">overflow</span> = <span class="hljs-string">&#x27;unset&#x27;</span>;<br>                        cells[i].<span class="hljs-property">style</span>.<span class="hljs-property">height</span> = <span class="hljs-string">&#x27;auto&#x27;</span>;<br>                    &#125;<br>                    <span class="hljs-comment">//渲染多选</span><br>                    res.<span class="hljs-property">data</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;<br>                        <span class="hljs-keyword">var</span> xm = xmSelect.<span class="hljs-title function_">render</span>(&#123;<br>                            <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#XM-&#x27;</span> + item.<span class="hljs-property">id</span>,<br>                            <span class="hljs-attr">autoRow</span>: <span class="hljs-literal">true</span>,<br>                            <span class="hljs-attr">model</span>: &#123;<span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;fixed&#x27;</span>&#125;,<br>                            <span class="hljs-attr">data</span>: [<br>                                &#123;<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;张三&#x27;</span>, <span class="hljs-attr">value</span>: <span class="hljs-number">1</span>&#125;,<br>                                &#123;<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;李四&#x27;</span>, <span class="hljs-attr">value</span>: <span class="hljs-number">2</span>&#125;,<br>                                &#123;<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;王五&#x27;</span>, <span class="hljs-attr">value</span>: <span class="hljs-number">3</span>&#125;,<br>                            ]<br>                        &#125;)<br><br>                        item.<span class="hljs-property">__xm</span> = xm;<br>                    &#125;)<br>                &#125;<br>            &#125;);<br><br>        &#125;);<br>    &#125;<br><br>    <span class="hljs-comment">//触发单元格工具事件</span><br>    layui.<span class="hljs-property">table</span>.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;tool(demo)&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">obj</span>) &#123;<br>        <span class="hljs-keyword">if</span> (obj.<span class="hljs-property">event</span> === <span class="hljs-string">&#x27;edit&#x27;</span>) &#123;<br>            parent.<span class="hljs-property">tableData</span> = [<br>                &#123;<br>                    <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">10000</span>,<br>                    <span class="hljs-string">&quot;username&quot;</span>: <span class="hljs-string">&quot;user-0&quot;</span>,<br>                    <span class="hljs-string">&quot;sex&quot;</span>: <span class="hljs-string">&quot;女&quot;</span>,<br>                    <span class="hljs-string">&quot;sign&quot;</span>: <span class="hljs-string">&quot;签名-0&quot;</span>,<br>                    <span class="hljs-string">&quot;experience&quot;</span>: <span class="hljs-number">255</span>,<br>                    <span class="hljs-string">&quot;classify&quot;</span>: <span class="hljs-string">&quot;作家&quot;</span>,<br>                &#125;<br>            ];<br>            parent.<span class="hljs-property">init</span> = <span class="hljs-literal">false</span>;<br>            parent.<span class="hljs-title function_">initTable</span>();<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (obj.<span class="hljs-property">event</span> === <span class="hljs-string">&#x27;reset&#x27;</span>) &#123;<br>            parent.<span class="hljs-property">init</span> = <span class="hljs-literal">true</span>;<br>            parent.<span class="hljs-title function_">initTable</span>();<br>        &#125;<br>    &#125;)<br><br>    $(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-comment">//表格滚动时 重新计算位置</span><br>        <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.layui-table-body&#x27;</span>).<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;scroll&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>            xmSelect.<span class="hljs-title function_">get</span>().<span class="hljs-title function_">forEach</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">item</span>) &#123;<br>                item.<span class="hljs-title function_">calcPosition</span>();<br>            &#125;)<br>        &#125;)<br>    &#125;)<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 </details>
 
-              
-            </div>
+                
+              </div>
+            
             <hr/>
             <div>
               <div class="post-metas my-3">
@@ -535,11 +581,11 @@ allowfullscreen>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/JavaScript/">#JavaScript</a>
+        <a href="/tags/JavaScript/" class="print-no-link">#JavaScript</a>
       
-        <a href="/tags/JQuery/">#JQuery</a>
+        <a href="/tags/JQuery/" class="print-no-link">#JQuery</a>
       
-        <a href="/tags/Layui/">#Layui</a>
+        <a href="/tags/Layui/" class="print-no-link">#Layui</a>
       
     </div>
   
@@ -568,21 +614,23 @@ allowfullscreen>
         </div>
       
       
-      <div class="license-meta-item">
-        <div>许可协议</div>
-        <div>
-          
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
             
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
             
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                <i class="iconfont icon-by"></i>
-              </span>
-              </a>
-            
-          
+          </div>
         </div>
-      </div>
+      
     </div>
     <div class="license-icon iconfont"></div>
   </div>
@@ -616,12 +664,14 @@ allowfullscreen>
             </div>
 
             
-  <article id="comments" lazyload>
-    
+  
+  
+    <article id="comments" lazyload>
+      
   <div id="valine"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#valine', function() {
-      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
         var options = Object.assign(
           {"appId":"aOuu3KJiTd7pYzctyGuRb8SC-gzGzoHsz","appKey":"Hoi4ulpVAyY7bRNFpECENYQ4","path":"window.location.pathname","placeholder":"欢迎评论~","avatar":"identicon","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"appkey":"Hoi4ulpVAyY7bRNFpECENYQ4"},
           {
@@ -641,7 +691,8 @@ allowfullscreen>
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-  </article>
+    </article>
+  
 
 
           </article>
@@ -653,7 +704,10 @@ allowfullscreen>
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -687,6 +741,7 @@ allowfullscreen>
 
 
   
+
 
 
 
@@ -782,7 +837,7 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
@@ -807,50 +862,6 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
 
 
   
-    <!-- Baidu Analytics -->
-    <script defer>
-      if (!Fluid.ctx.dnt) {
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?2a5c0150424f0cc3fa8b492f889fcfe3";
-          var s = document.getElementsByTagName("script")[0];
-          s.parentNode.insertBefore(hm, s);
-        })();
-      }
-    </script>
-  
-
-  
-    <!-- Google Analytics -->
-    <script defer>
-      if (!Fluid.ctx.dnt) {
-        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
-          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
-          ga.l = +new Date;
-          ga('create', 'UA-167862106-1', 'auto');
-          ga('send', 'pageview');
-        });
-      }
-    </script>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-  
-
-
-
-
-  
     <script  src="/js/img-lazyload.js" ></script>
   
 
@@ -859,100 +870,47 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
     var toc = jQuery('#toc');
     if (toc.length === 0 || !window.tocbot) { return; }
     var boardCtn = jQuery('#board-ctn');
     var boardTop = boardCtn.offset().top;
 
-    window.tocbot.init({
+    window.tocbot.init(Object.assign({
       tocSelector     : '#toc-body',
       contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
       linkClass       : 'tocbot-link',
       activeLinkClass : 'tocbot-active-link',
       listClass       : 'tocbot-list',
       isCollapsedClass: 'tocbot-is-collapsed',
       collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
       scrollSmooth    : true,
-      headingsOffset  : -boardTop
-    });
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
     if (toc.find('.toc-list-item').length > 0) {
       toc.css('visibility', 'visible');
     }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
   });
 </script>
 
 
-  <script>
-  (function() {
-    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
-    var enableCopy = CONFIG.copy_btn;
-    if (!enableLang && !enableCopy) {
-      return;
-    }
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 
-    function getBgClass(ele) {
-      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
-    }
-
-    var copyTmpl = '';
-    copyTmpl += '<div class="code-widget">';
-    copyTmpl += 'LANG';
-    copyTmpl += '</div>';
-    jQuery('.markdown-body pre').each(function() {
-      var $pre = jQuery(this);
-      if ($pre.find('code.mermaid').length > 0) {
-        return;
-      }
-      if ($pre.find('span.line').length > 0) {
-        return;
-      }
-
-      var lang = '';
-
-      if (enableLang) {
-        lang = CONFIG.code_language.default;
-        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
-          lang = $pre[0].children[0].classList[1];
-        } else if ($pre[0].getAttribute('data-language')) {
-          lang = $pre[0].getAttribute('data-language');
-        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
-          lang = $pre[0].children[0].classList[1];
-          $pre.parent().addClass('code-wrapper');
-        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
-          $pre.wrap('<div class="code-wrapper"></div>');
-        }
-        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
-      }
-      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
-        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
-
-      if (enableCopy) {
-        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
-          var clipboard = new window.ClipboardJS('.copy-btn', {
-            target: function(trigger) {
-              var nodes = trigger.parentNode.childNodes;
-              for (var i = 0; i < nodes.length; i++) {
-                if (nodes[i].tagName === 'CODE') {
-                  return nodes[i];
-                }
-              }
-            }
-          });
-          clipboard.on('success', function(e) {
-            e.clearSelection();
-            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
-            setTimeout(function() {
-              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
-            }, 2000);
-          });
-        });
-      }
-    });
-  })();
-</script>
+  <script>Fluid.plugins.codeWidget();</script>
 
 
   
@@ -974,6 +932,21 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
       window.anchors.options.class = 'anchorjs-link-left';
     }
     window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
   });
 </script>
 
@@ -988,9 +961,9 @@ function createtime() { var grt = new Date("05/22/2020 11:14:21"); now.setTime(n
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
-
   <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
