@@ -1196,239 +1196,236 @@ public class HomeController : Controller
 #### 2.6. 示例输出
 启动 ASP.NET Core 网站时，我们得到两个文件：
 
-nlog-own-2022-08-18.log
+nlog-own-2024-05-29.log
 
 ```log
-2022-08-18 18:35:23.9930|14|INFO|Microsoft.Hosting.Lifetime|Now listening on: https://localhost:7125 |url: |action: |Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync
-2022-08-18 18:35:23.9930|14|INFO|Microsoft.Hosting.Lifetime|Now listening on: http://localhost:5125 |url: |action: |Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync
-2022-08-18 18:35:24.0084|0|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. |url: |action: |Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted
-2022-08-18 18:35:24.0084|0|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development |url: |action: |Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted
-2022-08-18 18:35:24.0084|0|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\snakefoot\source\repos\NLog.Web\examples\ASP.NET Core 6\ASP.NET Core 6 NLog Example\ |url: |action: |Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted
-2022-08-18 18:35:25.6656|1|DEBUG|ASP.NetCore6_NLog_Web_Example.Controllers.HomeController|NLog injected into HomeController |url: https://localhost/|action: Index|ASP.NetCore6_NLog_Web_Example.Controllers.HomeController..ctor
-2022-08-18 18:35:25.6656|0|INFO|ASP.NetCore6_NLog_Web_Example.Controllers.HomeController|Hello, this is the index! |url: https://localhost/|action: Index|ASP.NetCore6_NLog_Web_Example.Controllers.HomeController.Index
+2024-05-29 18:35:23.9930|14|INFO|Microsoft.Hosting.Lifetime|Now listening on: https://localhost:7125 |url: |action: |Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync
+2024-05-29 18:35:23.9930|14|INFO|Microsoft.Hosting.Lifetime|Now listening on: http://localhost:5125 |url: |action: |Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync
+2024-05-29 18:35:24.0084|0|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. |url: |action: |Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted
+2024-05-29 18:35:24.0084|0|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development |url: |action: |Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted
+2024-05-29 18:35:24.0084|0|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\snakefoot\source\repos\NLog.Web\examples\ASP.NET Core 6\ASP.NET Core 6 NLog Example\ |url: |action: |Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted
+2024-05-29 18:35:25.6656|1|DEBUG|ASP.NetCore6_NLog_Web_Example.Controllers.HomeController|NLog injected into HomeController |url: https://localhost/|action: Index|ASP.NetCore6_NLog_Web_Example.Controllers.HomeController..ctor
+2024-05-29 18:35:25.6656|0|INFO|ASP.NetCore6_NLog_Web_Example.Controllers.HomeController|Hello, this is the index! |url: https://localhost/|action: Index|ASP.NetCore6_NLog_Web_Example.Controllers.HomeController.Index
 ```
 
-nlog-all-2021-12-01.log
+nlog-all-2024-05-29.log
 ```log
-2022-08-18 18:35:15.1343|6|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMK16TVPK9JQ" received FIN. 
-2022-08-18 18:35:15.1694|48|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16TVPK9JQ" is closed. The last processed stream ID was 29. 
-2022-08-18 18:35:15.1694|7|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMK16TVPK9JQ" sending FIN because: "The client closed the connection." 
-2022-08-18 18:35:15.1805|2|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMK16TVPK9JQ" stopped. 
-2022-08-18 18:35:23.6686|3|DEBUG|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Initializing Razor view compiler with compiled view: '/Views/Home/Index.cshtml'. 
-2022-08-18 18:35:23.7133|3|DEBUG|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Initializing Razor view compiler with compiled view: '/Views/Home/Privacy.cshtml'. 
-2022-08-18 18:35:23.7133|3|DEBUG|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Initializing Razor view compiler with compiled view: '/Views/Shared/Error.cshtml'. 
-2022-08-18 18:35:23.7133|3|DEBUG|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Initializing Razor view compiler with compiled view: '/Views/Shared/_ValidationScriptsPartial.cshtml'. 
-2022-08-18 18:35:23.7133|3|DEBUG|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Initializing Razor view compiler with compiled view: '/Views/_ViewImports.cshtml'. 
-2022-08-18 18:35:23.7133|3|DEBUG|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Initializing Razor view compiler with compiled view: '/Views/_ViewStart.cshtml'. 
-2022-08-18 18:35:23.7133|3|DEBUG|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Initializing Razor view compiler with compiled view: '/Views/Shared/_Layout.cshtml'. 
-2022-08-18 18:35:23.7133|12|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactory|Registered model binder providers, in the following order: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider 
-2022-08-18 18:35:23.7746|1|DEBUG|Microsoft.Extensions.Hosting.Internal.Host|Hosting starting 
-2022-08-18 18:35:23.8067|63|INFO|Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager|User profile is available. Using 'C:\Users\XXX\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
-2022-08-18 18:35:23.8067|37|DEBUG|Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository|Reading data from file 'C:\Users\XXX\AppData\Local\ASP.NET\DataProtection-Keys\key-237c4f12-6703-4dd8-8e04-b904f77128d3.xml'. 
-2022-08-18 18:35:23.8067|37|DEBUG|Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository|Reading data from file 'C:\Users\XXX\AppData\Local\ASP.NET\DataProtection-Keys\key-6c9a4248-29ef-409e-9349-fe5e287b835d.xml'. 
-2022-08-18 18:35:23.8067|37|DEBUG|Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository|Reading data from file 'C:\Users\XXX\AppData\Local\ASP.NET\DataProtection-Keys\key-750f4bc0-7cc0-4ad8-809a-39972a95298d.xml'. 
-2022-08-18 18:35:23.8067|37|DEBUG|Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository|Reading data from file 'C:\Users\XXX\AppData\Local\ASP.NET\DataProtection-Keys\key-dab65855-4eb4-4890-a09b-93b48ace1718.xml'. 
-2022-08-18 18:35:23.8067|18|DEBUG|Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager|Found key {237c4f12-6703-4dd8-8e04-b904f77128d3}. 
-2022-08-18 18:35:23.8067|18|DEBUG|Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager|Found key {6c9a4248-29ef-409e-9349-fe5e287b835d}. 
-2022-08-18 18:35:23.8067|18|DEBUG|Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager|Found key {750f4bc0-7cc0-4ad8-809a-39972a95298d}. 
-2022-08-18 18:35:23.8067|18|DEBUG|Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager|Found key {dab65855-4eb4-4890-a09b-93b48ace1718}. 
-2022-08-18 18:35:23.8272|13|DEBUG|Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver|Considering key {dab65855-4eb4-4890-a09b-93b48ace1718} with expiration date 2022-11-16 16:27:50Z as default key. 
-2022-08-18 18:35:23.8272|0|DEBUG|Microsoft.AspNetCore.DataProtection.TypeForwardingActivator|Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60 
-2022-08-18 18:35:23.8272|51|DEBUG|Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor|Decrypting secret element using Windows DPAPI. 
-2022-08-18 18:35:23.8272|0|DEBUG|Microsoft.AspNetCore.DataProtection.TypeForwardingActivator|Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60 
-2022-08-18 18:35:23.8367|4|DEBUG|Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngCbcAuthenticatedEncryptorFactory|Opening CNG algorithm 'AES' from provider '(null)' with chaining mode CBC. 
-2022-08-18 18:35:23.8367|3|DEBUG|Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngCbcAuthenticatedEncryptorFactory|Opening CNG algorithm 'SHA256' from provider '(null)' with HMAC. 
-2022-08-18 18:35:23.8367|2|DEBUG|Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider|Using key {dab65855-4eb4-4890-a09b-93b48ace1718} as the default key. 
-2022-08-18 18:35:23.8367|65|DEBUG|Microsoft.AspNetCore.DataProtection.Internal.DataProtectionHostedService|Key ring with default key {dab65855-4eb4-4890-a09b-93b48ace1718} was loaded during application startup. 
-2022-08-18 18:35:23.9534|0|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer|Using development certificate: CN=localhost (Thumbprint: 3271A3360CD4E4DC9058F84E9FB3A1E651D0F7C9) 
-2022-08-18 18:35:23.9930|14|INFO|Microsoft.Hosting.Lifetime|Now listening on: https://localhost:7125 
-2022-08-18 18:35:23.9930|14|INFO|Microsoft.Hosting.Lifetime|Now listening on: http://localhost:5125 
-2022-08-18 18:35:24.0084|13|DEBUG|Microsoft.AspNetCore.Hosting.Diagnostics|Loaded hosting startup assembly ASP.NetCore6_NLog_Web_Example 
-2022-08-18 18:35:24.0084|13|DEBUG|Microsoft.AspNetCore.Hosting.Diagnostics|Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh 
-2022-08-18 18:35:24.0084|13|DEBUG|Microsoft.AspNetCore.Hosting.Diagnostics|Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net 
-2022-08-18 18:35:24.0084|0|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
-2022-08-18 18:35:24.0084|0|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
-2022-08-18 18:35:24.0084|0|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\XXX\source\repos\NLog.Web\examples\ASP.NET Core 6\ASP.NET Core 6 NLog Example\ 
-2022-08-18 18:35:24.0084|2|DEBUG|Microsoft.Extensions.Hosting.Internal.Host|Hosting started 
-2022-08-18 18:35:24.4292|39|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMK16UJ982TR" accepted. 
-2022-08-18 18:35:24.4292|39|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMK16UJ982TQ" accepted. 
-2022-08-18 18:35:24.4306|1|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMK16UJ982TQ" started. 
-2022-08-18 18:35:24.4306|1|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMK16UJ982TR" started. 
-2022-08-18 18:35:24.4533|6|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMK16UJ982TQ" received FIN. 
-2022-08-18 18:35:24.4533|6|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMK16UJ982TR" received FIN. 
-2022-08-18 18:35:25.5421|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7125/ - - 
-2022-08-18 18:35:25.5892|0|DEBUG|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|Wildcard detected, all requests with hosts will be allowed. 
-2022-08-18 18:35:25.5892|2|TRACE|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|All hosts are allowed. 
-2022-08-18 18:35:25.5892|4|DEBUG|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|The request path / does not match a supported file type 
-2022-08-18 18:35:25.6168|1001|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|1 candidate(s) found for the request path '/' 
-2022-08-18 18:35:25.6198|1005|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|Endpoint 'ASP.NetCore6_NLog_Web_Example.Controllers.HomeController.Index (ASP.NetCore6_NLog_Web_Example)' with route pattern '{controller=Home}/{action=Index}/{id?}' is valid for the request path '/' 
-2022-08-18 18:35:25.6198|1|DEBUG|Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware|Request matched endpoint 'ASP.NetCore6_NLog_Web_Example.Controllers.HomeController.Index (ASP.NetCore6_NLog_Web_Example)' 
-2022-08-18 18:35:25.6198|0|INFO|Microsoft.AspNetCore.Routing.EndpointMiddleware|Executing endpoint 'ASP.NetCore6_NLog_Web_Example.Controllers.HomeController.Index (ASP.NetCore6_NLog_Web_Example)' 
-2022-08-18 18:35:25.6595|3|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller ASP.NetCore6_NLog_Web_Example.Controllers.HomeController (ASP.NetCore6_NLog_Web_Example). 
-2022-08-18 18:35:25.6595|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of authorization filters (in the following order): None 
-2022-08-18 18:35:25.6595|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of resource filters (in the following order): Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter 
-2022-08-18 18:35:25.6595|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of action filters (in the following order): Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter (Order: -2147483648), Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000) 
-2022-08-18 18:35:25.6595|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of exception filters (in the following order): None 
-2022-08-18 18:35:25.6595|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of result filters (in the following order): Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter 
-2022-08-18 18:35:25.6656|2|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Resource Filter: Before executing OnResourceExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter. 
-2022-08-18 18:35:25.6656|3|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Resource Filter: After executing OnResourceExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter. 
-2022-08-18 18:35:25.6656|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executing controller factory for controller ASP.NetCore6_NLog_Web_Example.Controllers.HomeController (ASP.NetCore6_NLog_Web_Example) 
-2022-08-18 18:35:25.6656|1|DEBUG|ASP.NetCore6_NLog_Web_Example.Controllers.HomeController|NLog injected into HomeController 
-2022-08-18 18:35:25.6656|2|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executed controller factory for controller ASP.NetCore6_NLog_Web_Example.Controllers.HomeController (ASP.NetCore6_NLog_Web_Example) 
-2022-08-18 18:35:25.6656|2|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: Before executing OnActionExecutionAsync on filter Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter. 
-2022-08-18 18:35:25.6656|2|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: Before executing OnActionExecuting on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter. 
-2022-08-18 18:35:25.6656|3|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: After executing OnActionExecuting on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter. 
-2022-08-18 18:35:25.6656|1|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executing action method ASP.NetCore6_NLog_Web_Example.Controllers.HomeController.Index (ASP.NetCore6_NLog_Web_Example) - Validation state: Valid 
-2022-08-18 18:35:25.6656|0|INFO|ASP.NetCore6_NLog_Web_Example.Controllers.HomeController|Hello, this is the index! 
-2022-08-18 18:35:25.6831|2|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executed action method ASP.NetCore6_NLog_Web_Example.Controllers.HomeController.Index (ASP.NetCore6_NLog_Web_Example), returned result Microsoft.AspNetCore.Mvc.ViewResult in 2.7721ms. 
-2022-08-18 18:35:25.6831|2|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: Before executing OnActionExecuted on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter. 
-2022-08-18 18:35:25.6831|3|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: After executing OnActionExecuted on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter. 
-2022-08-18 18:35:25.6831|3|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: After executing OnActionExecutionAsync on filter Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter. 
-2022-08-18 18:35:25.6831|2|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Result Filter: Before executing OnResultExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter. 
-2022-08-18 18:35:25.6831|3|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Result Filter: After executing OnResultExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter. 
-2022-08-18 18:35:25.6831|4|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Before executing action result Microsoft.AspNetCore.Mvc.ViewResult. 
-2022-08-18 18:35:25.6831|1|DEBUG|Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine|View lookup cache miss for view 'Index' in controller 'Home'. 
-2022-08-18 18:35:25.6831|5|TRACE|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Located compiled view for view at path '/Views/Home/Index.cshtml'. 
-2022-08-18 18:35:25.6831|7|TRACE|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Could not find a file for view at path '/Views/Home/_ViewStart.cshtml'. 
-2022-08-18 18:35:25.6831|5|TRACE|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Located compiled view for view at path '/Views/_ViewStart.cshtml'. 
-2022-08-18 18:35:25.6831|7|TRACE|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Could not find a file for view at path '/_ViewStart.cshtml'. 
-2022-08-18 18:35:25.6960|1|INFO|Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor|Executing ViewResult, running view Index. 
-2022-08-18 18:35:25.6960|2|DEBUG|Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor|The view path '/Views/Home/Index.cshtml' was found in 9.3119ms. 
-2022-08-18 18:35:25.7393|1|DEBUG|Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine|View lookup cache miss for view '_Layout' in controller 'Home'. 
-2022-08-18 18:35:25.7393|7|TRACE|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Could not find a file for view at path '/Views/Home/_Layout.cshtml'. 
-2022-08-18 18:35:25.7393|5|TRACE|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Located compiled view for view at path '/Views/Shared/_Layout.cshtml'. 
-2022-08-18 18:35:25.7816|100|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Found the endpoints Route: {controller=Home}/{action=Index}/{id?} for address Microsoft.AspNetCore.Routing.RouteValuesAddress 
-2022-08-18 18:35:25.7899|102|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in  and  
-2022-08-18 18:35:25.7899|105|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Link generation succeeded for endpoints Route: {controller=Home}/{action=Index}/{id?} with result / 
-2022-08-18 18:35:25.7899|100|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Found the endpoints Route: {controller=Home}/{action=Index}/{id?} for address Microsoft.AspNetCore.Routing.RouteValuesAddress 
-2022-08-18 18:35:25.7899|102|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in  and  
-2022-08-18 18:35:25.7899|105|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Link generation succeeded for endpoints Route: {controller=Home}/{action=Index}/{id?} with result / 
-2022-08-18 18:35:25.7899|100|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Found the endpoints Route: {controller=Home}/{action=Index}/{id?} for address Microsoft.AspNetCore.Routing.RouteValuesAddress 
-2022-08-18 18:35:25.7899|102|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Home/Privacy and  
-2022-08-18 18:35:25.7899|105|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Link generation succeeded for endpoints Route: {controller=Home}/{action=Index}/{id?} with result /Home/Privacy 
-2022-08-18 18:35:25.7899|100|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Found the endpoints Route: {controller=Home}/{action=Index}/{id?} for address Microsoft.AspNetCore.Routing.RouteValuesAddress 
-2022-08-18 18:35:25.7899|102|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Home/Privacy and  
-2022-08-18 18:35:25.7899|105|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Link generation succeeded for endpoints Route: {controller=Home}/{action=Index}/{id?} with result /Home/Privacy 
-2022-08-18 18:35:25.9178|4|INFO|Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor|Executed ViewResult - view Index executed in 231.1047ms. 
-2022-08-18 18:35:25.9178|5|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|After executing action result Microsoft.AspNetCore.Mvc.ViewResult. 
-2022-08-18 18:35:25.9178|2|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Result Filter: Before executing OnResultExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter. 
-2022-08-18 18:35:25.9178|3|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Result Filter: After executing OnResultExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter. 
-2022-08-18 18:35:25.9178|2|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Resource Filter: Before executing OnResourceExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter. 
-2022-08-18 18:35:25.9178|3|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Resource Filter: After executing OnResourceExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter. 
-2022-08-18 18:35:25.9178|2|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executed action ASP.NetCore6_NLog_Web_Example.Controllers.HomeController.Index (ASP.NetCore6_NLog_Web_Example) in 261.5085ms 
-2022-08-18 18:35:25.9178|1|INFO|Microsoft.AspNetCore.Routing.EndpointMiddleware|Executed endpoint 'ASP.NetCore6_NLog_Web_Example.Controllers.HomeController.Index (ASP.NetCore6_NLog_Web_Example)' 
-2022-08-18 18:35:25.9417|1|DEBUG|Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware|Response markup is scheduled to include browser refresh script injection. 
-2022-08-18 18:35:25.9571|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending HEADERS frame for stream ID 1 with length 67 and flags END_HEADERS. 
-2022-08-18 18:35:25.9571|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 1 with length 1024 and flags NONE. 
-2022-08-18 18:35:25.9571|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 1 with length 1024 and flags NONE. 
-2022-08-18 18:35:25.9571|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 1 with length 917 and flags NONE. 
-2022-08-18 18:35:25.9571|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 1 with length 65 and flags NONE. 
-2022-08-18 18:35:25.9571|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 1 with length 18 and flags NONE. 
-2022-08-18 18:35:25.9749|2|DEBUG|Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware|Response markup was updated to include browser refresh script injection. 
-2022-08-18 18:35:25.9834|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 1 with length 0 and flags END_STREAM. 
-2022-08-18 18:35:25.9962|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7125/ - - - 200 - text/html;+charset=utf-8 456.1640ms 
-2022-08-18 18:35:26.0191|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" received HEADERS frame for stream ID 3 with length 106 and flags END_STREAM, END_HEADERS, PRIORITY. 
-2022-08-18 18:35:26.0257|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" received HEADERS frame for stream ID 5 with length 67 and flags END_STREAM, END_HEADERS, PRIORITY. 
-2022-08-18 18:35:26.0257|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" received HEADERS frame for stream ID 7 with length 91 and flags END_STREAM, END_HEADERS, PRIORITY. 
-2022-08-18 18:35:26.0257|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7125/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - 
-2022-08-18 18:35:26.0257|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7125/lib/bootstrap/dist/css/bootstrap.min.css - - 
-2022-08-18 18:35:26.0257|2|TRACE|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|All hosts are allowed. 
-2022-08-18 18:35:26.0257|2|TRACE|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|All hosts are allowed. 
-2022-08-18 18:35:26.0257|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" received HEADERS frame for stream ID 9 with length 55 and flags END_STREAM, END_HEADERS, PRIORITY. 
-2022-08-18 18:35:26.0257|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" received HEADERS frame for stream ID 11 with length 55 and flags END_STREAM, END_HEADERS, PRIORITY. 
-2022-08-18 18:35:26.0257|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" received HEADERS frame for stream ID 13 with length 67 and flags END_STREAM, END_HEADERS, PRIORITY. 
-2022-08-18 18:35:26.0257|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" received HEADERS frame for stream ID 15 with length 52 and flags END_STREAM, END_HEADERS, PRIORITY. 
-2022-08-18 18:35:26.0257|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" received HEADERS frame for stream ID 17 with length 34 and flags END_STREAM, END_HEADERS, PRIORITY. 
-2022-08-18 18:35:26.0257|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7125/ASP.NetCore6_NLog_Web_Example.styles.css?v=RE8iCRyLdOMjrQXlLNeo4W3xw0k_zNKqvYCiPxC_9nE - - 
-2022-08-18 18:35:26.0257|2|TRACE|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|All hosts are allowed. 
-2022-08-18 18:35:26.0416|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7125/lib/jquery/dist/jquery.min.js - - 
-2022-08-18 18:35:26.0416|2|TRACE|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|All hosts are allowed. 
-2022-08-18 18:35:26.0416|0|TRACE|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Range header's value is empty. 
-2022-08-18 18:35:26.0416|0|TRACE|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Range header's value is empty. 
-2022-08-18 18:35:26.0416|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7125/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - 
-2022-08-18 18:35:26.0416|2|TRACE|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|All hosts are allowed. 
-2022-08-18 18:35:26.0416|0|TRACE|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Range header's value is empty. 
-2022-08-18 18:35:26.0416|0|TRACE|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Range header's value is empty. 
-2022-08-18 18:35:26.0416|0|TRACE|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Range header's value is empty. 
-2022-08-18 18:35:26.0416|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending HEADERS frame for stream ID 7 with length 77 and flags END_HEADERS. 
-2022-08-18 18:35:26.0416|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 7 with length 1146 and flags NONE. 
-2022-08-18 18:35:26.0416|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending HEADERS frame for stream ID 9 with length 86 and flags END_HEADERS. 
-2022-08-18 18:35:26.0416|2|INFO|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Sending file. Request path: '/ASP.NetCore6_NLog_Web_Example.styles.css'. Physical path: 'C:\Users\XXX\source\repos\NLog.Web\examples\ASP.NET Core 6\ASP.NET Core 6 NLog Example\obj\Debug\net6.0\scopedcss\bundle\ASP.NetCore6_NLog_Web_Example.styles.css' 
-2022-08-18 18:35:26.0416|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 7 with length 0 and flags END_STREAM. 
-2022-08-18 18:35:26.0416|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7125/ASP.NetCore6_NLog_Web_Example.styles.css?v=RE8iCRyLdOMjrQXlLNeo4W3xw0k_zNKqvYCiPxC_9nE - - - 200 1146 text/css 15.8363ms 
-2022-08-18 18:35:26.0416|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7125/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - 
-2022-08-18 18:35:26.0416|2|TRACE|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|All hosts are allowed. 
-2022-08-18 18:35:26.0416|0|TRACE|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Range header's value is empty. 
-2022-08-18 18:35:26.0416|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 9 with length 16384 and flags NONE. 
-2022-08-18 18:35:26.0553|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending HEADERS frame for stream ID 11 with length 33 and flags END_HEADERS. 
-2022-08-18 18:35:26.0553|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 11 with length 16384 and flags NONE. 
-2022-08-18 18:35:26.0553|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending HEADERS frame for stream ID 3 with length 34 and flags END_HEADERS. 
-2022-08-18 18:35:26.0553|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 16384 and flags NONE. 
-2022-08-18 18:35:26.0553|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7125/_framework/aspnetcore-browser-refresh.js - - 
-2022-08-18 18:35:26.0553|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7125/_vs/browserLink - - 
-2022-08-18 18:35:26.0553|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending HEADERS frame for stream ID 5 with length 31 and flags END_HEADERS. 
-2022-08-18 18:35:26.0553|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending HEADERS frame for stream ID 13 with length 31 and flags END_HEADERS. 
-2022-08-18 18:35:26.0553|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 11 with length 16384 and flags NONE. 
-2022-08-18 18:35:26.0924|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 5 with length 194 and flags NONE. 
-2022-08-18 18:35:26.0924|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 9 with length 16384 and flags NONE. 
-2022-08-18 18:35:26.0924|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 13 with length 230 and flags NONE. 
-2022-08-18 18:35:26.0924|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending HEADERS frame for stream ID 15 with length 60 and flags END_HEADERS. 
-2022-08-18 18:35:26.0924|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 15 with length 12024 and flags NONE. 
-2022-08-18 18:35:26.0924|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 16384 and flags NONE. 
-2022-08-18 18:35:26.1097|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending HEADERS frame for stream ID 17 with length 119 and flags END_HEADERS. 
-2022-08-18 18:35:26.1097|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 9986 and flags NONE. 
-2022-08-18 18:35:26.1097|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
-2022-08-18 18:35:26.1097|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
-2022-08-18 18:35:26.1097|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
-2022-08-18 18:35:26.1097|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
-2022-08-18 18:35:26.1097|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
-2022-08-18 18:35:26.1097|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
-2022-08-18 18:35:26.1097|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 15 with length 0 and flags END_STREAM. 
-2022-08-18 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 16384 and flags NONE. 
-2022-08-18 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 9 with length 16384 and flags NONE. 
-2022-08-18 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 11 with length 16384 and flags NONE. 
-2022-08-18 18:35:26.1195|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7125/_framework/aspnetcore-browser-refresh.js - - - 200 12024 application/javascript;+charset=utf-8 55.1341ms 
-2022-08-18 18:35:26.1195|2|INFO|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\XXX\source\repos\NLog.Web\examples\ASP.NET Core 6\ASP.NET Core 6 NLog Example\wwwroot\css\site.css' 
-2022-08-18 18:35:26.1195|2|INFO|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\XXX\source\repos\NLog.Web\examples\ASP.NET Core 6\ASP.NET Core 6 NLog Example\wwwroot\js\site.js' 
-2022-08-18 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 5 with length 0 and flags END_STREAM. 
-2022-08-18 18:35:26.1195|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7125/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - - 200 194 text/css 94.5017ms 
-2022-08-18 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 11 with length 16384 and flags NONE. 
-2022-08-18 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 13 with length 0 and flags END_STREAM. 
-2022-08-18 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 16384 and flags NONE. 
-2022-08-18 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 9 with length 16384 and flags NONE. 
-2022-08-18 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
-2022-08-18 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
-2022-08-18 18:35:26.1195|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7125/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 200 230 application/javascript 77.4123ms 
-2022-08-18 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 9 with length 16384 and flags NONE. 
-2022-08-18 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 16384 and flags NONE. 
-2022-08-18 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 11 with length 12938 and flags NONE. 
-2022-08-18 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
-2022-08-18 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
-2022-08-18 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
-2022-08-18 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 9 with length 7558 and flags NONE. 
-2022-08-18 18:35:26.1329|2|INFO|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\XXX\source\repos\NLog.Web\examples\ASP.NET Core 6\ASP.NET Core 6 NLog Example\wwwroot\lib\jquery\dist\jquery.min.js' 
-2022-08-18 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 9 with length 0 and flags END_STREAM. 
-2022-08-18 18:35:26.1329|2|INFO|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\XXX\source\repos\NLog.Web\examples\ASP.NET Core 6\ASP.NET Core 6 NLog Example\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js' 
-2022-08-18 18:35:26.1329|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7125/lib/jquery/dist/jquery.min.js - - - 200 89478 application/javascript 93.8938ms 
-2022-08-18 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 11 with length 0 and flags END_STREAM. 
-2022-08-18 18:35:26.1329|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7125/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 200 78474 application/javascript 93.0748ms 
-2022-08-18 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 16384 and flags NONE. 
-2022-08-18 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
-2022-08-18 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
-2022-08-18 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 9975 and flags NONE. 
-2022-08-18 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 16384 and flags NONE. 
-2022-08-18 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 16384 and flags NONE. 
-2022-08-18 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 16384 and flags NONE. 
-2022-08-18 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 15270 and flags NONE. 
-2022-08-18 18:35:26.1329|2|INFO|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\XXX\source\repos\NLog.Web\examples\ASP.NET Core 6\ASP.NET Core 6 NLog Example\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css' 
-2022-08-18 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 0 and flags END_STREAM. 
-2022-08-18 18:35:26.1329|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7125/lib/bootstrap/dist/css/bootstrap.min.css - - - 200 162726 text/css 109.3089ms 
-2022-08-18 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 0 and flags END_STREAM. 
-2022-08-18 18:35:26.1329|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7125/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 71.3116ms 
+2024-05-29 18:35:15.1343|6|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMK16TVPK9JQ" received FIN. 
+2024-05-29 18:35:15.1694|48|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16TVPK9JQ" is closed. The last processed stream ID was 29. 
+2024-05-29 18:35:15.1694|7|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMK16TVPK9JQ" sending FIN because: "The client closed the connection." 
+2024-05-29 18:35:15.1805|2|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMK16TVPK9JQ" stopped. 
+2024-05-29 18:35:23.6686|3|DEBUG|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Initializing Razor view compiler with compiled view: '/Views/Home/Index.cshtml'. 
+2024-05-29 18:35:23.7133|3|DEBUG|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Initializing Razor view compiler with compiled view: '/Views/Home/Privacy.cshtml'. 
+2024-05-29 18:35:23.7133|3|DEBUG|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Initializing Razor view compiler with compiled view: '/Views/Shared/Error.cshtml'. 
+2024-05-29 18:35:23.7133|3|DEBUG|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Initializing Razor view compiler with compiled view: '/Views/Shared/_ValidationScriptsPartial.cshtml'. 
+2024-05-29 18:35:23.7133|3|DEBUG|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Initializing Razor view compiler with compiled view: '/Views/_ViewImports.cshtml'. 
+2024-05-29 18:35:23.7133|3|DEBUG|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Initializing Razor view compiler with compiled view: '/Views/_ViewStart.cshtml'. 
+2024-05-29 18:35:23.7133|3|DEBUG|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Initializing Razor view compiler with compiled view: '/Views/Shared/_Layout.cshtml'. 
+2024-05-29 18:35:23.7133|12|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactory|Registered model binder providers, in the following order: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider 
+2024-05-29 18:35:23.7746|1|DEBUG|Microsoft.Extensions.Hosting.Internal.Host|Hosting starting 
+2024-05-29 18:35:23.8067|63|INFO|Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager|User profile is available. Using 'C:\Users\XXX\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+2024-05-29 18:35:23.8067|37|DEBUG|Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository|Reading data from file 'C:\Users\XXX\AppData\Local\ASP.NET\DataProtection-Keys\key-237c4f12-6703-4dd8-8e04-b904f77128d3.xml'. 
+2024-05-29 18:35:23.8067|37|DEBUG|Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository|Reading data from file 'C:\Users\XXX\AppData\Local\ASP.NET\DataProtection-Keys\key-6c9a4248-29ef-409e-9349-fe5e287b835d.xml'. 
+2024-05-29 18:35:23.8067|37|DEBUG|Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository|Reading data from file 'C:\Users\XXX\AppData\Local\ASP.NET\DataProtection-Keys\key-750f4bc0-7cc0-4ad8-809a-39972a95298d.xml'. 
+2024-05-29 18:35:23.8067|37|DEBUG|Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository|Reading data from file 'C:\Users\XXX\AppData\Local\ASP.NET\DataProtection-Keys\key-dab65855-4eb4-4890-a09b-93b48ace1718.xml'. 
+2024-05-29 18:35:23.8067|18|DEBUG|Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager|Found key {237c4f12-6703-4dd8-8e04-b904f77128d3}. 
+2024-05-29 18:35:23.8067|18|DEBUG|Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager|Found key {6c9a4248-29ef-409e-9349-fe5e287b835d}. 
+2024-05-29 18:35:23.8067|18|DEBUG|Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager|Found key {750f4bc0-7cc0-4ad8-809a-39972a95298d}. 
+2024-05-29 18:35:23.8067|18|DEBUG|Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager|Found key {dab65855-4eb4-4890-a09b-93b48ace1718}. 
+2024-05-29 18:35:23.8272|13|DEBUG|Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver|Considering key {dab65855-4eb4-4890-a09b-93b48ace1718} with expiration date 2022-11-16 16:27:50Z as default key. 
+2024-05-29 18:35:23.8272|0|DEBUG|Microsoft.AspNetCore.DataProtection.TypeForwardingActivator|Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60 
+2024-05-29 18:35:23.8272|51|DEBUG|Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor|Decrypting secret element using Windows DPAPI. 
+2024-05-29 18:35:23.8272|0|DEBUG|Microsoft.AspNetCore.DataProtection.TypeForwardingActivator|Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60 
+2024-05-29 18:35:23.8367|4|DEBUG|Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngCbcAuthenticatedEncryptorFactory|Opening CNG algorithm 'AES' from provider '(null)' with chaining mode CBC. 
+2024-05-29 18:35:23.8367|3|DEBUG|Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngCbcAuthenticatedEncryptorFactory|Opening CNG algorithm 'SHA256' from provider '(null)' with HMAC. 
+2024-05-29 18:35:23.8367|2|DEBUG|Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider|Using key {dab65855-4eb4-4890-a09b-93b48ace1718} as the default key. 
+2024-05-29 18:35:23.8367|65|DEBUG|Microsoft.AspNetCore.DataProtection.Internal.DataProtectionHostedService|Key ring with default key {dab65855-4eb4-4890-a09b-93b48ace1718} was loaded during application startup. 
+2024-05-29 18:35:23.9534|0|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer|Using development certificate: CN=localhost (Thumbprint: 3271A3360CD4E4DC9058F84E9FB3A1E651D0F7C9) 
+2024-05-29 18:35:23.9930|14|INFO|Microsoft.Hosting.Lifetime|Now listening on: https://localhost:7125 
+2024-05-29 18:35:23.9930|14|INFO|Microsoft.Hosting.Lifetime|Now listening on: http://localhost:5125 
+2024-05-29 18:35:24.0084|13|DEBUG|Microsoft.AspNetCore.Hosting.Diagnostics|Loaded hosting startup assembly ASP.NetCore6_NLog_Web_Example 
+2024-05-29 18:35:24.0084|13|DEBUG|Microsoft.AspNetCore.Hosting.Diagnostics|Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh 
+2024-05-29 18:35:24.0084|13|DEBUG|Microsoft.AspNetCore.Hosting.Diagnostics|Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net 
+2024-05-29 18:35:24.0084|0|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2024-05-29 18:35:24.0084|0|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2024-05-29 18:35:24.0084|0|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\XXX\source\repos\NLog.Web\examples\ASP.NET Core 6\ASP.NET Core 6 NLog Example\ 
+2024-05-29 18:35:24.0084|2|DEBUG|Microsoft.Extensions.Hosting.Internal.Host|Hosting started 
+2024-05-29 18:35:24.4292|39|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMK16UJ982TR" accepted. 
+2024-05-29 18:35:24.4292|39|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMK16UJ982TQ" accepted. 
+2024-05-29 18:35:24.4306|1|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMK16UJ982TQ" started. 
+2024-05-29 18:35:24.4306|1|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMK16UJ982TR" started. 
+2024-05-29 18:35:24.4533|6|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMK16UJ982TQ" received FIN. 
+2024-05-29 18:35:24.4533|6|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMK16UJ982TR" received FIN. 
+2024-05-29 18:35:25.5421|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7125/ - - 
+2024-05-29 18:35:25.5892|0|DEBUG|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|Wildcard detected, all requests with hosts will be allowed. 
+2024-05-29 18:35:25.5892|2|TRACE|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|All hosts are allowed. 
+2024-05-29 18:35:25.5892|4|DEBUG|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|The request path / does not match a supported file type 
+2024-05-29 18:35:25.6168|1001|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|1 candidate(s) found for the request path '/' 
+2024-05-29 18:35:25.6198|1005|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|Endpoint 'ASP.NetCore6_NLog_Web_Example.Controllers.HomeController.Index (ASP.NetCore6_NLog_Web_Example)' with route pattern '{controller=Home}/{action=Index}/{id?}' is valid for the request path '/' 
+2024-05-29 18:35:25.6198|1|DEBUG|Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware|Request matched endpoint 'ASP.NetCore6_NLog_Web_Example.Controllers.HomeController.Index (ASP.NetCore6_NLog_Web_Example)' 
+2024-05-29 18:35:25.6198|0|INFO|Microsoft.AspNetCore.Routing.EndpointMiddleware|Executing endpoint 'ASP.NetCore6_NLog_Web_Example.Controllers.HomeController.Index (ASP.NetCore6_NLog_Web_Example)' 
+2024-05-29 18:35:25.6595|3|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller ASP.NetCore6_NLog_Web_Example.Controllers.HomeController (ASP.NetCore6_NLog_Web_Example). 
+2024-05-29 18:35:25.6595|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of authorization filters (in the following order): None 
+2024-05-29 18:35:25.6595|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of resource filters (in the following order): Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter 
+2024-05-29 18:35:25.6595|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of action filters (in the following order): Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter (Order: -2147483648), Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000) 
+2024-05-29 18:35:25.6595|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of exception filters (in the following order): None 
+2024-05-29 18:35:25.6595|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of result filters (in the following order): Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter 
+2024-05-29 18:35:25.6656|2|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Resource Filter: Before executing OnResourceExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter. 
+2024-05-29 18:35:25.6656|3|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Resource Filter: After executing OnResourceExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter. 
+2024-05-29 18:35:25.6656|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executing controller factory for controller ASP.NetCore6_NLog_Web_Example.Controllers.HomeController (ASP.NetCore6_NLog_Web_Example) 
+2024-05-29 18:35:25.6656|1|DEBUG|ASP.NetCore6_NLog_Web_Example.Controllers.HomeController|NLog injected into HomeController 
+2024-05-29 18:35:25.6656|2|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executed controller factory for controller ASP.NetCore6_NLog_Web_Example.Controllers.HomeController (ASP.NetCore6_NLog_Web_Example) 
+2024-05-29 18:35:25.6656|2|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: Before executing OnActionExecutionAsync on filter Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter. 
+2024-05-29 18:35:25.6656|2|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: Before executing OnActionExecuting on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter. 
+2024-05-29 18:35:25.6656|3|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: After executing OnActionExecuting on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter. 
+2024-05-29 18:35:25.6656|1|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executing action method ASP.NetCore6_NLog_Web_Example.Controllers.HomeController.Index (ASP.NetCore6_NLog_Web_Example) - Validation state: Valid 
+2024-05-29 18:35:25.6656|0|INFO|ASP.NetCore6_NLog_Web_Example.Controllers.HomeController|Hello, this is the index! 
+2024-05-29 18:35:25.6831|2|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executed action method ASP.NetCore6_NLog_Web_Example.Controllers.HomeController.Index (ASP.NetCore6_NLog_Web_Example), returned result Microsoft.AspNetCore.Mvc.ViewResult in 2.7721ms. 
+2024-05-29 18:35:25.6831|2|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: Before executing OnActionExecuted on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter. 
+2024-05-29 18:35:25.6831|3|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: After executing OnActionExecuted on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter. 
+2024-05-29 18:35:25.6831|3|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: After executing OnActionExecutionAsync on filter Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter. 
+2024-05-29 18:35:25.6831|2|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Result Filter: Before executing OnResultExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter. 
+2024-05-29 18:35:25.6831|3|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Result Filter: After executing OnResultExecuting on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter. 
+2024-05-29 18:35:25.6831|4|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Before executing action result Microsoft.AspNetCore.Mvc.ViewResult. 
+2024-05-29 18:35:25.6831|1|DEBUG|Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine|View lookup cache miss for view 'Index' in controller 'Home'. 
+2024-05-29 18:35:25.6831|5|TRACE|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Located compiled view for view at path '/Views/Home/Index.cshtml'. 
+2024-05-29 18:35:25.6831|7|TRACE|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Could not find a file for view at path '/Views/Home/_ViewStart.cshtml'. 
+2024-05-29 18:35:25.6831|5|TRACE|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Located compiled view for view at path '/Views/_ViewStart.cshtml'. 
+2024-05-29 18:35:25.6831|7|TRACE|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Could not find a file for view at path '/_ViewStart.cshtml'. 
+2024-05-29 18:35:25.6960|1|INFO|Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor|Executing ViewResult, running view Index. 
+2024-05-29 18:35:25.6960|2|DEBUG|Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor|The view path '/Views/Home/Index.cshtml' was found in 9.3119ms. 
+2024-05-29 18:35:25.7393|1|DEBUG|Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine|View lookup cache miss for view '_Layout' in controller 'Home'. 
+2024-05-29 18:35:25.7393|7|TRACE|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Could not find a file for view at path '/Views/Home/_Layout.cshtml'. 
+2024-05-29 18:35:25.7393|5|TRACE|Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultViewCompiler|Located compiled view for view at path '/Views/Shared/_Layout.cshtml'. 
+2024-05-29 18:35:25.7816|100|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Found the endpoints Route: {controller=Home}/{action=Index}/{id?} for address Microsoft.AspNetCore.Routing.RouteValuesAddress 
+2024-05-29 18:35:25.7899|102|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in  and  
+2024-05-29 18:35:25.7899|105|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Link generation succeeded for endpoints Route: {controller=Home}/{action=Index}/{id?} with result / 
+2024-05-29 18:35:25.7899|100|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Found the endpoints Route: {controller=Home}/{action=Index}/{id?} for address Microsoft.AspNetCore.Routing.RouteValuesAddress 
+2024-05-29 18:35:25.7899|102|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in  and  
+2024-05-29 18:35:25.7899|105|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Link generation succeeded for endpoints Route: {controller=Home}/{action=Index}/{id?} with result / 
+2024-05-29 18:35:25.7899|100|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Found the endpoints Route: {controller=Home}/{action=Index}/{id?} for address Microsoft.AspNetCore.Routing.RouteValuesAddress 
+2024-05-29 18:35:25.7899|102|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Home/Privacy and  
+2024-05-29 18:35:25.7899|105|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Link generation succeeded for endpoints Route: {controller=Home}/{action=Index}/{id?} with result /Home/Privacy 
+2024-05-29 18:35:25.7899|100|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Found the endpoints Route: {controller=Home}/{action=Index}/{id?} for address Microsoft.AspNetCore.Routing.RouteValuesAddress 
+2024-05-29 18:35:25.7899|102|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /Home/Privacy and  
+2024-05-29 18:35:25.7899|105|DEBUG|Microsoft.AspNetCore.Routing.DefaultLinkGenerator|Link generation succeeded for endpoints Route: {controller=Home}/{action=Index}/{id?} with result /Home/Privacy 
+2024-05-29 18:35:25.9178|4|INFO|Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor|Executed ViewResult - view Index executed in 231.1047ms. 
+2024-05-29 18:35:25.9178|5|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|After executing action result Microsoft.AspNetCore.Mvc.ViewResult. 
+2024-05-29 18:35:25.9178|2|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Result Filter: Before executing OnResultExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter. 
+2024-05-29 18:35:25.9178|3|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Result Filter: After executing OnResultExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter. 
+2024-05-29 18:35:25.9178|2|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Resource Filter: Before executing OnResourceExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter. 
+2024-05-29 18:35:25.9178|3|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Resource Filter: After executing OnResourceExecuted on filter Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter. 
+2024-05-29 18:35:25.9178|2|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executed action ASP.NetCore6_NLog_Web_Example.Controllers.HomeController.Index (ASP.NetCore6_NLog_Web_Example) in 261.5085ms 
+2024-05-29 18:35:25.9178|1|INFO|Microsoft.AspNetCore.Routing.EndpointMiddleware|Executed endpoint 'ASP.NetCore6_NLog_Web_Example.Controllers.HomeController.Index (ASP.NetCore6_NLog_Web_Example)' 
+2024-05-29 18:35:25.9417|1|DEBUG|Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware|Response markup is scheduled to include browser refresh script injection. 
+2024-05-29 18:35:25.9571|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending HEADERS frame for stream ID 1 with length 67 and flags END_HEADERS. 
+2024-05-29 18:35:25.9571|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 1 with length 1024 and flags NONE. 
+2024-05-29 18:35:25.9571|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 1 with length 1024 and flags NONE. 
+2024-05-29 18:35:25.9571|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 1 with length 917 and flags NONE. 
+2024-05-29 18:35:25.9571|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 1 with length 65 and flags NONE. 
+2024-05-29 18:35:25.9571|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 1 with length 18 and flags NONE. 
+2024-05-29 18:35:25.9749|2|DEBUG|Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware|Response markup was updated to include browser refresh script injection. 
+2024-05-29 18:35:25.9834|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 1 with length 0 and flags END_STREAM. 
+2024-05-29 18:35:25.9962|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7125/ - - - 200 - text/html;+charset=utf-8 456.1640ms 
+2024-05-29 18:35:26.0191|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" received HEADERS frame for stream ID 3 with length 106 and flags END_STREAM, END_HEADERS, PRIORITY. 
+2024-05-29 18:35:26.0257|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" received HEADERS frame for stream ID 5 with length 67 and flags END_STREAM, END_HEADERS, PRIORITY. 
+2024-05-29 18:35:26.0257|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" received HEADERS frame for stream ID 7 with length 91 and flags END_STREAM, END_HEADERS, PRIORITY. 
+2024-05-29 18:35:26.0257|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7125/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - 
+2024-05-29 18:35:26.0257|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7125/lib/bootstrap/dist/css/bootstrap.min.css - - 
+2024-05-29 18:35:26.0257|2|TRACE|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|All hosts are allowed. 
+2024-05-29 18:35:26.0257|2|TRACE|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|All hosts are allowed. 
+2024-05-29 18:35:26.0257|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" received HEADERS frame for stream ID 9 with length 55 and flags END_STREAM, END_HEADERS, PRIORITY. 
+2024-05-29 18:35:26.0257|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" received HEADERS frame for stream ID 11 with length 55 and flags END_STREAM, END_HEADERS, PRIORITY. 
+2024-05-29 18:35:26.0257|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" received HEADERS frame for stream ID 13 with length 67 and flags END_STREAM, END_HEADERS, PRIORITY. 
+2024-05-29 18:35:26.0257|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" received HEADERS frame for stream ID 15 with length 52 and flags END_STREAM, END_HEADERS, PRIORITY. 
+2024-05-29 18:35:26.0257|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" received HEADERS frame for stream ID 17 with length 34 and flags END_STREAM, END_HEADERS, PRIORITY. 
+2024-05-29 18:35:26.0257|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7125/ASP.NetCore6_NLog_Web_Example.styles.css?v=RE8iCRyLdOMjrQXlLNeo4W3xw0k_zNKqvYCiPxC_9nE - - 
+2024-05-29 18:35:26.0257|2|TRACE|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|All hosts are allowed. 
+2024-05-29 18:35:26.0416|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7125/lib/jquery/dist/jquery.min.js - - 
+2024-05-29 18:35:26.0416|2|TRACE|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|All hosts are allowed. 
+2024-05-29 18:35:26.0416|0|TRACE|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Range header's value is empty. 
+2024-05-29 18:35:26.0416|0|TRACE|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Range header's value is empty. 
+2024-05-29 18:35:26.0416|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7125/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - 
+2024-05-29 18:35:26.0416|2|TRACE|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|All hosts are allowed. 
+2024-05-29 18:35:26.0416|0|TRACE|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Range header's value is empty. 
+2024-05-29 18:35:26.0416|0|TRACE|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Range header's value is empty. 
+2024-05-29 18:35:26.0416|0|TRACE|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Range header's value is empty. 
+2024-05-29 18:35:26.0416|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending HEADERS frame for stream ID 7 with length 77 and flags END_HEADERS. 
+2024-05-29 18:35:26.0416|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 7 with length 1146 and flags NONE. 
+2024-05-29 18:35:26.0416|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending HEADERS frame for stream ID 9 with length 86 and flags END_HEADERS. 
+2024-05-29 18:35:26.0416|2|INFO|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Sending file. Request path: '/ASP.NetCore6_NLog_Web_Example.styles.css'. Physical path: 'C:\Users\XXX\source\repos\NLog.Web\examples\ASP.NET Core 6\ASP.NET Core 6 NLog Example\obj\Debug\net6.0\scopedcss\bundle\ASP.NetCore6_NLog_Web_Example.styles.css' 
+2024-05-29 18:35:26.0416|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 7 with length 0 and flags END_STREAM. 
+2024-05-29 18:35:26.0416|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7125/ASP.NetCore6_NLog_Web_Example.styles.css?v=RE8iCRyLdOMjrQXlLNeo4W3xw0k_zNKqvYCiPxC_9nE - - - 200 1146 text/css 15.8363ms 
+2024-05-29 18:35:26.0416|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7125/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - 
+2024-05-29 18:35:26.0416|2|TRACE|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|All hosts are allowed. 
+2024-05-29 18:35:26.0416|0|TRACE|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Range header's value is empty. 
+2024-05-29 18:35:26.0416|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 9 with length 16384 and flags NONE. 
+2024-05-29 18:35:26.0553|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending HEADERS frame for stream ID 11 with length 33 and flags END_HEADERS. 
+2024-05-29 18:35:26.0553|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 11 with length 16384 and flags NONE. 
+2024-05-29 18:35:26.0553|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending HEADERS frame for stream ID 3 with length 34 and flags END_HEADERS. 
+2024-05-29 18:35:26.0553|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 16384 and flags NONE. 
+2024-05-29 18:35:26.0553|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7125/_framework/aspnetcore-browser-refresh.js - - 
+2024-05-29 18:35:26.0553|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7125/_vs/browserLink - - 
+2024-05-29 18:35:26.0553|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending HEADERS frame for stream ID 5 with length 31 and flags END_HEADERS. 
+2024-05-29 18:35:26.0553|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending HEADERS frame for stream ID 13 with length 31 and flags END_HEADERS. 
+2024-05-29 18:35:26.0553|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 11 with length 16384 and flags NONE. 
+2024-05-29 18:35:26.0924|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 5 with length 194 and flags NONE. 
+2024-05-29 18:35:26.0924|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 9 with length 16384 and flags NONE. 
+2024-05-29 18:35:26.0924|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 13 with length 230 and flags NONE. 
+2024-05-29 18:35:26.0924|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending HEADERS frame for stream ID 15 with length 60 and flags END_HEADERS. 
+2024-05-29 18:35:26.0924|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 15 with length 12024 and flags NONE. 
+2024-05-29 18:35:26.0924|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 16384 and flags NONE. 
+2024-05-29 18:35:26.1097|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending HEADERS frame for stream ID 17 with length 119 and flags END_HEADERS. 
+2024-05-29 18:35:26.1097|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 9986 and flags NONE. 
+2024-05-29 18:35:26.1097|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
+2024-05-29 18:35:26.1097|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
+2024-05-29 18:35:26.1097|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
+2024-05-29 18:35:26.1097|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
+2024-05-29 18:35:26.1097|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
+2024-05-29 18:35:26.1097|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
+2024-05-29 18:35:26.1097|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 15 with length 0 and flags END_STREAM. 
+2024-05-29 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 16384 and flags NONE. 
+2024-05-29 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 9 with length 16384 and flags NONE. 
+2024-05-29 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 11 with length 16384 and flags NONE. 
+2024-05-29 18:35:26.1195|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7125/_framework/aspnetcore-browser-refresh.js - - - 200 12024 application/javascript;+charset=utf-8 55.1341ms 
+2024-05-29 18:35:26.1195|2|INFO|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\XXX\source\repos\NLog.Web\examples\ASP.NET Core 6\ASP.NET Core 6 NLog Example\wwwroot\css\site.css' 
+2024-05-29 18:35:26.1195|2|INFO|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\XXX\source\repos\NLog.Web\examples\ASP.NET Core 6\ASP.NET Core 6 NLog Example\wwwroot\js\site.js' 
+2024-05-29 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 5 with length 0 and flags END_STREAM. 
+2024-05-29 18:35:26.1195|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7125/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - - 200 194 text/css 94.5017ms 
+2024-05-29 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 11 with length 16384 and flags NONE. 
+2024-05-29 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 13 with length 0 and flags END_STREAM. 
+2024-05-29 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 16384 and flags NONE. 
+2024-05-29 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 9 with length 16384 and flags NONE. 
+2024-05-29 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
+2024-05-29 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
+2024-05-29 18:35:26.1195|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7125/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 200 230 application/javascript 77.4123ms 
+2024-05-29 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 9 with length 16384 and flags NONE. 
+2024-05-29 18:35:26.1195|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 16384 and flags NONE. 
+2024-05-29 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 11 with length 12938 and flags NONE. 
+2024-05-29 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
+2024-05-29 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
+2024-05-29 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
+2024-05-29 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 9 with length 7558 and flags NONE. 
+2024-05-29 18:35:26.1329|2|INFO|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\XXX\source\repos\NLog.Web\examples\ASP.NET Core 6\ASP.NET Core 6 NLog Example\wwwroot\lib\jquery\dist\jquery.min.js' 
+2024-05-29 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 9 with length 0 and flags END_STREAM. 
+2024-05-29 18:35:26.1329|2|INFO|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\XXX\source\repos\NLog.Web\examples\ASP.NET Core 6\ASP.NET Core 6 NLog Example\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js' 
+2024-05-29 18:35:26.1329|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7125/lib/jquery/dist/jquery.min.js - - - 200 89478 application/javascript 93.8938ms 
+2024-05-29 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 11 with length 0 and flags END_STREAM. 
+2024-05-29 18:35:26.1329|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7125/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 200 78474 application/javascript 93.0748ms 
+2024-05-29 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 16384 and flags NONE. 
+2024-05-29 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
+2024-05-29 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 10240 and flags NONE. 
+2024-05-29 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 9975 and flags NONE. 
+2024-05-29 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 16384 and flags NONE. 
+2024-05-29 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 16384 and flags NONE. 
+2024-05-29 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 16384 and flags NONE. 
+2024-05-29 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 15270 and flags NONE. 
+2024-05-29 18:35:26.1329|2|INFO|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\XXX\source\repos\NLog.Web\examples\ASP.NET Core 6\ASP.NET Core 6 NLog Example\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css' 
+2024-05-29 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 3 with length 0 and flags END_STREAM. 
+2024-05-29 18:35:26.1329|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7125/lib/bootstrap/dist/css/bootstrap.min.css - - - 200 162726 text/css 109.3089ms 
+2024-05-29 18:35:26.1329|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMK16UJ982TT" sending DATA frame for stream ID 17 with length 0 and flags END_STREAM. 
+2024-05-29 18:35:26.1329|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7125/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 71.3116ms 
 ```
-
-
-
 
 
 ## 六、模型绑定
@@ -1740,6 +1737,37 @@ services.AddSwaggerGen(c =>
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename), true);
 });
+```
+
+### 5. 添加身份验证令牌
+
+在 `ConfigureServices` 方法中配置 Swagger。
+
+```csharp
+    services.AddSwaggerGen(c =>
+    {
+        // 配置 Swagger 文档的安全定义
+        c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+        {
+            Description = "JWT授权token前面需要加上字段Bearer与一个空格,如Bearer token",
+            Name = "Authorization",
+            In = ParameterLocation.Header,
+            Type = SecuritySchemeType.ApiKey,
+            Scheme = "Bearer"
+        });
+
+        // 添加 Swagger 文档的全局安全要求
+        c.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+                },
+                new string[] {}
+            }
+        });
+    });
 ```
 
 ### 4. 解决常见问题

@@ -104,7 +104,8 @@ theme: fluid  # 指定主题
 deploy:
   type: git
   repo:
-    github: git@github.com:loquy/loquy.github.io.git
+    #github: git@github.com:loquy/loquy.github.io.git
+    github: https://github.com/loquy/loquy.github.io.git
 #    coding: https://e.coding.net/loquy/loquy/loquy.git
   branch: master
   ignore_hidden: false
