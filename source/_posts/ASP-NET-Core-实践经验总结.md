@@ -2398,23 +2398,7 @@ namespace Loquy.Common.Helpers
 
         public static Expression ConvertToPropertyType<T>(T value, Type propertyType)
         {
-            // 获取属性的基础类型，如果属性类型是可空类型则获取其基础类型
-            Type underlyingType = Nullable.GetUnderlyingType(propertyType) ?? propertyType;
-
-            if (value == null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
-
-            object valueConvert = Convert.ChangeType(value, underlyingType);
-
-            // 将属性的基础类型转换为对象类型
-            UnaryExpression underlyingTypeConvertToObject = Expression.Convert(Expression.Constant(valueConvert), typeof(object));
-
-            // 将对象类型转换为属性类型，进行二次转换以防止基础类型直接转换为可空类型失败
-            UnaryExpression objectConvertToPropertyType = Expression.Convert(underlyingTypeConvertToObject, propertyType);
-
-            return objectConvertToPropertyType;
+            return Expression.Constant(value, propertyType);
         }
 
 
