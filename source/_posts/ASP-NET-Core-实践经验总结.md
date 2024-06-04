@@ -10,6 +10,8 @@ tags:
   - FluentValidation
   - AutoMapper
   - Dependency injection
+  - NLog
+  - JWTBearer 
 categories:
   - - 编程
     - C#
@@ -1083,6 +1085,32 @@ dotnet add package NLog.Web.AspNetCore
 
 ```
 
+归档策略
+```xml
+	<!-- 日志写入目标 -->
+	<targets>
+		<!-- 用于记录自身日志消息的文件目标，使用额外的 Web 详情，使用一些 ASP.NET Core 渲染器 -->
+		<!--
+			- target：指定日志的目标类型，这里为“File”，表示日志将被记录到文件中。
+			- name：为此目标设置一个唯一的标识符，在日志规则中用于引用它。
+			- fileName：日志文件的路径和名称。`${basedir}`是NLog中预定义的变量，表示应用程序的基目录。`${shortdate}`插入当前日期，格式为 yyyy-MM-dd。
+			- layout：定义每个日志条目的格式。它包括各种占位符，如 `${longdate}` 表示日期和时间，`${level}` 表示日志级别，`${logger}` 表示日志记录器名称，`${message}` 表示日志消息，`${exception}` 表示异常信息，`${aspnet-request-url}` 表示 ASP.NET 请求的 URL，`${aspnet-mvc-action}` 表示 MVC 动作名称。
+			- archiveFileName：指定归档日志文件的路径和名称格式。
+			- archiveAboveSize：当日志文件大小超过指定值时触发归档动作，这里是10485760字节（即10MB）。
+			- archiveEvery：指定归档频率，这里是每天归档一次。
+			- archiveNumbering：指定归档文件的编号方式，这里是“Rolling”，表示文件名中包含滚动编号。
+			- maxArchiveFiles：指定保留的归档文件数量，超出此数量的旧归档文件将被删除。
+		-->
+		<target xsi:type="File" name="ownFile-web" fileName="${basedir}/logs/APP-${shortdate}.log"
+				layout="${longdate}|${event-properties:item=EventId:whenEmpty=0}|${level:uppercase=true}|${logger}|${message} ${exception:format=tostring}|url: ${aspnet-request-url}|action: ${aspnet-mvc-action}" 
+				archiveFileName="${basedir}/logs/archives/log.${shortdate}.{#}.log"
+				archiveAboveSize="10485760"
+				archiveEvery="Day"
+				archiveNumbering="Rolling"
+				maxArchiveFiles="300" />
+	</targets>
+```
+
 #### 2.3. 更新 `program.cs`
 
 ```csharp
@@ -1835,6 +1863,18 @@ services.AddControllers()
     });
 ```
 
+#### 4.2. 超过 1MB 的 JSON 响应数据导致 Swagger 一直加载
+
+在 `Startup.cs` 文件的 `Configure` 方法中，添加如下配置：
+```csharp
+app.UseSwaggerUI(c =>
+{
+    c.ConfigObject.AdditionalItems["syntaxHighlight"] = new Dictionary<string, object>
+    {
+        ["activated"] = false
+    };
+});
+```
 
 ## 九、使用 EF Core 操作数据库
 
@@ -2656,13 +2696,13 @@ public class UsersController : ControllerBase
 
 ## 十一、使用 JWTBearer 进行身份验证
 
-1. **安装所需的包**：首先，你需要安装必要的 NuGet 包。
+### 1. **安装所需的包**：首先，你需要安装必要的 NuGet 包。
 
 ```bash
 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
 ```
 
-2. **配置 JWTBearer 身份验证**：在 `Startup.cs` 文件的 `ConfigureServices` 方法中配置 JWTBearer 身份验证，并读取 `appsettings.json` 提供的配置。
+### 2. **配置 JWTBearer 身份验证**：在 `Startup.cs` 文件的 `ConfigureServices` 方法中配置 JWTBearer 身份验证，并读取 `appsettings.json` 提供的配置。
 
 ```json
 {
@@ -2745,7 +2785,7 @@ public class Startup
 }
 ```
 
-3. **保护你的 API 端点**：在需要保护的 API 控制器或方法上使用 `[Authorize]` 特性。
+### 3. **保护你的 API 端点**：在需要保护的 API 控制器或方法上使用 `[Authorize]` 特性。
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
@@ -2760,7 +2800,7 @@ public class YourController : ControllerBase
 }
 ```
 
-4. **生成和验证 JWT 令牌**：当需要生成 JWT 令牌时，你可以使用 `System.IdentityModel.Tokens.Jwt` 或其他相关库。你可以使用提供的配置中的过期时间来设置令牌的有效期。
+### 4. **生成和验证 JWT 令牌**：当需要生成 JWT 令牌时，你可以使用 `System.IdentityModel.Tokens.Jwt` 或其他相关库。你可以使用提供的配置中的过期时间来设置令牌的有效期。
 
 ```csharp
 using Microsoft.IdentityModel.Tokens;
@@ -2859,4 +2899,455 @@ public class TokenService
         }
     }
 }
+```
+
+### 5. 实际使用示例
+
+#### 5.1 通用返回格式
+
+统一后端返回结果
+
+```csharp
+namespace Loquy.Common.Dtos.Base
+{
+    /// <summary>
+    /// 通用返回结果
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class ResultModel<T>
+    {
+        /// <summary>
+        /// 代码（0成功，-1失败）
+        /// </summary>
+        public int code { get; set; }
+
+        /// <summary>
+        /// 消息
+        /// </summary>
+        public string message { get; set; }
+
+        /// <summary>
+        /// 数据
+        /// </summary>
+        public T? data { get; set; }
+
+        public ResultModel()
+        {
+            // 默认构造函数
+        }
+
+        public static ResultModel<T> Success()
+        {
+            return new ResultModel<T>
+            {
+                code = ResultEnums.SUCCESS.code,
+                message = ResultEnums.SUCCESS.message,
+                data = default
+            };
+        }
+
+        public static ResultModel<T> Success(T data)
+        {
+            return new ResultModel<T>
+            {
+                code = ResultEnums.SUCCESS.code,
+                message = ResultEnums.SUCCESS.message,
+                data = data
+            };
+        }
+
+        public static ResultModel<T> Success(string message)
+        {
+            return new ResultModel<T>
+            {
+                code = ResultEnums.SUCCESS.code,
+                message = message,
+                data = default
+            };
+        }
+
+        public static ResultModel<T> Success(T data, string message)
+        {
+            return new ResultModel<T>
+            {
+                code = ResultEnums.SUCCESS.code,
+                message = message,
+                data = data
+            };
+        }
+
+        public static ResultModel<T> Fail(string message)
+        {
+            return new ResultModel<T>
+            {
+                code = ResultEnums.FAIL.code,
+                message = message,
+                data = default
+            };
+        }
+
+        public static ResultModel<T> Fail(int code, string message)
+        {
+            return new ResultModel<T>
+            {
+                code = code,
+                message = message,
+                data = default
+            };
+        }
+
+        public static ResultModel<T> Fail(int code, string message, T data)
+        {
+            return new ResultModel<T>
+            {
+                code = code,
+                message = message,
+                data = data
+            };
+        }
+
+        public class ResultEnums
+        {
+            public static readonly ResultEnums FAIL = new ResultEnums(-1, "失败");
+
+            public static readonly ResultEnums SUCCESS = new ResultEnums(0, "成功");
+
+            public int code { get; private set; }
+
+            public string message { get; private set; }
+
+            private ResultEnums(int code, string message)
+            {
+                this.code = code;
+                this.message = message;
+            }
+        }
+    }
+}
+
+```
+
+#### 5.2 封装 JWT工具类
+
+JWT 工具类接口，可注入到其他服务使用
+
+```csharp
+using Loquy.Common.WMS.Dtos.UserMan;
+using Loquy.Models;
+
+namespace Loquy.Common.Authorization
+{
+    public interface IJwtUtils
+    {
+        string GenerateJwtToken(User user);
+        string? ValidateJwtToken(string? token);
+        string? GetCurrentToken();
+        User? GetUserByToken();
+        User? GetCurrentUser();
+        int GetExpiresMinutes();
+    }
+}
+```
+
+JWT 工具类实现类，提供方法：根据用户生成 Token、验证 Token、获取当前 Token、根据 Token 获取用户、获取当前用户、获取 Token 过期分钟数
+```csharp
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Loquy.Common.WMS.Dtos.UserMan;
+using Loquy.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+
+namespace Loquy.Common.Authorization
+{
+    public class JwtUtils : IJwtUtils
+    {
+        private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly AppDbContext _context;
+
+        public JwtUtils(IConfiguration configuration, IHttpContextAccessor httpContextAccessor, AppDbContext context)
+        {
+            _configuration = configuration;
+            _httpContextAccessor = httpContextAccessor;
+            _context = context;
+
+            string secret = _configuration["JwtSettings:SecretKey"] ?? "";
+            if (string.IsNullOrEmpty(secret))
+                throw new Exception("未配置 JWT 密钥");
+        }
+
+        public string GenerateJwtToken(User user)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_configuration["JwtSettings:SecretKey"]!);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[] { new Claim("id", user.id.ToString()) }),
+                Expires = DateTime.UtcNow.AddMinutes(Convert.ToInt32(_configuration["JwtSettings:ExpirationMinutes"])),
+                Issuer = _configuration["JwtSettings:Issuer"],
+                Audience = _configuration["JwtSettings:Audience"],
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
+
+        public string? ValidateJwtToken(string? token)
+        {
+            if (token == null)
+                return null;
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_configuration["Secret:SecretKey"]!);
+            try
+            {
+                tokenHandler.ValidateToken(token, new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidIssuer = _configuration["JwtSettings:Issuer"], 
+                    ValidAudience = _configuration["JwtSettings:Audience"], 
+                    // 将clockskew设置为0，这样令牌就会在令牌过期时间过期(而不是5分钟后)
+                    ClockSkew = TimeSpan.Zero
+                }, out SecurityToken validatedToken);
+
+                var jwtToken = (JwtSecurityToken)validatedToken;
+                var userId = jwtToken.Claims.First(x => x.Type == "id").Value;
+
+                // 如果验证成功，则从JWT令牌返回用户id
+                return userId;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public string? GetCurrentToken()
+        {
+            string? token = _httpContextAccessor.HttpContext?.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+            return token;
+        }
+
+        public User? GetUserByToken()
+        {
+            string? token = GetCurrentToken();
+            string? userId = ValidateJwtToken(token);
+            User? user = _context.User.Where(u => u.id == userId).FirstOrDefault();
+            return user;
+        }
+
+        public User? GetCurrentUser()
+        {
+            var context = _httpContextAccessor.HttpContext;
+            if (context != null && context.Items.ContainsKey("User"))
+            {
+                return (User?)context.Items["User"];
+            }
+            return null;
+        }
+
+        public int GetExpiresMinutes()
+        {
+            return Convert.ToInt32(_configuration["JwtSettings:ExpirationMinutes"]);
+        }
+    }
+}
+
+```
+
+#### 5.3 新增过滤器全局验证 Token
+
+只有标注 `[AllowAnonymous]` 特性的方法或者类才会跳过 Token 验证
+```csharp
+using Loquy.Common.Dtos.Base;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+
+namespace Loquy.Common.Authorization
+{
+    public class JwtFilter : IAuthorizationFilter
+    {
+        private readonly IJwtUtils _jwtUtils;
+        public JwtFilter(IJwtUtils jwtUtils)
+        {
+            _jwtUtils = jwtUtils;
+        }
+
+        public void OnAuthorization(AuthorizationFilterContext context)
+        {
+            // 如果动作带有[AllowAnonymous]属性，则跳过授权
+            var allowAnonymous = context.ActionDescriptor.EndpointMetadata.OfType<AllowAnonymousAttribute>().Any();
+            if (allowAnonymous)
+                return;
+
+            // 授权
+            var token = context.HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+            var userId = _jwtUtils.ValidateJwtToken(token);
+            if (userId == null)
+            {
+                // 用户未登录或token不正确
+                var resultModel = ResultModel<string>.Fail("用户未登录或token不正确");
+                context.Result = new JsonResult(resultModel) { StatusCode = StatusCodes.Status401Unauthorized };
+            }
+            else
+            {
+                context.HttpContext.Items["User"] = _jwtUtils.GetUserByToken();
+            }
+        }
+    }
+}
+
+```
+
+#### 5.4 把 JWT 工具类和过滤器增加至项目启动文件
+
+在 `Startup` 中的 `ConfigureServices` 方法中添加以下配置：
+
+```csharp
+Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        SaveSigninToken = true, // 保存 token,后台验证 token 是否生效(重要)
+        ValidateIssuer = true, // 是否验证 Issuer
+        ValidateAudience = true, // 是否验证 Audience
+        ValidateLifetime = true, // 是否验证失效时间
+        ValidateIssuerSigningKey = true, // 是否验证 SecurityKey
+        ValidAudience = AppSetting.Secret.Audience, // Audience
+        ValidIssuer = AppSetting.Secret.Issuer, // Issuer，这两项和前面签发j wt 的设置一致
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppSetting.Secret.JWT))
+    };
+    options.Events = new JwtBearerEvents()
+    {
+        OnChallenge = context =>
+        {
+            context.HandleResponse();
+            context.Response.Clear();
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            context.Response.WriteAsync(ResultModel<string>.Fail(StatusCodes.Status401Unauthorized, "授权未通过").Serialize());
+            return Task.CompletedTask;
+        }
+    };
+});
+
+// 注入 JWT
+services.AddScoped<IJwtUtils, JwtUtils>();
+```
+
+#### 5.5 前端封装通用的 HTTP 请求方法（Vue3 + TS + Axios + Element Plus）
+
+前端 Token 处理：请求发起时拦截判断 `localStorage` 是否有 Token 然后添加到请求头，请求响应时拦截判断是否 401 授权失败则跳转登录页。
+
+```typescript
+import axios from 'axios'
+import type { AxiosInstance, AxiosResponse, AxiosRequestConfig } from 'axios'
+import { ElMessage, ElLoading } from 'element-plus'
+import router from "@/router/index";
+
+// 创建一个 axios 实例，并设置基本 URL
+export const api: AxiosInstance = axios.create({
+  baseURL: 'http://localhost:8002/',
+  timeout: 10000 * 6, // 设置超时时间为 60 秒
+  headers: {
+    'Content-Type': 'application/json' // 设置请求头为 JSON 格式
+  }
+})
+
+// 添加请求拦截器
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config
+  },
+  (error: any) => {
+    // 对请求错误做些什么
+    return Promise.reject(error)
+  }
+)
+
+// 添加响应拦截器
+api.interceptors.response.use(
+  (response: AxiosResponse<any>) => {
+    return response
+  },
+  (error: any) => {
+    // 对响应错误做些什么
+    if (error.response && error.response.status === 401) {
+      ElMessage.error(error.response.data.message)
+      localStorage.removeItem('accessToken');
+      router.push('/login'); 
+    }
+    return Promise.reject(error)
+  }
+)
+
+export const request = (
+  url: string,
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE',
+  params: any = {},
+  loadingOptions: any = {}
+): Promise<any> => {
+  return new Promise((resolve, reject) => {
+    const defaultLoadingOptions = {
+      lock: true,
+      text: '正在请求接口，请耐心等待',
+      background: 'rgba(0, 0, 0, 0.1)'
+    }
+
+    let loading: any
+    if (loadingOptions) {
+      const finalLoadingOptions = { ...defaultLoadingOptions, ...loadingOptions }
+      loading = ElLoading.service(finalLoadingOptions)
+    }
+
+    const requestConfig: AxiosRequestConfig = {
+      url,
+      method,
+      params: method === 'GET' || method === 'DELETE' ? params : null,
+      data: method === 'POST' || method === 'PUT' ? params : null
+    }
+
+    api
+      .request(requestConfig)
+      .then((response) => {
+        const result = response.data
+        if (result.code === 0) {
+          resolve(result)
+        } else {
+          ElMessage.error(result)
+          reject(result)
+        }
+      })
+      .catch((error) => {
+        ElMessage.error('接口发生错误：' + error)
+        console.error('接口发生错误:', error)
+        reject(error)
+      })
+      .finally(() => {
+        setTimeout(() => {
+          loading?.close()
+        }, 500)
+      })
+  })
+}
+
+export default api
+
 ```
